@@ -4,11 +4,11 @@ public class PlatformMovement : MonoBehaviour
 {
     private const float MaxDistanceDelta = 50;
     private const float Speed = 0.5f;
-    private const float ClampX = 7;
+    private const float ClampX = 8.1f;
     private const float ClampYMin = -19;
     private const float ClampYMax = -6;
     private const float CurrentPositionY = 1;
-    private const float PlatformSpeed = 900;
+    private const float PlatformSpeed = 1500;
     private const float PositionZ = 1;
 
     [SerializeField] private Platform _platform;
@@ -25,6 +25,13 @@ public class PlatformMovement : MonoBehaviour
         var direction = _transform.position - _platform.transform.position;
         var newDirection = new Vector3(direction.x, direction.y, direction.z + PositionZ);
         _platform.Rigidbody.velocity = PlatformSpeed * Time.deltaTime * newDirection;
+
+
+        Debug.Log(_platform.transform.rotation);
+        float rotateY = Mathf.Clamp(_platform.transform.rotation.y, -15, 15);
+        Vector3 rotation = new(_platform.transform.rotation.x, rotateY, _platform.transform.rotation.z);
+        _platform.transform.Rotate(rotation);
+
     }
 
     public void MoveToPointOfPressing(Vector3 hitPoint)

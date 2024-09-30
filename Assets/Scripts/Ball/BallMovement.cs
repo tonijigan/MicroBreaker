@@ -33,9 +33,17 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out ITrigger trigger))
         {
             Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
-            Debug.Log(trigger.GetSpeed());
             Move(direction, GetCurrentSpeed(trigger.GetSpeed()));
+
+            if (collision.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(1);
+            }
         }
+    }
+    public void StartMove(Vector3 direction)
+    {
+        Move(direction, _speed);
     }
 
     private float GetCurrentSpeed(float value)
@@ -45,10 +53,6 @@ public class BallMovement : MonoBehaviour
         else return value;
     }
 
-    public void StartMove(Vector3 direction)
-    {
-        Move(direction, _speed);
-    }
 
     private void Move(Vector3 direction, float speed)
     {
