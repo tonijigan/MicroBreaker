@@ -1,5 +1,5 @@
 using BallObject;
-using Platform;
+using PlatformObject;
 using UnityEngine;
 
 namespace Player
@@ -13,6 +13,8 @@ namespace Player
         [SerializeField] private Ball _ball;
 
         private PlatformMovement _platformMovement;
+
+        private bool _isInputPlatform;
 
         private void Awake()
         {
@@ -28,7 +30,7 @@ namespace Player
                 _platformMovement.RestrictMove();
             }
 
-            if (Input.GetMouseButtonUp(0) && _ball.IsActive == false)
+            if (Input.GetMouseButtonUp(0) && _ball.IsActive == false && _isInputPlatform == true)
             {
                 _ball.DisconnectParentObject();
             }
@@ -37,8 +39,12 @@ namespace Player
         private Vector3 GetRaycastPoint()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
             if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                _isInputPlatform = !hit.collider.gameObject.TryGetComponent(out Ground ground);
                 return hit.point;
+            }
             else
                 return Vector3.zero;
         }

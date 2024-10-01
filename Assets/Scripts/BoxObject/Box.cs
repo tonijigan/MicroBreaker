@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BoxObject
 {
-    public class Box : MonoBehaviour, IDamageable
+    public class Box : AbstractEffect, IDamageable
     {
         private const int MinHealth = 0;
         private const float Delay = 0.5f;

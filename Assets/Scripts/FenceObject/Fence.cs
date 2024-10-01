@@ -1,9 +1,8 @@
 using Interfaces;
-using UnityEngine;
 
 namespace FenceObject
 {
-    public class Fence : MonoBehaviour, ITrigger
+    public class Fence : AbstractEffect, ITrigger
     {
         public float GetSpeed()
         {

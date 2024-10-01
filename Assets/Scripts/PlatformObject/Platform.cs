@@ -1,21 +1,20 @@
 using Interfaces;
 using UnityEngine;
 
-namespace Platform
+namespace PlatformObject
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Platform : MonoBehaviour, ITrigger
+    public class Platform : AbstractEffect
     {
         public Rigidbody Rigidbody { get; private set; }
 
         public float GetSpeed()
         {
-            float speed = 10;
-            float addSpeed = 30;
+            float speed = 50;
+            float addSpeed = 10;
 
             if (Rigidbody.velocity.magnitude > speed)
                 speed = Rigidbody.velocity.magnitude + addSpeed;
-
             return speed;
         }
 

@@ -1,4 +1,5 @@
 using Interfaces;
+using PlatformObject;
 using UnityEngine;
 
 namespace BallObject
@@ -7,10 +8,13 @@ namespace BallObject
     public class BallMovement : MonoBehaviour
     {
         private const float RandomValue = 0.1f;
+        private const float PositionZero = 0f;
+        private const float GravityPositionZ = 0.02f;
         private const int Damage = 1;
 
         [SerializeField] private float _speed;
         [SerializeField] private Transform _ballPoint;
+        [SerializeField] private BallEffect _ballEffect;
 
         private Rigidbody _rigidbody;
         private Transform _transform;
@@ -31,6 +35,9 @@ namespace BallObject
                 _transform.position = _ballPoint.position;
             }
 
+            _rigidbody.velocity += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
+            _ballEffect.RotateTarget(_rigidbody.velocity);
+            //_ballEffect.Play();
             _lastVelosity = _rigidbody.velocity;
         }
 
@@ -39,14 +46,27 @@ namespace BallObject
             if (collision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
-                Move(GetRandomDirection(direction), GetCurrentSpeed(trigger.GetSpeed()));
 
-                if (collision.gameObject.TryGetComponent(out IDamageable damageable))
+                if (collision.gameObject.TryGetComponent(out Platform platform))
                 {
-                    damageable.TakeDamage(Damage);
+                    direction = platform.transform.position.normalized;
                 }
+
+                Debug.Log(trigger.GetSpeed());
+                Move(GetRandomDirection(direction), GetCurrentSpeed(trigger.GetSpeed()));
+            }
+
+            if (collision.gameObject.TryGetComponent(out IEffect effect))
+            {
+                effect.Play(collision.contacts[0].point);
+            }
+
+            if (collision.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(Damage);
             }
         }
+
         public void StartMove(Vector3 direction)
         {
             Move(GetRandomDirection(direction), _speed);
