@@ -43,6 +43,7 @@ namespace BallObject
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log(collision.gameObject.name);
             if (collision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
@@ -52,7 +53,6 @@ namespace BallObject
                     direction = platform.transform.position.normalized;
                 }
 
-                Debug.Log(trigger.GetSpeed());
                 Move(GetRandomDirection(direction), GetCurrentSpeed(trigger.GetSpeed()));
             }
 
@@ -72,19 +72,19 @@ namespace BallObject
             Move(GetRandomDirection(direction), _speed);
         }
 
-        private float GetCurrentSpeed(float value)
+        public float GetCurrentSpeed(float value)
         {
             if (_lastVelosity.magnitude > value)
                 return _lastVelosity.magnitude;
             else return value;
         }
 
-        private void Move(Vector3 direction, float speed)
+        public void Move(Vector3 direction, float speed)
         {
             _rigidbody.velocity = speed * direction;
         }
 
-        private Vector3 GetRandomDirection(Vector3 direction)
+        public Vector3 GetRandomDirection(Vector3 direction)
         {
             return new(Random.Range(direction.x - RandomValue, direction.x + RandomValue), direction.y, direction.z);
         }

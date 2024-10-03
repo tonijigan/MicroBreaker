@@ -3,11 +3,11 @@ using UnityEngine;
 
 public abstract class AbstractEffect : MonoBehaviour, IEffect
 {
-    [SerializeField] private ParticleSystem _particleSystem;
+    protected ParticleSystem ParticleSystem;
 
     public void Play(Vector3 point)
     {
-        _particleSystem.transform.position = point;
-        _particleSystem.Play();
+        ParticleSystem.transform.position = point;
+        ParticleSystem.Play();
     }
 }

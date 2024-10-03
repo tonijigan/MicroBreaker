@@ -9,7 +9,7 @@ namespace PlatformObject
         private const float ClampX = 9f;
         private const float ClampYMin = -19;
         private const float ClampYMax = -6;
-        private const float CurrentPositionY = 1;
+        private const float CurrentPositionY = 0.5f;
         private const float PlatformSpeed = 1500;
         private const float PositionZ = 1.5f;
 
