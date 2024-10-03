@@ -742,11 +742,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0ffefbf78069b42b5c116ad2beadc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platform: {fileID: 2077111604}
+  _platformTrigger: {fileID: 2077111608}
   _ball: {fileID: 1980936487}
   _ballTemplates:
   - {fileID: 5648065821720640091, guid: 77c1d4aac858209488116634265db217, type: 3}
   - {fileID: 8508214751881533182, guid: 8b64d4f9a8c69124ebd15994c2f470a8, type: 3}
+  - {fileID: -5699813453098701822, guid: af6814d7206a2f846a98f04dd5ed2a03, type: 3}
   _platformTemplates: []
 --- !u!1001 &765435083
 PrefabInstance:
@@ -926,6 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ball: {fileID: 1980936487}
+  _inputTransform: {fileID: 530097769}
 --- !u!4 &813577067
 Transform:
   m_ObjectHideFlags: 0

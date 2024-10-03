@@ -3,9 +3,9 @@ using UnityEngine;
 public class Booster : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private BoxName _name;
+    [SerializeField] private ObjectsName _name;
 
-    public BoxName Name => _name;
+    public ObjectsName Name => _name;
 
     private void Update()
     {

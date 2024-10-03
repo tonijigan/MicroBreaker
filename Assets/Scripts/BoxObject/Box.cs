@@ -12,14 +12,14 @@ namespace BoxObject
 
         [SerializeField] private float _speedRepulsion;
         [SerializeField] private int _health;
-        [SerializeField] private BoxName _name;
+        [SerializeField] private ObjectsName _name;
 
         public event Action Died;
 
         private Booster _booster;
         private WaitForSeconds _waitForSeconds;
 
-        public BoxName Name => _name;
+        public ObjectsName Name => _name;
 
         public void Init(Booster booster, ParticleSystem particleSystem)
         {

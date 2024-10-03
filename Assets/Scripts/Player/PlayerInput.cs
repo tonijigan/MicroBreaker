@@ -11,6 +11,7 @@ namespace Player
         private const string AxsisY = "Mouse Y";
 
         [SerializeField] private Ball _ball;
+        [SerializeField] private GameObject _inputTransform;
 
         private PlatformMovement _platformMovement;
 
@@ -28,11 +29,18 @@ namespace Player
                 _platformMovement.MoveToPointOfPressing(GetRaycastPoint());
                 _platformMovement.Move(GetPosition());
                 _platformMovement.RestrictMove();
+                _inputTransform.SetActive(true);
             }
+            else
+            {
+                _inputTransform.SetActive(false);
+            }
+
 
             if (Input.GetMouseButtonUp(0) && _ball.IsActive == false && _isInputPlatform == true)
             {
                 _ball.DisconnectParentObject();
+                _inputTransform.SetActive(false);
             }
         }
 

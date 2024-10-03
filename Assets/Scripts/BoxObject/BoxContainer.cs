@@ -23,14 +23,14 @@ public class BoxContainer : MonoBehaviour
         {
             if (_path.GetChild(i).TryGetComponent(out Box box))
             {
-                FillBoxesType(box, _boxes[i], BoxName.Positive);
-                FillBoxesType(box, _boxes[i], BoxName.Negative);
-                FillBoxesType(box, _boxes[i], BoxName.Default);
+                FillBoxesType(box, _boxes[i], ObjectsName.Positive);
+                FillBoxesType(box, _boxes[i], ObjectsName.Negative);
+                FillBoxesType(box, _boxes[i], ObjectsName.Default);
             }
         }
     }
 
-    private void FillBoxesType(Box box, Box currentBox, BoxName boxName)
+    private void FillBoxesType(Box box, Box currentBox, ObjectsName boxName)
     {
 
         Booster[] boosters = _boosterContainer.GetBoostersType(box.Name);

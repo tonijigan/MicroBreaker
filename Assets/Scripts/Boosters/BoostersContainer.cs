@@ -13,7 +13,7 @@ public class BoostersContainer : MonoBehaviour
         CreateBoosters();
     }
 
-    public Booster[] GetBoostersType(BoxName boxName)
+    public Booster[] GetBoostersType(ObjectsName boxName)
     {
         List<Booster> boosters = new();
         var boosts = _boosters.Where(booster => booster.Name == boxName).Select(booster => booster).ToList();

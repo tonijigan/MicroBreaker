@@ -1,4 +1,4 @@
-public enum BoxName
+public enum ObjectsName
 {
     Positive, Negative, Default
 }
