@@ -6,12 +6,7 @@ namespace BallObject
     {
         protected override void ChangeScale()
         {
-            bool isChange = false;
-
-            if (isChange == true) return;
-
-            float scaleValue = 2;
-            isChange = true;
+            float scaleValue = 1.2f;
             Vector3 scale = transform.localScale * scaleValue;
             Transform.localScale = scale;
         }

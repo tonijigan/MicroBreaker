@@ -37,7 +37,7 @@ namespace BallObject
 
             IsActive = true;
             _transform.parent = default;
-            _ballMovement.StartMove(Vector3.forward);
+            //_ballMovement.StartMove(Vector3.forward);
         }
     }
 }

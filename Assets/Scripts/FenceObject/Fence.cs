@@ -6,11 +6,11 @@ namespace FenceObject
     public class Fence : MonoBehaviour, IEffect, ITrigger
     {
         [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private float _speed;
 
         public float GetSpeed()
         {
-            float speed = 20;
-            return speed;
+            return _speed;
         }
 
         public void Play(Vector3 point)

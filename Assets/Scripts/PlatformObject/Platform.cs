@@ -4,13 +4,14 @@ using UnityEngine;
 namespace PlatformObject
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Platform : MonoBehaviour, IEffect
+    public class Platform : MonoBehaviour, IEffect, ITrigger
     {
         private const float PlatformSpeed = 1500;
         private const float PositionZ = 1.5f;
 
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private InputPointMovement _inputPointMovement;
+        [SerializeField] private float _speed;
 
         private Rigidbody _rigidbody;
         private Transform _transform;
@@ -28,12 +29,11 @@ namespace PlatformObject
 
         public float GetSpeed()
         {
-            float speed = 20;
-            float addSpeed = 10;
+            float addSpeed = 100;
 
-            if (_rigidbody.velocity.magnitude > speed)
-                speed = _rigidbody.velocity.magnitude + addSpeed;
-            return speed;
+            if (_rigidbody.velocity.magnitude > _speed)
+                _speed = _rigidbody.velocity.magnitude + addSpeed;
+            return _speed;
         }
 
         public void Play(Vector3 point)

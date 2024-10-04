@@ -13,7 +13,6 @@ namespace PlatformObject
         {
             if (collider.TryGetComponent(out Booster booster))
             {
-                Debug.Log($"{booster.ObjectName} , {booster.BoosterName}");
                 if (booster.ObjectName == ObjectsName.Ball)
                     BoosterSended?.Invoke(booster, ObjectsName.Ball);
 

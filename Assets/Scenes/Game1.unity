@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.18
@@ -423,6 +427,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
+      propertyPath: _speedRepulsion
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8
@@ -5443,6 +5451,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
+      propertyPath: _speedRepulsion
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.33
@@ -5705,6 +5717,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: fa10117a687017d43aca59c7f475f232, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1100
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: fa10117a687017d43aca59c7f475f232, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.66
@@ -5780,6 +5796,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.61
@@ -10701,6 +10721,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.19
@@ -11059,6 +11083,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
+      propertyPath: _speedRepulsion
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: cdcdf3ebc7c8e9848b394ffc7bd9ac56, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.065430164
@@ -11129,6 +11157,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.086266
@@ -16235,6 +16267,10 @@ PrefabInstance:
       propertyPath: _particleSystem
       value: 
       objectReference: {fileID: 1305323715}
+    - target: {fileID: 1105013101926589813, guid: fa10117a687017d43aca59c7f475f232, type: 3}
+      propertyPath: _speedRepulsion
+      value: 1100
+      objectReference: {fileID: 0}
     - target: {fileID: 2325441048855433530, guid: fa10117a687017d43aca59c7f475f232, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4170337
@@ -16341,7 +16377,7 @@ Transform:
   m_GameObject: {fileID: 1980936480}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: -12.043}
+  m_LocalPosition: {x: 0, y: 0.62, z: -12.86}
   m_LocalScale: {x: 0.64645, y: 0.64645, z: 0.64645}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16375,7 +16411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballPoint: {fileID: 1425764944}
-  _speed: 40
+  _speed: 2000
 --- !u!114 &1980936487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16466,6 +16502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 607187086}
   _inputPointMovement: {fileID: 813577065}
+  _speed: 2000
 --- !u!54 &2077111605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16643,13 +16680,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46221298, y: 0, z: 0, w: 0.88676894}
-  m_LocalPosition: {x: 0, y: 24, z: -21.5}
+  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
+  m_LocalPosition: {x: 0, y: 30, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 55.06, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
 --- !u!4 &2147184448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2544165691914245929, guid: ddf192d824a939540b9afed0782939cb, type: 3}
@@ -17017,6 +17054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 839276266}
+  _speed: 4000
 --- !u!1 &5978351594767862942
 GameObject:
   m_ObjectHideFlags: 0
@@ -17075,6 +17113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 839276266}
+  _speed: 1000
 --- !u!4 &6466201173995492900
 Transform:
   m_ObjectHideFlags: 0
@@ -17173,6 +17212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 839276266}
+  _speed: 1500
 --- !u!4 &7787963883921817428
 Transform:
   m_ObjectHideFlags: 0
@@ -17273,6 +17313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 839276266}
+  _speed: 1500
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
