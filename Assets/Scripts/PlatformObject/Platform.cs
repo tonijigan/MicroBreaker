@@ -6,17 +6,33 @@ namespace PlatformObject
     [RequireComponent(typeof(Rigidbody))]
     public class Platform : MonoBehaviour, IEffect
     {
-        [SerializeField] private ParticleSystem _particleSystem;
+        private const float PlatformSpeed = 1500;
+        private const float PositionZ = 1.5f;
 
-        public Rigidbody Rigidbody { get; private set; }
+        [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private InputPointMovement _inputPointMovement;
+
+        private Rigidbody _rigidbody;
+        private Transform _transform;
+
+        private void Awake()
+        {
+            _transform = transform;
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            FollowToPointMovement();
+        }
 
         public float GetSpeed()
         {
             float speed = 20;
             float addSpeed = 10;
 
-            if (Rigidbody.velocity.magnitude > speed)
-                speed = Rigidbody.velocity.magnitude + addSpeed;
+            if (_rigidbody.velocity.magnitude > speed)
+                speed = _rigidbody.velocity.magnitude + addSpeed;
             return speed;
         }
 
@@ -26,9 +42,11 @@ namespace PlatformObject
             _particleSystem.Play();
         }
 
-        private void Awake()
+        private void FollowToPointMovement()
         {
-            Rigidbody = GetComponent<Rigidbody>();
+            Vector3 direction = _inputPointMovement.transform.position - _transform.position;
+            Vector3 newDirection = new(direction.x, direction.y, direction.z + PositionZ);
+            _rigidbody.velocity = PlatformSpeed * Time.deltaTime * newDirection;
         }
     }
 }

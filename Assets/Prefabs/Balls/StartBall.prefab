@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 111694426039336752}
   - component: {fileID: 139017745264607501}
   - component: {fileID: 8978273538502099498}
-  - component: {fileID: -5699813453098701822}
+  - component: {fileID: -1151875070651832472}
   m_Layer: 0
   m_Name: StartBall
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-5699813453098701822
+--- !u!114 &-1151875070651832472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

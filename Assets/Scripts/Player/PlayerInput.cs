@@ -1,46 +1,36 @@
-using BallObject;
-using PlatformObject;
+using Scripts;
+using System;
 using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(PlatformMovement))]
     public class PlayerInput : MonoBehaviour
     {
         private const string AxsisX = "Mouse X";
         private const string AxsisY = "Mouse Y";
 
-        [SerializeField] private Ball _ball;
-        [SerializeField] private GameObject _inputTransform;
-
-        private PlatformMovement _platformMovement;
-
         private bool _isInputPlatform;
 
-        private void Awake()
-        {
-            _platformMovement = GetComponent<PlatformMovement>();
-        }
+        public event Action<Vector3, Vector3> MousePressed;
+        public event Action<bool> MouseUped;
+        public event Action MousePressedUp;
 
         private void Update()
         {
             if (Input.GetMouseButton(0))
             {
-                _platformMovement.MoveToPointOfPressing(GetRaycastPoint());
-                _platformMovement.Move(GetPosition());
-                _platformMovement.RestrictMove();
-                _inputTransform.SetActive(true);
+                MouseUped?.Invoke(Input.GetMouseButton(0));
+                MousePressed?.Invoke(GetPosition(), GetRaycastPoint());
             }
             else
             {
-                _inputTransform.SetActive(false);
+                MouseUped?.Invoke(Input.GetMouseButtonUp(0));
             }
 
 
-            if (Input.GetMouseButtonUp(0) && _ball.IsActive == false && _isInputPlatform == true)
+            if (Input.GetMouseButtonUp(0) && _isInputPlatform == true)
             {
-                _ball.DisconnectParentObject();
-                _inputTransform.SetActive(false);
+                MousePressedUp?.Invoke();
             }
         }
 
@@ -54,7 +44,9 @@ namespace Player
                 return hit.point;
             }
             else
+            {
                 return Vector3.zero;
+            }
         }
 
         private Vector3 GetPosition()

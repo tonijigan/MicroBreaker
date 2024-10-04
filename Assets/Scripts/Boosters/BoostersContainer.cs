@@ -1,31 +1,27 @@
+using Enums;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BoostersContainer : MonoBehaviour
+namespace Boosters
 {
-    [SerializeField] private Booster[] _boosters;
-
-    public Booster[] Boosters => _boosters;
-
-    public void Create()
+    public class BoostersContainer : MonoBehaviour
     {
-        CreateBoosters();
-    }
+        [SerializeField] private List<Booster> _boosters;
 
-    public Booster[] GetBoostersType(ObjectsName boxName)
-    {
-        List<Booster> boosters = new();
-        var boosts = _boosters.Where(booster => booster.Name == boxName).Select(booster => booster).ToList();
-        return boosts.ToArray();
-    }
-
-    private void CreateBoosters()
-    {
-        for (int i = 0; i < _boosters.Length; i++)
+        public Booster CreateBoosters(BoosterNames boosterNames)
         {
-            Boosters[i] = Instantiate(_boosters[i], transform);
-            Boosters[i].gameObject.SetActive(false);
+            Booster booster = Instantiate(GetRandomBoostersType(boosterNames), transform);
+            _boosters.Add(booster);
+            booster.gameObject.SetActive(false);
+            return booster;
+        }
+
+        private Booster GetRandomBoostersType(BoosterNames boxName)
+        {
+            int minLength = 0;
+            var booster = _boosters.Where(booster => booster.BoosterName == boxName).Select(booster => booster).ToList();
+            return booster[Random.Range(minLength, booster.Count)];
         }
     }
 }

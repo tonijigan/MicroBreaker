@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(Rigidbody), typeof(Ball))]
+    [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
     public class BallMovement : MonoBehaviour
     {
         private const float RandomValue = 0.1f;
@@ -12,10 +12,10 @@ namespace BallObject
         private const float GravityPositionZ = 0.02f;
         private const int Damage = 1;
 
-        [SerializeField] private float _speed;
         [SerializeField] private Transform _ballPoint;
-        [SerializeField] private BallEffect _ballEffect;
+        [SerializeField] private float _speed;
 
+        private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
         private Transform _transform;
         private Vector3 _lastVelosity;
@@ -25,6 +25,7 @@ namespace BallObject
         {
             _rigidbody = GetComponent<Rigidbody>();
             _ball = GetComponent<Ball>();
+            _ballEffect = GetComponent<BallEffect>();
             _transform = transform;
         }
 
@@ -32,7 +33,8 @@ namespace BallObject
         {
             if (_ball.IsActive == false)
             {
-                _transform.position = _ballPoint.position;
+                FollowToPointPosition();
+                return;
             }
 
             _rigidbody.velocity += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
@@ -43,7 +45,6 @@ namespace BallObject
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.gameObject.name);
             if (collision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
@@ -70,6 +71,13 @@ namespace BallObject
         public void StartMove(Vector3 direction)
         {
             Move(GetRandomDirection(direction), _speed);
+        }
+
+        public void FollowToPointPosition()
+        {
+            float followSpeed = 100;
+            Vector3 newDirection = _ballPoint.position - _transform.position;
+            _rigidbody.velocity = newDirection * followSpeed;
         }
 
         public float GetCurrentSpeed(float value)

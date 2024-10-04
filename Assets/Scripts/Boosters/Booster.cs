@@ -1,14 +1,23 @@
+using Enums;
 using UnityEngine;
 
-public class Booster : MonoBehaviour
+namespace Boosters
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private ObjectsName _name;
-
-    public ObjectsName Name => _name;
-
-    private void Update()
+    public class Booster : MonoBehaviour
     {
-        transform.Translate(new(0, 0, -1 * _speed * Time.deltaTime));
+        private const float PositionZero = 0;
+        private const float PositionZ = 1;
+
+        [SerializeField] private float _speed;
+        [SerializeField] private ObjectsName _objectName;
+        [SerializeField] private BoosterNames _boosterName;
+
+        public ObjectsName ObjectName => _objectName;
+        public BoosterNames BoosterName => _boosterName;
+
+        private void Update()
+        {
+            transform.Translate(new(PositionZero, PositionZero, -PositionZ * _speed * Time.deltaTime));
+        }
     }
 }

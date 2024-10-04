@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using Boosters;
+using EffectObjects;
+using Enums;
 using Interfaces;
 using UnityEngine;
 
@@ -12,14 +15,14 @@ namespace BoxObject
 
         [SerializeField] private float _speedRepulsion;
         [SerializeField] private int _health;
-        [SerializeField] private ObjectsName _name;
+        [SerializeField] private BoosterNames _boosterName;
 
         public event Action Died;
 
         private Booster _booster;
         private WaitForSeconds _waitForSeconds;
 
-        public ObjectsName Name => _name;
+        public BoosterNames BoosterName => _boosterName;
 
         public void Init(Booster booster, ParticleSystem particleSystem)
         {
