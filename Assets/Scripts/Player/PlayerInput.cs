@@ -49,7 +49,7 @@ namespace Player
             }
         }
 
-        private Vector3 GetPosition()
+        public Vector3 GetPosition()
         {
             float positionX = Input.GetAxis(AxsisX);
             float positionY = Input.GetAxis(AxsisY);

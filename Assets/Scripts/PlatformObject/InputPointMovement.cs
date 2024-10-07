@@ -24,13 +24,13 @@ namespace PlatformObject
 
         private void OnEnable()
         {
-            _playerInput.MousePressed += Move;
+            _playerInput.MousePressed += OnMove;
             _playerInput.MouseUped += HaveInputPressed;
         }
 
         private void OnDisable()
         {
-            _playerInput.MousePressed -= Move;
+            _playerInput.MousePressed -= OnMove;
             _playerInput.MouseUped -= HaveInputPressed;
         }
 
@@ -39,7 +39,7 @@ namespace PlatformObject
             _inputObject.SetActive(isActive);
         }
 
-        private void Move(Vector3 position, Vector3 raycastPoint)
+        private void OnMove(Vector3 position, Vector3 raycastPoint)
         {
             FollowToPointOfPressing(raycastPoint);
             Move(position);
@@ -48,10 +48,10 @@ namespace PlatformObject
 
         private void FollowToPointOfPressing(Vector3 hitPoint)
         {
-            transform.position = Vector3.MoveTowards(transform.position, hitPoint, MaxDistanceDelta * Time.deltaTime);
-            Vector3 currentPosition = transform.position;
+            _transform.position = Vector3.MoveTowards(_transform.position, hitPoint, MaxDistanceDelta * Time.deltaTime);
+            Vector3 currentPosition = _transform.position;
             currentPosition.y = CurrentPositionY;
-            transform.position = currentPosition;
+            _transform.position = currentPosition;
         }
 
         private void Move(Vector3 position)
