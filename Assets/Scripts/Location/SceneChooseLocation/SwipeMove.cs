@@ -1,21 +1,20 @@
-using Player;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveScene : MonoBehaviour
+public class SwipeMove : MonoBehaviour
 {
-    private const float MaxDistanceDelta = 50;
     private const float ClampX = 9f;
-    private const float ClampYMin = -250;
-    private const float ClampYMax = -2;
+    private const float ClampYMin = -280;
+    private const float ClampYMax = 10;
 
+    [SerializeField] private LocationChooseInput _inputLocation;
     [SerializeField] private float _speed = 1000;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
-    private bool _isDragging;
     private Vector3 _startPosition;
     private Vector3 _currentPosition;
+    private bool _isDragging;
 
     private void Awake()
     {
@@ -26,25 +25,25 @@ public class MoveScene : MonoBehaviour
     private void OnMouseDown()
     {
         _startPosition = Input.mousePosition;
-        Debug.Log("Down " + Input.mousePosition);
+        _inputLocation.SetFirstLocationObject(Input.mousePosition);
     }
 
     private void OnMouseDrag()
     {
         _isDragging = true;
         _currentPosition = Input.mousePosition;
-        Debug.Log("OnMouse " + Input.mousePosition);
+    }
+
+    private void OnMouseUp()
+    {
+        _isDragging = false;
+        _inputLocation.SetLastLocationObject(Input.mousePosition);
+        _inputLocation.LoadLocation();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            _isDragging = false;
-        }
-
         Drag();
-
         RestrictMove();
     }
 
@@ -52,9 +51,6 @@ public class MoveScene : MonoBehaviour
     {
         if (_isDragging)
         {
-            float positionX = Input.GetAxis("Mouse X");
-            float positionZ = Input.GetAxis("Mouse Y");
-
             Vector3 direction = (_currentPosition - _startPosition).normalized;
             Vector3 newDirection = new(direction.x, _rigidbody.velocity.y, direction.y);
             _rigidbody.velocity = newDirection * _speed;

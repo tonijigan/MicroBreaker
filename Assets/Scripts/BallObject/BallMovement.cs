@@ -1,5 +1,4 @@
 using Interfaces;
-using PlatformObject;
 using UnityEngine;
 
 namespace BallObject
@@ -39,7 +38,6 @@ namespace BallObject
 
             _rigidbody.velocity += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
             _ballEffect.RotateTarget(_rigidbody.velocity);
-            //_ballEffect.Play();
             _lastVelosity = _rigidbody.velocity;
         }
 
@@ -64,9 +62,7 @@ namespace BallObject
 
         public void FollowToPointPosition()
         {
-            float followSpeed = 5000;
-            Vector3 newDirection = _ballPoint.position - _transform.position;
-            _rigidbody.velocity = followSpeed * Time.deltaTime * newDirection;
+            _transform.position = _ballPoint.position;
         }
 
         public float GetCurrentSpeed(float value)

@@ -40,7 +40,7 @@ namespace Player
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                _isInputPlatform = !hit.collider.gameObject.TryGetComponent(out Ground ground);
+                _isInputPlatform = hit.collider.gameObject.TryGetComponent(out Ground ground);
                 return hit.point;
             }
             else
@@ -49,7 +49,7 @@ namespace Player
             }
         }
 
-        public Vector3 GetPosition()
+        private Vector3 GetPosition()
         {
             float positionX = Input.GetAxis(AxsisX);
             float positionY = Input.GetAxis(AxsisY);
