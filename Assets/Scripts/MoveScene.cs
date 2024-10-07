@@ -1,59 +1,64 @@
 using Player;
-using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MoveScene : MonoBehaviour
 {
     private const float MaxDistanceDelta = 50;
     private const float ClampX = 9f;
-    private const float ClampYMin = -100;
-    private const float ClampYMax = 100;
+    private const float ClampYMin = -250;
+    private const float ClampYMax = -2;
 
-    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _speed = 1000;
 
     private Transform _transform;
-
-    private Vector3 _startSwipePosition;
+    private Rigidbody _rigidbody;
+    private bool _isDragging;
+    private Vector3 _startPosition;
+    private Vector3 _currentPosition;
 
     private void Awake()
     {
         _transform = transform;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
+    private void OnMouseDown()
     {
-        // _playerInput.MousePressed += OnMove;
+        _startPosition = Input.mousePosition;
+        Debug.Log("Down " + Input.mousePosition);
     }
 
-
-    private void OnDisable()
+    private void OnMouseDrag()
     {
-        //_playerInput.MousePressed -= OnMove;
+        _isDragging = true;
+        _currentPosition = Input.mousePosition;
+        Debug.Log("OnMouse " + Input.mousePosition);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            _startSwipePosition = _playerInput.GetPosition();
+            _isDragging = false;
         }
-        else if (Input.GetMouseButton(0))
-        {
-            Vector3 currentPosition = (_playerInput.GetPosition() - _startSwipePosition).normalized;
-            Debug.Log(currentPosition);
-            OnMove(currentPosition, currentPosition);
-        }
+
+        Drag();
 
         RestrictMove();
     }
 
-    private void OnMove(Vector3 position, Vector3 raycastPoint)
+    private void Drag()
     {
-        _transform.Translate(_speed * Time.deltaTime * position);
+        if (_isDragging)
+        {
+            float positionX = Input.GetAxis("Mouse X");
+            float positionZ = Input.GetAxis("Mouse Y");
+
+            Vector3 direction = (_currentPosition - _startPosition).normalized;
+            Vector3 newDirection = new(direction.x, _rigidbody.velocity.y, direction.y);
+            _rigidbody.velocity = newDirection * _speed;
+        }
     }
 
     private void RestrictMove()
