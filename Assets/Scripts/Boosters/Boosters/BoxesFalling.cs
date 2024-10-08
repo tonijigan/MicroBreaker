@@ -8,7 +8,7 @@ public class BoxesFalling : AbstractBooster
 
     private Box[] _boxes;
 
-    private void Awake()
+    private void Start()
     {
         Fill();
     }

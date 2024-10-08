@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6967123856859736880}
   - component: {fileID: 493155958795958834}
   m_Layer: 0
-  m_Name: Booster
+  m_Name: Booster 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fdd952d82a13d714f88f4804d922cd14, type: 2}
+  - {fileID: -6629797300637803691, guid: a0ae1237ae5ffb54689a035883c221d2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

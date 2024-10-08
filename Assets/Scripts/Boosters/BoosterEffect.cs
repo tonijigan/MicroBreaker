@@ -14,6 +14,8 @@ namespace Boosters
 
         public event Action Collided;
 
+        public bool IsCreated { get; private set; } = false;
+
         public BoosterNames BoosterName => _boosterName;
 
         private void Update()
@@ -24,6 +26,11 @@ namespace Boosters
         public void PlayAction()
         {
             Collided?.Invoke();
+        }
+
+        public void HaveCreated()
+        {
+            IsCreated = true;
         }
     }
 }
