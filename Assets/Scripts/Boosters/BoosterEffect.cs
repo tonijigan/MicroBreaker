@@ -11,12 +11,15 @@ namespace Boosters
 
         [SerializeField] private float _speed;
         [SerializeField] private BoosterNames _boosterName;
+        [SerializeField] private ObjectsName _objectsName;
 
-        public event Action Collided;
+        public event Action<BoosterEffect> Collided;
 
         public bool IsCreated { get; private set; } = false;
 
         public BoosterNames BoosterName => _boosterName;
+
+        public ObjectsName ObjectsName => _objectsName;
 
         private void Update()
         {
@@ -25,7 +28,7 @@ namespace Boosters
 
         public void PlayAction()
         {
-            Collided?.Invoke();
+            Collided?.Invoke(this);
         }
 
         public void HaveCreated()

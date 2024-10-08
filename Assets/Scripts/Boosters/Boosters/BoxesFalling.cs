@@ -1,3 +1,4 @@
+using Boosters;
 using BoxObject;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ public class BoxesFalling : AbstractBooster
 
     }
 
-    protected override void OnStartAction()
+    protected override void OnStartAction(BoosterEffect boosterEffect)
     {
         _pathBoxesContainer.gameObject.SetActive(true);
     }

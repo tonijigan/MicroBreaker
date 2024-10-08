@@ -7,32 +7,35 @@ namespace Boosters
 {
     public class BoostersContainer : MonoBehaviour
     {
-        [SerializeField] private List<AbstractBooster> _boosters;
-
-        private readonly List<BoosterEffect> _boosterEffects = new();
+        private List<AbstractBooster> _booster;
+        private Transform _transform;
 
         public void Fill()
         {
-            for (int i = 0; i < _boosters.Count; i++)
+            _transform = transform;
+            _booster = new List<AbstractBooster>();
+
+            for (int i = 0; i < _transform.childCount; i++)
             {
-                _boosterEffects.Add(_boosters[i].BoosterEffect);
-                Debug.Log(_boosters.Count);
+                _transform.GetChild(i).TryGetComponent(out AbstractBooster booster);
+                _booster.Add(booster);
             }
         }
 
         public BoosterEffect GetRandomBoosters(BoosterNames boxName)
         {
             int minLength = 0;
-            var booster = _boosters.Where(booster => booster.BoosterName == boxName && booster.BoosterEffect.IsCreated == false)
+            var booster = _booster.Where(booster => booster.BoosterName == boxName && booster.BoosterEffect.IsCreated == false)
                                    .Select(booster => booster).ToList();
 
             if (booster.Count == 0)
             {
                 return null;
             }
-            BoosterEffect boosterEffect = booster[Random.Range(minLength, booster.Count)].BoosterEffect;
-            boosterEffect.HaveCreated();
-            return boosterEffect;
+
+            int index = _booster.IndexOf(booster[Random.Range(minLength, booster.Count)]);
+            _booster[index].BoosterEffect.HaveCreated();
+            return _booster[index].BoosterEffect;
         }
     }
 }

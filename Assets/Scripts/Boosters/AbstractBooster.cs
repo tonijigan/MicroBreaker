@@ -30,5 +30,5 @@ public abstract class AbstractBooster : MonoBehaviour
         BoosterEffect.Collided -= OnStartAction;
     }
 
-    protected abstract void OnStartAction();
+    protected abstract void OnStartAction(BoosterEffect boosterEffect);
 }

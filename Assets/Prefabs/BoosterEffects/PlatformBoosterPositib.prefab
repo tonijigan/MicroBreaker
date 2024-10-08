@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6967123856859736880}
   - component: {fileID: 493155958795958834}
   m_Layer: 0
-  m_Name: Booster 2
+  m_Name: PlatformBoosterPositib
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: a0ae1237ae5ffb54689a035883c221d2, type: 3}
+  - {fileID: 2100000, guid: 687f11cf3c074084abedf0baae45c32d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,5 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _boosterName: 1
-  _objectsName: 0
+  _boosterName: 0
+  _objectsName: 1

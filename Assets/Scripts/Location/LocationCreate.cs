@@ -1,6 +1,6 @@
-using Boosters;
 using System.Collections.Generic;
 using System.Linq;
+using Boosters;
 using UnityEngine;
 
 public class LocationCreate : MonoBehaviour
