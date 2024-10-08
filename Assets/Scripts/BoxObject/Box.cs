@@ -19,14 +19,21 @@ namespace BoxObject
 
         public event Action Died;
 
-        private Booster _booster;
+        private BoosterEffect _booster;
         private WaitForSeconds _waitForSeconds;
 
         public BoosterNames BoosterName => _boosterName;
 
-        public void Init(Booster booster, ParticleSystem particleSystem)
+        public void Init(BoosterEffect booster, ParticleSystem particleSystem)
         {
-            _booster = booster;
+            if (booster != null)
+                _booster = booster;
+
+            ParticleSystem = particleSystem;
+        }
+
+        public void Init(ParticleSystem particleSystem)
+        {
             ParticleSystem = particleSystem;
         }
 
@@ -41,8 +48,12 @@ namespace BoxObject
             {
                 StartCoroutine(Die());
                 Died?.Invoke();
-                _booster.transform.position = transform.position;
-                _booster.gameObject.SetActive(true);
+
+                if (_booster != null)
+                {
+                    _booster.transform.position = transform.position;
+                    _booster.gameObject.SetActive(true);
+                }
             }
 
             _health -= damage;

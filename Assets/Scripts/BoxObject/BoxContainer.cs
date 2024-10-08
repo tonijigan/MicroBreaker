@@ -1,6 +1,5 @@
 using UnityEngine;
 using Boosters;
-using Enums;
 
 namespace BoxObject
 {
@@ -15,14 +14,19 @@ namespace BoxObject
         {
             _transform = transform;
             _boxes = new Box[_transform.childCount];
+            boosterContainer.Fill();
 
             for (int i = 0; i < _boxes.Length; i++)
             {
                 if (_transform.GetChild(i).TryGetComponent(out Box box))
                 {
-                    Booster booster = boosterContainer.CreateBoosters(box.BoosterName);
+                    BoosterEffect booster = boosterContainer.GetRandomBoosters(box.BoosterName);
                     _boxes[i] = box;
-                    _boxes[i].Init(booster, _particleSystem);
+
+                    if (booster == null)
+                        _boxes[i].Init(_particleSystem);
+                    else
+                        _boxes[i].Init(booster, _particleSystem);
                 }
             }
         }

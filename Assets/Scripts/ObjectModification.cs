@@ -18,17 +18,17 @@ public abstract class ObjectModification : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnEnable()
-    {
-        _platformTrigger.BoosterSended += OnChange;
-    }
+    //private void OnEnable()
+    //{
+    //    _platformTrigger.BoosterSended += OnChange;
+    //}
 
-    private void OnDisable()
-    {
-        _platformTrigger.BoosterSended -= OnChange;
-    }
+    //private void OnDisable()
+    //{
+    //    _platformTrigger.BoosterSended -= OnChange;
+    //}
 
-    private void OnChange(Booster booster, ObjectsName objectsName)
+    private void OnChange(BoosterEffect booster, ObjectsName objectsName)
     {
         if (_objectsName == objectsName)
         {

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4987546904383211787}
   - component: {fileID: 3007117120130727455}
   - component: {fileID: 6967123856859736880}
-  - component: {fileID: 5794274996721787008}
+  - component: {fileID: 493155958795958834}
   m_Layer: 0
-  m_Name: Booster 1
+  m_Name: Booster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 587d5a64a9383124781c9ec616925d55, type: 2}
+  - {fileID: 2100000, guid: 731fbf94722232e418d13db311e433bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5794274996721787008
+--- !u!114 &493155958795958834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2906345574046188669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba9be86a9ecee05418665c01ae8ba33c, type: 3}
+  m_Script: {fileID: 11500000, guid: 605731d75d0d46949a47f8ff030bb771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _boosterName: 1
-  _objectName: 0
+  _boosterName: 0

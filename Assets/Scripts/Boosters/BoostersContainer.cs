@@ -7,20 +7,28 @@ namespace Boosters
 {
     public class BoostersContainer : MonoBehaviour
     {
-        [SerializeField] private List<Booster> _boosters;
+        [SerializeField] private List<AbstractBooster> _boosters;
 
-        public Booster CreateBoosters(BoosterNames boosterNames)
+        private readonly List<BoosterEffect> _boosterEffects = new();
+
+        public void Fill()
         {
-            Booster booster = Instantiate(GetRandomBoostersType(boosterNames), transform);
-            _boosters.Add(booster);
-            booster.gameObject.SetActive(false);
-            return booster;
+            for (int i = 0; i < _boosters.Count; i++)
+            {
+                _boosterEffects.Add(_boosters[i].BoosterEffect);
+            }
         }
 
-        private Booster GetRandomBoostersType(BoosterNames boxName)
+        public BoosterEffect GetRandomBoosters(BoosterNames boxName)
         {
             int minLength = 0;
-            var booster = _boosters.Where(booster => booster.BoosterName == boxName).Select(booster => booster).ToList();
+            var booster = _boosterEffects.Where(booster => booster.BoosterName == boxName).Select(booster => booster).ToList();
+
+            if (booster.Count == 0)
+            {
+                return null;
+            }
+
             return booster[Random.Range(minLength, booster.Count)];
         }
     }

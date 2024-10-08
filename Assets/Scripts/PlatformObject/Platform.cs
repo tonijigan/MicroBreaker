@@ -7,7 +7,7 @@ namespace PlatformObject
     public class Platform : MonoBehaviour, IEffect, ITrigger
     {
         private const float PlatformSpeed = 1500;
-        private const float PositionZ = 1.5f;
+        private const float PositionZ = 2.5f;
 
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private InputPointMovement _inputPointMovement;
