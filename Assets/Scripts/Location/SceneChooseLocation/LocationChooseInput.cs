@@ -8,6 +8,13 @@ public class LocationChooseInput : MonoBehaviour
     private LocationObject _firstLocationObject;
     private LocationObject _lastLocationObject;
 
+    private bool _isInputLocation = false;
+
+    public void HaveLocation()
+    {
+        _isInputLocation = !_isInputLocation;
+    }
+
     public void SetFirstLocationObject(Vector3 inputMouse)
     {
         _firstLocationObject = TryGetLocation(inputMouse);
@@ -26,7 +33,8 @@ public class LocationChooseInput : MonoBehaviour
         if (_firstLocationObject.name != _lastLocationObject.name)
             return;
 
-        LocationChoosed?.Invoke(_firstLocationObject);
+        if (_isInputLocation == false)
+            LocationChoosed?.Invoke(_firstLocationObject);
     }
 
     private LocationObject TryGetLocation(Vector3 inputMouse)

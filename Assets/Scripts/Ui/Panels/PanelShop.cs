@@ -24,23 +24,23 @@ public class PanelShop : Panel
     {
         for (int i = 0; i < _buttonPanelInteractions.Length; i++)
         {
-            _buttonPanelInteractions[i].Clicked += MovePanel;
+            _buttonPanelInteractions[i].Clicked += OnMovePanel;
         }
 
-        _buttonClose.Clicked += MovePanel;
+        _buttonClose.Clicked += OnMovePanel;
     }
 
     private void OnDisable()
     {
         for (int i = 0; i < _buttonPanelInteractions.Length; i++)
         {
-            _buttonPanelInteractions[i].Clicked -= MovePanel;
+            _buttonPanelInteractions[i].Clicked -= OnMovePanel;
         }
 
-        _buttonClose.Clicked -= MovePanel;
+        _buttonClose.Clicked -= OnMovePanel;
     }
 
-    private void MovePanel(bool isOpen)
+    public void OnMovePanel(bool isOpen)
     {
         _buttonClose.gameObject.SetActive(isOpen);
         _backGroundPanel.gameObject.SetActive(isOpen);
