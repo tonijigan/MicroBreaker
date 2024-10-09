@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386661649493ef04094dab67637290df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scenesName: 2
   _locationChooseInput: {fileID: 214854022}
   _save: {fileID: 214854024}
 --- !u!114 &214854024

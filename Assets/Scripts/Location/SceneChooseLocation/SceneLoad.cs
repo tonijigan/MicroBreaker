@@ -1,10 +1,10 @@
+using Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoad : MonoBehaviour
 {
-    private const string SceneGame = "Game1";
-
+    [SerializeField] private ScenesName _scenesName;
     [SerializeField] private LocationChooseInput _locationChooseInput;
     [SerializeField] private Save _save;
 
@@ -21,6 +21,6 @@ public class SceneLoad : MonoBehaviour
     private void OnStart(LocationObject locationObject)
     {
         _save.SetName(locationObject.Name.ToString());
-        SceneManager.LoadScene(SceneGame);
+        SceneManager.LoadScene(_scenesName.ToString());
     }
 }
