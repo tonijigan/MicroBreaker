@@ -14,25 +14,30 @@ public class ButtonSettingAudio : AbstractButton
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioName _audioName;
 
+    public event Action<ButtonSettingAudio> Changed;
+
+    private bool _isEnable;
+
     public AudioSource AudioSource => _audioSource;
+
     public AudioName AudioName => _audioName;
 
-    private bool _isEnanble;
-
-    private void Start()
+    public void Init(bool isEnable)
     {
-        SetParameters();
+        _isEnable = isEnable;
+        SetParameters(isEnable);
     }
 
     protected override void OnClick()
     {
-        _isEnanble = !_isEnanble;
-        SetParameters();
+        _isEnable = !_isEnable;
+        SetParameters(_isEnable);
+        Changed?.Invoke(this);
     }
 
-    private void SetParameters()
+    public void SetParameters(bool isEnable)
     {
-        _audioSource.volume = _isEnanble ? MaxVolume : MinVolume;
-        _text.text = _isEnanble ? StateDisable : StateEnable;
+        _audioSource.volume = isEnable ? MaxVolume : MinVolume;
+        _text.text = isEnable ? StateEnable : StateDisable;
     }
 }
