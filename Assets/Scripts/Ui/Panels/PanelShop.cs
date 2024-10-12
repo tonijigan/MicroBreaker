@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelShop : Panel
 {
@@ -11,6 +12,8 @@ public class PanelShop : Panel
     [SerializeField] private float _moveSpeed;
 
     public event Action<bool> Actived;
+
+    private Image _image;
 
     private Transform _transform;
     private float _durationOpen;
@@ -25,6 +28,7 @@ public class PanelShop : Panel
         _transform = transform;
         _durationOpen = _transform.position.x - _longMove;
         _durationClose = _transform.position.x;
+        _image = GetComponent<Image>();
     }
 
     private void OnEnable()

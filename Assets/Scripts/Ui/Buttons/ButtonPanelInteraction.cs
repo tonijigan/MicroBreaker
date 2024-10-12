@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class ButtonPanelInteraction : AbstractButton
 {
+    private const int MinTimeScale = 0;
+    private const int MaxTimeScale = 1;
+
     [SerializeField] private Panel _panelOpenPanel;
-    [SerializeField] private Panel[] _panelClosePanel = null;
+    [SerializeField] private Panel[] _panelClosePanels = null;
+    [SerializeField] private AbstractButton _buttonEnable;
     [SerializeField] private bool _isStateOnOpenPanel = true;
+    [SerializeField] private bool _isUseTimeScale = false;
+    [SerializeField] private bool _isNeedDisableViewObject = false;
 
     public event Action<bool> Clicked;
 
@@ -13,11 +19,18 @@ public class ButtonPanelInteraction : AbstractButton
 
     protected override void OnClick()
     {
-        if (_panelClosePanel != null)
+        if (_panelClosePanels != null)
             ClosePanels();
         if (_panelOpenPanel != null)
             _panelOpenPanel.gameObject.SetActive(_isStateOnOpenPanel);
 
+        if (_buttonEnable != null)
+        {
+            _buttonEnable.gameObject.SetActive(true);
+        }
+
+        HaveTimeScale();
+        SwitchObject();
         IsClick = true;
         Clicked?.Invoke(_isStateOnOpenPanel);
     }
@@ -29,9 +42,26 @@ public class ButtonPanelInteraction : AbstractButton
 
     private void ClosePanels()
     {
-        foreach (var panel in _panelClosePanel)
+        foreach (var panel in _panelClosePanels)
         {
             panel.gameObject.SetActive(!_isStateOnOpenPanel);
         }
+    }
+
+    private void HaveTimeScale()
+    {
+        if (_isUseTimeScale == false) return;
+
+        Time.timeScale = MinTimeScale;
+
+        if (_isStateOnOpenPanel == false)
+            Time.timeScale = MaxTimeScale;
+    }
+
+    private void SwitchObject()
+    {
+        if (_isNeedDisableViewObject == false) return;
+
+        gameObject.SetActive(false);
     }
 }
