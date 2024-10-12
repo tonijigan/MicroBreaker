@@ -1,4 +1,5 @@
 using Enums;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,8 @@ public class ButtonPlayGame : AbstractButton
     [SerializeField] private Save _save;
     [SerializeField] private ScenesName _scenesName;
     [SerializeField] private TMP_Text _text;
+
+    public event Action Clicked;
 
     private LocationObject _locationObject;
 
@@ -29,5 +32,7 @@ public class ButtonPlayGame : AbstractButton
             _text.text = "мер днярсою";
             this.enabled = false;
         }
+
+        Clicked?.Invoke();
     }
 }

@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2361,7 +2361,7 @@ Transform:
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
   m_LocalRotation: {x: 0.37765598, y: -0, z: -0, w: 0.925946}
-  m_LocalPosition: {x: 0, y: 116.1, z: -267.3}
+  m_LocalPosition: {x: 0, y: 128.1, z: -279.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3278,7 +3278,6 @@ MonoBehaviour:
   _backGroundPanel: {fileID: 7227271838241773650}
   _longMove: 45
   _moveSpeed: 3
-  _swipeMove: {fileID: 214854021}
 --- !u!224 &3246317204282627487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4099,6 +4098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970b1de558fadec4c81c958c6a9afd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 1
 --- !u!114 &6593972011491265658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4127,9 +4127,6 @@ MonoBehaviour:
   _panelShop: {fileID: 3217036494242493021}
   _locationChooseInput: {fileID: 6593972011491265657}
   _swipeMove: {fileID: 214854021}
-  _buttonClose:
-  - {fileID: 1333609463}
-  - {fileID: 1769435624467225615}
 --- !u!1 &6627773619111850044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,7 +4368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -534}
+  m_AnchoredPosition: {x: 0, y: -602}
   m_SizeDelta: {x: -572.007, y: -1209.1514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7658589073512060350
@@ -4406,6 +4403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonPlayGame: {fileID: 8275956300452831686}
+  _buttonClose: {fileID: 1333609463}
   _locationChooseInput: {fileID: 6593972011491265657}
 --- !u!1 &7798865232732371756
 GameObject:

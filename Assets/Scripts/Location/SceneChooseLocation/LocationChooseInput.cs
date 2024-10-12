@@ -8,11 +8,11 @@ public class LocationChooseInput : MonoBehaviour
     private LocationObject _firstLocationObject;
     private LocationObject _lastLocationObject;
 
-    private bool _isInputLocation = false;
+    public bool IsActive { get; private set; } = true;
 
-    public void HaveLocation()
+    public void SetActive(bool isActive)
     {
-        _isInputLocation = !_isInputLocation;
+        IsActive = isActive;
     }
 
     public void SetFirstLocationObject(Vector3 inputMouse)
@@ -32,8 +32,7 @@ public class LocationChooseInput : MonoBehaviour
 
         if (_firstLocationObject.name != _lastLocationObject.name)
             return;
-
-        if (_isInputLocation == false)
+        if (IsActive == true)
             LocationChoosed?.Invoke(_firstLocationObject);
     }
 

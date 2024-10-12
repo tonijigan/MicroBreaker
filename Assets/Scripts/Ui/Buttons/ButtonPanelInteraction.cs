@@ -9,6 +9,8 @@ public class ButtonPanelInteraction : AbstractButton
 
     public event Action<bool> Clicked;
 
+    public bool IsClick { get; private set; } = false;
+
     protected override void OnClick()
     {
         if (_panelClosePanel != null)
@@ -16,7 +18,13 @@ public class ButtonPanelInteraction : AbstractButton
         if (_panelOpenPanel != null)
             _panelOpenPanel.gameObject.SetActive(_isStateOnOpenPanel);
 
+        IsClick = true;
         Clicked?.Invoke(_isStateOnOpenPanel);
+    }
+
+    public void SetStartStateButton()
+    {
+        IsClick = false;
     }
 
     private void ClosePanels()
