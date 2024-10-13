@@ -2,7 +2,7 @@ using Scripts;
 using System;
 using UnityEngine;
 
-namespace Player
+namespace PlayerObject
 {
     public class PlayerInput : MonoBehaviour
     {

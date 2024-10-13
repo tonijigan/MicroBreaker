@@ -12,8 +12,11 @@ namespace Boosters
         [SerializeField] private float _speed;
         [SerializeField] private BoosterNames _boosterName;
         [SerializeField] private ObjectsName _objectsName;
+        [SerializeField] private bool _isCoin = false;
 
         public event Action<BoosterEffect> Collided;
+
+        public bool IsCoin => _isCoin;
 
         public bool IsCreated { get; private set; } = false;
 

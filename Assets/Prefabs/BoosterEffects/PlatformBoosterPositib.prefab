@@ -121,3 +121,4 @@ MonoBehaviour:
   _speed: 10
   _boosterName: 0
   _objectsName: 1
+  _isCoin: 1

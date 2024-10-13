@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class ButtonPlayGame : AbstractButton
 {
-    [SerializeField] private Save _save;
     [SerializeField] private ScenesName _scenesName;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private SaveService _saveService;
 
     public event Action Clicked;
 
@@ -16,7 +16,7 @@ public class ButtonPlayGame : AbstractButton
 
     protected override void OnClick()
     {
-        _save.SetName(_locationObject.Name.ToString());
+        _saveService.SaveCurrentLocationName(_locationObject.Name.ToString());
         SceneManager.LoadScene(_scenesName.ToString());
     }
 

@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class LocationCreate : MonoBehaviour
 {
-    [SerializeField] private Save _save;
     [SerializeField] private BoostersContainer _boardsContainer;
     [SerializeField] private List<Location> _locations;
 
     private Location _currentLocation;
     private Transform _transform;
 
-    private void Awake()
+    public void Init(string locationName)
     {
         _transform = transform;
-        string locationName = _save.GetName();
         Location newLocation = _locations.Where(location => location.LocationName == locationName).FirstOrDefault();
 
         if (newLocation == null)

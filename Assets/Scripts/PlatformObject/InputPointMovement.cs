@@ -1,4 +1,4 @@
-using Player;
+using PlayerObject;
 using UnityEngine;
 
 namespace PlatformObject

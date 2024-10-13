@@ -1429,6 +1429,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519142654}
   m_CullTransparentMesh: 1
+--- !u!1 &540819812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540819815}
+  - component: {fileID: 540819814}
+  - component: {fileID: 540819813}
+  - component: {fileID: 540819816}
+  m_Layer: 0
+  m_Name: Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &540819813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540819812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49151857cb2d94240a682a7d868a4f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &540819814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540819812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b091fa554f831a49acadd5b87deaaa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &540819815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540819812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.330008, y: 6.6528316, z: -13.218226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540819816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540819812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd67a5c1cce67094e8841a76836a905a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621106743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,8 +3942,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974227935}
+  - component: {fileID: 1974227936}
   m_Layer: 5
-  m_Name: Coins (1)
+  m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3899,6 +3970,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &1974227936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974227934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e85fc30991ef9e4192bd28821275a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textCoins: {fileID: 1011821095}
+  _wallet: {fileID: 540819816}
 --- !u!1 &2016429990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4238,7 +4323,6 @@ GameObject:
   - component: {fileID: 6593972011491265656}
   - component: {fileID: 649389478965040307}
   - component: {fileID: 6593972011491265657}
-  - component: {fileID: 6593972011491265658}
   - component: {fileID: 6593972011491265659}
   m_Layer: 5
   m_Name: Canvas1
@@ -4449,18 +4533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970b1de558fadec4c81c958c6a9afd1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6593972011491265658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479605200971669266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d752ea0095e6f4d8feeb9d40148a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6593972011491265659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4634,9 +4706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f148e8fcb497d40b4d288fac608b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _save: {fileID: 6593972011491265658}
   _scenesName: 2
   _text: {fileID: 1685855642}
+  _saveService: {fileID: 540819814}
 --- !u!114 &8830184200909554287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4672,6 +4744,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2078252488}
+  - {fileID: 540819815}
   - {fileID: 1407568654}
   - {fileID: 6107454345923663725}
   - {fileID: 1601799044}

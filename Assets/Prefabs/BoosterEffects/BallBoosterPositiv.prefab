@@ -120,3 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _boosterName: 0
+  _objectsName: 0
+  _isCoin: 1

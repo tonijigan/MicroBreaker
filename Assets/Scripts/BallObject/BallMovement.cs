@@ -1,4 +1,5 @@
 using Interfaces;
+using System;
 using UnityEngine;
 
 namespace BallObject
@@ -13,6 +14,8 @@ namespace BallObject
 
         [SerializeField] private Transform _ballPoint;
         [SerializeField] private float _speed;
+
+        public event Action BoxTriggered;
 
         private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
@@ -57,6 +60,7 @@ namespace BallObject
             if (collision.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(Damage);
+                BoxTriggered?.Invoke();
             }
         }
 
@@ -79,7 +83,7 @@ namespace BallObject
 
         public Vector3 GetRandomDirection(Vector3 direction)
         {
-            return new(Random.Range(direction.x - RandomValue, direction.x + RandomValue), direction.y, direction.z);
+            return new(UnityEngine.Random.Range(direction.x - RandomValue, direction.x + RandomValue), direction.y, direction.z);
         }
     }
 }
