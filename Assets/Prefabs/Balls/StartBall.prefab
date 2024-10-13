@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 111694426039336752}
   - component: {fileID: 139017745264607501}
   - component: {fileID: 8978273538502099498}
-  - component: {fileID: -8432658915060121370}
+  - component: {fileID: -3421900258620843923}
   m_Layer: 0
   m_Name: StartBall
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-8432658915060121370
+--- !u!114 &-3421900258620843923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5006858635400914091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8d86dc54e4f144a6cdf277a587afe, type: 3}
+  m_Script: {fileID: 11500000, guid: d133052904c53694f991ffef81220761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _price: 55
