@@ -1,13 +1,21 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ProductView : AbstractButton
+[RequireComponent(typeof(Button))]
+public class ProductView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _price;
-    [SerializeField] private bool _canBuy;
+    [SerializeField] private Button _buttonPay;
+    [SerializeField] private Image _imageChoosed;
+    [SerializeField] private Image _imageBlock;
+
+    public event Action Selected;
 
     private PanelProduct _panelProduct;
+    private Button _buttonChoose;
 
     public string Name { get; private set; }
 
@@ -15,30 +23,54 @@ public class ProductView : AbstractButton
 
     public bool IsBuy { get; private set; } = false;
 
-    public bool CanBuy => _canBuy;
+    public bool IsSelected { get; private set; } = false;
 
-    public void Init(string name, int price, PanelProduct panel)
+    private void Awake()
+    {
+        _buttonChoose = GetComponent<Button>();
+    }
+
+    private void OnEnable()
+    {
+        _buttonChoose.onClick.AddListener(OnSelected);
+        _buttonPay.onClick.AddListener(OnOpenBuyPanel);
+    }
+
+    private void OnDisable()
+    {
+        _buttonChoose.onClick.RemoveListener(OnSelected);
+        _buttonPay.onClick.RemoveListener(OnOpenBuyPanel);
+    }
+
+    public void Init(string name, int price, PanelProduct panelProduct)
     {
         Name = name;
         Price = price;
         _name.text = name;
         _price.text = price.ToString();
-        _panelProduct = panel;
-        this.enabled = _canBuy;
+        _panelProduct = panelProduct;
     }
 
-    public void SetCanBuy(bool canBuy)
+    public void SetCanBuy(bool canChoose)
     {
-        _canBuy = canBuy;
-        this.enabled = _canBuy;
+        if (canChoose == false && IsBuy == false)
+        {
+            StateBlock(canChoose);
+            return;
+        }
+
+        StateBlock(canChoose);
 
         if (IsBuy == true)
         {
-            _price.text = $"Buy ";
+            _buttonPay.gameObject.SetActive(false);
         }
+    }
 
-        if (_canBuy == true)
-            _price.text += $" {true}";
+    private void StateBlock(bool canChoose)
+    {
+        _buttonChoose.enabled = canChoose;
+        _imageBlock.gameObject.SetActive(!canChoose);
     }
 
     public void Buy()
@@ -46,7 +78,18 @@ public class ProductView : AbstractButton
         IsBuy = true;
     }
 
-    protected override void OnClick()
+    private void OnSelected()
+    {
+        IsSelected = true;
+        Selected?.Invoke();
+    }
+
+    public void StatusOfTheSelected(bool isSelected)
+    {
+        _imageChoosed.gameObject.SetActive(isSelected);
+    }
+
+    private void OnOpenBuyPanel()
     {
         _panelProduct.gameObject.SetActive(true);
         _panelProduct.Init(this);

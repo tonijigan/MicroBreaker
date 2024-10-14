@@ -28,6 +28,7 @@ namespace PlayerObject
         {
             if (_coins < coins) return;
             _coins -= coins;
+            Changed?.Invoke(_coins);
         }
     }
 }

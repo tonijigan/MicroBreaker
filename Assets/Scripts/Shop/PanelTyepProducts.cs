@@ -41,10 +41,8 @@ public class PanelTyepProducts : Panel
     {
         for (int i = 0; i < _products.Count; i++)
         {
-            _products[i].SetCanBuy(false);
-
-            if (_wallet.Coin > _products[i].Price)
-                _products[i].SetCanBuy(true);
+            if (_products[i].IsBuy == false) _products[i].SetCanBuy(false);
+            else _products[i].SetCanBuy(true);
         }
     }
 
