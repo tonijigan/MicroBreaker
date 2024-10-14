@@ -70,7 +70,7 @@ public class PanelTyepProducts : Panel
     public void Create(ProductView productView, Template template)
     {
         ProductView newProductView = Instantiate(productView, _container);
-        newProductView.Init(template.name, template.Price, _panelProduct);
+        newProductView.Init(_panelProduct, template);
         _products.Add(newProductView);
     }
 

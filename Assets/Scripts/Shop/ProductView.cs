@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
@@ -11,10 +12,12 @@ public class ProductView : MonoBehaviour
     [SerializeField] private Button _buttonPay;
     [SerializeField] private Image _imageChoosed;
     [SerializeField] private Image _imageBlock;
+    [SerializeField] private Transform _pointTemplate;
 
     public event Action<ProductView> Selected;
 
     private PanelProduct _panelProduct;
+    private Template _template;
     private Button _buttonChoose;
 
     public string Name { get; private set; }
@@ -42,13 +45,15 @@ public class ProductView : MonoBehaviour
         _buttonPay.onClick.RemoveListener(OnOpenBuyPanel);
     }
 
-    public void Init(string name, int price, PanelProduct panelProduct)
+    public void Init(PanelProduct panelProduct, Template template)
     {
-        Name = name;
-        Price = price;
-        _name.text = name;
-        _price.text = price.ToString();
+        Name = template.name;
+        _name.text = template.name;
+        Price = template.Price;
+        _price.text = template.Price.ToString();
         _panelProduct = panelProduct;
+        _template = Instantiate(template, _pointTemplate);
+        _template.transform.DOScale(new Vector3(100, 100, 100), 1);
     }
 
     public void SetCanBuy(bool canChoose)
