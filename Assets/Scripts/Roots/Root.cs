@@ -9,6 +9,9 @@ public abstract class Root : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Agava.YandexGames.YandexGamesSdk.GameReady();
+#endif
         _saveService = GetComponent<SaveService>();
         _wallet = GetComponent<Wallet>();
     }

@@ -5,11 +5,7 @@ using UnityEngine.SceneManagement;
 
 public sealed class InitSDK : MonoBehaviour
 {
-    private void Awake()
-    {
-        YandexGamesSdk.CallbackLogging = true;
-        YandexGamesSdk.GameReady();
-    }
+    private void Awake() => YandexGamesSdk.CallbackLogging = true;
 
     private IEnumerator Start()
     {
@@ -18,6 +14,6 @@ public sealed class InitSDK : MonoBehaviour
 
     private void OnInitialised()
     {
-        SceneManager.LoadScene("Game1");
+        SceneManager.LoadScene(Enums.ScenesName.StartScene.ToString());
     }
 }
