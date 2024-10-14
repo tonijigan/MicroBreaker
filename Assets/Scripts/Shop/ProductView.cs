@@ -12,7 +12,7 @@ public class ProductView : MonoBehaviour
     [SerializeField] private Image _imageChoosed;
     [SerializeField] private Image _imageBlock;
 
-    public event Action Selected;
+    public event Action<ProductView> Selected;
 
     private PanelProduct _panelProduct;
     private Button _buttonChoose;
@@ -75,17 +75,19 @@ public class ProductView : MonoBehaviour
 
     public void Buy()
     {
+        Debug.Log("SS");
         IsBuy = true;
+        _imageBlock.gameObject.SetActive(false);
     }
 
     private void OnSelected()
     {
-        IsSelected = true;
-        Selected?.Invoke();
+        Selected?.Invoke(this);
     }
 
-    public void StatusOfTheSelected(bool isSelected)
+    public void SetStatusOfTheSelected(bool isSelected)
     {
+        IsSelected = isSelected;
         _imageChoosed.gameObject.SetActive(isSelected);
     }
 

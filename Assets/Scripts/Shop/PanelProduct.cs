@@ -32,9 +32,6 @@ public class PanelProduct : Panel
 
     private void AssignAccess()
     {
-        Debug.Log(_wallet.Coin);
-        Debug.Log(_productView.Price);
-
         _text.text = _wallet.Coin < _productView.Price ? "Недостаточно средств" : "К покупке готов";
 
         if (_wallet.Coin < _productView.Price)

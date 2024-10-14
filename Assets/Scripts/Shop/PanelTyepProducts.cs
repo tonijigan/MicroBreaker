@@ -11,11 +11,14 @@ public class PanelTyepProducts : Panel
     [SerializeField] private PanelProduct _panelProduct;
     [SerializeField] private Wallet _wallet;
 
+    private ProductView _currentProductView;
     private readonly List<ProductView> _products = new();
 
     private void Start()
     {
         SetAccess();
+        _currentProductView = _products.First();
+
     }
 
     public void Create(ProductView productView, Template template)
@@ -29,12 +32,22 @@ public class PanelTyepProducts : Panel
     {
         _panelProduct.Buyed += OnShowProduct;
         _panelProduct.Buyed += SetAccess;
+
+        foreach (var product in _products)
+        {
+            product.Selected += SetCurrentProduct;
+        }
     }
 
     private void OnDisable()
     {
         _panelProduct.Buyed -= OnShowProduct;
         _panelProduct.Buyed -= SetAccess;
+
+        foreach (var product in _products)
+        {
+            product.Selected -= SetCurrentProduct;
+        }
     }
 
     private void SetAccess()
@@ -44,6 +57,16 @@ public class PanelTyepProducts : Panel
             if (_products[i].IsBuy == false) _products[i].SetCanBuy(false);
             else _products[i].SetCanBuy(true);
         }
+    }
+
+    private void SetCurrentProduct(ProductView productView)
+    {
+        foreach (var product in _products)
+        {
+            product.SetStatusOfTheSelected(false);
+        }
+
+        productView.SetStatusOfTheSelected(true);
     }
 
     private void OnShowProduct()
