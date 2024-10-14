@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -20,6 +21,8 @@ public class Shop : MonoBehaviour
 
     private void Create()
     {
+        _templates = _templates.OrderBy(template => template.Price).ToArray();
+
         foreach (var template in _templates)
         {
             if (template.ObjectsName == Enums.ObjectsName.Ball)
@@ -28,5 +31,8 @@ public class Shop : MonoBehaviour
             if (template.ObjectsName == Enums.ObjectsName.Platform)
                 _panelCreatePlatformProducts.Create(productView, template);
         }
+
+        _panelCreateBallProducts.Init(_saveService);
+        _panelCreatePlatformProducts.Init(_saveService);
     }
 }

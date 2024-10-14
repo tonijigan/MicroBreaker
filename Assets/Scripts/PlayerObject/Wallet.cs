@@ -13,7 +13,6 @@ namespace PlayerObject
 
         public void Init(int coins)
         {
-            if (_coins > coins) return;
             _coins = coins;
             Changed?.Invoke(_coins);
         }

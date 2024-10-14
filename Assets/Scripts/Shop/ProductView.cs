@@ -75,7 +75,6 @@ public class ProductView : MonoBehaviour
 
     public void Buy()
     {
-        Debug.Log("SS");
         IsBuy = true;
         _imageBlock.gameObject.SetActive(false);
     }

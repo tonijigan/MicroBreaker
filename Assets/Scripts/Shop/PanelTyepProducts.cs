@@ -12,13 +12,59 @@ public class PanelTyepProducts : Panel
     [SerializeField] private Wallet _wallet;
 
     private ProductView _currentProductView;
+    private SaveService _saveService;
+    private List<string> _accessPrudoctNames = new();
     private readonly List<ProductView> _products = new();
 
-    private void Start()
+    public void Init(SaveService saveService)
     {
-        SetAccess();
-        _currentProductView = _products.First();
+        _saveService = saveService;
 
+        if (_objectsName == ObjectsName.Ball)
+        {
+            if (_saveService.CurrentBall != "")
+                _currentProductView = _products[_products.FindIndex(product => product.Name == _saveService.CurrentBall)];
+            else
+            {
+                _currentProductView = _products.First();
+                _saveService.SaveCurrentBall(_currentProductView.Name);
+                _accessPrudoctNames.Add(_currentProductView.Name);
+                _saveService.SaveArrayBalls(_accessPrudoctNames.ToArray());
+            }
+
+            OpenAccess(_saveService.Balls);
+        }
+
+        if (_objectsName == ObjectsName.Platform)
+        {
+            if (_saveService.CurrentPlatform != "")
+                _currentProductView = _products[_products.FindIndex(product => product.Name == _saveService.CurrentPlatform)];
+            else
+            {
+                _currentProductView = _products.First();
+                _saveService.SaveCurrentPlatform(_currentProductView.Name);
+                _accessPrudoctNames.Add(_currentProductView.Name);
+                _saveService.SaveArrayPlatforms(_accessPrudoctNames.ToArray());
+            }
+
+            OpenAccess(_saveService.Platforms);
+        }
+
+        _currentProductView.SetCanBuy(true);
+        _currentProductView.Buy();
+        SetCurrentProduct(_currentProductView);
+        SetAccess();
+        gameObject.SetActive(false);
+    }
+
+    private void OpenAccess(string[] names)
+    {
+        for (int i = 0; i < names.Length; i++)
+        {
+            ProductView productView = _products.Where(product => product.Name == names[i]).FirstOrDefault();
+            productView.SetCanBuy(true);
+            productView.Buy();
+        }
     }
 
     public void Create(ProductView productView, Template template)
@@ -30,7 +76,7 @@ public class PanelTyepProducts : Panel
 
     private void OnEnable()
     {
-        _panelProduct.Buyed += OnShowProduct;
+        _panelProduct.Buyed += OnSaveProductsName;
         _panelProduct.Buyed += SetAccess;
 
         foreach (var product in _products)
@@ -41,7 +87,7 @@ public class PanelTyepProducts : Panel
 
     private void OnDisable()
     {
-        _panelProduct.Buyed -= OnShowProduct;
+        _panelProduct.Buyed -= OnSaveProductsName;
         _panelProduct.Buyed -= SetAccess;
 
         foreach (var product in _products)
@@ -69,9 +115,16 @@ public class PanelTyepProducts : Panel
         productView.SetStatusOfTheSelected(true);
     }
 
-    private void OnShowProduct()
+    private void OnSaveProductsName()
     {
-        string name = _products.Where(product => product.IsBuy == true).Select(product => product.Name).FirstOrDefault();
-        Debug.Log(name);
+        _accessPrudoctNames = _products.Where(product => product.IsBuy == true).Select(product => product.Name).ToList();
+
+        if (_objectsName == ObjectsName.Ball)
+            _saveService.SaveArrayBalls(_accessPrudoctNames.ToArray());
+
+        if (_objectsName == ObjectsName.Platform)
+            _saveService.SaveArrayPlatforms(_accessPrudoctNames.ToArray());
+
+        _saveService.SaveCoins(_wallet.Coin);
     }
 }

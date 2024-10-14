@@ -11,9 +11,22 @@ public class SaveService : MonoBehaviour
 
     public int Coins => _gameProgress.Coins;
 
+
+    //
+    public string CurrentBall => _gameProgress.CurrentBall;
+
+    public string CurrentPlatform => _gameProgress.CurrentPlatform;
+
+    public string[] Balls => _gameProgress.Balls;
+
+    public string[] Platforms => _gameProgress.Platforms;
+
+    //
+
+
     public int LevelCount => _gameProgress.LevelCount;
 
-    public string CurrentLocationName => _gameProgress.CurrentLicationName;
+    public string CurrentLocationName => _gameProgress.CurrentLocationName;
 
     private void Start() => _saveGameProgress.Load();
 
@@ -24,6 +37,34 @@ public class SaveService : MonoBehaviour
     public int GetCoins()
     {
         return _gameProgress.Coins;
+    }
+
+    public void SaveCurrentBall(string currentName)
+    {
+        _gameProgress.CurrentBall = currentName;
+        Save();
+        Debug.Log(_gameProgress.CurrentBall);
+    }
+
+    public void SaveCurrentPlatform(string currentPlatform)
+    {
+        _gameProgress.CurrentPlatform = currentPlatform;
+        Save();
+        Debug.Log(_gameProgress.CurrentPlatform);
+    }
+
+    public void SaveArrayBalls(string[] Names)
+    {
+        _gameProgress.Balls = Names;
+        Save();
+        Debug.Log(_gameProgress.Balls.Length);
+    }
+
+    public void SaveArrayPlatforms(string[] Platforms)
+    {
+        _gameProgress.Platforms = Platforms;
+        Save();
+        Debug.Log(_gameProgress.Balls.Length);
     }
 
     public void SaveCoins(int amount)
@@ -40,7 +81,7 @@ public class SaveService : MonoBehaviour
 
     public void SaveCurrentLocationName(string currentLocationName)
     {
-        _gameProgress.CurrentLicationName = currentLocationName;
+        _gameProgress.CurrentLocationName = currentLocationName;
         Save();
     }
 
