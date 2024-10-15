@@ -6815,6 +6815,7 @@ GameObject:
   - component: {fileID: 180531151}
   - component: {fileID: 787310619}
   - component: {fileID: 787310618}
+  - component: {fileID: 787310620}
   m_Layer: 0
   m_Name: StartBall
   m_TagString: Untagged
@@ -6872,6 +6873,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787310617}
   m_Mesh: {fileID: -4042504495185724655, guid: ae7b786df18318b4a84762665b8bf621, type: 3}
+--- !u!114 &787310620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787310617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d133052904c53694f991ffef81220761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsName: 0
+  _price: 0
 --- !u!1 &813577064
 GameObject:
   m_ObjectHideFlags: 0
@@ -14193,6 +14208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _locationCreate: {fileID: 2079273049}
+  _changeTemplateBall: {fileID: 6514181658943630139}
+  _changeTemplatePlatform: {fileID: 2133674197}
 --- !u!114 &1855680385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19838,6 +19855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2133674196}
+  - component: {fileID: 2133674197}
   m_Layer: 2
   m_Name: Templates
   m_TagString: Untagged
@@ -19863,6 +19881,18 @@ Transform:
   - {fileID: 47872854}
   m_Father: {fileID: 2077111606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133674197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133674195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d8ffa1bbad27043adc4cb48d287a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2147184448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2544165691914245929, guid: ddf192d824a939540b9afed0782939cb, type: 3}
@@ -20321,6 +20351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5235131247672845309}
+  - component: {fileID: 6514181658943630139}
   m_Layer: 0
   m_Name: Templates
   m_TagString: Untagged
@@ -20328,6 +20359,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6514181658943630139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514181658943630138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d8ffa1bbad27043adc4cb48d287a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6743276177643069291
 GameObject:
   m_ObjectHideFlags: 0

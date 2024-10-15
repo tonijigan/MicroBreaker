@@ -13,7 +13,7 @@ public class PanelTyepProducts : Panel
 
     private ProductView _currentProductView;
     private SaveService _saveService;
-    private List<string> _accessPrudoctNames = new();
+    private List<string> _accessProdoctNames = new();
     private readonly List<ProductView> _products = new();
 
     public void Init(SaveService saveService)
@@ -28,8 +28,8 @@ public class PanelTyepProducts : Panel
             {
                 _currentProductView = _products.First();
                 _saveService.SaveCurrentBall(_currentProductView.Name);
-                _accessPrudoctNames.Add(_currentProductView.Name);
-                _saveService.SaveArrayBalls(_accessPrudoctNames.ToArray());
+                _accessProdoctNames.Add(_currentProductView.Name);
+                _saveService.SaveArrayBalls(_accessProdoctNames.ToArray());
             }
 
             OpenAccess(_saveService.Balls);
@@ -43,8 +43,8 @@ public class PanelTyepProducts : Panel
             {
                 _currentProductView = _products.First();
                 _saveService.SaveCurrentPlatform(_currentProductView.Name);
-                _accessPrudoctNames.Add(_currentProductView.Name);
-                _saveService.SaveArrayPlatforms(_accessPrudoctNames.ToArray());
+                _accessProdoctNames.Add(_currentProductView.Name);
+                _saveService.SaveArrayPlatforms(_accessProdoctNames.ToArray());
             }
 
             OpenAccess(_saveService.Platforms);
@@ -113,17 +113,24 @@ public class PanelTyepProducts : Panel
         }
 
         productView.SetStatusOfTheSelected(true);
+        _currentProductView = productView;
+
+        if (_objectsName == ObjectsName.Ball)
+            _saveService.SaveCurrentBall(_currentProductView.Name);
+
+        if (_objectsName == ObjectsName.Platform)
+            _saveService.SaveCurrentPlatform(_currentProductView.Name);
     }
 
     private void OnSaveProductsName()
     {
-        _accessPrudoctNames = _products.Where(product => product.IsBuy == true).Select(product => product.Name).ToList();
+        _accessProdoctNames = _products.Where(product => product.IsBuy == true).Select(product => product.Name).ToList();
 
         if (_objectsName == ObjectsName.Ball)
-            _saveService.SaveArrayBalls(_accessPrudoctNames.ToArray());
+            _saveService.SaveArrayBalls(_accessProdoctNames.ToArray());
 
         if (_objectsName == ObjectsName.Platform)
-            _saveService.SaveArrayPlatforms(_accessPrudoctNames.ToArray());
+            _saveService.SaveArrayPlatforms(_accessProdoctNames.ToArray());
 
         _saveService.SaveCoins(_wallet.Coin);
     }
