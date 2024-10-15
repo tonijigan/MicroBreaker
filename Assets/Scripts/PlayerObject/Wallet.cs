@@ -17,9 +17,9 @@ namespace PlayerObject
             Changed?.Invoke(_coins);
         }
 
-        public void AddCoin()
+        public void AddCoin(int coins)
         {
-            _coins++;
+            _coins += coins;
             Changed?.Invoke(_coins);
         }
 

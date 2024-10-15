@@ -7,7 +7,6 @@ public class RootSceneGame : Root
 
     protected override void OnInit()
     {
-        _wallet.Init(_saveService.Coins);
         _locationCreate.Init(_saveService.CurrentLocationName);
     }
 }
