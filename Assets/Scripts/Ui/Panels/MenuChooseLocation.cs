@@ -24,7 +24,7 @@ public class MenuChooseLocation : MonoBehaviour
     private void OnInit(LocationObject locationObject)
     {
         _panelPlayGame.ButtonClose.SetStartStateButton();
-        _panelPlayGame.gameObject.SetActive(true);
+        _panelPlayGame.SetActive(true);
         _panelPlayGame.Init(locationObject);
         OnActivateControl(true);
     }
@@ -33,11 +33,11 @@ public class MenuChooseLocation : MonoBehaviour
     {
         OnActivateControl(isActive);
 
-        _panelPlayGame.gameObject.SetActive(false);
+        _panelPlayGame.SetActive(false);
 
         if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
         {
-            _panelPlayGame.gameObject.SetActive(true);
+            _panelPlayGame.SetActive(true);
             OnActivateControl(true);
         }
     }

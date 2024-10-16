@@ -3,21 +3,19 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(RectTransform))]
 public class PanelShop : Panel
 {
     [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
     [SerializeField] private ButtonPanelInteraction _buttonClose;
     [SerializeField] private Panel _backGroundPanel;
-    [SerializeField] private float _longMove;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _topPositionX;
+    [SerializeField] private float _tweenDuration;
+
 
     public event Action<bool> Actived;
-
+    private RectTransform _rectTransform;
     private Image _image;
-
-    private Transform _transform;
-    private float _durationOpen;
-    private float _durationClose;
 
     public bool IsActive { get; private set; } = false;
 
@@ -25,9 +23,7 @@ public class PanelShop : Panel
 
     private void Awake()
     {
-        _transform = transform;
-        _durationOpen = _transform.position.x - _longMove;
-        _durationClose = _transform.position.x;
+        _rectTransform = GetComponent<RectTransform>();
         _image = GetComponent<Image>();
     }
 
@@ -53,17 +49,18 @@ public class PanelShop : Panel
 
     public void OnMovePanel(bool isOpen)
     {
+        float middlePositionX = 0;
         _buttonClose.gameObject.SetActive(isOpen);
         _backGroundPanel.gameObject.SetActive(isOpen);
 
         if (isOpen)
         {
-            _transform.DOMoveX(_durationOpen, _transform.position.x * _moveSpeed * Time.deltaTime);
+            _rectTransform.DOAnchorPosX(middlePositionX, _tweenDuration);
             IsActive = true;
         }
         else
         {
-            _transform.DOMoveX(_durationClose, _transform.position.x * _moveSpeed * Time.deltaTime);
+            _rectTransform.DOAnchorPosX(_topPositionX, _tweenDuration);
             IsActive = false;
         }
 

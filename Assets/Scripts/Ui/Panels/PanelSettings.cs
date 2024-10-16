@@ -1,9 +1,16 @@
+using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PanelSettings : Panel
 {
     [SerializeField] private ButtonSettingAudio _buttonSettingMusic;
     [SerializeField] private ButtonSettingAudio _buttonSettingEffect;
+    [SerializeField] private RectTransform _rectTransformButtons;
+    [SerializeField] private Panel _backGround;
+    [SerializeField] private float _topPositionY;
+    [SerializeField] private float _middlePositionY;
+    [SerializeField] private float _tweenDuration;
 
     private void Start()
     {
@@ -21,6 +28,22 @@ public class PanelSettings : Panel
     {
         _buttonSettingMusic.Changed -= Save;
         _buttonSettingEffect.Changed -= Save;
+    }
+
+    public override async void SetActive(bool isActive)
+    {
+        if (_backGround != null)
+            _backGround.SetActive(isActive);
+        Debug.Log(isActive);
+        await MoveButton(isActive);
+    }
+
+    private async Task MoveButton(bool isActive)
+    {
+        if (isActive)
+            await _rectTransformButtons.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+        else
+            await _rectTransformButtons.DOAnchorPosY(_topPositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
     }
 
     private void LoadAudioSettings(ButtonSettingAudio buttonSettingAudio)
