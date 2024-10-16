@@ -30,6 +30,7 @@ namespace PlayerObject
 
             if (Input.GetMouseButtonUp(0) && _isInputPlatform == true)
             {
+                Debug.Log(_isInputPlatform);
                 MousePressedUp?.Invoke();
             }
         }
@@ -41,6 +42,7 @@ namespace PlayerObject
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 _isInputPlatform = hit.collider.gameObject.TryGetComponent(out Ground ground);
+                Debug.Log(_isInputPlatform);
                 return hit.point;
             }
             else

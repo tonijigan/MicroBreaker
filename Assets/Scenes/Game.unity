@@ -1102,7 +1102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &303165580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19324,8 +19324,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.7707155, z: 1}
-  m_Center: {x: 0, y: -0.32668817, z: 0}
+  m_Size: {x: 0.21054459, y: 0.7707155, z: 0.41277006}
+  m_Center: {x: 0.0018370437, y: -0.32668817, z: 0.0011933803}
 --- !u!23 &1935698004
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19454,7 +19454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballPoint: {fileID: 1425764944}
-  _speed: 2000
+  _speed: 100
 --- !u!114 &1980936487
 MonoBehaviour:
   m_ObjectHideFlags: 0

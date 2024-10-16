@@ -1,4 +1,5 @@
 using PlayerObject;
+using System;
 using UnityEngine;
 
 namespace BallObject
@@ -9,15 +10,15 @@ namespace BallObject
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private Transform _ballPoint;
 
+        public event Action Actived;
+
         private Transform _transform;
-        private BallMovement _ballMovement;
 
         public bool IsActive { get; private set; } = false;
 
         private void Awake()
         {
             _transform = transform;
-            _ballMovement = GetComponent<BallMovement>();
         }
 
         private void OnEnable()
@@ -37,6 +38,7 @@ namespace BallObject
 
             IsActive = true;
             _transform.parent = default;
+            Actived?.Invoke();
         }
     }
 }

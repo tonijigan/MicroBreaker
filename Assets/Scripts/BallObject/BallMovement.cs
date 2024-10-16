@@ -1,4 +1,5 @@
 using Interfaces;
+using PlayerObject;
 using System;
 using UnityEngine;
 
@@ -29,6 +30,17 @@ namespace BallObject
             _ball = GetComponent<Ball>();
             _ballEffect = GetComponent<BallEffect>();
             _transform = transform;
+        }
+
+
+        private void OnEnable()
+        {
+            _ball.Actived += OnMove;
+        }
+
+        private void OnDisable()
+        {
+            _ball.Actived -= OnMove;
         }
 
         private void Update()
@@ -76,7 +88,12 @@ namespace BallObject
             else return value;
         }
 
-        public void Move(Vector3 direction, float speed)
+        private void OnMove()
+        {
+            _rigidbody.AddForce(_speed * Vector3.forward, ForceMode.Impulse);
+        }
+
+        private void Move(Vector3 direction, float speed)
         {
             _rigidbody.velocity = speed * Time.deltaTime * direction;
         }
