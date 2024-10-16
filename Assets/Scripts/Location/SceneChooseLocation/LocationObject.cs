@@ -14,7 +14,6 @@ public class LocationObject : MonoBehaviour
 
     public void SetPassed(bool isPassed)
     {
-        Debug.Log("Set");
         IsPassed = isPassed;
         gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
     }

@@ -5,13 +5,16 @@ namespace BoxObject
 {
     public class BoxContainer : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem _particleSystem;
+        // [SerializeField] private ParticleSystem _particleSystem;
 
+        private ParticleSystem _particleSystem;
         private Transform _transform;
         private Box[] _boxes;
 
-        public void Fill(BoostersContainer boosterContainer)
+        public void Fill(BoostersContainer boosterContainer, ParticleSystem particleSystem)
         {
+            _particleSystem = Instantiate(particleSystem, _transform);
+            _particleSystem.transform.localScale = new Vector3(2, 2, 2);
             _transform = transform;
             _boxes = new Box[_transform.childCount];
             boosterContainer.Fill();

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LocationChooseInput : MonoBehaviour
 {
+    [SerializeField] private LocationCreateView _createView;
     public event Action<LocationObject> LocationChoosed;
 
     private LocationObject _firstLocationObject;
@@ -33,7 +34,10 @@ public class LocationChooseInput : MonoBehaviour
         if (_firstLocationObject.name != _lastLocationObject.name)
             return;
         if (IsActive == true)
+        {
+            _createView.gameObject.SetActive(true);
             LocationChoosed?.Invoke(_firstLocationObject);
+        }
     }
 
     private LocationObject TryGetLocation(Vector3 inputMouse)

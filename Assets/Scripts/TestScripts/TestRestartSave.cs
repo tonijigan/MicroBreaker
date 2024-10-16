@@ -10,5 +10,6 @@ public class TestRestartSave : AbstractButton
         _saveService.SaveCurrentPlatform("");
         _saveService.SaveArrayBalls(new string[0]);
         _saveService.SaveArrayPlatforms(new string[0]);
+        _saveService.SaveArrayLocationNames(new string[0]);
     }
 }

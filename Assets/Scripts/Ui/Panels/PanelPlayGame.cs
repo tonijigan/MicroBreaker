@@ -10,6 +10,7 @@ public class PanelPlayGame : Panel
     [SerializeField] private ButtonPlayGame _buttonPlayGame;
     [SerializeField] private ButtonPanelInteraction _buttonClose;
     [SerializeField] private LocationChooseInput _locationChooseInput;
+    [SerializeField] private LocationCreateView _locationCreateView;
     [SerializeField] private float _topPositionY;
     [SerializeField] private float _middlePositionY;
     [SerializeField] private float _tweenDuration;
@@ -36,7 +37,6 @@ public class PanelPlayGame : Panel
 
     public override async void SetActive(bool isActive)
     {
-        Debug.Log(isActive);
         await MoveButton(isActive);
     }
 
@@ -46,5 +46,7 @@ public class PanelPlayGame : Panel
             await _rectTransform.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
         else
             await _rectTransform.DOAnchorPosY(_topPositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+
+        _locationCreateView.gameObject.SetActive(isActive);
     }
 }

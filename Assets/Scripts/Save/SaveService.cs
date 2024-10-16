@@ -11,8 +11,6 @@ public class SaveService : MonoBehaviour
 
     public int Coins => _gameProgress.Coins;
 
-
-    //
     public string CurrentBall => _gameProgress.CurrentBall;
 
     public string CurrentPlatform => _gameProgress.CurrentPlatform;
@@ -21,8 +19,7 @@ public class SaveService : MonoBehaviour
 
     public string[] Platforms => _gameProgress.Platforms;
 
-    //
-
+    public string[] LocationNames => _gameProgress.LocationNames;
 
     public int LevelCount => _gameProgress.LevelCount;
 
@@ -65,6 +62,13 @@ public class SaveService : MonoBehaviour
         _gameProgress.Platforms = Platforms;
         Save();
         Debug.Log(_gameProgress.Balls.Length);
+    }
+
+    public void SaveArrayLocationNames(string[] LocationNames)
+    {
+        _gameProgress.LocationNames = LocationNames;
+        Save();
+        Debug.Log(_gameProgress.LocationNames.Length);
     }
 
     public void SaveCoins(int amount)

@@ -7,4 +7,5 @@ public class GameProgress
     public string CurrentPlatform = "";
     public string[] Balls = null;
     public string[] Platforms = null;
+    public string[] LocationNames = null;
 }

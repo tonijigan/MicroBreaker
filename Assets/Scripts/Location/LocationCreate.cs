@@ -7,8 +7,9 @@ public class LocationCreate : MonoBehaviour
 {
     [SerializeField] private BoostersContainer _boardsContainer;
     [SerializeField] private List<Location> _locations;
+    [SerializeField] private ParticleSystem _boxParticleSystem;
 
-    private Location _currentLocation;
+    public Location CurrentLocation { get; private set; }
     private Transform _transform;
 
     public void Init(string locationName)
@@ -22,7 +23,7 @@ public class LocationCreate : MonoBehaviour
             return;
         }
 
-        _currentLocation = Instantiate(newLocation, _transform);
-        _currentLocation.Init(_boardsContainer);
+        CurrentLocation = Instantiate(newLocation, _transform);
+        CurrentLocation.Init(_boardsContainer, _boxParticleSystem);
     }
 }
