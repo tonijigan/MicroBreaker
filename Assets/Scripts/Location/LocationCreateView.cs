@@ -18,6 +18,7 @@ public class LocationCreateView : MonoBehaviour
     private void Awake()
     {
         Create(CountCreateObjects);
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()

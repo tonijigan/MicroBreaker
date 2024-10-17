@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004481341, g: 0.058967277, b: 0.23219556, a: 1}
+  m_IndirectSpecularColor: {r: 0.005977301, g: 0.062036708, b: 0.23103201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -801,6 +801,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 499971382}
+    - target: {fileID: 1931769277008255204, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1939628981774408413, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -951,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315131750269578467, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150.26616
+      value: 305.09528
       objectReference: {fileID: 0}
     - target: {fileID: 6078884225345171605, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: _wallet
@@ -991,7 +995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8291477346662785508, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150.26616
+      value: 305.09528
       objectReference: {fileID: 0}
     - target: {fileID: 8720617294017210688, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: _wallet
@@ -1003,7 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8901017700600964952, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150.26616
+      value: 305.09528
       objectReference: {fileID: 0}
     - target: {fileID: 9062562274363664732, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_Color.g
@@ -1293,6 +1297,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 499971382}
+    - target: {fileID: 1932073564556369109, guid: a58d870435a97864396650bfe7e90031, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2738506088859512414, guid: a58d870435a97864396650bfe7e90031, type: 3}
       propertyPath: m_Pivot.y
       value: 1

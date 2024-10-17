@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004481341, g: 0.058967277, b: 0.23219556, a: 1}
+  m_IndirectSpecularColor: {r: 0.005977301, g: 0.062036708, b: 0.23103201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -1325,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95231524675487769, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 305.09552
+      value: 305.09525
       objectReference: {fileID: 0}
     - target: {fileID: 704160602208325285, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1333,7 +1333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 704160602208325285, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 305.09552
+      value: 305.09525
       objectReference: {fileID: 0}
     - target: {fileID: 812531533662191805, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: _wallet
@@ -1361,7 +1361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4287512662420276510, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 305.09552
+      value: 305.09525
       objectReference: {fileID: 0}
     - target: {fileID: 4794970495267977666, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: _saveService
@@ -3294,7 +3294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1599801879
 Transform:
   m_ObjectHideFlags: 0
@@ -9280,20 +9280,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 2145414489}
     m_Modifications:
     - target: {fileID: 4484034523724933502, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
-      propertyPath: _isActive
+      propertyPath: _colorPassed.a
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
+    - target: {fileID: 4484034523724933502, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
+      propertyPath: _colorPassed.b
+      value: 0.3336155
       objectReference: {fileID: 0}
-    - target: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
+    - target: {fileID: 4484034523724933502, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
+      propertyPath: _colorPassed.g
+      value: 0.3066038
       objectReference: {fileID: 0}
-    - target: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
+    - target: {fileID: 4484034523724933502, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
+      propertyPath: _colorPassed.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9337,7 +9337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9057619697123639999, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: LocationObjectPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
