@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace BoxObject
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Box : AbstractEffect, IDamageable
     {
         private const int MinHealth = 0;
@@ -19,10 +20,21 @@ namespace BoxObject
 
         public event Action Died;
 
+        private Rigidbody _rigidbody;
         private BoosterEffect _booster;
         private WaitForSeconds _waitForSeconds;
 
         public BoosterNames BoosterName => _boosterName;
+
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+        }
+
+        public void SetKinematic(bool isKinematic)
+        {
+            _rigidbody.isKinematic = isKinematic;
+        }
 
         public void Init(BoosterEffect booster, ParticleSystem particleSystem)
         {

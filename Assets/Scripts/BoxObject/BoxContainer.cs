@@ -5,8 +5,6 @@ namespace BoxObject
 {
     public class BoxContainer : MonoBehaviour
     {
-        // [SerializeField] private ParticleSystem _particleSystem;
-
         private ParticleSystem _particleSystem;
         private Transform _transform;
         private Box[] _boxes;

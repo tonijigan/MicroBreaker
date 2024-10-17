@@ -6,14 +6,18 @@ using UnityEngine;
 public class LocationCreateView : MonoBehaviour
 {
     private const int CountCreateObjects = 20;
+    private const int MinValue = 0;
+    private const int Duration = 10;
+    private const int Angle = 360;
+    private const int SetLoops = -1;
 
     [SerializeField] private Location[] _locations;
     [SerializeField] private LocationChooseInput _chooseInput;
     [SerializeField] private GameObject _gameObject;
     [SerializeField] private Transform _spawnCenter;
 
-    private List<GameObject> _gameObjects = new();
-    private List<Vector3> _localPositions = new();
+    private readonly List<GameObject> _gameObjects = new();
+    private readonly List<Vector3> _localPositions = new();
 
     private void Awake()
     {
@@ -57,8 +61,6 @@ public class LocationCreateView : MonoBehaviour
         if (newLocation.BoxContainer.transform.childCount > _gameObjects.Count)
             Create(newLocation.BoxContainer.transform.childCount - _gameObjects.Count);
 
-        Debug.Log(_localPositions.Count);
-
         for (int i = 0; i < newLocation.BoxContainer.transform.childCount; i++)
         {
             _localPositions[i] = newLocation.BoxContainer.transform.GetChild(i).transform.localPosition;
@@ -66,8 +68,6 @@ public class LocationCreateView : MonoBehaviour
             _gameObjects[i].gameObject.SetActive(true);
         }
 
-
-
-        _spawnCenter.DORotate(new Vector3(0f, 360f, 0f), 10, RotateMode.FastBeyond360).SetLoops(-1).SetRelative().SetEase(Ease.Linear);
+        _spawnCenter.DORotate(new Vector3(MinValue, Angle, MinValue), Duration, RotateMode.FastBeyond360).SetLoops(SetLoops).SetRelative().SetEase(Ease.Linear);
     }
 }

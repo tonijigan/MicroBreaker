@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1197857003779155547}
   - component: {fileID: 4501438184883311421}
   - component: {fileID: 1841860386978528663}
+  - component: {fileID: 2359602125763344550}
   m_Layer: 0
   m_Name: Boxs
   m_TagString: Untagged
@@ -54,7 +55,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a936c4345358968448a84b35e3793b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 0}
 --- !u!114 &1841860386978528663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +69,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locationName: 0
   _boxContainer: {fileID: 4501438184883311421}
+--- !u!114 &2359602125763344550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107918445783186738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7772d3de5fe8c24cae2c5f66544bc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &128771106136579316
 PrefabInstance:
   m_ObjectHideFlags: 0

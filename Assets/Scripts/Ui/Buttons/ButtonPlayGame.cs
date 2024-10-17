@@ -9,6 +9,7 @@ public class ButtonPlayGame : AbstractButton
     [SerializeField] private ScenesName _scenesName;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private SaveService _saveService;
+    [SerializeField] private PanelFade _panelFade;
 
     public event Action Clicked;
 
@@ -17,7 +18,7 @@ public class ButtonPlayGame : AbstractButton
     protected override void OnClick()
     {
         _saveService.SaveCurrentLocationName(_locationObject.Name.ToString());
-        SceneManager.LoadScene(_scenesName.ToString());
+        _panelFade.SetActive(false, LoadScene);
     }
 
     public void Init(LocationObject locationObject)
@@ -34,5 +35,10 @@ public class ButtonPlayGame : AbstractButton
         }
 
         Clicked?.Invoke();
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(_scenesName.ToString());
     }
 }
