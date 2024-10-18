@@ -9770,6 +9770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelFade
       objectReference: {fileID: 0}
+    - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8876809251492471441, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
