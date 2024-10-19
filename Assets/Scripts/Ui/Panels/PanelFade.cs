@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup), typeof(Image))]
 public class PanelFade : MonoBehaviour
 {
-    private const float Duration = 1;
+    private const float Duration = 2;
     private const float MinValueAlpha = 0;
     private const float MaxValueAlpha = 1;
 

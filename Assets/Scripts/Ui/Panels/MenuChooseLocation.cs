@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class MenuChooseLocation : MonoBehaviour
@@ -6,12 +7,18 @@ public class MenuChooseLocation : MonoBehaviour
     [SerializeField] private PanelShop _panelShop;
     [SerializeField] private LocationChooseInput _locationChooseInput;
     [SerializeField] private SwipeMove _swipeMove;
+    [SerializeField] private CinemachineVirtualCamera _virtualMobileCamera;
 
     private void OnEnable()
     {
         _panelShop.Actived += OnActive;
         _locationChooseInput.LocationChoosed += OnInit;
         _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
+        _panelPlayGame.ButtonPlayGame.Clicked += () =>
+        {
+            _virtualMobileCamera.gameObject.SetActive(true);
+            _virtualMobileCamera.Priority = 1;
+        };
     }
 
     private void OnDisable()
@@ -19,10 +26,18 @@ public class MenuChooseLocation : MonoBehaviour
         _panelShop.Actived -= OnActive;
         _locationChooseInput.LocationChoosed -= OnInit;
         _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
+        _panelPlayGame.ButtonPlayGame.Clicked += () =>
+        {
+            _virtualMobileCamera.gameObject.SetActive(true);
+            _virtualMobileCamera.Priority = 1;
+        };
     }
 
     private void OnInit(LocationObject locationObject)
     {
+        _virtualMobileCamera.transform.position = new Vector3(_virtualMobileCamera.transform.position.x,
+                                                              _virtualMobileCamera.transform.position.y,
+                                                              locationObject.transform.position.z - 20);
         _panelPlayGame.ButtonClose.SetStartStateButton();
         _panelPlayGame.SetActive(true);
         _panelPlayGame.Init(locationObject);

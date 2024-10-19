@@ -17,6 +17,7 @@ public class ButtonPlayGame : AbstractButton
     {
         _saveService.SaveCurrentLocationName(_locationObject.Name.ToString());
         _panelFade.SetActive(false, LoadScene);
+        Clicked?.Invoke();
     }
 
     public void Init(LocationObject locationObject)
@@ -29,8 +30,6 @@ public class ButtonPlayGame : AbstractButton
         {
             this.enabled = false;
         }
-
-        Clicked?.Invoke();
     }
 
     private void LoadScene()

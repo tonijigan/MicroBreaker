@@ -1,3 +1,4 @@
+using Cinemachine;
 using DG.Tweening;
 using System;
 using System.Threading.Tasks;
@@ -21,9 +22,26 @@ public class PanelPlayGame : Panel
 
     public ButtonPanelInteraction ButtonClose => _buttonClose;
 
+    public ButtonPlayGame ButtonPlayGame => _buttonPlayGame;
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+    }
+
+    private void OnEnable()
+    {
+        _buttonPlayGame.Clicked += () => { SetActive(false); };
+    }
+
+    private void OnDisable()
+    {
+        _buttonPlayGame.Clicked -= () => { SetActive(false); };
+    }
+
+    public override async void SetActive(bool isActive)
+    {
+        await MoveButton(isActive);
     }
 
     public void Init(LocationObject locationObject)
@@ -35,13 +53,10 @@ public class PanelPlayGame : Panel
             IsInit = true;
     }
 
-    public override async void SetActive(bool isActive)
-    {
-        await MoveButton(isActive);
-    }
-
     private async Task MoveButton(bool isActive)
     {
+        Debug.Log(isActive);
+
         if (isActive)
             await _rectTransform.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
         else
