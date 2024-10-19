@@ -1,5 +1,6 @@
 using Enums;
 using PlayerObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,14 +8,20 @@ using UnityEngine;
 public class PanelTyepProducts : Panel
 {
     [SerializeField] private ObjectsName _objectsName;
-    [SerializeField] private Transform _container;
     [SerializeField] private PanelProduct _panelProduct;
     [SerializeField] private Wallet _wallet;
 
-    private ProductView _currentProductView;
+    public event Action<List<Product>, PanelProduct> Inited;
+
+    private Product _currentProduct;
     private SaveService _saveService;
     private List<string> _accessProdoctNames = new();
-    private readonly List<ProductView> _products = new();
+    private readonly List<Product> _products = new();
+
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
 
     public void Init(SaveService saveService)
     {
@@ -23,12 +30,12 @@ public class PanelTyepProducts : Panel
         if (_objectsName == ObjectsName.Ball)
         {
             if (_saveService.CurrentBall != "")
-                _currentProductView = _products[_products.FindIndex(product => product.Name == _saveService.CurrentBall)];
+                _currentProduct = _products[_products.FindIndex(product => product.Name == _saveService.CurrentBall)];
             else
             {
-                _currentProductView = _products.First();
-                _saveService.SaveCurrentBall(_currentProductView.Name);
-                _accessProdoctNames.Add(_currentProductView.Name);
+                _currentProduct = _products.First();
+                _saveService.SaveCurrentBall(_currentProduct.Name);
+                _accessProdoctNames.Add(_currentProduct.Name);
                 _saveService.SaveArrayBalls(_accessProdoctNames.ToArray());
             }
 
@@ -38,22 +45,21 @@ public class PanelTyepProducts : Panel
         if (_objectsName == ObjectsName.Platform)
         {
             if (_saveService.CurrentPlatform != "")
-                _currentProductView = _products[_products.FindIndex(product => product.Name == _saveService.CurrentPlatform)];
+                _currentProduct = _products[_products.FindIndex(product => product.Name == _saveService.CurrentPlatform)];
             else
             {
-                _currentProductView = _products.First();
-                _saveService.SaveCurrentPlatform(_currentProductView.Name);
-                _accessProdoctNames.Add(_currentProductView.Name);
+                _currentProduct = _products.First();
+                _saveService.SaveCurrentPlatform(_currentProduct.Name);
+                _accessProdoctNames.Add(_currentProduct.Name);
                 _saveService.SaveArrayPlatforms(_accessProdoctNames.ToArray());
             }
 
             OpenAccess(_saveService.Platforms);
         }
 
-        _currentProductView.SetCanBuy(true);
-        _currentProductView.Buy();
-        SetCurrentProduct(_currentProductView);
-        SetAccess();
+        _currentProduct.Buy();
+        SetCurrentProduct(_currentProduct);
+        Inited?.Invoke(_products, _panelProduct);
         gameObject.SetActive(false);
     }
 
@@ -61,23 +67,14 @@ public class PanelTyepProducts : Panel
     {
         for (int i = 0; i < names.Length; i++)
         {
-            ProductView productView = _products.Where(product => product.Name == names[i]).FirstOrDefault();
-            productView.SetCanBuy(true);
-            productView.Buy();
+            Product product = _products.Where(product => product.Name == names[i]).FirstOrDefault();
+            product.Buy();
         }
-    }
-
-    public void Create(ProductView productView, Template template)
-    {
-        ProductView newProductView = Instantiate(productView, _container);
-        newProductView.Init(_panelProduct, template);
-        _products.Add(newProductView);
     }
 
     private void OnEnable()
     {
         _panelProduct.Buyed += OnSaveProductsName;
-        _panelProduct.Buyed += SetAccess;
 
         foreach (var product in _products)
         {
@@ -88,7 +85,6 @@ public class PanelTyepProducts : Panel
     private void OnDisable()
     {
         _panelProduct.Buyed -= OnSaveProductsName;
-        _panelProduct.Buyed -= SetAccess;
 
         foreach (var product in _products)
         {
@@ -96,30 +92,21 @@ public class PanelTyepProducts : Panel
         }
     }
 
-    private void SetAccess()
-    {
-        for (int i = 0; i < _products.Count; i++)
-        {
-            if (_products[i].IsBuy == false) _products[i].SetCanBuy(false);
-            else _products[i].SetCanBuy(true);
-        }
-    }
-
-    private void SetCurrentProduct(ProductView productView)
+    private void SetCurrentProduct(Product productSet)
     {
         foreach (var product in _products)
         {
             product.SetStatusOfTheSelected(false);
         }
 
-        productView.SetStatusOfTheSelected(true);
-        _currentProductView = productView;
+        productSet.SetStatusOfTheSelected(true);
+        _currentProduct = productSet;
 
         if (_objectsName == ObjectsName.Ball)
-            _saveService.SaveCurrentBall(_currentProductView.Name);
+            _saveService.SaveCurrentBall(_currentProduct.Name);
 
         if (_objectsName == ObjectsName.Platform)
-            _saveService.SaveCurrentPlatform(_currentProductView.Name);
+            _saveService.SaveCurrentPlatform(_currentProduct.Name);
     }
 
     private void OnSaveProductsName()

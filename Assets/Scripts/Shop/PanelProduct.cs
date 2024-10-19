@@ -12,11 +12,11 @@ public class PanelProduct : Panel
 
     public event Action Buyed;
 
-    private ProductView _productView;
+    private Product _product;
 
-    public void Init(ProductView productView)
+    public void Init(Product product)
     {
-        _productView = productView;
+        _product = product;
         AssignAccess();
     }
 
@@ -32,9 +32,9 @@ public class PanelProduct : Panel
 
     private void AssignAccess()
     {
-        _text.text = _wallet.Coin < _productView.Price ? "Недостаточно средств" : "К покупке готов";
+        _text.text = _wallet.Coin < _product.Price ? "Недостаточно средств" : "К покупке готов";
 
-        if (_wallet.Coin < _productView.Price)
+        if (_wallet.Coin < _product.Price)
         {
             _buttonPay.enabled = false;
             return;
@@ -45,8 +45,8 @@ public class PanelProduct : Panel
 
     private void OnListener()
     {
-        _wallet.RemoveCoins(_productView.Price);
-        _productView.Buy();
+        _wallet.RemoveCoins(_product.Price);
+        _product.Buy();
         Buyed?.Invoke();
         gameObject.SetActive(false);
     }
