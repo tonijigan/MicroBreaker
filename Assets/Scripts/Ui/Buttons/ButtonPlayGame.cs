@@ -1,13 +1,11 @@
 using Enums;
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonPlayGame : AbstractButton
 {
     [SerializeField] private ScenesName _scenesName;
-    [SerializeField] private TMP_Text _text;
     [SerializeField] private SaveService _saveService;
     [SerializeField] private PanelFade _panelFade;
 
@@ -26,11 +24,9 @@ public class ButtonPlayGame : AbstractButton
         _locationObject = locationObject;
 
         this.enabled = true;
-        _text.text = "еярэ днярсо";
 
         if (_locationObject.IsActive == false)
         {
-            _text.text = "мер днярсою";
             this.enabled = false;
         }
 

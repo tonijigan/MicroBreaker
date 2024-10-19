@@ -11,10 +11,10 @@ public class BackGroundStartScene : MonoBehaviour
 
     private void Start()
     {
-        Fill(MoveCoroutine);
+        Fill();
     }
 
-    private void Fill(Action callBack = null)
+    private void Fill()
     {
         _transform = transform;
         _transformsBox = new Transform[_transform.childCount];
@@ -23,7 +23,8 @@ public class BackGroundStartScene : MonoBehaviour
         {
             _transformsBox[i] = _transform.GetChild(i);
         }
-        callBack?.Invoke();
+
+        MoveCoroutine();
     }
 
     private void MoveCoroutine()

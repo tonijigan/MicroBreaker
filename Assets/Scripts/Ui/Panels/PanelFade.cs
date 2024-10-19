@@ -5,6 +5,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasGroup), typeof(Image))]
 public class PanelFade : MonoBehaviour
 {
+    private const float Duration = 1;
+    private const float MinValueAlpha = 0;
+    private const float MaxValueAlpha = 1;
+
     private CanvasGroup _canvasGroup;
     private Image _image;
 
@@ -20,11 +24,11 @@ public class PanelFade : MonoBehaviour
         if (isActive == false)
         {
             _image.raycastTarget = true;
-            _canvasGroup.DOFade(1, 1f).OnComplete(tweenCallback);
+            _canvasGroup.DOFade(MaxValueAlpha, Duration).OnComplete(tweenCallback);
         }
         else
         {
-            _canvasGroup.DOFade(0, 2f).OnComplete(() => { _image.raycastTarget = false; tweenCallback?.Invoke(); });
+            _canvasGroup.DOFade(MinValueAlpha, Duration).OnComplete(() => { _image.raycastTarget = false; tweenCallback?.Invoke(); });
         }
     }
 }

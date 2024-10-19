@@ -5,6 +5,8 @@ namespace BoxObject
 {
     public class BoxContainer : MonoBehaviour
     {
+        private const float ParticleScale = 2;
+
         private ParticleSystem _particleSystem;
         private Transform _transform;
         private Box[] _boxes;
@@ -12,7 +14,7 @@ namespace BoxObject
         public void Fill(BoostersContainer boosterContainer, ParticleSystem particleSystem)
         {
             _particleSystem = Instantiate(particleSystem, _transform);
-            _particleSystem.transform.localScale = new Vector3(2, 2, 2);
+            _particleSystem.transform.localScale = new Vector3(ParticleScale, ParticleScale, ParticleScale);
             _transform = transform;
             _boxes = new Box[_transform.childCount];
             boosterContainer.Fill();
