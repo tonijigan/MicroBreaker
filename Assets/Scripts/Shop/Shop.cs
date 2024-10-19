@@ -24,7 +24,6 @@ public class Shop : MonoBehaviour
 
         foreach (var product in _products)
         {
-            Debug.Log(product.Name);
             if (product.Template.ObjectsName == Enums.ObjectsName.Ball)
                 _panelCreateBallProducts.AddProduct(product);
 
