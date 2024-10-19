@@ -6,10 +6,10 @@ public class TestRestartSave : AbstractButton
 
     protected override void OnClick()
     {
-        _saveService.SaveCurrentBall("");
-        _saveService.SaveCurrentPlatform("");
-        _saveService.SaveArrayBalls(new string[0]);
-        _saveService.SaveArrayPlatforms(new string[0]);
+        _saveService.SaveCurrentProduct(objectsName: Enums.ObjectsName.Ball, "");
+        _saveService.SaveCurrentProduct(objectsName: Enums.ObjectsName.Platform, "");
+        _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Ball, new string[0]);
+        _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Platform, new string[0]);
         _saveService.SaveArrayLocationNames(new string[0]);
     }
 }

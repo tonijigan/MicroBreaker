@@ -5,21 +5,15 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     [SerializeField] private Template[] _templates;
-    [SerializeField] private PanelTyepProducts _panelCreateBallProducts;
-    [SerializeField] private PanelTyepProducts _panelCreatePlatformProducts;
+    [SerializeField] private ProductTypeSection _panelCreateBallProducts;
+    [SerializeField] private ProductTypeSection _panelCreatePlatformProducts;
     [SerializeField] private SaveService _saveService;
 
     private readonly List<Product> _products = new();
 
-    private void OnEnable()
-    {
-        _saveService.Loaded += Create;
-    }
+    private void OnEnable() => _saveService.Loaded += Create;
 
-    private void OnDisable()
-    {
-        _saveService.Loaded -= Create;
-    }
+    private void OnDisable() => _saveService.Loaded -= Create;
 
     private void Create()
     {

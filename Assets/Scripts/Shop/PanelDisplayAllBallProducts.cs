@@ -1,30 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PanelTyepProducts))]
-public class ProductsBallViewCreate : MonoBehaviour
+[RequireComponent(typeof(ProductTypeSection))]
+public class PanelDisplayAllBallProducts : MonoBehaviour
 {
     [SerializeField] private ProductBallView _productBallView;
     [SerializeField] private Transform _container;
 
-    private Transform _transform;
-    private PanelTyepProducts _panelTyepProducts;
+    private ProductTypeSection _panelTyepProducts;
     private readonly List<ProductBallView> _productBallViews = new();
 
-    private void Awake()
-    {
-        _transform = transform;
-        _panelTyepProducts = GetComponent<PanelTyepProducts>();
-    }
+    private void Awake() => _panelTyepProducts = GetComponent<ProductTypeSection>();
 
     private void OnEnable()
     {
         _panelTyepProducts.Inited += CreateProductView;
+        _panelTyepProducts.Selected += OnUpdateStates;
+        _panelTyepProducts.Buyed += OnUpdateStates;
     }
 
     private void OnDisable()
     {
         _panelTyepProducts.Inited -= CreateProductView;
+        _panelTyepProducts.Selected -= OnUpdateStates;
+        _panelTyepProducts.Buyed -= OnUpdateStates;
     }
 
     private void CreateProductView(List<Product> products, PanelProduct panelProduct)
@@ -35,5 +34,13 @@ public class ProductsBallViewCreate : MonoBehaviour
             productBallView.Init(panelProduct, product);
             _productBallViews.Add(productBallView);
         }
+
+        OnUpdateStates();
+    }
+
+    private void OnUpdateStates()
+    {
+        foreach (var productBallView in _productBallViews)
+            productBallView.SetState();
     }
 }

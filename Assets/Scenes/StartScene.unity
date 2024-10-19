@@ -1441,6 +1441,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5250452919549158158, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 602264416}
+    - target: {fileID: 5250452919549158158, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: _productBallView
+      value: 
+      objectReference: {fileID: 8871760494080270630, guid: 4c9280692f178a34a95cd0fa505be92f, type: 3}
     - target: {fileID: 5315131750269578467, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1547,6 +1555,11 @@ PrefabInstance:
       addedObject: {fileID: 1140647352}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4eccada9ea63444382749570395738a, type: 3}
+--- !u!224 &602264416 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8291477346662785508, guid: a4eccada9ea63444382749570395738a, type: 3}
+  m_PrefabInstance: {fileID: 602264415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &606709108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2303,7 +2316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8876809251492471441, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_Pivot.x

@@ -21,14 +21,9 @@ public class Product
         Template = template;
     }
 
-    public void Buy()
-    {
-        IsBuy = true;
-    }
+    public void Buy() => IsBuy = true;
 
-    public void SetStatusOfTheSelected(bool isSelected)
-    {
-        IsSelected = isSelected;
-        Selected?.Invoke(this);
-    }
+    public void SetStatusOfTheSelected(bool isSelected) => IsSelected = isSelected;
+
+    public void Select() => Selected?.Invoke(this);
 }

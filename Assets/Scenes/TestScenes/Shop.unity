@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonPay: {fileID: 4466054059077559561}
-  _wallet: {fileID: 0}
+  _wallet: {fileID: 1349443603}
   _text: {fileID: 5816263868930183934}
 --- !u!1 &551368781679662376
 GameObject:
@@ -1250,6 +1250,7 @@ GameObject:
   - component: {fileID: 6801372535117950772}
   - component: {fileID: 6632323740152103259}
   - component: {fileID: 3370854896731741444}
+  - component: {fileID: 6801372535117950773}
   m_Layer: 5
   m_Name: PanelBallShop
   m_TagString: Untagged
@@ -1790,6 +1791,11 @@ PrefabInstance:
 --- !u!224 &1567437566824283613 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 980987531564796043, guid: 43979ac7a38e853408734787d5c91535, type: 3}
+  m_PrefabInstance: {fileID: 1567437566824283612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1567437566824283614 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2038636168376562089, guid: 43979ac7a38e853408734787d5c91535, type: 3}
   m_PrefabInstance: {fileID: 1567437566824283612}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1587438493427626374
@@ -3406,6 +3412,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551368781679662376}
   m_CullTransparentMesh: 1
+--- !u!114 &6801372535117950773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551368781679662376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcbe47d0a5163c479c4fe2e35ae2b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _productBallView: {fileID: 8871760494080270630, guid: 4c9280692f178a34a95cd0fa505be92f, type: 3}
+  _container: {fileID: 1567437566824283614}
 --- !u!114 &6864926832780819086
 MonoBehaviour:
   m_ObjectHideFlags: 0

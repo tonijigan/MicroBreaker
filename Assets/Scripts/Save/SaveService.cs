@@ -1,3 +1,4 @@
+using Enums;
 using System;
 using UnityEngine;
 
@@ -36,30 +37,46 @@ public class SaveService : MonoBehaviour
         return _gameProgress.Coins;
     }
 
-    public void SaveCurrentBall(string currentName)
+    public string GetCurrentProduct(ObjectsName objectsName)
     {
-        _gameProgress.CurrentBall = currentName;
+        if (objectsName == ObjectsName.Ball)
+            return CurrentBall;
+        if (objectsName == ObjectsName.Platform)
+            return CurrentPlatform;
+
+        return "";
+    }
+
+    public string[] GetArrayProducts(ObjectsName objectsName)
+    {
+        if (objectsName == ObjectsName.Ball)
+            return Balls;
+        if (objectsName == ObjectsName.Platform)
+            return Platforms;
+
+        return new string[0];
+    }
+
+    public void SaveCurrentProduct(ObjectsName objectsName, string currentName)
+    {
+        if (objectsName == ObjectsName.Ball)
+            _gameProgress.CurrentBall = currentName;
+
+        if (objectsName == ObjectsName.Platform)
+            _gameProgress.CurrentPlatform = currentName;
+
         Save();
         Debug.Log(_gameProgress.CurrentBall);
     }
 
-    public void SaveCurrentPlatform(string currentPlatform)
+    public void SaveArrayProducts(ObjectsName objectsName, string[] Names)
     {
-        _gameProgress.CurrentPlatform = currentPlatform;
-        Save();
-        Debug.Log(_gameProgress.CurrentPlatform);
-    }
+        if (objectsName == ObjectsName.Ball)
+            _gameProgress.Balls = Names;
 
-    public void SaveArrayBalls(string[] Names)
-    {
-        _gameProgress.Balls = Names;
-        Save();
-        Debug.Log(_gameProgress.Balls.Length);
-    }
+        if (objectsName == ObjectsName.Platform)
+            _gameProgress.Platforms = Platforms;
 
-    public void SaveArrayPlatforms(string[] Platforms)
-    {
-        _gameProgress.Platforms = Platforms;
         Save();
         Debug.Log(_gameProgress.Balls.Length);
     }

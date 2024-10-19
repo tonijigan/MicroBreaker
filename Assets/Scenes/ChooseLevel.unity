@@ -1443,6 +1443,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelShop
       objectReference: {fileID: 0}
+    - target: {fileID: 4223867629508020979, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 720915405}
+    - target: {fileID: 4223867629508020979, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _productBallView
+      value: 
+      objectReference: {fileID: 8871760494080270630, guid: 4c9280692f178a34a95cd0fa505be92f, type: 3}
     - target: {fileID: 4287512662420276510, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1628,6 +1636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576bd9b6bddb70743b3e55ffcb917059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &720915405 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 95231524675487769, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+  m_PrefabInstance: {fileID: 720915402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777088930
 GameObject:
   m_ObjectHideFlags: 0
