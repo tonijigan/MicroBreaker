@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(ProductTypeSection), typeof(SwipePanel))]
 public class PanelDisplayAllPlatformProducts : MonoBehaviour
@@ -45,7 +44,7 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         for (int i = 0; i < products.Count; i++)
         {
             _platformTemplates.Add(Instantiate(products[i].Template, _currentTemplatePoint));
-            _platformTemplates[i].transform.DOScale(new Vector3(10, 10, 10), 0);
+            _platformTemplates[i].transform.DOScale(new Vector3(13, 13, 13), 0);
         }
 
         OnSetCurrentPlatform(_currentIndex);
@@ -63,31 +62,40 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
 
     private void MoveChangePlatform()
     {
-        if (_currentIndex > 0)
-        {
-            _platformTemplates[_currentIndex - 1].gameObject.SetActive(true);
-            _platformTemplates[_currentIndex - 1].transform.position = _oldTransform.position;
-        }
+        int element = 1;
 
-        _currentTemplate.transform.position = _currentTransform.position;
+        if (_currentIndex > 0)
+            SetPlatformState(_platformTemplates[_currentIndex - element], _oldTransform);
+
+        SetPlatformState(_currentTemplate, _currentTransform);
         PlatformRotate();
 
-        if (_currentIndex < _platformTemplates.Count - 1)
-        {
-            _platformTemplates[_currentIndex + 1].gameObject.SetActive(true);
-            _platformTemplates[_currentIndex + 1].transform.position = _nextTransform.position;
-        }
+        if (_currentIndex < _platformTemplates.Count - element)
+            SetPlatformState(_platformTemplates[_currentIndex + element], _nextTransform);
+    }
+
+    private void SetPlatformState(Template template, Transform needTransform)
+    {
+        template.gameObject.SetActive(true);
+        template.transform.DOMove(needTransform.position, 0.5f);
+        template.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
     }
 
     private async void PlatformRotate()
     {
+        if (_rotateTween != null && _rotateTween.IsPlaying() == true)
+            _rotateTween.Kill();
+
         await RotateMove();
     }
 
     public async Task RotateMove()
     {
-        await _currentTemplate.transform.DORotate(new Vector3(0, 360, 0), 5f, RotateMode.FastBeyond360).
-                                 SetLoops(-1).SetRelative().SetEase(Ease.Linear).AsyncWaitForCompletion();
+        _rotateTween = _currentTemplate.transform.DORotate(new Vector3(0, 360, 0), 5f, RotateMode.FastBeyond360).
+                                 SetLoops(-1).SetRelative().SetEase(Ease.Linear);
+        Task tween = _rotateTween.AsyncWaitForCompletion();
+        await tween;
     }
 
     private int GetCurrentIndex(int element)

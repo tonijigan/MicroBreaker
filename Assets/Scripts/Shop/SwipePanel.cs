@@ -19,7 +19,6 @@ public class SwipePanel : MonoBehaviour
     {
         if (HaveInputOnPanel() == true)
         {
-
             if (Input.GetMouseButtonDown(0))
             {
                 _wasPressed = true;
@@ -27,11 +26,7 @@ public class SwipePanel : MonoBehaviour
             }
 
             if (Input.GetMouseButton(0))
-            {
                 _currentInputPosition = Input.mousePosition;
-            }
-
-
         }
 
         if (Input.GetMouseButtonUp(0) && _wasPressed == true)
@@ -40,13 +35,9 @@ public class SwipePanel : MonoBehaviour
             int currentSwipeElement = 0;
 
             if (distance < -150)
-            {
                 currentSwipeElement = NextElement;
-            }
             else if (distance > 150)
-            {
                 currentSwipeElement = PreviousElement;
-            }
 
             Swiped?.Invoke(currentSwipeElement);
             _wasPressed = false;
