@@ -66,7 +66,6 @@ public class SaveService : MonoBehaviour
             _gameProgress.CurrentPlatform = currentName;
 
         Save();
-        Debug.Log(_gameProgress.CurrentBall);
     }
 
     public void SaveArrayProducts(ObjectsName objectsName, string[] Names)
@@ -78,7 +77,6 @@ public class SaveService : MonoBehaviour
             _gameProgress.Platforms = Platforms;
 
         Save();
-        Debug.Log(_gameProgress.Balls.Length);
     }
 
     public void SaveArrayLocationNames(string[] LocationNames)
