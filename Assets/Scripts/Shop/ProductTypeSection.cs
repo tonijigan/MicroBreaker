@@ -15,7 +15,7 @@ public class ProductTypeSection : Panel
     public event Action Selected;
     public event Action Buyed;
 
-    private Product _currentProduct;
+    public Product CurrentProduct { get; private set; }
     private SaveService _saveService;
     private List<string> _accessProdoctNames = new();
     private readonly List<Product> _products = new();
@@ -43,18 +43,18 @@ public class ProductTypeSection : Panel
         _saveService = saveService;
 
         if (_saveService.GetCurrentProduct(_objectsName) != "")
-            _currentProduct = _products[_products.FindIndex(product => product.Name == _saveService.GetCurrentProduct(_objectsName))];
+            CurrentProduct = _products[_products.FindIndex(product => product.Name == _saveService.GetCurrentProduct(_objectsName))];
         else
         {
-            _currentProduct = _products.First();
-            _saveService.SaveCurrentProduct(_objectsName, _currentProduct.Name);
-            _accessProdoctNames.Add(_currentProduct.Name);
+            CurrentProduct = _products.First();
+            _saveService.SaveCurrentProduct(_objectsName, CurrentProduct.Name);
+            _accessProdoctNames.Add(CurrentProduct.Name);
             _saveService.SaveArrayProducts(_objectsName, _accessProdoctNames.ToArray());
         }
 
         OpenAccess(_saveService.GetArrayProducts(_objectsName));
-        _currentProduct.Buy();
-        SetCurrentProduct(_currentProduct);
+        CurrentProduct.Buy();
+        SetCurrentProduct(CurrentProduct);
         Inited?.Invoke(_products, _panelProduct);
         gameObject.SetActive(false);
     }
@@ -79,8 +79,8 @@ public class ProductTypeSection : Panel
             product.SetStatusOfTheSelected(false);
 
         productSet.SetStatusOfTheSelected(true);
-        _currentProduct = productSet;
-        _saveService.SaveCurrentProduct(_objectsName, _currentProduct.Name);
+        CurrentProduct = productSet;
+        _saveService.SaveCurrentProduct(_objectsName, CurrentProduct.Name);
         Selected?.Invoke();
     }
 

@@ -15,7 +15,7 @@ public class ChangeTemplate : MonoBehaviour
     public void EnambeCurrentTemplate(string name)
     {
         Debug.Log(name);
-        Template currentTemplate = _templates.Where(template => template.name == name).FirstOrDefault();
+        Template currentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
         currentTemplate.gameObject.SetActive(true);
 
         if (name == "")

@@ -1,10 +1,18 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class ChoosePlatform : MonoBehaviour
 {
+    private const int MinValue = 0;
+    private const int Element = 1;
+    private const float DurationMove = 0.5f;
+    private const float DurationRotate = 5f;
+    private const float RotateY = 360f;
+    private const float Scale = 13f;
+
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _oldTransform;
     [SerializeField] private Transform _currentTransform;
@@ -12,22 +20,23 @@ public class ChoosePlatform : MonoBehaviour
 
     private readonly List<Template> _platformTemplates = new();
     private Tween _rotateTween;
-    private int _currentIndex = 0;
+    private int _currentIndex = MinValue;
 
     public Template CurrentTemplate { get; private set; }
 
-    public void Init(List<Product> product)
+    public void Init(List<Product> products)
     {
-        Create(product);
-        SetCurrentPlatform(_currentIndex);
+        Create(products);
+        _currentIndex = products.IndexOf(products.Where(product => product.IsSelected == true).FirstOrDefault());
+        SetCurrentPlatform(_currentIndex - Element);
     }
 
     private void Create(List<Product> products)
     {
-        for (int i = 0; i < products.Count; i++)
+        for (int i = MinValue; i < products.Count; i++)
         {
             _platformTemplates.Add(Instantiate(products[i].Template, _spawnPoint));
-            _platformTemplates[i].transform.DOScale(new Vector3(13, 13, 13), 0);
+            _platformTemplates[i].transform.DOScale(new Vector3(Scale, Scale, Scale), MinValue);
         }
     }
 
@@ -43,22 +52,20 @@ public class ChoosePlatform : MonoBehaviour
 
     private void MoveChangePlatform()
     {
-        int element = 1;
-
-        if (_currentIndex > 0)
-            SetPlatformState(_platformTemplates[_currentIndex - element], _oldTransform);
+        if (_currentIndex > MinValue)
+            SetPlatformState(_platformTemplates[_currentIndex - Element], _oldTransform);
 
         SetPlatformState(CurrentTemplate, _currentTransform);
         PlatformRotate();
 
-        if (_currentIndex < _platformTemplates.Count - element)
-            SetPlatformState(_platformTemplates[_currentIndex + element], _nextTransform);
+        if (_currentIndex < _platformTemplates.Count - Element)
+            SetPlatformState(_platformTemplates[_currentIndex + Element], _nextTransform);
     }
 
     private void SetPlatformState(Template template, Transform needTransform)
     {
         template.gameObject.SetActive(true);
-        template.transform.DOMove(needTransform.position, 0.5f);
+        template.transform.DOMove(needTransform.position, DurationMove);
         template.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
@@ -72,7 +79,7 @@ public class ChoosePlatform : MonoBehaviour
 
     public async Task RotateMove()
     {
-        _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(0, 360, 0), 5f, RotateMode.FastBeyond360).
+        _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(0, RotateY, MinValue), DurationRotate, RotateMode.FastBeyond360).
                                  SetLoops(-1).SetRelative().SetEase(Ease.Linear);
         Task tween = _rotateTween.AsyncWaitForCompletion();
         await tween;
@@ -82,11 +89,11 @@ public class ChoosePlatform : MonoBehaviour
     {
         int newIndex = _currentIndex + element;
 
-        if (newIndex < 0)
+        if (newIndex < MinValue)
             return _currentIndex;
 
-        if (newIndex >= _platformTemplates.Count - 1)
-            return _currentIndex = _platformTemplates.Count - 1;
+        if (newIndex >= _platformTemplates.Count - Element)
+            return _currentIndex = _platformTemplates.Count - Element;
 
         return _currentIndex = newIndex;
     }

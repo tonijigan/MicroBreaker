@@ -31,7 +31,7 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         _productTypeSection.Buyed += OnSetStateProduct;
         _swipePanel.Swiped += OnSetCurrentProduct;
         _buttonBuy.onClick.AddListener(OpenBuyPanel);
-        _buttonSelect.onClick.AddListener(() => { _currentProduct.Select(); });
+        _buttonSelect.onClick.AddListener(TestChoose);
     }
 
     private void OnDisable()
@@ -40,7 +40,18 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         _productTypeSection.Buyed -= OnSetStateProduct;
         _swipePanel.Swiped -= OnSetCurrentProduct;
         _buttonBuy.onClick.RemoveListener(OpenBuyPanel);
-        _buttonSelect.onClick.RemoveListener(() => { _currentProduct.Select(); });
+        _buttonSelect.onClick.RemoveListener(TestChoose);
+    }
+
+    private void TestChoose()
+    {
+        _currentProduct.Select();
+        OnSetStateProduct();
+
+        for (int i = 0; i < _products.Count; i++)
+        {
+            Debug.Log(_products[i].IsSelected);
+        }
     }
 
     public void Create(List<Product> products, PanelProduct panelProduct)

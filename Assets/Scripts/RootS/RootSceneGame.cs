@@ -1,3 +1,4 @@
+using Enums;
 using UnityEngine;
 
 
@@ -10,7 +11,7 @@ public class RootSceneGame : Root
     protected override void OnInit()
     {
         _locationCreate.Init(_saveService.CurrentLocationName);
-        _changeTemplateBall.EnambeCurrentTemplate(_saveService.CurrentBall);
-        _changeTemplatePlatform.EnambeCurrentTemplate(_saveService.CurrentPlatform);
+        _changeTemplateBall.EnambeCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Ball));
+        _changeTemplatePlatform.EnambeCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Platform));
     }
 }
