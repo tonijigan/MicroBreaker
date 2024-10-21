@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class PanelDisplayAllPlatformProducts : MonoBehaviour
 {
     [SerializeField] private ChoosePlatform _choosePlatform;
-    //[SerializeField] private Button _buttonBuy;
-    //[SerializeField] private Button _buttonSelect;
+    [SerializeField] private Button _buttonBuy;
+    [SerializeField] private Button _buttonSelect;
+    [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _price;
-    //[SerializeField] private Image _imageChoosed;
 
     private SwipePanel _swipePanel;
     private PanelProduct _panelProduct;
@@ -28,14 +28,19 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
     private void OnEnable()
     {
         _productTypeSection.Inited += Create;
-        _swipePanel.Swiped += SetStateProduct;
-
+        _productTypeSection.Buyed += OnSetStateProduct;
+        _swipePanel.Swiped += OnSetCurrentProduct;
+        _buttonBuy.onClick.AddListener(OpenBuyPanel);
+        _buttonSelect.onClick.AddListener(() => { _currentProduct.Select(); });
     }
 
     private void OnDisable()
     {
         _productTypeSection.Inited -= Create;
-        _swipePanel.Swiped -= SetStateProduct;
+        _productTypeSection.Buyed -= OnSetStateProduct;
+        _swipePanel.Swiped -= OnSetCurrentProduct;
+        _buttonBuy.onClick.RemoveListener(OpenBuyPanel);
+        _buttonSelect.onClick.RemoveListener(() => { _currentProduct.Select(); });
     }
 
     public void Create(List<Product> products, PanelProduct panelProduct)
@@ -44,7 +49,7 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         _panelProduct = panelProduct;
         _choosePlatform.Init(products);
         _currentProduct = GetCurrentProduct();
-        SetStateProduct(_products.IndexOf(_currentProduct));
+        OnSetStateProduct();
     }
 
     private Product GetCurrentProduct()
@@ -52,10 +57,25 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         return _products.Where(product => product.Name == _choosePlatform.CurrentTemplate.Name).FirstOrDefault();
     }
 
-    private void SetStateProduct(int element)
+    private void OnSetCurrentProduct(int element)
     {
         _choosePlatform.SetCurrentPlatform(element);
         _currentProduct = GetCurrentProduct();
-        _price.text = _currentProduct.Name.ToString();
+        OnSetStateProduct();
+    }
+
+    private void OnSetStateProduct()
+    {
+        _name.text = _currentProduct.Name.ToString();
+        _price.text = _currentProduct.Price.ToString();
+        _buttonBuy.gameObject.SetActive(!_currentProduct.IsBuy);
+        _buttonSelect.gameObject.SetActive(_currentProduct.IsBuy);
+        _buttonSelect.enabled = !_currentProduct.IsSelected;
+    }
+
+    private void OpenBuyPanel()
+    {
+        _panelProduct.gameObject.SetActive(true);
+        _panelProduct.Init(_currentProduct);
     }
 }

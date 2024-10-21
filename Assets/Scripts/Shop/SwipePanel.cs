@@ -34,6 +34,9 @@ public class SwipePanel : MonoBehaviour
             float distance = _currentInputPosition.x - _startInputPosition.x;
             int currentSwipeElement = 0;
 
+            if (-150 < distance && distance < 150)
+                return;
+
             if (distance < -150)
                 currentSwipeElement = NextElement;
             else if (distance > 150)
