@@ -416,7 +416,6 @@ GameObject:
   - component: {fileID: 4702455972057631952}
   - component: {fileID: 6706234342603796959}
   - component: {fileID: 3002212457362507771}
-  - component: {fileID: 196588618629175183}
   m_Layer: 5
   m_Name: PanelPlatformShop
   m_TagString: Untagged
@@ -510,20 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33990675d37ef449ac9cc139917b9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &196588618629175183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907690246795854850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b9c0309ef668d438d0dad2fbd20229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _choosePlatform: {fileID: 0}
-  _price: {fileID: 2712184138408964188}
 --- !u!1 &2137976871023450636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1247,6 @@ GameObject:
   - component: {fileID: 4376312497355962965}
   - component: {fileID: 9198975321365444751}
   - component: {fileID: 7314824959275968508}
-  - component: {fileID: 5640969705457618761}
   - component: {fileID: 2604190754995229454}
   m_Layer: 5
   m_Name: PanelBallShop
@@ -1329,20 +1313,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5640969705457618761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240776074700330972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fcbe47d0a5163c479c4fe2e35ae2b12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _productBallView: {fileID: 8871760494080270630, guid: 4c9280692f178a34a95cd0fa505be92f, type: 3}
-  _container: {fileID: 4575470856063842262}
 --- !u!114 &2604190754995229454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2572,11 +2542,6 @@ PrefabInstance:
 --- !u!224 &3362162235187039988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 980987531564796043, guid: 43979ac7a38e853408734787d5c91535, type: 3}
-  m_PrefabInstance: {fileID: 2537187175654442623}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4575470856063842262 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2038636168376562089, guid: 43979ac7a38e853408734787d5c91535, type: 3}
   m_PrefabInstance: {fileID: 2537187175654442623}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8819539019495739791
