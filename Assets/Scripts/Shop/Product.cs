@@ -16,7 +16,7 @@ public class Product
 
     public Product(Template template)
     {
-        Name = template.name;
+        Name = template.Name;
         Price = template.Price;
         Template = template;
     }

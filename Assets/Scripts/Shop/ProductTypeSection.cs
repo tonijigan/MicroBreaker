@@ -63,6 +63,11 @@ public class ProductTypeSection : Panel
     {
         for (int i = 0; i < names.Length; i++)
         {
+            Debug.Log(names[i]);
+        }
+
+        for (int i = 0; i < names.Length; i++)
+        {
             Product product = _products.Where(product => product.Name == names[i]).FirstOrDefault();
             product.Buy();
         }

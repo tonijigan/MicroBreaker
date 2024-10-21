@@ -74,7 +74,7 @@ public class SaveService : MonoBehaviour
             _gameProgress.Balls = Names;
 
         if (objectsName == ObjectsName.Platform)
-            _gameProgress.Platforms = Platforms;
+            _gameProgress.Platforms = Names;
 
         Save();
     }

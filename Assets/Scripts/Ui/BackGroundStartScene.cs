@@ -41,7 +41,6 @@ public class BackGroundStartScene : MonoBehaviour
         for (int i = 0; i < _transformsBox.Length; i++)
         {
             randomX = UnityEngine.Random.Range(0.1f, 1f);
-            Debug.Log(randomX);
             _transformsBox[i].DOLocalMoveX(randomX, 1f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
             yield return new WaitForSeconds(0.01f);
         }
