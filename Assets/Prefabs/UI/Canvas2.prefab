@@ -1262,21 +1262,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4240776074700330972, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       insertIndex: -1
       addedObject: {fileID: 649261938238683357}
-    - targetCorrespondingSourceObject: {fileID: 1907690246795854850, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8195498272026449357}
   m_SourcePrefab: {fileID: 100100000, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
---- !u!114 &762692835816082294 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2712184138408964188, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
-  m_PrefabInstance: {fileID: 3401972597084994346}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &798770719856388132 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2604190754995229454, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
@@ -1312,28 +1298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _productBallView: {fileID: 8871760494080270630, guid: 4c9280692f178a34a95cd0fa505be92f, type: 3}
   _container: {fileID: 1173586332116274428}
---- !u!1 &3841366116687658792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1907690246795854850, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
-  m_PrefabInstance: {fileID: 3401972597084994346}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8195498272026449357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3841366116687658792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b9c0309ef668d438d0dad2fbd20229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _choosePlatform: {fileID: 0}
-  _buttonBuy: {fileID: 7413816443584207643}
-  _buttonSelect: {fileID: 6803522309511441532}
-  _name: {fileID: 762692835816082294}
-  _price: {fileID: 4051659120468539219}
 --- !u!224 &6679264707028106359 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8324833343403951965, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
@@ -1349,7 +1313,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6706234342603796959, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
   m_PrefabInstance: {fileID: 3401972597084994346}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3841366116687658792}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 499639f388911e6459c496b222ecc66a, type: 3}
