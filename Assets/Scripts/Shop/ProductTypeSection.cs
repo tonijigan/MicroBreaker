@@ -17,12 +17,12 @@ public class ProductTypeSection : Panel
 
     public Product CurrentProduct { get; private set; }
     private SaveService _saveService;
-    private List<string> _accessProdoctNames = new();
+    private List<string> _accessProductNames = new();
     private readonly List<Product> _products = new();
 
     private void OnEnable()
     {
-        _panelProduct.Buyed += OnSaveProductsName;
+        _panelProduct.Bought += OnSaveProductsName;
 
         foreach (var product in _products)
             product.Selected += SetCurrentProduct;
@@ -30,10 +30,15 @@ public class ProductTypeSection : Panel
 
     private void OnDisable()
     {
-        _panelProduct.Buyed -= OnSaveProductsName;
+        _panelProduct.Bought -= OnSaveProductsName;
 
         foreach (var product in _products)
             product.Selected -= SetCurrentProduct;
+    }
+
+    public override void Move(bool isActive)
+    {
+        this.gameObject.SetActive(isActive);
     }
 
     public void AddProduct(Product product) => _products.Add(product);
@@ -48,8 +53,8 @@ public class ProductTypeSection : Panel
         {
             CurrentProduct = _products.First();
             _saveService.SaveCurrentProduct(_objectsName, CurrentProduct.Name);
-            _accessProdoctNames.Add(CurrentProduct.Name);
-            _saveService.SaveArrayProducts(_objectsName, _accessProdoctNames.ToArray());
+            _accessProductNames.Add(CurrentProduct.Name);
+            _saveService.SaveArrayProducts(_objectsName, _accessProductNames.ToArray());
         }
 
         OpenAccess(_saveService.GetArrayProducts(_objectsName));
@@ -86,8 +91,8 @@ public class ProductTypeSection : Panel
 
     private void OnSaveProductsName()
     {
-        _accessProdoctNames = _products.Where(product => product.IsBuy == true).Select(product => product.Name).ToList();
-        _saveService.SaveArrayProducts(_objectsName, _accessProdoctNames.ToArray());
+        _accessProductNames = _products.Where(product => product.IsBuy == true).Select(product => product.Name).ToList();
+        _saveService.SaveArrayProducts(_objectsName, _accessProductNames.ToArray());
         _saveService.SaveCoins(_wallet.Coin);
         Buyed?.Invoke();
     }

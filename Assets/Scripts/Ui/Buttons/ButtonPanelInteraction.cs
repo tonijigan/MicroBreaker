@@ -23,7 +23,7 @@ public class ButtonPanelInteraction : AbstractButton
             ClosePanels();
 
         if (_panelOpenPanel != null)
-            _panelOpenPanel.SetActive(_isStateOnOpenPanel);
+            _panelOpenPanel.Move(_isStateOnOpenPanel);
 
         if (_buttonEnable != null)
             _buttonEnable.gameObject.SetActive(true);
@@ -43,9 +43,7 @@ public class ButtonPanelInteraction : AbstractButton
     private void ClosePanels()
     {
         foreach (var panel in _panelClosePanels)
-        {
-            panel.SetActive(!_isStateOnOpenPanel);
-        }
+            panel.Move(!_isStateOnOpenPanel);
     }
 
     private void HaveTimeScale()

@@ -6,24 +6,25 @@ public class PanelDisplayAllBallProducts : MonoBehaviour
 {
     [SerializeField] private ProductBallView _productBallView;
     [SerializeField] private Transform _container;
+    [SerializeField] private SoundButton _soundButton;
 
-    private ProductTypeSection _panelTyepProducts;
+    private ProductTypeSection _panelTypeProducts;
     private readonly List<ProductBallView> _productBallViews = new();
 
-    private void Awake() => _panelTyepProducts = GetComponent<ProductTypeSection>();
+    private void Awake() => _panelTypeProducts = GetComponent<ProductTypeSection>();
 
     private void OnEnable()
     {
-        _panelTyepProducts.Inited += CreateProductView;
-        _panelTyepProducts.Selected += OnUpdateStates;
-        _panelTyepProducts.Buyed += OnUpdateStates;
+        _panelTypeProducts.Inited += CreateProductView;
+        _panelTypeProducts.Selected += OnUpdateStates;
+        _panelTypeProducts.Buyed += OnUpdateStates;
     }
 
     private void OnDisable()
     {
-        _panelTyepProducts.Inited -= CreateProductView;
-        _panelTyepProducts.Selected -= OnUpdateStates;
-        _panelTyepProducts.Buyed -= OnUpdateStates;
+        _panelTypeProducts.Inited -= CreateProductView;
+        _panelTypeProducts.Selected -= OnUpdateStates;
+        _panelTypeProducts.Buyed -= OnUpdateStates;
     }
 
     private void CreateProductView(List<Product> products, PanelProduct panelProduct)
@@ -31,7 +32,7 @@ public class PanelDisplayAllBallProducts : MonoBehaviour
         foreach (var product in products)
         {
             ProductBallView productBallView = Instantiate(_productBallView, _container);
-            productBallView.Init(panelProduct, product);
+            productBallView.Init(panelProduct, product, _soundButton.AudioSource);
             _productBallViews.Add(productBallView);
         }
 

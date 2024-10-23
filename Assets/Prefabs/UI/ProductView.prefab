@@ -608,10 +608,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: {fileID: 5023092421331199777}
   _price: {fileID: 5059894954144190263}
-  _buttonPay: {fileID: 3201790851839036306}
+  _buttonBuy: {fileID: 3201790851839036306}
   _imageChoosed: {fileID: 7429141522759893049}
   _imageBlock: {fileID: 6747647844783402089}
-  _pointTemplate: {fileID: 0}
 --- !u!1 &4265097895296101345
 GameObject:
   m_ObjectHideFlags: 0

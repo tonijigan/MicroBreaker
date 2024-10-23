@@ -9,8 +9,9 @@ public class PanelPlayNextScene : Panel
     [SerializeField] private float _middlePositionY;
     [SerializeField] private float _tweenDuration;
 
-    public override async void SetActive(bool isActive)
+    public override async void Move(bool isActive)
     {
+        base.Move(isActive);
         await MoveButton(isActive);
     }
 

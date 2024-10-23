@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 public class PanelShop : Panel
@@ -12,10 +11,8 @@ public class PanelShop : Panel
     [SerializeField] private float _topPositionX;
     [SerializeField] private float _tweenDuration;
 
-
-    public event Action<bool> Actived;
+    public event Action<bool> Activated;
     private RectTransform _rectTransform;
-    private Image _image;
 
     public bool IsActive { get; private set; } = false;
 
@@ -24,27 +21,22 @@ public class PanelShop : Panel
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _image = GetComponent<Image>();
     }
 
     private void OnEnable()
     {
-        for (int i = 0; i < _buttonPanelInteractions.Length; i++)
-        {
-            _buttonPanelInteractions[i].Clicked += OnMovePanel;
-        }
-
-        _buttonClose.Clicked += OnMovePanel;
+        _buttonClose.Clicked += Move;
     }
 
     private void OnDisable()
     {
-        for (int i = 0; i < _buttonPanelInteractions.Length; i++)
-        {
-            _buttonPanelInteractions[i].Clicked -= OnMovePanel;
-        }
+        _buttonClose.Clicked -= Move;
+    }
 
-        _buttonClose.Clicked -= OnMovePanel;
+    public override void Move(bool isActive)
+    {
+        base.Move(isActive);
+        OnMovePanel(isActive);
     }
 
     public void OnMovePanel(bool isOpen)
@@ -64,6 +56,6 @@ public class PanelShop : Panel
             IsActive = false;
         }
 
-        Actived?.Invoke(isOpen);
+        Activated?.Invoke(isOpen);
     }
 }

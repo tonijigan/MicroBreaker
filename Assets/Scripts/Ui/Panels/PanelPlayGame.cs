@@ -3,7 +3,6 @@ using DG.Tweening;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(RectTransform))]
 public class PanelPlayGame : Panel
@@ -31,16 +30,17 @@ public class PanelPlayGame : Panel
 
     private void OnEnable()
     {
-        _buttonPlayGame.Clicked += () => { SetActive(false); };
+        _buttonPlayGame.Clicked += () => { Move(false); };
     }
 
     private void OnDisable()
     {
-        _buttonPlayGame.Clicked -= () => { SetActive(false); };
+        _buttonPlayGame.Clicked -= () => { Move(false); };
     }
 
-    public override async void SetActive(bool isActive)
+    public override async void Move(bool isActive)
     {
+        base.Move(isActive);
         await MoveButton(isActive);
     }
 

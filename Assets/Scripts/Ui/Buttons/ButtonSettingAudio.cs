@@ -11,16 +11,16 @@ public class ButtonSettingAudio : AbstractButton
     private const string StateDisable = "Off";
 
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioName _audioName;
+    [SerializeField] private AudioSource _audioSource;
 
     public event Action<ButtonSettingAudio> Changed;
 
     private bool _isEnable;
 
-    public AudioSource AudioSource => _audioSource;
-
     public AudioName AudioName => _audioName;
+
+    public AudioSource AudioSource => _audioSource;
 
     public void Init(bool isEnable)
     {

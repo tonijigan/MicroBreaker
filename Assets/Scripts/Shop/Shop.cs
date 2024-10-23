@@ -8,12 +8,31 @@ public class Shop : MonoBehaviour
     [SerializeField] private ProductTypeSection _panelCreateBallProducts;
     [SerializeField] private ProductTypeSection _panelCreatePlatformProducts;
     [SerializeField] private SaveService _saveService;
+    [SerializeField] private PanelShop _panelShop;
+    [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
 
     private readonly List<Product> _products = new();
 
-    private void OnEnable() => _saveService.Loaded += Create;
+    private void OnEnable()
+    {
+        foreach (var buttonPanelInteraction in _buttonPanelInteractions)
+            buttonPanelInteraction.Clicked += PlaySound;
 
-    private void OnDisable() => _saveService.Loaded -= Create;
+        _saveService.Loaded += Create;
+    }
+
+    private void OnDisable()
+    {
+        foreach (var buttonPanelInteraction in _buttonPanelInteractions)
+            buttonPanelInteraction.Clicked -= PlaySound;
+
+        _saveService.Loaded -= Create;
+    }
+
+    private void PlaySound(bool isAction)
+    {
+        _panelShop.Move(isAction);
+    }
 
     private void Create()
     {

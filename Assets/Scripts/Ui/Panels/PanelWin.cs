@@ -25,16 +25,13 @@ public class PanelWin : Panel
         _playableDirector = _virtualEndCamera.gameObject.GetComponent<PlayableDirector>();
     }
 
-    public override void SetActive(bool isActive)
+    public override async void Move(bool isActive)
     {
+        base.Move(isActive);
+        await MovePanel(isActive);
         _playerInput.SetControl();
         _playableDirector.Play();
         _virtualEndCamera.Priority = Priority;
-    }
-
-    public async void Move(bool isActive)
-    {
-        await MovePanel(isActive);
     }
 
     private async Task MovePanel(bool isActive)

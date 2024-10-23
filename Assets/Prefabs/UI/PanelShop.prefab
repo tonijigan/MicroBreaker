@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsName: 0
-  _panelProduct: {fileID: 5935682042457538329}
+  _panelProduct: {fileID: 0}
   _wallet: {fileID: 0}
 --- !u!1 &607537618665911143
 GameObject:
@@ -623,18 +623,18 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568534743534982963}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000023786692}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00008721569}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2484978162287461740}
   - {fileID: 7938424245766002279}
   - {fileID: 7240955294880349220}
-  m_Father: {fileID: 8645407795101237664}
+  m_Father: {fileID: 5385475478545573104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 122}
+  m_AnchoredPosition: {x: 0, y: 122.00012}
   m_SizeDelta: {x: -380, y: -1212.2094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5661915957561431870
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsName: 1
-  _panelProduct: {fileID: 5935682042457538329}
+  _panelProduct: {fileID: 0}
   _wallet: {fileID: 0}
 --- !u!114 &3002212457362507771
 MonoBehaviour:
@@ -1861,7 +1861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsName: 0
-  _panelProduct: {fileID: 5935682042457538329}
+  _panelProduct: {fileID: 0}
   _wallet: {fileID: 0}
 --- !u!114 &6401046690705993398
 MonoBehaviour:
@@ -2017,98 +2017,6 @@ MonoBehaviour:
   _isStateOnOpenPanel: 0
   _isUseTimeScale: 0
   _isNeedDisableViewObject: 0
---- !u!1 &5384516021949316952
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8645407795101237664}
-  - component: {fileID: 1368936211323017155}
-  - component: {fileID: 1625640949969847972}
-  - component: {fileID: 5935682042457538329}
-  m_Layer: 5
-  m_Name: PanelBuyProduct
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &8645407795101237664
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5384516021949316952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000063429}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4759065186211878845}
-  m_Father: {fileID: 5385475478545573104}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1368936211323017155
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5384516021949316952}
-  m_CullTransparentMesh: 1
---- !u!114 &1625640949969847972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5384516021949316952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.627451}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &5935682042457538329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5384516021949316952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c962b41080b6dd408f3188cb0f66099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonPay: {fileID: 176846968330720178}
-  _wallet: {fileID: 0}
-  _text: {fileID: 3626788961671270747}
 --- !u!1 &5431002527177857992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,7 +2181,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5363031807677220530}
-  - {fileID: 8645407795101237664}
+  - {fileID: 4759065186211878845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2303,6 +2211,8 @@ MonoBehaviour:
   _panelCreateBallProducts: {fileID: 2604190754995229454}
   _panelCreatePlatformProducts: {fileID: 6706234342603796959}
   _saveService: {fileID: 0}
+  _panelShop: {fileID: 0}
+  _buttonPanelInteractions: []
 --- !u!1 &5890045285113504618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,7 +2812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8929ad8d9fa6de6458fda105b1f3d633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelOpenPanel: {fileID: 5935682042457538329}
+  _panelOpenPanel: {fileID: 0}
   _panelClosePanels: []
   _buttonEnable: {fileID: 0}
   _isStateOnOpenPanel: 0

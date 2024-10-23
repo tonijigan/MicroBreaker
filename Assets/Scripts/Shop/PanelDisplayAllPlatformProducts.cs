@@ -47,11 +47,6 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
     {
         _currentProduct.Select();
         OnSetStateProduct();
-
-        for (int i = 0; i < _products.Count; i++)
-        {
-            Debug.Log(_products[i].IsSelected);
-        }
     }
 
     public void Create(List<Product> products, PanelProduct panelProduct)
@@ -86,7 +81,7 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
 
     private void OpenBuyPanel()
     {
-        _panelProduct.gameObject.SetActive(true);
         _panelProduct.Init(_currentProduct);
+        _panelProduct.Move(true);
     }
 }

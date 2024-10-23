@@ -30,11 +30,13 @@ public class PanelSettings : Panel
         _buttonSettingEffect.Changed -= Save;
     }
 
-    public override async void SetActive(bool isActive)
+    public override async void Move(bool isActive)
     {
+        base.Move(isActive);
+
         if (_backGround != null)
-            _backGround.SetActive(isActive);
-        Debug.Log(isActive);
+            _backGround.Move(isActive);
+
         await MoveButton(isActive);
     }
 
@@ -48,9 +50,9 @@ public class PanelSettings : Panel
 
     private void LoadAudioSettings(ButtonSettingAudio buttonSettingAudio)
     {
-        int maxVolueme = 1;
+        int maxVolume = 1;
         int value = PlayerPrefs.GetInt(buttonSettingAudio.AudioName.ToString(), (int)buttonSettingAudio.AudioSource.volume);
-        bool isEnable = value == maxVolueme;
+        bool isEnable = value == maxVolume;
         buttonSettingAudio.Init(isEnable);
     }
 

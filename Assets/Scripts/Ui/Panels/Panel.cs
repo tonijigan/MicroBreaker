@@ -1,11 +1,13 @@
-using DG.Tweening;
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(RectTransform))]
 public class Panel : MonoBehaviour
 {
-    public virtual void SetActive(bool isActive)
+    public event Action Moved;
+
+    public virtual void Move(bool isAction)
     {
-        gameObject.SetActive(isActive);
+        Moved?.Invoke();
     }
 }

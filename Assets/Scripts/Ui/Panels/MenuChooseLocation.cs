@@ -11,7 +11,7 @@ public class MenuChooseLocation : MonoBehaviour
 
     private void OnEnable()
     {
-        _panelShop.Actived += OnActive;
+        _panelShop.Activated += OnActive;
         _locationChooseInput.LocationChoosed += OnInit;
         _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
         _panelPlayGame.ButtonPlayGame.Clicked += () =>
@@ -23,7 +23,7 @@ public class MenuChooseLocation : MonoBehaviour
 
     private void OnDisable()
     {
-        _panelShop.Actived -= OnActive;
+        _panelShop.Activated -= OnActive;
         _locationChooseInput.LocationChoosed -= OnInit;
         _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
         _panelPlayGame.ButtonPlayGame.Clicked += () =>
@@ -35,11 +35,10 @@ public class MenuChooseLocation : MonoBehaviour
 
     private void OnInit(LocationObject locationObject)
     {
-        _virtualMobileCamera.transform.position = new Vector3(_virtualMobileCamera.transform.position.x,
-                                                              _virtualMobileCamera.transform.position.y,
-                                                              locationObject.transform.position.z - 20);
+        _virtualMobileCamera.transform.position = new Vector3(_virtualMobileCamera.transform.position.x, _virtualMobileCamera.transform.position.y,
+          locationObject.transform.position.z - 20);
         _panelPlayGame.ButtonClose.SetStartStateButton();
-        _panelPlayGame.SetActive(true);
+        _panelPlayGame.Move(true);
         _panelPlayGame.Init(locationObject);
         OnActivateControl(true);
     }
@@ -48,11 +47,11 @@ public class MenuChooseLocation : MonoBehaviour
     {
         OnActivateControl(isActive);
 
-        _panelPlayGame.SetActive(false);
+        _panelPlayGame.Move(false);
 
         if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
         {
-            _panelPlayGame.SetActive(true);
+            _panelPlayGame.Move(true);
             OnActivateControl(true);
         }
     }
