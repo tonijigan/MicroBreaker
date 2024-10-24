@@ -55,8 +55,6 @@ public class PanelPlayGame : Panel
 
     private async Task MoveButton(bool isActive)
     {
-        Debug.Log(isActive);
-
         if (isActive)
             await _rectTransform.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
         else

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SwipeMove : MonoBehaviour
@@ -15,6 +16,7 @@ public class SwipeMove : MonoBehaviour
     private Vector3 _startPosition;
     private Vector3 _currentPosition;
     private bool _isDragging;
+    private bool _isInputUI;
 
     private void Awake()
     {
@@ -30,8 +32,11 @@ public class SwipeMove : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        _isDragging = true;
-        _currentPosition = Input.mousePosition;
+        if (_isDragging == false)
+        {
+            _isDragging = true;
+            _currentPosition = Input.mousePosition;
+        }
     }
 
     private void OnMouseUp()
