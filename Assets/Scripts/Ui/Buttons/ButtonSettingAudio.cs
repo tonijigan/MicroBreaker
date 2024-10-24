@@ -12,7 +12,7 @@ public class ButtonSettingAudio : AbstractButton
 
     [SerializeField] private TMP_Text _text;
     [SerializeField] private AudioName _audioName;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource[] _audioSources;
 
     public event Action<ButtonSettingAudio> Changed;
 
@@ -20,7 +20,7 @@ public class ButtonSettingAudio : AbstractButton
 
     public AudioName AudioName => _audioName;
 
-    public AudioSource AudioSource => _audioSource;
+    public AudioSource[] AudioSources => _audioSources;
 
     public void Init(bool isEnable)
     {
@@ -37,7 +37,10 @@ public class ButtonSettingAudio : AbstractButton
 
     public void SetParameters(bool isEnable)
     {
-        _audioSource.volume = isEnable ? MaxVolume : MinVolume;
-        _text.text = isEnable ? StateEnable : StateDisable;
+        foreach (var audioSource in _audioSources)
+        {
+            audioSource.volume = isEnable ? MaxVolume : MinVolume;
+            _text.text = isEnable ? StateEnable : StateDisable;
+        }
     }
 }

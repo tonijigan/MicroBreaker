@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -51,13 +52,14 @@ public class PanelSettings : Panel
     private void LoadAudioSettings(ButtonSettingAudio buttonSettingAudio)
     {
         int maxVolume = 1;
-        int value = PlayerPrefs.GetInt(buttonSettingAudio.AudioName.ToString(), (int)buttonSettingAudio.AudioSource.volume);
+        int value = PlayerPrefs.GetInt(buttonSettingAudio.AudioName.ToString());
         bool isEnable = value == maxVolume;
         buttonSettingAudio.Init(isEnable);
     }
 
     private void Save(ButtonSettingAudio buttonSettingAudio)
     {
-        PlayerPrefs.SetInt(buttonSettingAudio.AudioName.ToString(), (int)buttonSettingAudio.AudioSource.volume);
+        int value = (int)buttonSettingAudio.AudioSources.First().volume;
+        PlayerPrefs.SetInt(buttonSettingAudio.AudioName.ToString(), value);
     }
 }

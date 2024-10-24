@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004481341, g: 0.058967277, b: 0.23219556, a: 1}
+  m_IndirectSpecularColor: {r: 0.005977301, g: 0.062036708, b: 0.23103201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -7456,7 +7456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 287693245}
   _audioName: 1
-  _audioSource: {fileID: 1117025258}
+  _audioSources:
+  - {fileID: 1117025258}
+  - {fileID: 930928594}
 --- !u!1001 &1372558591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9312,6 +9314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1512393004}
+  - component: {fileID: 1512393005}
   m_Layer: 0
   m_Name: AudioSorces
   m_TagString: Untagged
@@ -9337,6 +9340,22 @@ Transform:
   - {fileID: 930928592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512393005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512393003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff561a2eb17532448ecbaf66bdf61c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSourceMusic: {fileID: 169096779}
+  _audioSources:
+  - {fileID: 1117025258}
+  - {fileID: 930928594}
 --- !u!114 &1519266870 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8923745654625285852, guid: a4eccada9ea63444382749570395738a, type: 3}
@@ -9816,7 +9835,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 775179541}
   _audioName: 0
-  _audioSource: {fileID: 169096779}
+  _audioSources:
+  - {fileID: 169096779}
 --- !u!1001 &1805390372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10610,6 +10630,10 @@ PrefabInstance:
     - target: {fileID: 6886548015352896343, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7303551131087928728, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 8225658242226817781, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: _wallet

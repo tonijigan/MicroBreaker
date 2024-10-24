@@ -15,8 +15,7 @@ public class SwipeMove : MonoBehaviour
     private Rigidbody _rigidbody;
     private Vector3 _startPosition;
     private Vector3 _currentPosition;
-    private bool _isDragging;
-    private bool _isInputUI;
+    private bool _isDragging = false;
 
     private void Awake()
     {
@@ -26,17 +25,18 @@ public class SwipeMove : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (IsInputUI())
+            return;
+
+        _isDragging = true;
         _startPosition = Input.mousePosition;
         _inputLocation.SetFirstLocationObject(Input.mousePosition);
     }
 
     private void OnMouseDrag()
     {
-        if (_isDragging == false)
-        {
-            _isDragging = true;
+        if (_isDragging == true)
             _currentPosition = Input.mousePosition;
-        }
     }
 
     private void OnMouseUp()
@@ -50,6 +50,11 @@ public class SwipeMove : MonoBehaviour
     {
         Drag();
         RestrictMove();
+    }
+
+    private bool IsInputUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     private void Drag()
