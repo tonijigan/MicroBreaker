@@ -11,6 +11,7 @@ public class Location : MonoBehaviour
     public string LocationName => _locationName.ToString();
     public BoxContainer BoxContainer => _boxContainer;
 
+
     public void Init(BoostersContainer boostersContainer, ParticleSystem particleSystem)
     {
         _boxContainer.Fill(boostersContainer, particleSystem);

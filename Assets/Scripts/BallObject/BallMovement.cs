@@ -59,6 +59,9 @@ namespace BallObject
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (_ball.IsActive == false)
+                return;
+
             if (collision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);

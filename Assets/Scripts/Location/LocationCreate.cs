@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Boosters;
+using BoxObject;
 using UnityEngine;
 
 public class LocationCreate : MonoBehaviour
@@ -8,6 +10,8 @@ public class LocationCreate : MonoBehaviour
     [SerializeField] private BoostersContainer _boardsContainer;
     [SerializeField] private List<Location> _locations;
     [SerializeField] private ParticleSystem _boxParticleSystem;
+
+    public event Action<Location> Inited;
 
     public Location CurrentLocation { get; private set; }
     private Transform _transform;
@@ -25,5 +29,6 @@ public class LocationCreate : MonoBehaviour
 
         CurrentLocation = Instantiate(newLocation, _transform);
         CurrentLocation.Init(_boardsContainer, _boxParticleSystem);
+        Inited?.Invoke(CurrentLocation);
     }
 }

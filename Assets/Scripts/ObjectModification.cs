@@ -3,6 +3,9 @@ using UnityEngine;
 
 public abstract class ObjectModification : MonoBehaviour
 {
+    private const float NegativeScaleValue = 0.8f;
+    private const float PositiveScaleValue = 1.2f;
+
     protected Transform Transform { get; private set; }
 
     private void Awake()
@@ -12,11 +15,13 @@ public abstract class ObjectModification : MonoBehaviour
 
     public abstract void ChangeScale(BoosterNames boosterNames);
 
-    protected float GetScaleValue(BoosterNames boosterNames, float valueScale)
+    protected float GetScaleValue(BoosterNames boosterNames)
     {
-        if (boosterNames == BoosterNames.Negative)
-            return -valueScale;
+        Debug.Log(boosterNames);
 
-        return valueScale;
+        if (boosterNames == BoosterNames.Negative)
+            return NegativeScaleValue;
+
+        return PositiveScaleValue;
     }
 }

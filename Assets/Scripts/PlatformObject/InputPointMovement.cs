@@ -8,7 +8,7 @@ namespace PlatformObject
         private const float MaxDistanceDelta = 50;
         private const float Speed = 0.5f;
         private const float ClampX = 9f;
-        private const float ClampYMin = -19;
+        private const float ClampYMin = -22;
         private const float ClampYMax = -6;
         private const float CurrentPositionY = 0.5f;
 

@@ -3905,6 +3905,7 @@ MonoBehaviour:
   _locations:
   - {fileID: 1841860386978528663, guid: 873f4825c1ccbe9489246d272bde779c, type: 3}
   - {fileID: 1841860386978528663, guid: 51f79c69ca66bb748894351c9743b694, type: 3}
+  - {fileID: 1841860386978528663, guid: f4e81a42ebd8d4b40b419c587a28436d, type: 3}
   _chooseInput: {fileID: 6593972011491265657}
   _gameObject: {fileID: 6442210360331621572, guid: 456110d21df6fd2468e97a9e0e117c8f, type: 3}
   _spawnCenter: {fileID: 1270647145}

@@ -11,6 +11,8 @@ namespace BoxObject
         private Transform _transform;
         private Box[] _boxes;
 
+        public Box[] Boxes => _boxes;
+
         public void Fill(BoostersContainer boosterContainer, ParticleSystem particleSystem)
         {
             _particleSystem = Instantiate(particleSystem, _transform);

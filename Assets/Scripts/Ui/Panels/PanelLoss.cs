@@ -1,16 +1,10 @@
 using DG.Tweening;
-using PlayerObject;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
-public class PanelWin : Panel
+public class PanelLoss : Panel
 {
-    [SerializeField] private SaveService _saveService;
-    [SerializeField] private Wallet _wallet;
-    [SerializeField] private LocationCreate _locationCreate;
     [SerializeField] private float _topPositionY;
     [SerializeField] private float _middlePositionY;
     [SerializeField] private float _tweenDuration;
@@ -26,7 +20,6 @@ public class PanelWin : Panel
     {
         base.Move(isActive);
         await MovePanel(isActive);
-        SaveGameProgress();
     }
 
     private async Task MovePanel(bool isActive)
@@ -35,13 +28,5 @@ public class PanelWin : Panel
             await _rectTransform.DOAnchorPosY(_topPositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
         else
             await _rectTransform.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-    }
-
-    private void SaveGameProgress()
-    {
-        _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
-        List<string> list = _saveService.LocationNames.ToList();
-        list.Add(_locationCreate.CurrentLocation.LocationName);
-        _saveService.SaveArrayLocationNames(list.ToArray());
     }
 }
