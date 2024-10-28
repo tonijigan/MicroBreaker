@@ -1,7 +1,10 @@
 using BallObject;
 using Cinemachine;
 using PlayerObject;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +21,8 @@ public class GameState : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private BallMovement _ballMovement;
     [SerializeField] private Button _testButtonLoss;
+    [SerializeField] private SaveService _saveService;
+    [SerializeField] private Wallet _wallet;
 
     private WaitForSeconds _waitForSeconds;
     private Coroutine _coroutine;
@@ -42,9 +47,12 @@ public class GameState : MonoBehaviour
     private void OpenPanelWin(string time)
     {
         _virtualEndCamera.Priority = Priority;
-
         _waitForSeconds = new WaitForSeconds(DurationWin);
-        PlayCoroutine(_panelWin, _waitForSeconds);
+        PlayCoroutine(_panelWin, _waitForSeconds, () =>
+        {
+            _panelWin.Fill(time, 0.ToString(), _counter.CountLiveBoxs.ToString(), 0.ToString(), _wallet.Coin.ToString());
+            SaveGameProgress();
+        });
     }
 
     private void OpenPanelLoss()
@@ -53,19 +61,28 @@ public class GameState : MonoBehaviour
         PlayCoroutine(_panelLoss, _waitForSeconds);
     }
 
-    private void PlayCoroutine(Panel panel, WaitForSeconds waitForSeconds)
+    private void PlayCoroutine(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(MovePatel(panel, waitForSeconds));
+        _coroutine = StartCoroutine(MovePatel(panel, waitForSeconds, action));
     }
 
-    private IEnumerator MovePatel(Panel panel, WaitForSeconds waitForSeconds)
+    private IEnumerator MovePatel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
         _playerInput.SetControl();
         _ballMovement.gameObject.SetActive(false);
         yield return waitForSeconds;
         panel.Move(true);
+        action?.Invoke();
+    }
+
+    private void SaveGameProgress()
+    {
+        _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
+        List<string> list = _saveService.LocationNames.ToList();
+        list.Add(_counter.CurrentLocation.LocationName);
+        _saveService.SaveArrayLocationNames(list.ToArray());
     }
 }

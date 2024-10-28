@@ -9,6 +9,7 @@ public class Panel : MonoBehaviour
     [SerializeField] private float _topPosition;
     [SerializeField] private float _middlePosition;
     [SerializeField] private float _tweenDuration;
+    [SerializeField] private bool _isActiveAtStart = false;
 
     public event Action Moved;
 
@@ -27,6 +28,12 @@ public class Panel : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
+    private void Start()
+    {
+        if (_isActiveAtStart == true)
+            gameObject.SetActive(false);
+    }
+
     public virtual void Move(bool isAction)
     {
         Moved?.Invoke();
@@ -34,9 +41,14 @@ public class Panel : MonoBehaviour
 
     protected async Task MovePanel(bool isActive)
     {
+        if (isActive == true)
+            gameObject.SetActive(isActive);
+
         if (isActive)
             await _rectTransform.DOAnchorPosY(_topPosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
         else
             await _rectTransform.DOAnchorPosY(_middlePosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+
+        gameObject.SetActive(isActive);
     }
 }

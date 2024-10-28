@@ -9,8 +9,8 @@ public class Location : MonoBehaviour
     [SerializeField] private BoxContainer _boxContainer;
 
     public string LocationName => _locationName.ToString();
-    public BoxContainer BoxContainer => _boxContainer;
 
+    public BoxContainer BoxContainer => _boxContainer;
 
     public void Init(BoostersContainer boostersContainer, ParticleSystem particleSystem)
     {

@@ -9,37 +9,36 @@ public class Counter : MonoBehaviour
 
     public event Action<string> Winned;
 
-    private Location _currentLocation;
     private float _time = 0;
-    private int _countLiveBoxs;
+
+    public Location CurrentLocation { get; private set; }
+
+    public int CountLiveBoxs { get; private set; }
 
 
     private void OnEnable()
     {
         _locationCreate.Inited += OnInit;
+        _locationCreate.Inited += OnInit =>
+        {
+            foreach (var box in CurrentLocation.BoxContainer.Boxes)
+                box.Died += SetDestroyBox;
+        };
     }
 
     private void OnDisable()
     {
         _locationCreate.Inited -= OnInit;
-
-        foreach (var box in _currentLocation.BoxContainer.Boxes)
-            box.Died -= SetDestroyBox;
+        _locationCreate.Inited -= OnInit =>
+        {
+            foreach (var box in CurrentLocation.BoxContainer.Boxes)
+                box.Died -= SetDestroyBox;
+        };
     }
 
-    public void UpdateTime()
-    {
-        _time += Time.deltaTime;
-    }
+    public void UpdateTime() => _time += Time.deltaTime;
 
-    private void OnInit(Location currentLocation)
-    {
-        _currentLocation = currentLocation;
-        _countLiveBoxs = _currentLocation.BoxContainer.Boxes.Length;
-
-        foreach (var box in _currentLocation.BoxContainer.Boxes)
-            box.Died += SetDestroyBox;
-    }
+    private void OnInit(Location currentLocation) => CurrentLocation = currentLocation;
 
     private string GetResultTime()
     {
@@ -48,9 +47,8 @@ public class Counter : MonoBehaviour
 
     private void SetDestroyBox()
     {
-        _countLiveBoxs--;
-
-        if (_countLiveBoxs <= 0)
+        CountLiveBoxs++;
+        if (CountLiveBoxs == CurrentLocation.BoxContainer.Boxes.Length)
             Winned?.Invoke(GetResultTime());
     }
 }

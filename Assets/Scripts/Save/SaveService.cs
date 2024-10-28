@@ -83,7 +83,6 @@ public class SaveService : MonoBehaviour
     {
         _gameProgress.LocationNames = LocationNames;
         Save();
-        Debug.Log(_gameProgress.LocationNames.Length);
     }
 
     public void SaveCoins(int amount)
