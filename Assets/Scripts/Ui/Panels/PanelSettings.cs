@@ -1,6 +1,4 @@
-using DG.Tweening;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class PanelSettings : Panel
@@ -9,9 +7,6 @@ public class PanelSettings : Panel
     [SerializeField] private ButtonSettingAudio _buttonSettingEffect;
     [SerializeField] private RectTransform _rectTransformButtons;
     [SerializeField] private Panel _backGround;
-    [SerializeField] private float _topPositionY;
-    [SerializeField] private float _middlePositionY;
-    [SerializeField] private float _tweenDuration;
 
     private void Start()
     {
@@ -38,15 +33,7 @@ public class PanelSettings : Panel
         if (_backGround != null)
             _backGround.Move(isActive);
 
-        await MoveButton(isActive);
-    }
-
-    private async Task MoveButton(bool isActive)
-    {
-        if (isActive)
-            await _rectTransformButtons.DOAnchorPosY(_middlePositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-        else
-            await _rectTransformButtons.DOAnchorPosY(_topPositionY, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+        await MovePanel(isActive);
     }
 
     private void LoadAudioSettings(ButtonSettingAudio buttonSettingAudio)

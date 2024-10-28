@@ -15232,6 +15232,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 314703810}
     - target: {fileID: 6566102179229582575, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _topPosition
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566102179229582575, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: _backGroundPanel
       value: 
       objectReference: {fileID: 7227271838241773650}
@@ -15255,6 +15259,14 @@ PrefabInstance:
       propertyPath: _backGround
       value: 
       objectReference: {fileID: 7227271838241773650}
+    - target: {fileID: 7416707603714557767, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _topPosition
+      value: -700
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416707603714557767, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _middlePosition
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7465153800018386934, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: _wallet
       value: 
@@ -15590,6 +15602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcb2bedf5c30f347a96a20fb7c4087a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topPosition: 0
+  _middlePosition: 0
+  _tweenDuration: 0
 --- !u!224 &7649858662719855977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15646,13 +15661,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3169fd1ca264aad4ba14e7d7642a171b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topPosition: 200
+  _middlePosition: -720
+  _tweenDuration: 0.5
   _buttonPlayGame: {fileID: 8275956300452831686}
   _buttonClose: {fileID: 1333609463}
   _locationChooseInput: {fileID: 6593972011491265657}
   _locationCreateView: {fileID: 1599801882}
-  _topPositionY: -720
-  _middlePositionY: 100
-  _tweenDuration: 0.5
 --- !u!114 &7658589073512060352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15700,7 +15715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8876809251492471441, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_Pivot.x

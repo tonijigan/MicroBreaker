@@ -2,26 +2,17 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(RectTransform))]
 public class PanelShop : Panel
 {
     [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
     [SerializeField] private ButtonPanelInteraction _buttonClose;
     [SerializeField] private Panel _backGroundPanel;
-    [SerializeField] private float _topPositionX;
-    [SerializeField] private float _tweenDuration;
 
     public event Action<bool> Activated;
-    private RectTransform _rectTransform;
 
     public bool IsActive { get; private set; } = false;
 
     public ButtonPanelInteraction ButtenClose => _buttonClose;
-
-    private void Awake()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-    }
 
     private void OnEnable()
     {
@@ -41,18 +32,17 @@ public class PanelShop : Panel
 
     public void OnMovePanel(bool isOpen)
     {
-        float middlePositionX = 0;
         _buttonClose.gameObject.SetActive(isOpen);
         _backGroundPanel.gameObject.SetActive(isOpen);
 
         if (isOpen)
         {
-            _rectTransform.DOAnchorPosX(middlePositionX, _tweenDuration);
+            RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
             IsActive = true;
         }
         else
         {
-            _rectTransform.DOAnchorPosX(_topPositionX, _tweenDuration);
+            RectTransform.DOAnchorPosX(TopPosition, TweenDuration);
             IsActive = false;
         }
 

@@ -481,13 +481,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bff046f87c4874085dfd1569425e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topPosition: -900
+  _middlePosition: 0
+  _tweenDuration: 0.5
   _buttonSettingMusic: {fileID: 1720487413}
   _buttonSettingEffect: {fileID: 2056237722}
   _rectTransformButtons: {fileID: 1263345149}
   _backGround: {fileID: 1851094985}
-  _topPositionY: 160
-  _middlePositionY: -800
-  _tweenDuration: 0.5
 --- !u!222 &125884281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1574,12 +1574,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07403efaf34ec541ae0a985d04fb0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topPosition: 360
+  _middlePosition: -600
+  _tweenDuration: 0.5
   _saveService: {fileID: 1855680385}
   _wallet: {fileID: 1855680386}
   _locationCreate: {fileID: 2079273049}
-  _topPositionY: 360
-  _middlePositionY: -600
-  _tweenDuration: 0.5
 --- !u!1 &530097769
 GameObject:
   m_ObjectHideFlags: 0
@@ -13425,8 +13425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d19003042c40604181e7457ba1c08a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _topPositionY: 360
-  _middlePositionY: -600
+  _topPosition: 360
+  _middlePosition: -600
   _tweenDuration: 0.5
 --- !u!1 &1495792162
 GameObject:
@@ -14063,6 +14063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _panels:
   - {fileID: 125884279}
+  - {fileID: 490270170}
+  - {fileID: 1493309140}
 --- !u!1 &1715556497
 GameObject:
   m_ObjectHideFlags: 0
@@ -14875,6 +14877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcb2bedf5c30f347a96a20fb7c4087a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topPosition: 0
+  _middlePosition: 0
+  _tweenDuration: 0
 --- !u!1 &1855680382
 GameObject:
   m_ObjectHideFlags: 0
@@ -20627,7 +20632,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 100
-  field of view: 60.000004
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -20653,8 +20658,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19594607, y: 0, z: 0, w: 0.98061466}
-  m_LocalPosition: {x: 0, y: 5.9, z: -11.46}
+  m_LocalRotation: {x: 0.3283759, y: -0.000000016252237, z: 0.00000000565016, w: 0.9445472}
+  m_LocalPosition: {x: 0, y: 39.370003, z: -37.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
