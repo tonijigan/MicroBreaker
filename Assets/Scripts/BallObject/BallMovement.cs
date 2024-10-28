@@ -17,6 +17,7 @@ namespace BallObject
         [SerializeField] private float _speed;
 
         public event Action BoxTriggered;
+        public event Action<AudioClip> BallTriggered;
 
         private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
@@ -62,6 +63,7 @@ namespace BallObject
             {
                 Vector3 direction = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
                 Move(direction, GetCurrentSpeed(trigger.GetSpeed()));
+                BallTriggered?.Invoke(trigger.GetClip());
             }
 
             if (collision.gameObject.TryGetComponent(out IEffect effect))

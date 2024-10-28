@@ -12,6 +12,7 @@ namespace PlatformObject
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private InputPointMovement _inputPointMovement;
         [SerializeField] private float _speed;
+        [SerializeField] private AudioClip _audioClip;
 
         private Rigidbody _rigidbody;
         private Transform _transform;
@@ -47,6 +48,11 @@ namespace PlatformObject
             Vector3 direction = _inputPointMovement.transform.position - _transform.position;
             Vector3 newDirection = new(direction.x, direction.y, direction.z + PositionZ);
             _rigidbody.velocity = PlatformSpeed * Time.deltaTime * newDirection;
+        }
+
+        public AudioClip GetClip()
+        {
+            return _audioClip;
         }
     }
 }

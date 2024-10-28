@@ -189,10 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303e8548587c6984597978003ca7ad24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 0}
   _speedRepulsion: 40
   _health: 0
-  _booster: {fileID: 0}
+  _boosterName: 0
+  _audioClip: {fileID: 8300000, guid: 7c665647dbced6b49a6a56d339574416, type: 3}
+  _audioClipDie: {fileID: 8300000, guid: 7c665647dbced6b49a6a56d339574416, type: 3}
 --- !u!114 &5181757891811461949
 MonoBehaviour:
   m_ObjectHideFlags: 0

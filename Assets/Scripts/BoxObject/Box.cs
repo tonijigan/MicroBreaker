@@ -17,6 +17,8 @@ namespace BoxObject
         [SerializeField] private float _speedRepulsion;
         [SerializeField] private int _health;
         [SerializeField] private BoosterNames _boosterName;
+        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private AudioClip _audioClipDie;
 
         public event Action Died;
 
@@ -77,6 +79,14 @@ namespace BoxObject
             yield return _waitForSeconds;
             gameObject.SetActive(false);
             StopCoroutine(Die());
+        }
+
+        public AudioClip GetClip()
+        {
+            if (_health <= MinHealth)
+                return _audioClipDie;
+
+            return _audioClip;
         }
     }
 }

@@ -7,6 +7,12 @@ namespace FenceObject
     {
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private float _speed;
+        [SerializeField] private AudioClip _audioClip;
+
+        public AudioClip GetClip()
+        {
+            return _audioClip;
+        }
 
         public float GetSpeed()
         {

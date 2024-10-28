@@ -191,7 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedRepulsion: 40
   _health: 2
-  _name: 2
+  _boosterName: 0
+  _audioClip: {fileID: 8300000, guid: 8220186ec65d7a447b59353438be6dba, type: 3}
+  _audioClipDie: {fileID: 8300000, guid: 7c665647dbced6b49a6a56d339574416, type: 3}
 --- !u!114 &5181757891811461949
 MonoBehaviour:
   m_ObjectHideFlags: 0
