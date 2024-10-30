@@ -13,6 +13,10 @@ namespace PlatformObject
         [SerializeField] private InputPointMovement _inputPointMovement;
         [SerializeField] private float _speed;
         [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private Transform _transformTemplateContainer;
+        [SerializeField] private ParticleSystem _particleExplosion;
+        [SerializeField] private AudioSource _audioSourceEffect;
+        [SerializeField] private AudioClip _audioClipExplosion;
 
         private Rigidbody _rigidbody;
         private Transform _transform;
@@ -43,16 +47,25 @@ namespace PlatformObject
             _particleSystem.Play();
         }
 
+        public AudioClip GetClip()
+        {
+            return _audioClip;
+        }
+
+        public void Die()
+        {
+            _audioSourceEffect.clip = _audioClipExplosion;
+            _audioSourceEffect.Play();
+            _particleExplosion.Play();
+            _inputPointMovement.gameObject.SetActive(false);
+            _transformTemplateContainer.gameObject.SetActive(false);
+        }
+
         private void FollowToPointMovement()
         {
             Vector3 direction = _inputPointMovement.transform.position - _transform.position;
             Vector3 newDirection = new(direction.x, direction.y, direction.z + PositionZ);
             _rigidbody.velocity = PlatformSpeed * Time.deltaTime * newDirection;
-        }
-
-        public AudioClip GetClip()
-        {
-            return _audioClip;
         }
     }
 }

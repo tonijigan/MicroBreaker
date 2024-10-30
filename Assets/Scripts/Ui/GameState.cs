@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
@@ -15,6 +16,7 @@ public class GameState : MonoBehaviour
     private const int DurationLoss = 1;
 
     [SerializeField] private Counter _counter;
+    [SerializeField] private TriggerLoss _triggerLoss;
     [SerializeField] private PanelWin _panelWin;
     [SerializeField] private PanelLoss _panelLoss;
     [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;
@@ -23,6 +25,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private Button _testButtonLoss;
     [SerializeField] private SaveService _saveService;
     [SerializeField] private Wallet _wallet;
+    [SerializeField] private PanelFade _panelFade;
 
     private WaitForSeconds _waitForSeconds;
     private Coroutine _coroutine;
@@ -35,20 +38,24 @@ public class GameState : MonoBehaviour
     private void OnEnable()
     {
         _counter.Winned += OpenPanelWin;
-        _testButtonLoss.onClick.AddListener(OpenPanelLoss);
+        _triggerLoss.Lost += OpenPanelLoss;
+        _panelWin.Clicked += LoadScene;
+        _panelLoss.Clicked += LoadScene;
     }
 
     private void OnDisable()
     {
         _counter.Winned -= OpenPanelWin;
-        _testButtonLoss.onClick.RemoveListener(OpenPanelLoss);
+        _triggerLoss.Lost -= OpenPanelLoss;
+        _panelWin.Clicked -= LoadScene;
+        _panelLoss.Clicked -= LoadScene;
     }
 
     private void OpenPanelWin(string time)
     {
         _virtualEndCamera.Priority = Priority;
         _waitForSeconds = new WaitForSeconds(DurationWin);
-        PlayCoroutine(_panelWin, _waitForSeconds, () =>
+        PlayOpen(_panelWin, _waitForSeconds, () =>
         {
             _panelWin.Fill(time, 0.ToString(), _counter.CountLiveBoxs.ToString(), 0.ToString(), _wallet.Coin.ToString());
             SaveGameProgress();
@@ -58,10 +65,10 @@ public class GameState : MonoBehaviour
     private void OpenPanelLoss()
     {
         _waitForSeconds = new WaitForSeconds(DurationLoss);
-        PlayCoroutine(_panelLoss, _waitForSeconds);
+        PlayOpen(_panelLoss, _waitForSeconds);
     }
 
-    private void PlayCoroutine(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
+    private void PlayOpen(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
@@ -84,5 +91,10 @@ public class GameState : MonoBehaviour
         List<string> list = _saveService.LocationNames.ToList();
         list.Add(_counter.CurrentLocation.LocationName);
         _saveService.SaveArrayLocationNames(list.ToArray());
+    }
+
+    private void LoadScene(string sceneName)
+    {
+        _panelFade.SetActive(false, () => { SceneManager.LoadScene(sceneName); });
     }
 }

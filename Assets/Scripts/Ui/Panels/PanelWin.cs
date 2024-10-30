@@ -1,7 +1,7 @@
 using Enums;
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PanelWin : Panel
@@ -14,16 +14,18 @@ public class PanelWin : Panel
     [SerializeField] private TMP_Text _score;
     [SerializeField] private TMP_Text _credits;
 
+    public event Action<string> Clicked;
+
     private void OnEnable()
     {
-        _buttonTryAgain.onClick.AddListener(() => { LoadScene(ScenesName.Game.ToString()); });
-        _buttonContinue.onClick.AddListener(() => { LoadScene(ScenesName.ChooseLevel.ToString()); });
+        _buttonTryAgain.onClick.AddListener(() => { OnClick(ScenesName.Game.ToString()); });
+        _buttonContinue.onClick.AddListener(() => { OnClick(ScenesName.ChooseLevel.ToString()); });
     }
 
     private void OnDisable()
     {
-        _buttonTryAgain.onClick.RemoveListener(() => { LoadScene(ScenesName.Game.ToString()); });
-        _buttonContinue.onClick.RemoveListener(() => { LoadScene(ScenesName.ChooseLevel.ToString()); });
+        _buttonTryAgain.onClick.RemoveListener(() => { OnClick(ScenesName.Game.ToString()); });
+        _buttonContinue.onClick.RemoveListener(() => { OnClick(ScenesName.ChooseLevel.ToString()); });
     }
 
     public void Fill(string time, string bluePowerUps, string bricksSmashed, string score, string credits)
@@ -41,5 +43,9 @@ public class PanelWin : Panel
         await MovePanel(isActive);
     }
 
-    private void LoadScene(string sceneName) => SceneManager.LoadScene(sceneName);
+    private void OnClick(string sceneName)
+    {
+        Move(false);
+        Clicked?.Invoke(sceneName);
+    }
 }
