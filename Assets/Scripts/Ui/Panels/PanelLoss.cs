@@ -29,10 +29,17 @@ public class PanelLoss : Panel
         _promotionalVideo.ClosedCallBack -= () => { OnClickRestart(ScenesName.Game.ToString()); };
     }
 
+
     public override async void Move(bool isActive)
     {
         base.Move(isActive);
         await MovePanel(isActive);
+    }
+
+    public void Fill(string bricksSmashed, string score)
+    {
+        _bricksSmashed.text = bricksSmashed;
+        _score.text = score;
     }
 
     private void OnClickRestart(string sceneName)

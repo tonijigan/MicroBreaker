@@ -2,9 +2,11 @@ public class GameProgress
 {
     public int Coins = 0;
     public int LevelCount = 1;
-    public string CurrentLocationName = "";
-    public string CurrentBall = "";
-    public string CurrentPlatform = "";
+    public int ScaleBall = 0;
+    public int ScalePlatform = 0;
+    public string CurrentLocationName = string.Empty;
+    public string CurrentBall = string.Empty;
+    public string CurrentPlatform = string.Empty;
     public string[] Balls = null;
     public string[] Platforms = null;
     public string[] LocationNames = null;

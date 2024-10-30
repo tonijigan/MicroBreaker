@@ -44,7 +44,7 @@ public class SaveService : MonoBehaviour
         if (objectsName == ObjectsName.Platform)
             return CurrentPlatform;
 
-        return "";
+        return string.Empty;
     }
 
     public string[] GetArrayProducts(ObjectsName objectsName)
@@ -55,6 +55,30 @@ public class SaveService : MonoBehaviour
             return Platforms;
 
         return new string[0];
+    }
+
+    public int GetScale(ObjectsName objectsName)
+    {
+        int scale = 0;
+
+        if (objectsName == ObjectsName.Ball)
+            scale = _gameProgress.ScaleBall;
+
+        if (objectsName == ObjectsName.Platform)
+            scale = _gameProgress.ScalePlatform;
+
+        return scale;
+    }
+
+    public void SaveScale(bool isCanScale, ObjectsName objectsName)
+    {
+        if (objectsName == ObjectsName.Ball)
+            _gameProgress.ScaleBall = isCanScale ? 1 : 0;
+
+        if (objectsName == ObjectsName.Platform)
+            _gameProgress.ScalePlatform = isCanScale ? 1 : 0;
+
+        Save();
     }
 
     public void SaveCurrentProduct(ObjectsName objectsName, string currentName)

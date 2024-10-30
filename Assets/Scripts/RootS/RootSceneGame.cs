@@ -12,8 +12,12 @@ public class RootSceneGame : Root
     protected override void OnInit()
     {
         _locationCreate.Init(_saveService.CurrentLocationName);
-        _changeTemplateBall.EnambeCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Ball));
-        _changeTemplatePlatform.EnambeCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Platform));
+        _changeTemplateBall.EnableCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Ball),
+                                                  _saveService.GetScale(ObjectsName.Ball));
+        _changeTemplatePlatform.EnableCurrentTemplate(_saveService.GetCurrentProduct(ObjectsName.Platform),
+                                                      _saveService.GetScale(ObjectsName.Platform));
+        _saveService.SaveScale(false, ObjectsName.Ball);
+        _saveService.SaveScale(false, ObjectsName.Platform);
     }
 
     private void Update()

@@ -22,7 +22,6 @@ public class GameState : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private BallMovement _ballMovement;
-    [SerializeField] private Button _testButtonLoss;
     [SerializeField] private SaveService _saveService;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private PanelFade _panelFade;
@@ -65,7 +64,10 @@ public class GameState : MonoBehaviour
     private void OpenPanelLoss()
     {
         _waitForSeconds = new WaitForSeconds(DurationLoss);
-        PlayOpen(_panelLoss, _waitForSeconds);
+        PlayOpen(_panelLoss, _waitForSeconds, () =>
+        {
+            _panelLoss.Fill(_counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
+        });
     }
 
     private void PlayOpen(Panel panel, WaitForSeconds waitForSeconds, Action action = null)

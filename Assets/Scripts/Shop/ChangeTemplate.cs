@@ -1,8 +1,14 @@
+using Enums;
 using System.Linq;
 using UnityEngine;
 
 public class ChangeTemplate : MonoBehaviour
 {
+    private const int MinValue = 0;
+    private const int MaxValue = 1;
+
+    [SerializeField] private ObjectModification _objectModification;
+
     private Transform _transform;
     private Template[] _templates;
 
@@ -12,13 +18,20 @@ public class ChangeTemplate : MonoBehaviour
         Fill();
     }
 
-    public void EnambeCurrentTemplate(string name)
+    public void EnableCurrentTemplate(string name, int value)
     {
+        bool isCanScale = true ? value == MaxValue : value == MinValue;
+
         Template currentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
+
+        if (name == string.Empty)
+            currentTemplate = _templates[0];
+
         currentTemplate.gameObject.SetActive(true);
 
-        if (name == "")
-            _templates[0].gameObject.SetActive(true);
+        if (isCanScale == false) return;
+
+        _objectModification.ChangeScale(BoosterNames.Positive);
     }
 
     private void Fill()
