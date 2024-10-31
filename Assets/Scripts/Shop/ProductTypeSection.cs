@@ -46,10 +46,9 @@ public class ProductTypeSection : Panel
     public void Init(SaveService saveService)
     {
         _saveService = saveService;
+        CurrentProduct = _products.Where(product => product.Name == _saveService.GetCurrentProduct(_objectsName)).FirstOrDefault();
 
-        if (_saveService.GetCurrentProduct(_objectsName) != "")
-            CurrentProduct = _products[_products.FindIndex(product => product.Name == _saveService.GetCurrentProduct(_objectsName))];
-        else
+        if (CurrentProduct == null)
         {
             CurrentProduct = _products.First();
             _saveService.SaveCurrentProduct(_objectsName, CurrentProduct.Name);
