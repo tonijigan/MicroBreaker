@@ -31,4 +31,6 @@ public abstract class AbstractBooster : MonoBehaviour
     }
 
     protected abstract void OnStartAction(BoosterEffect boosterEffect);
+
+    public abstract void StopAction(BoosterEffect boosterEffect);
 }

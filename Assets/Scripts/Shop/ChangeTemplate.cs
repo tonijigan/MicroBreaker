@@ -31,7 +31,7 @@ public class ChangeTemplate : MonoBehaviour
 
         if (isCanScale == false) return;
 
-        _objectModification.ChangeScale(BoosterNames.Positive);
+        _objectModification.SetNewScale(BoosterNames.Positive);
     }
 
     private void Fill()

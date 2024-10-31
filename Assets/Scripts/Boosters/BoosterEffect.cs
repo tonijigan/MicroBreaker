@@ -14,9 +14,13 @@ namespace Boosters
         [SerializeField] private ObjectsName _objectsName;
         [SerializeField] private bool _isCoin = false;
 
+        private Transform _transform;
+
         public event Action<BoosterEffect> Collided;
 
         public bool IsCoin => _isCoin;
+
+        public bool IsActive { get; private set; } = false;
 
         public bool IsCreated { get; private set; } = false;
 
@@ -24,19 +28,18 @@ namespace Boosters
 
         public ObjectsName ObjectsName => _objectsName;
 
-        private void Update()
-        {
-            transform.Translate(new(PositionZero, PositionZero, -PositionZ * _speed * Time.deltaTime));
-        }
+        private void Awake() => _transform = transform;
 
-        public void PlayAction()
-        {
-            Collided?.Invoke(this);
-        }
+        private void Update() => _transform.Translate(new(PositionZero, PositionZero, -PositionZ * _speed * Time.deltaTime));
 
-        public void HaveCreated()
+        public void PlayAction() => Collided?.Invoke(this);
+
+        public void HaveCreated() => IsCreated = true;
+
+        public void SetActionActive()
         {
-            IsCreated = true;
+            IsActive = !IsActive;
+            Debug.Log(IsActive);
         }
     }
 }

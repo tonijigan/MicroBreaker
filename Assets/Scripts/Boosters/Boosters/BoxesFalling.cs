@@ -9,10 +9,7 @@ public class BoxesFalling : AbstractBooster
 
     private Box[] _boxes;
 
-    private void Start()
-    {
-        Fill();
-    }
+    private void Start() => Fill();
 
     private void Fill()
     {
@@ -24,11 +21,16 @@ public class BoxesFalling : AbstractBooster
             _boxes[i] = box;
             _boxes[i].Init(_particleSystem);
         }
-
     }
 
     protected override void OnStartAction(BoosterEffect boosterEffect)
     {
         _pathBoxesContainer.gameObject.SetActive(true);
+        boosterEffect.SetActionActive();
+    }
+    public override void StopAction(BoosterEffect boosterEffect)
+    {
+        Debug.Log("Кубы наверное будут унечтожены");
+        boosterEffect.SetActionActive();
     }
 }

@@ -6,7 +6,7 @@ namespace PlatformObject
     [RequireComponent(typeof(Rigidbody))]
     public class Platform : MonoBehaviour, IEffect, ITrigger
     {
-        private const float PlatformSpeed = 1500;
+        private const float MinPlatformSpeed = 0;
         private const float PositionZ = 2.5f;
 
         [SerializeField] private ParticleSystem _particleSystem;
@@ -20,11 +20,14 @@ namespace PlatformObject
 
         private Rigidbody _rigidbody;
         private Transform _transform;
+        public float PlatformSpeed { get; private set; } = 1500;
+        private float _currentPlatformSpeed;
 
         private void Awake()
         {
             _transform = transform;
             _rigidbody = GetComponent<Rigidbody>();
+            _currentPlatformSpeed = PlatformSpeed;
         }
 
         private void FixedUpdate()
@@ -39,6 +42,12 @@ namespace PlatformObject
             if (_rigidbody.velocity.magnitude > _speed)
                 _speed = _rigidbody.velocity.magnitude + addSpeed;
             return _speed;
+        }
+
+        public void ChangePlatformSpeed(float speed)
+        {
+            if (speed <= MinPlatformSpeed) return;
+            _currentPlatformSpeed = speed;
         }
 
         public void Play(Vector3 point)
@@ -65,7 +74,7 @@ namespace PlatformObject
         {
             Vector3 direction = _inputPointMovement.transform.position - _transform.position;
             Vector3 newDirection = new(direction.x, direction.y, direction.z + PositionZ);
-            _rigidbody.velocity = PlatformSpeed * Time.deltaTime * newDirection;
+            _rigidbody.velocity = _currentPlatformSpeed * Time.deltaTime * newDirection;
         }
     }
 }
