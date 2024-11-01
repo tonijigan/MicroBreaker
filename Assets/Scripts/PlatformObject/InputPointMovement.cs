@@ -15,11 +15,11 @@ namespace PlatformObject
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private GameObject _inputObject;
 
-        private Transform _transform;
+        public Transform Transform { get; private set; }
 
         private void Awake()
         {
-            _transform = transform;
+            Transform = transform;
         }
 
         private void OnEnable()
@@ -48,23 +48,23 @@ namespace PlatformObject
 
         private void FollowToPointOfPressing(Vector3 hitPoint)
         {
-            _transform.position = Vector3.MoveTowards(_transform.position, hitPoint, MaxDistanceDelta * Time.deltaTime);
-            Vector3 currentPosition = _transform.position;
+            Transform.position = Vector3.MoveTowards(Transform.position, hitPoint, MaxDistanceDelta * Time.deltaTime);
+            Vector3 currentPosition = Transform.position;
             currentPosition.y = CurrentPositionY;
-            _transform.position = currentPosition;
+            Transform.position = currentPosition;
         }
 
         private void Move(Vector3 position)
         {
-            _transform.Translate(Speed * Time.deltaTime * position);
+            Transform.Translate(Speed * Time.deltaTime * position);
         }
 
         private void RestrictMove()
         {
-            float positionX = Mathf.Clamp(_transform.position.x, -ClampX, ClampX);
-            float positionY = Mathf.Clamp(_transform.position.z, ClampYMin, ClampYMax);
-            Vector3 clampPosition = new(positionX, _transform.position.y, positionY);
-            _transform.position = clampPosition;
+            float positionX = Mathf.Clamp(Transform.position.x, -ClampX, ClampX);
+            float positionY = Mathf.Clamp(Transform.position.z, ClampYMin, ClampYMax);
+            Vector3 clampPosition = new(positionX, Transform.position.y, positionY);
+            Transform.position = clampPosition;
         }
     }
 }
