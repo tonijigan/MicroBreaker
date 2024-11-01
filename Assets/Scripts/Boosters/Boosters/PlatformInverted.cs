@@ -1,21 +1,19 @@
 using Boosters;
 using UnityEngine;
 
-public class PlatformSlowingDown : AbstractBooster
+public class PlatformInverted : AbstractBooster
 {
-    private const float Speed = 300;
-
     [SerializeField] private PlatformMovement _platformMovement;
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
-        _platformMovement.ChangePlatformSpeed(_platformMovement.PlatformSpeed);
+        _platformMovement.EnableInverted();
         boosterEffect.SetActionActive();
     }
 
     protected override void OnStartAction(BoosterEffect boosterEffect)
     {
-        _platformMovement.ChangePlatformSpeed(Speed);
+        _platformMovement.EnableInverted();
         boosterEffect.SetActionActive();
     }
 }
