@@ -30,7 +30,7 @@ public class BoxesFalling : AbstractBooster
     }
     public override void StopAction(BoosterEffect boosterEffect)
     {
-        Debug.Log("Кубы наверное будут унечтожены");
+        Debug.Log("Кубы наверное будут уничтожены");
         boosterEffect.SetActionActive();
     }
 }

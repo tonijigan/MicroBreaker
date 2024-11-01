@@ -10,6 +10,8 @@ namespace Boosters
         private List<AbstractBooster> _booster;
         private Transform _transform;
 
+        public List<AbstractBooster> AbstractBoosters => _booster;
+
         public void Fill()
         {
             _transform = transform;

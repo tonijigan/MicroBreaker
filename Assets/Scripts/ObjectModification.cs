@@ -6,8 +6,9 @@ public abstract class ObjectModification : MonoBehaviour
     private const float NegativeScaleValue = 0.8f;
     private const float PositiveScaleValue = 1.2f;
 
-    private float DefultScaleValue;
-    protected Transform Transform { get; private set; }
+    public float DefultScaleValue { get; private set; }
+
+    public Transform Transform { get; private set; }
 
     private void Awake()
     {
@@ -27,8 +28,5 @@ public abstract class ObjectModification : MonoBehaviour
         return PositiveScaleValue;
     }
 
-    protected float GetDefultValue()
-    {
-        return DefultScaleValue;
-    }
+    protected void ChangeScale(Vector3 scale) => Transform.localScale = scale;
 }
