@@ -39,7 +39,6 @@ namespace Boosters
         public void SetActionActive()
         {
             IsActive = !IsActive;
-            Debug.Log(IsActive);
         }
     }
 }

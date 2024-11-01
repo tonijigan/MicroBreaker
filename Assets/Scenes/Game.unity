@@ -21791,6 +21791,7 @@ MonoBehaviour:
   _boosterName: 1
   _boosterEffect: {fileID: 493155958795958834, guid: a7a4d8ede18dc0e4dbbc384c6a1137c4, type: 3}
   _platformMovement: {fileID: 2077111611}
+  _platformAddInverted: {fileID: 1246073489}
 --- !u!1 &595970314
 GameObject:
   m_ObjectHideFlags: 0
@@ -25238,6 +25239,7 @@ MonoBehaviour:
   _boosterName: 0
   _boosterEffect: {fileID: 493155958795958834, guid: 021a46e5bdb7ad149912a3a21bb84fae, type: 3}
   _platformMovement: {fileID: 2077111611}
+  _platformInverted: {fileID: 556074773}
 --- !u!1 &1256982019
 GameObject:
   m_ObjectHideFlags: 0
@@ -28882,7 +28884,6 @@ MonoBehaviour:
   _inputPointMovement: {fileID: 813577065}
   _speedForceBall: 2000
   _audioClip: {fileID: 8300000, guid: 4278b24ffba35d44ca4625576e12f2d3, type: 3}
-  _isInverted: 1
 --- !u!1 &2078252485
 GameObject:
   m_ObjectHideFlags: 0
@@ -28943,7 +28944,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 100
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -28969,8 +28970,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3283759, y: -0.000000016252237, z: 0.00000000565016, w: 0.9445472}
-  m_LocalPosition: {x: 0, y: 39.370003, z: -37.17}
+  m_LocalRotation: {x: 0.07659932, y: -0.2157723, z: 0.016981652, w: 0.97328645}
+  m_LocalPosition: {x: 11, y: 7, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

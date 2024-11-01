@@ -12,6 +12,8 @@ public class ChangeTemplate : MonoBehaviour
     private Transform _transform;
     private Template[] _templates;
 
+    public Template CurrentTemplate { get; private set; }
+
     private void Awake()
     {
         _transform = transform;
@@ -22,12 +24,12 @@ public class ChangeTemplate : MonoBehaviour
     {
         bool isCanScale = true ? value == MaxValue : value == MinValue;
 
-        Template currentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
+        CurrentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
 
         if (name == string.Empty)
-            currentTemplate = _templates[0];
+            CurrentTemplate = _templates[0];
 
-        currentTemplate.gameObject.SetActive(true);
+        CurrentTemplate.gameObject.SetActive(true);
 
         if (isCanScale == false) return;
 
