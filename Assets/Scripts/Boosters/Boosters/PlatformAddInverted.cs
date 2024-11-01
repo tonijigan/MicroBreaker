@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlatformAddInverted : AbstractBooster
 {
+    private const int MinValue = 0;
+
     [SerializeField] private PlatformMovement _platformMovement;
     [SerializeField] private PlatformInverted _platformInverted;
 
@@ -26,11 +28,11 @@ public class PlatformAddInverted : AbstractBooster
         if (_platformInverted.IsAction == true)
             _platformInverted.StopAction(boosterEffect);
 
-        _platformMovementClone = Instantiate(_platformMovement, transform);
+        _platformMovementClone = Instantiate(_platformMovement, Transform);
         _platformMovementClone.EnableInverted();
-        _platformMovementClone.transform.GetChild(0).TryGetComponent(out ChangeTemplate changeTemplateClone);
-        _platformMovement.transform.GetChild(0).TryGetComponent(out ChangeTemplate changeTemplate);
-        changeTemplateClone.EnableCurrentTemplate(changeTemplate.CurrentTemplate.Name, 0);
+        _platformMovementClone.transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplateClone);
+        _platformMovement.transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplate);
+        changeTemplateClone.EnableCurrentTemplate(changeTemplate.CurrentTemplate.Name, MinValue);
         boosterEffect.SetActionActive();
     }
 }

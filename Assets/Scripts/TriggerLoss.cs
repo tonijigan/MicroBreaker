@@ -6,6 +6,7 @@ using UnityEngine;
 public class TriggerLoss : MonoBehaviour
 {
     [SerializeField] private Platform _platform;
+    [SerializeField] private Ball _ball;
 
     public event Action Lost;
 
@@ -13,9 +14,19 @@ public class TriggerLoss : MonoBehaviour
     {
         if (other.TryGetComponent(out Ball ball))
         {
+            if (ball.name == _ball.name)
+            {
+                ball.gameObject.SetActive(false);
+                _platform.Die();
+                Lost?.Invoke();
+            }
+
             ball.gameObject.SetActive(false);
-            _platform.Die();
-            Lost?.Invoke();
+        }
+
+        if (other.TryGetComponent(out AbstractBooster booster))
+        {
+            booster.gameObject.SetActive(false);
         }
     }
 }

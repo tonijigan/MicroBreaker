@@ -36,9 +36,6 @@ namespace Boosters
 
         public void HaveCreated() => IsCreated = true;
 
-        public void SetActionActive()
-        {
-            IsActive = !IsActive;
-        }
+        public void SetActionActive() => IsActive = !IsActive;
     }
 }

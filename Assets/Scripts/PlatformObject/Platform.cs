@@ -5,6 +5,7 @@ namespace PlatformObject
 {
     public class Platform : MonoBehaviour, IEffect
     {
+        [SerializeField] private InputPointMovement _inputPointMovement;
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private Transform _transformTemplateContainer;
         [SerializeField] private ParticleSystem _particleExplosion;
@@ -23,6 +24,7 @@ namespace PlatformObject
             _audioSourceEffect.Play();
             _particleExplosion.Play();
             _transformTemplateContainer.gameObject.SetActive(false);
+            _inputPointMovement.gameObject.SetActive(false);
         }
     }
 }

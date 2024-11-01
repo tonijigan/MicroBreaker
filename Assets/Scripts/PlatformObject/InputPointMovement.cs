@@ -17,10 +17,7 @@ namespace PlatformObject
 
         public Transform Transform { get; private set; }
 
-        private void Awake()
-        {
-            Transform = transform;
-        }
+        private void Awake() => Transform = transform;
 
         private void OnEnable()
         {
@@ -34,10 +31,7 @@ namespace PlatformObject
             _playerInput.MouseUped -= HaveInputPressed;
         }
 
-        private void HaveInputPressed(bool isActive)
-        {
-            _inputObject.SetActive(isActive);
-        }
+        private void HaveInputPressed(bool isActive) => _inputObject.SetActive(isActive);
 
         private void OnMove(Vector3 position, Vector3 raycastPoint)
         {
@@ -54,10 +48,7 @@ namespace PlatformObject
             Transform.position = currentPosition;
         }
 
-        private void Move(Vector3 position)
-        {
-            Transform.Translate(Speed * Time.deltaTime * position);
-        }
+        private void Move(Vector3 position) => Transform.Translate(Speed * Time.deltaTime * position);
 
         private void RestrictMove()
         {

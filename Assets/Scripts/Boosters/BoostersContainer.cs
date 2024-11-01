@@ -28,10 +28,7 @@ namespace Boosters
             var booster = _booster.Where(booster => booster.BoosterName == boxName && booster.BoosterEffect.IsCreated == false)
                                    .Select(booster => booster).ToList();
 
-            if (booster.Count == 0)
-            {
-                return null;
-            }
+            if (booster.Count == 0) return null;
 
             int index = _booster.IndexOf(booster[Random.Range(minLength, booster.Count)]);
             _booster[index].BoosterEffect.HaveCreated();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(BallMovement))]
+    [RequireComponent(typeof(Rigidbody))]
     public class Ball : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
@@ -14,11 +14,14 @@ namespace BallObject
 
         private Transform _transform;
 
+        public Rigidbody Rigidbody { get; private set; }
+
         public bool IsActive { get; private set; } = false;
 
         private void Awake()
         {
             _transform = transform;
+            Rigidbody = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()

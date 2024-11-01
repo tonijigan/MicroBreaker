@@ -11,24 +11,18 @@ public abstract class AbstractBooster : MonoBehaviour
 
     public BoosterNames BoosterName => _boosterName;
 
-    private Transform _transform;
+    public Transform Transform { get; private set; }
 
     private void Awake()
     {
-        _transform = transform;
-        BoosterEffect = Instantiate(_boosterEffect, _transform);
+        Transform = transform;
+        BoosterEffect = Instantiate(_boosterEffect, Transform);
         BoosterEffect.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        BoosterEffect.Collided += OnStartAction;
-    }
+    private void OnEnable() => BoosterEffect.Collided += OnStartAction;
 
-    private void OnDisable()
-    {
-        BoosterEffect.Collided -= OnStartAction;
-    }
+    private void OnDisable() => BoosterEffect.Collided -= OnStartAction;
 
     protected abstract void OnStartAction(BoosterEffect boosterEffect);
 

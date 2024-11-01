@@ -14,11 +14,7 @@ public class ChangeTemplate : MonoBehaviour
 
     public Template CurrentTemplate { get; private set; }
 
-    private void Awake()
-    {
-        _transform = transform;
-        Fill();
-    }
+    private void Awake() => Fill();
 
     public void EnableCurrentTemplate(string name, int value)
     {
@@ -38,6 +34,7 @@ public class ChangeTemplate : MonoBehaviour
 
     private void Fill()
     {
+        _transform = transform;
         _templates = new Template[_transform.childCount];
 
         for (int i = 0; i < _templates.Length; i++)
