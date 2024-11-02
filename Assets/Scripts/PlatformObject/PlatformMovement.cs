@@ -3,15 +3,13 @@ using PlatformObject;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlatformMovement : MonoBehaviour, ITrigger
+public class PlatformMovement : MonoBehaviour
 {
     private const float MinPlatformSpeed = 0;
     private const float PositionZ = 2.5f;
     private const float RevercePositionZ = 30;
 
     [SerializeField] private InputPointMovement _inputPointMovement;
-    [SerializeField] private float _speedForceBall;
-    [SerializeField] private AudioClip _audioClip;
 
     private Rigidbody _rigidbody;
     private Transform _transform;
@@ -34,20 +32,6 @@ public class PlatformMovement : MonoBehaviour, ITrigger
     {
         if (speed <= MinPlatformSpeed) return;
         _currentPlatformSpeed = speed;
-    }
-
-    public AudioClip GetClip()
-    {
-        return _audioClip;
-    }
-
-    public float GetSpeed()
-    {
-        float addSpeed = 100;
-
-        if (_rigidbody.velocity.magnitude > _speedForceBall)
-            _speedForceBall = _rigidbody.velocity.magnitude + addSpeed;
-        return _speedForceBall;
     }
 
     public void EnableInverted() => _isInverted = !_isInverted;

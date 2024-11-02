@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FenceObject
 {
-    public class Fence : MonoBehaviour, IEffect, ITrigger
+    public class Fence : MonoBehaviour, ITrigger, ISound
     {
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private float _speed;

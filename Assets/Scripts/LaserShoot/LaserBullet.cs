@@ -1,0 +1,44 @@
+using BoxObject;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody))]
+public class LaserBullet : MonoBehaviour
+{
+    private Rigidbody _rigidbody;
+    private const int Damage = 5;
+    private const float Speed = 300f;
+    private const int MaxLiveTime = 5;
+    private const int MinLiveTime = 0;
+    private float _currentLiveTime;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _currentLiveTime = MaxLiveTime;
+    }
+
+    private void Update()
+    {
+        _rigidbody.AddForce(Speed * Time.deltaTime * Vector3.forward, ForceMode.Impulse);
+        Die();
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Box box))
+        {
+            box.Play(collision.contacts[0].point);
+            box.TakeDamage(Damage);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void Die()
+    {
+        _currentLiveTime -= Time.deltaTime;
+
+        if (_currentLiveTime < MinLiveTime)
+            gameObject.SetActive(false);
+    }
+}

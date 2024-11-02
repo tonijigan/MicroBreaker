@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Boosters;
-using EffectObjects;
 using Enums;
 using Interfaces;
 using UnityEngine;
@@ -9,7 +8,7 @@ using UnityEngine;
 namespace BoxObject
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Box : AbstractEffect, IDamageable
+    public class Box : MonoBehaviour, IDamageable, ITrigger
     {
         private const int MinHealth = 0;
         private const float Delay = 0.5f;
@@ -21,35 +20,28 @@ namespace BoxObject
         [SerializeField] private AudioClip _audioClipDie;
 
         public event Action Died;
+        public event Action<AudioClip> Damaged;
 
         private Rigidbody _rigidbody;
         private BoosterEffect _booster;
         private WaitForSeconds _waitForSeconds;
+        private ParticleSystem _particleSystem;
 
         public BoosterNames BoosterName => _boosterName;
 
-        private void Awake()
-        {
-            _rigidbody = GetComponent<Rigidbody>();
-        }
+        private void Awake() => _rigidbody = GetComponent<Rigidbody>();
 
-        public void SetKinematic(bool isKinematic)
-        {
-            _rigidbody.isKinematic = isKinematic;
-        }
+        public void SetKinematic(bool isKinematic) => _rigidbody.isKinematic = isKinematic;
 
         public void Init(BoosterEffect booster, ParticleSystem particleSystem)
         {
             if (booster != null)
                 _booster = booster;
 
-            ParticleSystem = particleSystem;
+            _particleSystem = particleSystem;
         }
 
-        public void Init(ParticleSystem particleSystem)
-        {
-            ParticleSystem = particleSystem;
-        }
+        public void Init(ParticleSystem particleSystem) => _particleSystem = particleSystem;
 
         public float GetSpeed()
         {
@@ -71,6 +63,13 @@ namespace BoxObject
             }
 
             _health -= damage;
+            Damaged?.Invoke(GetClip());
+        }
+
+        public void Play(Vector3 point)
+        {
+            _particleSystem.transform.position = point;
+            _particleSystem.Play();
         }
 
         private IEnumerator Die()
@@ -81,7 +80,7 @@ namespace BoxObject
             StopCoroutine(Die());
         }
 
-        public AudioClip GetClip()
+        private AudioClip GetClip()
         {
             if (_health <= MinHealth)
                 return _audioClipDie;

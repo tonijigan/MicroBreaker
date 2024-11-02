@@ -1,11 +1,7 @@
-using UnityEngine;
-
 namespace Interfaces
 {
-    public interface ITrigger
+    public interface ITrigger : IEffect
     {
         public float GetSpeed();
-
-        public AudioClip GetClip();
     }
 }

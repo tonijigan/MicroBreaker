@@ -1,6 +1,6 @@
 namespace Interfaces
 {
-    public interface IDamageable : ITrigger
+    public interface IDamageable
     {
         public void TakeDamage(int damage);
     }

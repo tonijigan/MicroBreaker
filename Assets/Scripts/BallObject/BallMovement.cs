@@ -67,13 +67,11 @@ namespace BallObject
             if (collision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 Move(GetCurrentDirection(collision), GetCurrentSpeed(trigger.GetSpeed()));
-                _ballSound.Play(trigger.GetClip());
+                trigger.Play(collision.contacts[0].point);
             }
 
-            if (collision.gameObject.TryGetComponent(out IEffect effect))
-            {
-                effect.Play(collision.contacts[0].point);
-            }
+            if (collision.gameObject.TryGetComponent(out ISound sound))
+                _ballSound.Play(sound.GetClip());
 
             if (collision.gameObject.TryGetComponent(out IDamageable damageable))
             {
@@ -88,8 +86,7 @@ namespace BallObject
 
         public float GetCurrentSpeed(float value)
         {
-            if (_lastVelosity.magnitude > value)
-                return _lastVelosity.magnitude;
+            if (_lastVelosity.magnitude > value) return _lastVelosity.magnitude;
             else return value;
         }
 

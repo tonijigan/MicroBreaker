@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1204759334733693648}
   - component: {fileID: 2816985822051192181}
   - component: {fileID: 68406012687464895}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: cube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5082114198959140332}
   - component: {fileID: 7630215006841202870}
   - component: {fileID: 4484445989922716472}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoxDestructionTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5908404639402547367}
   - component: {fileID: 1105013101926589813}
   - component: {fileID: 5181757891811461949}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

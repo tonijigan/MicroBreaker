@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace PlatformObject
 {
-    public class Platform : MonoBehaviour, IEffect
+    public class Platform : MonoBehaviour, ITrigger, ISound
     {
         [SerializeField] private InputPointMovement _inputPointMovement;
         [SerializeField] private ParticleSystem _particleSystem;
-        [SerializeField] private Transform _transformTemplateContainer;
         [SerializeField] private ParticleSystem _particleExplosion;
+        [SerializeField] private Transform _transformTemplateContainer;
         [SerializeField] private AudioSource _audioSourceEffect;
         [SerializeField] private AudioClip _audioClipExplosion;
+        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private float _speedForceBall;
 
         public void Play(Vector3 point)
         {
@@ -25,6 +27,15 @@ namespace PlatformObject
             _particleExplosion.Play();
             _transformTemplateContainer.gameObject.SetActive(false);
             _inputPointMovement.gameObject.SetActive(false);
+        }
+
+        public float GetSpeed()
+        {
+            return _speedForceBall;
+        }
+        public AudioClip GetClip()
+        {
+            return _audioClip;
         }
     }
 }
