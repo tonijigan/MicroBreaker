@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class LaserBullet : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _particleSystem;
+
     private Rigidbody _rigidbody;
     private const int Damage = 5;
     private const float Speed = 300f;
@@ -28,6 +30,7 @@ public class LaserBullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Box box))
         {
+            _particleSystem.Play();
             box.Play(collision.contacts[0].point);
             box.TakeDamage(Damage);
             gameObject.SetActive(false);

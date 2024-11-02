@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Boosters;
-using BoxObject;
+using Enums;
 using UnityEngine;
 
 public class LocationCreate : MonoBehaviour
@@ -30,5 +30,11 @@ public class LocationCreate : MonoBehaviour
         CurrentLocation = Instantiate(newLocation, _transform);
         CurrentLocation.Init(_boardsContainer, _boxParticleSystem);
         Inited?.Invoke(CurrentLocation);
+    }
+
+    public void SetDefultBox()
+    {
+        foreach (var box in CurrentLocation.BoxContainer.Boxes)
+            box.SetName(BoosterNames.Default);
     }
 }

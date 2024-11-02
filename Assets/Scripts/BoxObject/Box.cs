@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Boosters;
 using Enums;
 using Interfaces;
@@ -13,11 +15,12 @@ namespace BoxObject
         private const int MinHealth = 0;
         private const float Delay = 0.5f;
 
+        [SerializeField] private BoosterNames _boosterName;
         [SerializeField] private float _speedRepulsion;
         [SerializeField] private int _health;
-        [SerializeField] private BoosterNames _boosterName;
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private AudioClip _audioClipDie;
+        [SerializeField] private List<BoxTemplate> _boxTemplates;
 
         public event Action Died;
         public event Action<AudioClip> Damaged;
@@ -29,7 +32,25 @@ namespace BoxObject
 
         public BoosterNames BoosterName => _boosterName;
 
-        private void Awake() => _rigidbody = GetComponent<Rigidbody>();
+        private void Awake()
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            DisableBoxTemplate();
+            GetTemplate(_boosterName).gameObject.SetActive(true);
+        }
+
+        public void SetName(BoosterNames boosterNames)
+        {
+            DisableBoxTemplate();
+            GetTemplate(boosterNames).gameObject.SetActive(true);
+            _booster = null;
+        }
+
+        public void DisableBoxTemplate()
+        {
+            foreach (var box in _boxTemplates)
+                box.gameObject.SetActive(false);
+        }
 
         public void SetKinematic(bool isKinematic) => _rigidbody.isKinematic = isKinematic;
 
@@ -70,6 +91,11 @@ namespace BoxObject
         {
             _particleSystem.transform.position = point;
             _particleSystem.Play();
+        }
+
+        private BoxTemplate GetTemplate(BoosterNames boosterNames)
+        {
+            return _boxTemplates.Where(box => box.BoosterNames == boosterNames).FirstOrDefault();
         }
 
         private IEnumerator Die()
