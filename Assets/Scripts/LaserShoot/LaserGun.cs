@@ -10,6 +10,7 @@ public class LaserGun : MonoBehaviour
     [SerializeField] private int _countBullets;
     [SerializeField] private Transform _firstShootPoints;
     [SerializeField] private Transform _secondShootPoints;
+    [SerializeField] private AudioSource _audioSource;
 
     private Coroutine _coroutine;
     private WaitForSeconds _waitForSeconds;
@@ -45,6 +46,7 @@ public class LaserGun : MonoBehaviour
         {
             laserBullet.gameObject.SetActive(true);
             laserBullet.transform.parent = null;
+            _audioSource.Play();
             yield return _waitForSeconds;
         }
 

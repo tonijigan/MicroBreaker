@@ -5375,9 +5375,8 @@ GameObject:
   m_Component:
   - component: {fileID: 93439710}
   - component: {fileID: 93439711}
-  - component: {fileID: 93439712}
   m_Layer: 0
-  m_Name: Audio SourceEffect
+  m_Name: Audio SourceLaserGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5408,7 +5407,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f9aee16d5ef802b4f8ffbb00fccc852c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5494,19 +5493,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &93439712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93439709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50373481a8e520b49a3b76fee191e3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laserGun: {fileID: 2077111612}
 --- !u!1 &125884277
 GameObject:
   m_ObjectHideFlags: 0
@@ -25257,8 +25243,8 @@ Transform:
   - {fileID: 207968228}
   - {fileID: 1652032471}
   - {fileID: 1715556498}
-  - {fileID: 93439710}
   - {fileID: 2007900212}
+  - {fileID: 93439710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1224442481
@@ -29214,7 +29200,7 @@ MonoBehaviour:
   _transformTemplateContainer: {fileID: 2133674196}
   _audioSourceEffect: {fileID: 93439711}
   _audioClipExplosion: {fileID: 8300000, guid: 7c665647dbced6b49a6a56d339574416, type: 3}
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 4278b24ffba35d44ca4625576e12f2d3, type: 3}
   _speedForceBall: 2000
 --- !u!54 &2077111605
 Rigidbody:
@@ -29349,6 +29335,7 @@ MonoBehaviour:
   _countBullets: 20
   _firstShootPoints: {fileID: 815102192}
   _secondShootPoints: {fileID: 1597165303}
+  _audioSource: {fileID: 93439711}
 --- !u!1 &2078252485
 GameObject:
   m_ObjectHideFlags: 0
