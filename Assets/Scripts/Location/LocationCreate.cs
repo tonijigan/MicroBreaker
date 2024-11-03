@@ -37,4 +37,10 @@ public class LocationCreate : MonoBehaviour
         foreach (var box in CurrentLocation.BoxContainer.Boxes)
             box.SetName(BoosterNames.Default);
     }
+
+    public void ActiveCanDestructionBoxs()
+    {
+        foreach (var box in CurrentLocation.BoxContainer.Boxes)
+            box.SetChangeCanDestruction();
+    }
 }

@@ -21,6 +21,7 @@ namespace BoxObject
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private AudioClip _audioClipDie;
         [SerializeField] private List<BoxTemplate> _boxTemplates;
+        [SerializeField] private bool _isCanDestruction = true;
 
         public event Action Died;
         public event Action<AudioClip> Damaged;
@@ -37,6 +38,11 @@ namespace BoxObject
             _rigidbody = GetComponent<Rigidbody>();
             DisableBoxTemplate();
             GetTemplate(_boosterName).gameObject.SetActive(true);
+        }
+
+        public void SetChangeCanDestruction()
+        {
+            _isCanDestruction = !_isCanDestruction;
         }
 
         public void SetName(BoosterNames boosterNames)
@@ -71,6 +77,8 @@ namespace BoxObject
 
         public void TakeDamage(int damage)
         {
+            if (_isCanDestruction == false) return;
+
             if (_health <= MinHealth)
             {
                 StartCoroutine(Die());
