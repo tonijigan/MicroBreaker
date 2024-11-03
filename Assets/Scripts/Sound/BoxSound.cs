@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoxSound : MonoBehaviour
 {
     [SerializeField] private LocationCreate _locationCreate;
+    [SerializeField] private BoxesFalling _boxesFalling;
 
     private AudioSource _audioSource;
     private BoxContainer _boxContainer;
@@ -17,6 +18,7 @@ public class BoxSound : MonoBehaviour
         _locationCreate.Inited += OnInit =>
         {
             foreach (var box in _boxContainer.Boxes) box.Damaged += Play;
+            foreach (var box in _boxesFalling.Boxes) box.Damaged += Play;
         };
     }
 
@@ -25,7 +27,8 @@ public class BoxSound : MonoBehaviour
         _locationCreate.Inited -= OnInit;
         _locationCreate.Inited -= OnInit =>
         {
-            foreach (var box in _boxContainer.Boxes) box.Damaged += Play;
+            foreach (var box in _boxContainer.Boxes) box.Damaged -= Play;
+            foreach (var box in _boxesFalling.Boxes) box.Damaged -= Play;
         };
     }
 

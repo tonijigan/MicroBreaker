@@ -1,17 +1,43 @@
 using Boosters;
+using Interfaces;
 using UnityEngine;
 
-public class BoosterShield : AbstractBooster
+[RequireComponent(typeof(Collider))]
+public class BoosterShield : AbstractBooster, ITrigger, ISound
 {
     [SerializeField] private Transform _shieldObject;
+    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private AudioClip _audioClip;
+
+    private Collider _collider;
+
+    private void Start() => _collider = GetComponent<Collider>();
+
+    public AudioClip GetClip()
+    {
+        return _audioClip;
+    }
+
+    public float GetSpeed()
+    {
+        return 2000;
+    }
+
+    public void Play(Vector3 point)
+    {
+        _particleSystem.transform.position = point;
+        _particleSystem.Play();
+    }
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        _collider.enabled = false;
         _shieldObject.gameObject.SetActive(false);
     }
 
     protected override void OnStartAction(BoosterEffect boosterEffect)
     {
+        _collider.enabled = true;
         _shieldObject.gameObject.SetActive(true);
     }
 }
