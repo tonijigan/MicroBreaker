@@ -8,13 +8,15 @@ namespace Boosters
     {
         private const float PositionZero = 0;
         private const float PositionZ = 1;
+        private const int MinSpeedValue = 5;
+        private const int MaxSpeedValue = 15;
 
-        [SerializeField] private float _speed;
         [SerializeField] private BoosterNames _boosterName;
         [SerializeField] private ObjectsName _objectsName;
         [SerializeField] private bool _isCoin = false;
 
         private Transform _transform;
+        private int _speed;
 
         public event Action<BoosterEffect> Collided;
 
@@ -30,12 +32,14 @@ namespace Boosters
 
         private void Awake() => _transform = transform;
 
-        private void Update() => _transform.Translate(new(PositionZero, PositionZero, -PositionZ * _speed * Time.deltaTime));
+        private void Start() => _speed = UnityEngine.Random.Range(MinSpeedValue, MaxSpeedValue);
 
-        public void PlayAction() => Collided?.Invoke(this);
+        private void Update() => _transform.Translate(new(PositionZero, PositionZero, -PositionZ * _speed * Time.deltaTime));
 
         public void HaveCreated() => IsCreated = true;
 
         public void SetActionActive() => IsActive = !IsActive;
+
+        public void PlayAction() => Collided?.Invoke(this);
     }
 }

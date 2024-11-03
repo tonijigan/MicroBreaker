@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7032664373888681990}
   - component: {fileID: 6967123856859736880}
   - component: {fileID: 493155958795958834}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Booster 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605731d75d0d46949a47f8ff030bb771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
   _boosterName: 1
   _objectsName: 0
   _isCoin: 0
@@ -82,7 +81,7 @@ GameObject:
   - component: {fileID: 4856587915381210547}
   - component: {fileID: 2662330904563107223}
   - component: {fileID: 5914739846969537177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BallPositivEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
