@@ -15,15 +15,20 @@ namespace PlatformObject
         public event Action CoinTriggered;
 
         private ParticleSystem _particleSystem;
+        private bool _isEnableCollision = true;
 
         private void OnCollisionEnter(Collision collider)
         {
             if (collider.gameObject.TryGetComponent(out BoosterEffect booster))
             {
-                if (booster.IsCoin == true)
+                if (_isEnableCollision == false)
                 {
-                    CoinTriggered?.Invoke();
+                    booster.gameObject.SetActive(false);
+                    return;
                 }
+
+                if (booster.IsCoin == true)
+                    CoinTriggered?.Invoke();
 
                 _audioSourceBoosterEffect.Play();
                 _particleSystem = GetParticleSystem(booster);
@@ -33,6 +38,8 @@ namespace PlatformObject
                 booster.gameObject.SetActive(false);
             }
         }
+
+        public void ChangeStateCollision() => _isEnableCollision = !_isEnableCollision;
 
         private ParticleSystem GetParticleSystem(BoosterEffect boosterEffect)
         {

@@ -8,6 +8,7 @@ public class BoosterShield : AbstractBooster, ITrigger, ISound
     [SerializeField] private Transform _shieldObject;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private TriggerLoss _triggerLoss;
 
     private Collider _collider;
 
@@ -33,11 +34,13 @@ public class BoosterShield : AbstractBooster, ITrigger, ISound
     {
         _collider.enabled = false;
         _shieldObject.gameObject.SetActive(false);
+        _triggerLoss.gameObject.SetActive(true);
     }
 
     protected override void OnStartAction(BoosterEffect boosterEffect)
     {
         _collider.enabled = true;
         _shieldObject.gameObject.SetActive(true);
+        _triggerLoss.gameObject.SetActive(false);
     }
 }

@@ -1,3 +1,4 @@
+using FenceObject;
 using Interfaces;
 using PlatformObject;
 using System;
@@ -8,7 +9,7 @@ namespace BallObject
     [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
     public class BallMovement : MonoBehaviour
     {
-        private const float GravityValue = 0.15f;
+        private const float GravityValue = 0.05f;
         private const float PositionZero = 0f;
         private const float GravityPositionZ = 0.02f;
         private const int Damage = 1;
@@ -16,23 +17,25 @@ namespace BallObject
         [SerializeField] private Platform _platformTargetGravity;
         [SerializeField] private Transform _ballPoint;
         [SerializeField] private BallSound _ballSound;
-        [SerializeField] private float _speed;
+        [SerializeField] private float _speedForce;
 
         public event Action BoxTriggered;
 
         private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
-        private Transform _transform;
         private Vector3 _lastVelosity;
         private Ball _ball;
         private bool _isGravityPlatform = false;
+        private float _speed = 1000;
+
+        public Transform Transform { get; private set; }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _ball = GetComponent<Ball>();
             _ballEffect = GetComponent<BallEffect>();
-            _transform = transform;
+            Transform = transform;
         }
 
         private void OnEnable() => _ball.Actived += OnMove;
@@ -51,7 +54,7 @@ namespace BallObject
 
             if (_isGravityPlatform == true)
             {
-                Vector3 direction = (_platformTargetGravity.transform.position - _transform.position).normalized;
+                Vector3 direction = (_platformTargetGravity.transform.position - Transform.position).normalized;
                 _rigidbody.velocity += new Vector3(direction.x * GravityValue, PositionZero, -GravityPositionZ);
             }
 
@@ -64,16 +67,27 @@ namespace BallObject
             if (_ball.IsActive == false)
                 return;
 
-            if (collision.gameObject.TryGetComponent(out ITrigger trigger))
+            Collision currentCollision = collision;
+            Vector3 currentPoint = currentCollision.contacts[0].point;
+
+            if (currentCollision.gameObject.TryGetComponent(out ITrigger trigger))
             {
-                Move(GetCurrentDirection(collision), GetCurrentSpeed(trigger.GetSpeed()));
-                trigger.Play(collision.contacts[0].point);
+                trigger.Play(currentPoint);
+
+                if (currentCollision.gameObject.TryGetComponent(out Fence fence) && fence.IsOpenPortal == true)
+                {
+                    fence.Relocate(this, currentPoint, GetCurrentDirection(collision));
+                    _ballSound.Play(fence.GetClip());
+                    return;
+                }
+
+                Move(GetCurrentDirection(currentCollision), GetCurrentSpeed(trigger.GetSpeed()));
             }
 
-            if (collision.gameObject.TryGetComponent(out ISound sound))
+            if (currentCollision.gameObject.TryGetComponent(out ISound sound))
                 _ballSound.Play(sound.GetClip());
 
-            if (collision.gameObject.TryGetComponent(out IDamageable damageable))
+            if (currentCollision.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(Damage);
                 BoxTriggered?.Invoke();
@@ -82,7 +96,7 @@ namespace BallObject
 
         public void SetGravity() => _isGravityPlatform = !_isGravityPlatform;
 
-        public void FollowToPointPosition() => _transform.position = _ballPoint.position;
+        public void FollowToPointPosition() => Transform.position = _ballPoint.position;
 
         public float GetCurrentSpeed(float value)
         {
@@ -90,9 +104,11 @@ namespace BallObject
             else return value;
         }
 
-        private void OnMove() => _rigidbody.AddForce(_speed * Vector3.forward, ForceMode.Impulse);
+        public void Move(Vector3 direction) => Move(direction, _speed);
 
         private void Move(Vector3 direction, float speed) => _rigidbody.velocity = speed * Time.deltaTime * direction;
+
+        private void OnMove() => _rigidbody.AddForce(_speedForce * Vector3.forward, ForceMode.Impulse);
 
         public Vector3 GetCurrentDirection(Collision collision)
         {

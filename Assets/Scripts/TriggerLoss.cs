@@ -3,12 +3,19 @@ using PlatformObject;
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class TriggerLoss : MonoBehaviour
 {
     [SerializeField] private Platform _platform;
     [SerializeField] private Ball _ball;
 
     public event Action Lost;
+
+    private Collider _collider;
+
+    public Collider Collider => _collider;
+
+    private void Awake() => _collider = GetComponent<Collider>();
 
     private void OnTriggerEnter(Collider other)
     {

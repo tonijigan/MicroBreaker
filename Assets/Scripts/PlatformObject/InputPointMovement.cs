@@ -15,6 +15,8 @@ namespace PlatformObject
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private GameObject _inputObject;
 
+        private readonly ObjectRestrict _objectRestrict = new();
+
         public Transform Transform { get; private set; }
 
         private void Awake() => Transform = transform;
@@ -37,7 +39,7 @@ namespace PlatformObject
         {
             FollowToPointOfPressing(raycastPoint);
             Move(position);
-            RestrictMove();
+            _objectRestrict.RestrictMove(Transform, ClampX, ClampYMin, ClampYMax);
         }
 
         private void FollowToPointOfPressing(Vector3 hitPoint)
@@ -49,13 +51,5 @@ namespace PlatformObject
         }
 
         private void Move(Vector3 position) => Transform.Translate(Speed * Time.deltaTime * position);
-
-        private void RestrictMove()
-        {
-            float positionX = Mathf.Clamp(Transform.position.x, -ClampX, ClampX);
-            float positionY = Mathf.Clamp(Transform.position.z, ClampYMin, ClampYMax);
-            Vector3 clampPosition = new(positionX, Transform.position.y, positionY);
-            Transform.position = clampPosition;
-        }
     }
 }
