@@ -12,6 +12,7 @@ public class LocationCreate : MonoBehaviour
     [SerializeField] private ParticleSystem _boxParticleSystem;
 
     public event Action<Location> Inited;
+    public event Action<List<AbstractBooster>> Created;
 
     public Location CurrentLocation { get; private set; }
     private Transform _transform;
@@ -28,7 +29,7 @@ public class LocationCreate : MonoBehaviour
         }
 
         CurrentLocation = Instantiate(newLocation, _transform);
-        CurrentLocation.Init(_boardsContainer, _boxParticleSystem);
+        CurrentLocation.Init(_boardsContainer, _boxParticleSystem, Created);
         Inited?.Invoke(CurrentLocation);
     }
 

@@ -12,7 +12,7 @@ public class BoosterGravity : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _ballMovement.SetGravity();
         boosterEffect.SetActionActive();

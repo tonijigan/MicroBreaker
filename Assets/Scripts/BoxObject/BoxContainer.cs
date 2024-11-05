@@ -1,5 +1,8 @@
 using UnityEngine;
 using Boosters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BoxObject
 {
@@ -13,7 +16,7 @@ namespace BoxObject
 
         public Box[] Boxes => _boxes;
 
-        public void Fill(BoostersContainer boosterContainer, ParticleSystem particleSystem)
+        public void Fill(BoostersContainer boosterContainer, ParticleSystem particleSystem, Action<List<AbstractBooster>> Created)
         {
             _particleSystem = Instantiate(particleSystem, _transform);
             _particleSystem.transform.localScale = new Vector3(ParticleScale, ParticleScale, ParticleScale);
@@ -34,6 +37,9 @@ namespace BoxObject
                         _boxes[i].Init(booster, _particleSystem);
                 }
             }
+
+            var boosters = boosterContainer.AbstractBoosters.Where(booster => booster.BoosterEffect.IsCreated == false).ToList();
+            Created?.Invoke(boosters);
         }
     }
 }

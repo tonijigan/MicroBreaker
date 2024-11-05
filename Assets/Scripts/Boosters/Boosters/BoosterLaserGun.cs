@@ -11,7 +11,7 @@ public class BoosterLaserGun : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _laserGun.Shooting();
         boosterEffect.SetActionActive();

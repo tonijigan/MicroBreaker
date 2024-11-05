@@ -13,7 +13,7 @@ public class BoosterAddCoins : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _wallet.AddCoin(Coins);
         boosterEffect.SetActionActive();

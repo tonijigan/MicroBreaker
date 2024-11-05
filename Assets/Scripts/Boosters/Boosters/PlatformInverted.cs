@@ -17,7 +17,7 @@ public class PlatformInverted : AbstractBooster
         IsAction = false;
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         IsAction = true;
 

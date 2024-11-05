@@ -12,7 +12,7 @@ public class BoosterDisableDestruction : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         ActiveCanDestructionBoxs();
         _locationCreate.ActiveCanDestructionBoxs();

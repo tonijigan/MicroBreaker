@@ -23,7 +23,7 @@ public class BoosterPlatformFollowForBall : AbstractBooster
         StopCoroutine(_coroutine);
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _coroutine = StartCoroutine(Play(boosterEffect));
         boosterEffect.SetActionActive();

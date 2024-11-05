@@ -13,7 +13,7 @@ public class BoosterPortal : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _portal.Open(true);
         _triggerLoss.Collider.enabled = false;

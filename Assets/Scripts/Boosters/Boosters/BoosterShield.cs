@@ -37,7 +37,7 @@ public class BoosterShield : AbstractBooster, ITrigger, ISound
         _triggerLoss.gameObject.SetActive(true);
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         _collider.enabled = true;
         _shieldObject.gameObject.SetActive(true);

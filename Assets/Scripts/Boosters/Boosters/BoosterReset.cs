@@ -7,7 +7,7 @@ public class BoosterReset : AbstractBooster
 
     public override void StopAction(BoosterEffect _) { }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         foreach (var booster in _boostersContainer.AbstractBoosters)
         {

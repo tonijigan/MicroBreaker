@@ -14,7 +14,7 @@ public class AddScale : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         if (boosterEffect.ObjectsName == ObjectsName.Platform)
             _playformModification.SetNewScale(boosterEffect.BoosterName);

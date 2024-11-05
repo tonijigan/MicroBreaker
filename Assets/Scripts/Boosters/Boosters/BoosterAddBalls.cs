@@ -23,7 +23,7 @@ public class BoosterAddBalls : AbstractBooster
             ball.gameObject.SetActive(false);
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         boosterEffect.SetActionActive();
         _balls = new Ball[Count];

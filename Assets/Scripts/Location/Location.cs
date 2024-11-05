@@ -1,6 +1,8 @@
 using Boosters;
 using BoxObject;
 using Enums;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Location : MonoBehaviour
@@ -12,8 +14,8 @@ public class Location : MonoBehaviour
 
     public BoxContainer BoxContainer => _boxContainer;
 
-    public void Init(BoostersContainer boostersContainer, ParticleSystem particleSystem)
+    public void Init(BoostersContainer boostersContainer, ParticleSystem particleSystem, Action<List<AbstractBooster>> Created)
     {
-        _boxContainer.Fill(boostersContainer, particleSystem);
+        _boxContainer.Fill(boostersContainer, particleSystem, Created);
     }
 }

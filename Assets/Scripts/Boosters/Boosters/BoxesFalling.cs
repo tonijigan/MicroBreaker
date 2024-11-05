@@ -25,7 +25,7 @@ public class BoxesFalling : AbstractBooster
         }
     }
 
-    protected override void OnStartAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
         IsActive = true;
         _pathBoxesContainer.gameObject.SetActive(true);
