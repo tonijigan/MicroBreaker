@@ -13,6 +13,7 @@ public class BoosterCameraShake : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        _cameraMoveShake.Stabilization();
         boosterEffect.SetActionActive();
     }
 }

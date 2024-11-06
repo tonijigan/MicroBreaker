@@ -31,6 +31,8 @@ namespace BoxObject
         private ParticleSystem _particleSystem;
         private bool _isCanDestruction = true;
 
+        public bool IsDead { get; private set; } = false;
+
         public BoosterNames BoosterName => _boosterName;
 
         private void Awake()
@@ -81,6 +83,7 @@ namespace BoxObject
             {
                 StartCoroutine(Die());
                 Died?.Invoke();
+                IsDead = true;
 
                 if (_booster != null)
                 {

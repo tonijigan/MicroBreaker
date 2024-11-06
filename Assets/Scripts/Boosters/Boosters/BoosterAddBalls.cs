@@ -30,6 +30,7 @@ public class BoosterAddBalls : AbstractBooster
         boosterEffect.SetActionActive();
         _balls = new Ball[Count];
         _ball.transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplate);
+        _ball.BallEffect.SetParticleSystem(BoosterName);
         string currentName = changeTemplate.CurrentTemplate.Name;
 
         for (int i = 0; i < _balls.Length; i++)

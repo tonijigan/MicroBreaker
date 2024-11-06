@@ -28,6 +28,12 @@ public class LaserGun : MonoBehaviour
         _coroutine = StartCoroutine(EnableBullets());
     }
 
+    public void StopShoot()
+    {
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+    }
+
     private void Create()
     {
         _waitForSeconds = new(WaitSeconds);

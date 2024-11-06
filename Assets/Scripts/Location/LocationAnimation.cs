@@ -1,5 +1,6 @@
 using BoxObject;
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,10 +34,16 @@ public class LocationAnimation : MonoBehaviour
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(Move());
+        _coroutine = StartCoroutine(Move(ActiveBoxKinematic));
     }
 
-    private IEnumerator Move()
+    private void ActiveBoxKinematic()
+    {
+        foreach (var box in _boxesTransform)
+            box.SetKinematic(false);
+    }
+
+    private IEnumerator Move(Action Stated)
     {
         List<Vector3> positions = new();
 
@@ -65,10 +72,10 @@ public class LocationAnimation : MonoBehaviour
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
             MoveWithRotate(positions[i], i, FirstDuration, SecondAngle);
-            _boxesTransform[i].SetKinematic(false);
             yield return _waitForSeconds = new(SecondDuration);
         }
 
+        Stated?.Invoke();
         StopCoroutine(_coroutine);
     }
 

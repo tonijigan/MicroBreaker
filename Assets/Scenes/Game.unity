@@ -58326,6 +58326,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
       objectReference: {fileID: 0}
@@ -63763,6 +63767,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
       objectReference: {fileID: 0}
@@ -69127,6 +69135,7 @@ MonoBehaviour:
   _saveService: {fileID: 1855680385}
   _wallet: {fileID: 1855680386}
   _panelFade: {fileID: 446064978}
+  _boostersContainer: {fileID: 1416785563}
 --- !u!1 &1008585374
 GameObject:
   m_ObjectHideFlags: 0
@@ -69316,6 +69325,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
@@ -69517,6 +69530,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
       objectReference: {fileID: 0}
@@ -69711,6 +69728,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
@@ -86216,6 +86237,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 307039504}
     m_Modifications:
+    - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
+      propertyPath: _boosterName
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
       value: 1000
@@ -123556,7 +123581,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 100
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -123582,8 +123607,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3283759, y: 0.000000016252237, z: -0.00000000565016, w: 0.9445472}
-  m_LocalPosition: {x: 0, y: 39.370003, z: -37.17}
+  m_LocalRotation: {x: 0.07659932, y: -0.2157723, z: 0.016981652, w: 0.97328645}
+  m_LocalPosition: {x: 11, y: 7, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

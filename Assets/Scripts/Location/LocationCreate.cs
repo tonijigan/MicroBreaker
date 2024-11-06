@@ -22,11 +22,7 @@ public class LocationCreate : MonoBehaviour
         _transform = transform;
         Location newLocation = _locations.Where(location => location.LocationName == locationName).FirstOrDefault();
 
-        if (newLocation == null)
-        {
-            Debug.Log("Локация не существует");
-            return;
-        }
+        if (newLocation == null) return;
 
         CurrentLocation = Instantiate(newLocation, _transform);
         CurrentLocation.Init(_boardsContainer, _boxParticleSystem, Created);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoxesFalling : AbstractBooster
 {
+    private const int MaxDamage = 10;
+
     [SerializeField] private Transform _pathBoxesContainer;
     [SerializeField] private ParticleSystem _particleSystem;
 
@@ -35,7 +37,15 @@ public class BoxesFalling : AbstractBooster
     public override void StopAction(BoosterEffect boosterEffect)
     {
         IsActive = false;
-        Debug.Log("Кубы наверное будут уничтожены");
+
+        if (boosterEffect.IsActive == false) return;
+
+        foreach (var box in Boxes)
+        {
+            if (box.IsDead == false)
+                box.TakeDamage(MaxDamage);
+        }
+
         boosterEffect.SetActionActive();
     }
 }

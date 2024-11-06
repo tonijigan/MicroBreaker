@@ -1,4 +1,5 @@
 using BallObject;
+using Boosters;
 using Cinemachine;
 using PlayerObject;
 using System;
@@ -25,6 +26,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private SaveService _saveService;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private PanelFade _panelFade;
+    [SerializeField] private BoostersContainer _boostersContainer;
 
     private WaitForSeconds _waitForSeconds;
     private Coroutine _coroutine;
@@ -53,6 +55,7 @@ public class GameState : MonoBehaviour
     private void OpenPanelWin(string time)
     {
         _virtualEndCamera.Priority = Priority;
+        _boostersContainer.Reset();
         _waitForSeconds = new WaitForSeconds(DurationWin);
         PlayOpen(_panelWin, _waitForSeconds, () =>
         {
@@ -63,6 +66,7 @@ public class GameState : MonoBehaviour
 
     private void OpenPanelLoss()
     {
+        _boostersContainer.Reset();
         _waitForSeconds = new WaitForSeconds(DurationLoss);
         PlayOpen(_panelLoss, _waitForSeconds, () =>
         {
