@@ -5,14 +5,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxContainer))]
 public class Location : MonoBehaviour
 {
     [SerializeField] private LocationName _locationName;
-
-    private BoxContainer _boxContainer;
-
-    private void Awake() => _boxContainer = GetComponent<BoxContainer>();
+    [SerializeField] private BoxContainer _boxContainer;
 
     public string LocationName => _locationName.ToString();
 
