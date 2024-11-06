@@ -108,8 +108,6 @@ namespace BallObject
         {
             if (value < _currentSpeed) return _currentSpeed;
             else return value;
-            //if (_lastVelosity.magnitude > value) return _lastVelosity.magnitude;
-            //else return value;
         }
 
         public void Move(Vector3 direction) => Move(direction, _currentSpeed);

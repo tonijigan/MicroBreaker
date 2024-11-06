@@ -1,5 +1,6 @@
 using BallObject;
 using Boosters;
+using Enums;
 using UnityEngine;
 
 public class BoosterAddBalls : AbstractBooster
@@ -18,6 +19,7 @@ public class BoosterAddBalls : AbstractBooster
         if (boosterEffect.IsActive == false) return;
 
         boosterEffect.SetActionActive();
+        _ball.BallEffect.SetParticleSystem(BoosterNames.Default);
 
         foreach (var ball in _balls)
             ball.gameObject.SetActive(false);
@@ -35,6 +37,7 @@ public class BoosterAddBalls : AbstractBooster
             _balls[i] = Instantiate(_ball, Transform);
             _balls[i].transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplateClone);
             _balls[i].DisconnectParentObject();
+            _balls[i].BallEffect.SetParticleSystem(BoosterName);
             _balls[i].Rigidbody.AddForce(new Vector3(Random.Range(-RandomValue, RandomValue), MinValue,
                                                      Random.Range(-RandomValue, RandomValue)) * Speed);
             changeTemplateClone.EnableCurrentTemplate(currentName, MinValue);

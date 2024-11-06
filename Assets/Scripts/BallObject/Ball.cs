@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(BallEffect))]
     public class Ball : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
@@ -16,12 +16,15 @@ namespace BallObject
 
         public Rigidbody Rigidbody { get; private set; }
 
+        public BallEffect BallEffect { get; private set; }
+
         public bool IsActive { get; private set; } = false;
 
         private void Awake()
         {
             _transform = transform;
             Rigidbody = GetComponent<Rigidbody>();
+            BallEffect = GetComponent<BallEffect>();
         }
 
         private void OnEnable()
