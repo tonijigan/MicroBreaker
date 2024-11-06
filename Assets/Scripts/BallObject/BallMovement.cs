@@ -9,6 +9,8 @@ namespace BallObject
     [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
     public class BallMovement : MonoBehaviour
     {
+        private const int MaxSpeed = 4000;
+        private const int StandartSpeed = 1000;
         private const float GravityValue = 0.05f;
         private const float PositionZero = 0f;
         private const float GravityPositionZ = 0.02f;
@@ -26,7 +28,7 @@ namespace BallObject
         private Vector3 _lastVelosity;
         private Ball _ball;
         private bool _isGravityPlatform = false;
-        private float _speed = 1000;
+        private float _currentSpeed = StandartSpeed;
 
         public Transform Transform { get; private set; }
 
@@ -98,13 +100,19 @@ namespace BallObject
 
         public void FollowToPointPosition() => Transform.position = _ballPoint.position;
 
+        public void SetMaxSpeed() => _currentSpeed = MaxSpeed;
+
+        public void SetStandartSpeed() => _currentSpeed = StandartSpeed;
+
         public float GetCurrentSpeed(float value)
         {
-            if (_lastVelosity.magnitude > value) return _lastVelosity.magnitude;
+            if (value < _currentSpeed) return _currentSpeed;
             else return value;
+            //if (_lastVelosity.magnitude > value) return _lastVelosity.magnitude;
+            //else return value;
         }
 
-        public void Move(Vector3 direction) => Move(direction, _speed);
+        public void Move(Vector3 direction) => Move(direction, _currentSpeed);
 
         private void Move(Vector3 direction, float speed) => _rigidbody.velocity = speed * Time.deltaTime * direction;
 

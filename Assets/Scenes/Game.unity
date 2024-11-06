@@ -5508,6 +5508,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 991498816139116579, guid: ab56a067da8acf645a184a15da50c973, type: 3}
   m_PrefabInstance: {fileID: 47872853}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &51229550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51229551}
+  - component: {fileID: 51229552}
+  m_Layer: 0
+  m_Name: ChangeBallSpeed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51229551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51229550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1416785564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &51229552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51229550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fdd1861d85bb64ca6a41a47302186a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boosterName: 1
+  _boosterEffect: {fileID: 493155958795958834, guid: 5c7783eb9a638284f99cc13bbd7259dc, type: 3}
+  _ballMovement: {fileID: 1980936486}
 --- !u!4 &67338755
 Transform:
   m_ObjectHideFlags: 0
@@ -74981,6 +75028,7 @@ Transform:
   - {fileID: 1513747593}
   - {fileID: 296256700}
   - {fileID: 646959886}
+  - {fileID: 51229551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425764943
@@ -122651,7 +122699,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 100
-  field of view: 60.000004
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -122677,8 +122725,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19594607, y: 0, z: 0, w: 0.98061466}
-  m_LocalPosition: {x: 0, y: 5.9, z: -11.46}
+  m_LocalRotation: {x: 0.3283759, y: -0.000000016252237, z: 0.00000000565016, w: 0.9445472}
+  m_LocalPosition: {x: 0, y: 39.370003, z: -37.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -96,7 +96,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -166,7 +166,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -236,7 +236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -306,7 +306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -376,7 +376,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -446,7 +446,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -516,7 +516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -586,7 +586,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -656,7 +656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -726,7 +726,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -796,7 +796,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -866,7 +866,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -936,7 +936,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
@@ -1006,7 +1006,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _boosterName
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1105013101926589813, guid: ae17c4e6a728a6b46aa2d1900ffba95d, type: 3}
       propertyPath: _speedRepulsion
