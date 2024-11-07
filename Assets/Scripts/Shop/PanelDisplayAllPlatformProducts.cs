@@ -12,6 +12,8 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
     [SerializeField] private Button _buttonSelect;
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _price;
+    [SerializeField] private TMP_Text _choosed;
+    [SerializeField] private Image _imageBlock;
 
     private SwipePanel _swipePanel;
     private PanelProduct _panelProduct;
@@ -76,7 +78,9 @@ public class PanelDisplayAllPlatformProducts : MonoBehaviour
         _price.text = _currentProduct.Price.ToString();
         _buttonBuy.gameObject.SetActive(!_currentProduct.IsBuy);
         _buttonSelect.gameObject.SetActive(_currentProduct.IsBuy);
-        _buttonSelect.enabled = !_currentProduct.IsSelected;
+        _buttonSelect.gameObject.SetActive(!_currentProduct.IsSelected && _currentProduct.IsBuy);
+        _choosed.gameObject.SetActive(_currentProduct.IsSelected);
+        _imageBlock.gameObject.SetActive(!_currentProduct.IsBuy);
     }
 
     private void OpenBuyPanel()
