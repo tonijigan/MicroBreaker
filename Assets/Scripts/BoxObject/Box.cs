@@ -51,6 +51,8 @@ namespace BoxObject
             _booster = null;
         }
 
+        public void SetStandartHealth() => _health = 0;
+
         public void DisableBoxTemplate()
         {
             foreach (var box in _boxTemplates)

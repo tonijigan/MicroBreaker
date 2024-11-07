@@ -6,15 +6,19 @@ public class BallModificationm : ObjectModification
 {
     [SerializeField] private BallEffect _ballEffect;
 
-    public override void SetNewScale(BoosterNames boosterNames)
+    public override void SetNewScale(BoosterNames boosterNames, bool isSetBooster)
     {
         ChangeScale(Transform.localScale * GetScaleValue(boosterNames));
-        _ballEffect.SetParticleSystem(boosterNames);
+
+        if (isSetBooster == true)
+            _ballEffect.SetParticleSystem(boosterNames);
     }
 
-    public override void SetDefultScale()
+    public override void SetDefultScale(bool isSetBooster)
     {
         ChangeScale(new Vector3(DefultScaleValue, DefultScaleValue, DefultScaleValue));
-        _ballEffect.SetParticleSystem(BoosterNames.Default);
+
+        if (isSetBooster == true)
+            _ballEffect.SetParticleSystem(BoosterNames.Default);
     }
 }

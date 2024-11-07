@@ -32,7 +32,10 @@ public class LocationCreate : MonoBehaviour
     public void SetDefultBox()
     {
         foreach (var box in CurrentLocation.BoxContainer.Boxes)
+        {
             box.SetName(BoosterNames.Default);
+            box.SetStandartHealth();
+        }
     }
 
     public void ActiveCanDestructionBoxs()

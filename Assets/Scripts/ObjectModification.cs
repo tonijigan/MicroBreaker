@@ -16,9 +16,9 @@ public abstract class ObjectModification : MonoBehaviour
         DefultScaleValue = Transform.localScale.x;
     }
 
-    public abstract void SetNewScale(BoosterNames boosterNames);
+    public abstract void SetNewScale(BoosterNames boosterNames, bool isSetBooster);
 
-    public abstract void SetDefultScale();
+    public abstract void SetDefultScale(bool isSetBooster);
 
     protected float GetScaleValue(BoosterNames boosterNames)
     {

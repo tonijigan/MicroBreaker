@@ -29,7 +29,7 @@ public class ChangeTemplate : MonoBehaviour
 
         if (isCanScale == false) return;
 
-        _objectModification.SetNewScale(BoosterNames.Positive);
+        _objectModification.SetNewScale(BoosterNames.Positive, false);
     }
 
     private void Fill()
