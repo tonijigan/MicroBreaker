@@ -11,8 +11,6 @@ public class PanelPlayGame : Panel
     [SerializeField] private ButtonPanelInteraction _buttonClose;
     [SerializeField] private LocationChooseInput _locationChooseInput;
     [SerializeField] private LocationCreateView _locationCreateView;
-    [SerializeField] private Button _buttonAddScaleBall;
-    [SerializeField] private Button _buttonAddScalePlatform;
     [SerializeField] private SaveService _saveService;
 
     public bool IsInit { get; private set; }
@@ -24,22 +22,26 @@ public class PanelPlayGame : Panel
     private void OnEnable()
     {
         _buttonPlayGame.Clicked += () => { Move(false); };
+
+
         //
-        _buttonAddScaleBall.onClick.AddListener(() =>
-        { _saveService.SaveScale(true, ObjectsName.Ball); _buttonAddScaleBall.enabled = false; });
-        _buttonAddScalePlatform.onClick.AddListener(() =>
-        { _saveService.SaveScale(true, ObjectsName.Platform); _buttonAddScalePlatform.enabled = false; });
+        //_buttonAddScaleBall.onClick.AddListener(() =>
+        //{ _saveService.SaveScale(true, ObjectsName.Ball); _buttonAddScaleBall.enabled = false; });
+        //_buttonAddScalePlatform.onClick.AddListener(() =>
+        //{ _saveService.SaveScale(true, ObjectsName.Platform); _buttonAddScalePlatform.enabled = false; });
         //
     }
 
     private void OnDisable()
     {
         _buttonPlayGame.Clicked -= () => { Move(false); };
+
+
         //
-        _buttonAddScaleBall.onClick.RemoveListener(() =>
-        { _saveService.SaveScale(true, ObjectsName.Ball); _buttonAddScaleBall.enabled = false; });
-        _buttonAddScalePlatform.onClick.RemoveListener(() =>
-        { _saveService.SaveScale(true, ObjectsName.Platform); _buttonAddScalePlatform.enabled = false; });
+        //_buttonAddScaleBall.onClick.RemoveListener(() =>
+        //{ _saveService.SaveScale(true, ObjectsName.Ball); _buttonAddScaleBall.enabled = false; });
+        //_buttonAddScalePlatform.onClick.RemoveListener(() =>
+        //{ _saveService.SaveScale(true, ObjectsName.Platform); _buttonAddScalePlatform.enabled = false; });
         //
     }
 

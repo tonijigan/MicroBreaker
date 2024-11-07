@@ -23,20 +23,16 @@ public class Panel : MonoBehaviour
 
     protected float TweenDuration => _tweenDuration;
 
-    private void Awake()
+    private void Awake() => InitAwake();
+
+    public virtual void Move(bool isAction) => Moved?.Invoke();
+
+    protected virtual void InitAwake()
     {
         _rectTransform = GetComponent<RectTransform>();
-    }
 
-    private void Start()
-    {
         if (_isActiveAtStart == true)
             gameObject.SetActive(false);
-    }
-
-    public virtual void Move(bool isAction)
-    {
-        Moved?.Invoke();
     }
 
     protected async Task MovePanel(bool isActive)
