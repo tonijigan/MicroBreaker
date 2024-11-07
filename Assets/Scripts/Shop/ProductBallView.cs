@@ -10,6 +10,7 @@ public class ProductBallView : MonoBehaviour
     [SerializeField] private Button _buttonBuy;
     [SerializeField] private Image _imageChoosed;
     [SerializeField] private Image _imageBlock;
+    [SerializeField] private Image _imageTemplate;
 
     private AudioSource _audioSourceButton;
     private PanelProduct _panelProduct;
@@ -37,6 +38,7 @@ public class ProductBallView : MonoBehaviour
         _product = product;
         _name.text = product.Name;
         _price.text = product.Price.ToString();
+        _imageTemplate.sprite = product.Template.Sprite;
         _panelProduct = panelProduct;
         _audioSourceButton = audioSourceButton;
     }

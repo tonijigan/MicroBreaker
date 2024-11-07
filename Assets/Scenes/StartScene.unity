@@ -2172,7 +2172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436211291954668252, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: _duration
@@ -6816,6 +6816,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 75baedf4753561347966cbcad0f2d972, type: 3}
+    - target: {fileID: 3381318217365520571, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3383624665444680659, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: _wallet
       value: 
@@ -7196,6 +7200,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7891523429454269082, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7917503649488033205, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_SizeDelta.y
       value: -726.494
@@ -7284,6 +7292,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 75baedf4753561347966cbcad0f2d972, type: 3}
+    - target: {fileID: 8955244984602917757, guid: a4eccada9ea63444382749570395738a, type: 3}
+      propertyPath: m_CellSize.x
+      value: 565
+      objectReference: {fileID: 0}
     - target: {fileID: 8955852569166364771, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: _wallet
       value: 
