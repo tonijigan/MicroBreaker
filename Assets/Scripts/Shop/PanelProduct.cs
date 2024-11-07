@@ -8,22 +8,20 @@ public class PanelProduct : Panel
 {
     [SerializeField] private Button _buttonPay;
     [SerializeField] private Wallet _wallet;
-    [SerializeField] private TMP_Text _text;
+    [SerializeField] private TMP_Text _textNameTemplate;
+    [SerializeField] private TMP_Text _textPrice;
     [SerializeField] private Panel _backGround;
+    [SerializeField] private Image _imageTemplate;
+    [SerializeField] private Image _imageButtonBuy;
+    [SerializeField] private Color _startColor;
 
     public event Action Bought;
 
     private Product _product;
 
-    private void OnEnable()
-    {
-        _buttonPay.onClick.AddListener(OnListener);
-    }
+    private void OnEnable() => _buttonPay.onClick.AddListener(OnListener);
 
-    private void OnDisable()
-    {
-        _buttonPay.onClick.RemoveListener(OnListener);
-    }
+    private void OnDisable() => _buttonPay.onClick.RemoveListener(OnListener);
 
     public override async void Move(bool isAction)
     {
@@ -35,19 +33,23 @@ public class PanelProduct : Panel
     public void Init(Product product)
     {
         _product = product;
+        _imageTemplate.sprite = _product.Template.Sprite;
+        _textNameTemplate.text = _product.Name;
         AssignAccess();
     }
 
     private void AssignAccess()
     {
-        _text.text = _wallet.Coin < _product.Price ? "Недостаточно средств" : "К покупке готов";
+        _textPrice.text = _product.Price.ToString();
 
         if (_wallet.Coin < _product.Price)
         {
             _buttonPay.enabled = false;
+            SetColor(Color.red);
             return;
         }
 
+        SetColor(_startColor);
         _buttonPay.enabled = true;
     }
 
@@ -57,5 +59,12 @@ public class PanelProduct : Panel
         _product.Buy();
         Bought?.Invoke();
         Move(false);
+    }
+
+    private void SetColor(Color color)
+    {
+        _buttonPay.image.color = color;
+        _imageButtonBuy.color = color;
+        _textPrice.color = color;
     }
 }

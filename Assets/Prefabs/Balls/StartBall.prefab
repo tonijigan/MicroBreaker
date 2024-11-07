@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsName: 0
+  _sprite: {fileID: 21300000, guid: df2e74cca0bfae349991cbe8de728498, type: 3}
   _templateName: Black
   _price: 0

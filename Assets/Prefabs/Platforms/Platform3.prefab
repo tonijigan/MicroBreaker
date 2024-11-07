@@ -98,5 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectsName: 1
+  _sprite: {fileID: 21300000, guid: 90fbe2edfea16fb41945c73e6aa5621f, type: 3}
   _templateName: Grey
-  _price: 15
+  _price: 1000
