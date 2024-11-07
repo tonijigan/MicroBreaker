@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UpgradeView : MonoBehaviour
 {
     [SerializeField] private Button _button;
+    [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _priceText;
     [SerializeField] private TMP_Text _levelText;
     [SerializeField] private int _level;
@@ -18,15 +19,9 @@ public class UpgradeView : MonoBehaviour
 
     public int Price => _price;
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(OnClick);
-    }
+    private void OnEnable() => _button.onClick.AddListener(OnClick);
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnClick);
-    }
+    private void OnDisable() => _button.onClick.RemoveListener(OnClick);
 
     private void Start()
     {
@@ -34,9 +29,7 @@ public class UpgradeView : MonoBehaviour
         _levelText.text = $"{_level}x";
     }
 
-    private void OnClick()
-    {
-        UpgradeClicked?.Invoke(this);
-        Debug.Log($"Открыта панель купить прокачку цена - {_price}");
-    }
+    public void Init(Sprite sprite) => _image.sprite = sprite;
+
+    private void OnClick() => UpgradeClicked?.Invoke(this);
 }

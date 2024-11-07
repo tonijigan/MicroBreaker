@@ -7,10 +7,7 @@ public abstract class AbstractButton : MonoBehaviour
 {
     private Button _button;
 
-    private void Awake()
-    {
-        _button = GetComponent<Button>();
-    }
+    private void Awake() => InitAwake();
 
     private void OnEnable()
     {
@@ -21,6 +18,8 @@ public abstract class AbstractButton : MonoBehaviour
     {
         _button.onClick.RemoveListener(OnClick);
     }
+
+    protected virtual void InitAwake() => _button = GetComponent<Button>();
 
     protected abstract void OnClick();
 }
