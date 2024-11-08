@@ -11,10 +11,10 @@ public class ButtonUpgrade : AbstractButton
     [SerializeField] private Image _image;
     [SerializeField] private Image _imageBuy;
     [SerializeField] private Image _imageSelected;
-    [SerializeField] private PanelUpgrade _panelUpgrade;
     [SerializeField] private List<ImageUpgrade> _imageUpgradeViews;
 
     public event Action<ButtonUpgrade> UpgradClicked;
+    public event Action<ButtonUpgrade> Selected;
 
     public bool IsBuy { get; private set; } = false;
     public bool IsSelect { get; private set; } = false;
@@ -33,15 +33,15 @@ public class ButtonUpgrade : AbstractButton
 
     protected override void OnClick()
     {
+
         if (IsBuy == true)
         {
             SetSelect();
             SetState();
+            Selected?.Invoke(this);
             return;
         }
 
-        _panelUpgrade.gameObject.SetActive(true);
-        _panelUpgrade.Move(true);
         UpgradClicked?.Invoke(this);
     }
 

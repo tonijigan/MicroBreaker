@@ -18,7 +18,10 @@ public class UpgradeColection : MonoBehaviour
         _saveService.Loaded += OnLoadUpgrade;
 
         foreach (var upgrade in _buttonUpgrades)
+        {
             upgrade.UpgradClicked += OnClick;
+            upgrade.Selected += SaveSelect;
+        }
     }
 
     private void OnDisable()
@@ -26,7 +29,10 @@ public class UpgradeColection : MonoBehaviour
         _saveService.Loaded -= OnLoadUpgrade;
 
         foreach (var upgrade in _buttonUpgrades)
+        {
             upgrade.UpgradClicked -= OnClick;
+            upgrade.Selected -= SaveSelect;
+        }
     }
 
     private void OnLoadUpgrade()
@@ -37,6 +43,8 @@ public class UpgradeColection : MonoBehaviour
 
     private void SetStateButtonUpgrade()
     {
+        if (_upgradeList.Count <= 0) return;
+        Debug.Log("LOG");
         foreach (var upgrade in _upgradeList)
         {
             ButtonUpgrade buttonUpgrade = _buttonUpgrades.Where(button => button.UpgradeName.ToString() == upgrade.UpgradeName).FirstOrDefault();

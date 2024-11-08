@@ -11,5 +11,6 @@ public class TestRestartSave : AbstractButton
         _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Ball, new string[0]);
         _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Platform, new string[0]);
         _saveService.SaveArrayLocationNames(new string[0]);
+        _saveService.SaveUpgrade(new UpgradeSave[0]);
     }
 }
