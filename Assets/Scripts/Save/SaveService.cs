@@ -1,5 +1,7 @@
 using Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SaveService : MonoBehaviour
@@ -25,6 +27,8 @@ public class SaveService : MonoBehaviour
     public int LevelCount => _gameProgress.LevelCount;
 
     public string CurrentLocationName => _gameProgress.CurrentLocationName;
+
+    public IReadOnlyList<UpgradeSave> UpgradeSaves => _gameProgress.UpgradeSave.ToList();
 
     private void Start() => _saveGameProgress.Load();
 
@@ -68,6 +72,22 @@ public class SaveService : MonoBehaviour
             scale = _gameProgress.ScalePlatform;
 
         return scale;
+    }
+
+    public List<UpgradeSave> GetUpgradeSave()
+    {
+        return _gameProgress.UpgradeSave.ToList();
+    }
+
+    public void SaveUpgrade(UpgradeSave[] upgradeSaves)
+    {
+        _gameProgress.UpgradeSave = upgradeSaves;
+        Save();
+
+        for (int i = 0; i < _gameProgress.UpgradeSave.Length; i++)
+        {
+            Debug.Log(_gameProgress.UpgradeSave[i].UpgradeName);
+        }
     }
 
     public void SaveScale(bool isCanScale, ObjectsName objectsName)

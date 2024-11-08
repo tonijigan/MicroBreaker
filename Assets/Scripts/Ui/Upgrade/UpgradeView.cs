@@ -1,5 +1,3 @@
-using Enums;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,26 +8,30 @@ public class UpgradeView : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _priceText;
     [SerializeField] private TMP_Text _levelText;
-    [SerializeField] private int _level;
-    [SerializeField] private int _price;
+    [SerializeField] private Color _disableColor;
 
-    public event Action<UpgradeView> UpgradeClicked;
+    private Color _oldColor;
 
-    public int Level => _level;
+    public Button Button => _button;
 
-    public int Price => _price;
+    private void Awake() => _oldColor = _button.image.color;
 
-    private void OnEnable() => _button.onClick.AddListener(OnClick);
-
-    private void OnDisable() => _button.onClick.RemoveListener(OnClick);
-
-    private void Start()
+    public void Init(Sprite sprite, int price, int count)
     {
-        _priceText.text = _price.ToString();
-        _levelText.text = $"{_level}x";
+        _oldColor = _button.image.color;
+        _image.sprite = sprite;
+        _priceText.text = price.ToString();
+        _levelText.text = count.ToString();
     }
 
-    public void Init(Sprite sprite) => _image.sprite = sprite;
+    public void SetState(bool isEnable)
+    {
+        _button.image.color = _oldColor;
 
-    private void OnClick() => UpgradeClicked?.Invoke(this);
+        if (isEnable == false)
+        {
+            _button.image.color = _disableColor;
+            _button.enabled = isEnable;
+        }
+    }
 }

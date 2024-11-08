@@ -2,38 +2,66 @@ using Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonUpgrade : AbstractButton
 {
-    [SerializeField] private ObjectsName _objectsName;
     [SerializeField] private UpgradeName _upgradeName;
     [SerializeField] private Image _image;
+    [SerializeField] private Image _imageBuy;
+    [SerializeField] private Image _imageSelected;
     [SerializeField] private PanelUpgrade _panelUpgrade;
-    [SerializeField] private List<ImageUpgradeView> _imageUpgradeViews;
+    [SerializeField] private List<ImageUpgrade> _imageUpgradeViews;
 
-    public event Action<ImageUpgradeView> Upgraded;
+    public event Action<ButtonUpgrade> UpgradClicked;
 
-    private ImageUpgradeView _currentImageUpgradeView;
+    public bool IsBuy { get; private set; } = false;
+    public bool IsSelect { get; private set; } = false;
+
+    public UpgradeName UpgradeName => _upgradeName;
+
+    public ImageUpgrade ImageUpgrade { get; private set; }
 
     protected override void InitAwake()
     {
         base.InitAwake();
-        _currentImageUpgradeView = GetCurrentImageUpgrate();
-        _image.sprite = _currentImageUpgradeView.Sprite;
+        ImageUpgrade = GetCurrentImageUpgrate();
+        _image.sprite = ImageUpgrade.Sprite;
+        SetState();
     }
 
     protected override void OnClick()
     {
+        if (IsBuy == true)
+        {
+            SetSelect();
+            SetState();
+            return;
+        }
+
         _panelUpgrade.gameObject.SetActive(true);
         _panelUpgrade.Move(true);
-        Upgraded?.Invoke(_currentImageUpgradeView);
+        UpgradClicked?.Invoke(this);
     }
 
-    private ImageUpgradeView GetCurrentImageUpgrate()
+    public void SetBuy()
     {
-        return _imageUpgradeViews.Where(image => image.ObjectsName == _objectsName && image.UpgradeName == _upgradeName).FirstOrDefault();
+        IsBuy = !IsBuy;
+        SetSelect();
+        SetState();
+    }
+
+    private void SetSelect() => IsSelect = !IsSelect;
+
+    private void SetState()
+    {
+        _imageBuy.gameObject.SetActive(!IsBuy);
+        _imageSelected.gameObject.SetActive(IsSelect);
+    }
+
+    private ImageUpgrade GetCurrentImageUpgrate()
+    {
+        return _imageUpgradeViews.Where(image => image.UpgradeName == _upgradeName).FirstOrDefault();
     }
 }

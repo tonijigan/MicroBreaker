@@ -1,54 +1,51 @@
-using Enums;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelUpgrade : Panel
 {
     [SerializeField] private Panel _backGround;
-    [SerializeField] private Transform _upgradeViewContainer;
+    [SerializeField] private Transform _upgradeContainer;
     [SerializeField] private PanelBuyUpgrade _panelBuyUpgrade;
-    [SerializeField] private List<ButtonUpgrade> _buttonUpgrades;
     [SerializeField] private Image _image;
 
-    private UpgradeView[] _upgradeViews;
-    private ImageUpgradeView _imageUpgradeView;
+    private Upgrade[] _upgrades;
+
+    private ButtonUpgrade _currentButtonUpgrade;
 
     private void OnEnable()
     {
-        foreach (var upgradeView in _upgradeViews)
-            upgradeView.UpgradeClicked += OpenBuyCanUpgrade;
+        foreach (var upgrade in _upgrades)
+            upgrade.Clicked += OpenBuyCanUpgrade;
 
-        foreach (var buttonUpgrade in _buttonUpgrades)
-            buttonUpgrade.Upgraded += OnClick;
+        _panelBuyUpgrade.Buid += OnSetAccess;
     }
 
     private void OnDisable()
     {
-        foreach (var upgradeView in _upgradeViews)
-            upgradeView.UpgradeClicked -= OpenBuyCanUpgrade;
+        foreach (var upgrade in _upgrades)
+            upgrade.Clicked -= OpenBuyCanUpgrade;
 
-        foreach (var buttonUpgrade in _buttonUpgrades)
-            buttonUpgrade.Upgraded -= OnClick;
+        _panelBuyUpgrade.Buid -= OnSetAccess;
     }
 
-    private void OnClick(ImageUpgradeView imageUpgradeView)
+    public void Init(ButtonUpgrade buttonUpgrade)
     {
-        _imageUpgradeView = imageUpgradeView;
-        _image.sprite = _imageUpgradeView.Sprite;
+        _currentButtonUpgrade = buttonUpgrade;
+        ImageUpgrade imageUpgrade = _currentButtonUpgrade.ImageUpgrade;
+        _image.sprite = imageUpgrade.Sprite;
 
-        for (int i = 0; i < _upgradeViews.Length; i++)
-            _upgradeViews[i].Init(_image.sprite);
+        for (int i = 0; i < _upgrades.Length; i++)
+            _upgrades[i].Init(imageUpgrade.Sprite, imageUpgrade.UpgradeName);
     }
 
     protected override void InitAwake()
     {
-        _upgradeViews = new UpgradeView[_upgradeViewContainer.childCount];
+        _upgrades = new Upgrade[_upgradeContainer.childCount];
 
-        for (int i = 0; i < _upgradeViews.Length; i++)
+        for (int i = 0; i < _upgrades.Length; i++)
         {
-            _upgradeViewContainer.GetChild(i).TryGetComponent(out UpgradeView upgradeView);
-            _upgradeViews[i] = upgradeView;
+            _upgradeContainer.GetChild(i).TryGetComponent(out Upgrade upgrade);
+            _upgrades[i] = upgrade;
         }
         base.InitAwake();
     }
@@ -60,8 +57,16 @@ public class PanelUpgrade : Panel
         await MovePanel(isAction);
     }
 
-    private void OpenBuyCanUpgrade(UpgradeView upgradeView)
+    private void OnSetAccess(Upgrade upgrade)
     {
+        upgrade.SetState(false);
+        _currentButtonUpgrade.SetBuy();
+    }
+
+    private void OpenBuyCanUpgrade(Upgrade upgrade)
+    {
+        _panelBuyUpgrade.gameObject.SetActive(true);
+        _panelBuyUpgrade.Init(upgrade);
         _panelBuyUpgrade.Move(true);
     }
 }
