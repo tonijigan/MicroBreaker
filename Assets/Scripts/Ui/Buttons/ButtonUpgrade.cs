@@ -11,7 +11,7 @@ public class ButtonUpgrade : AbstractButton
     [SerializeField] private Image _image;
     [SerializeField] private Image _imageBuy;
     [SerializeField] private Image _imageSelected;
-    [SerializeField] private List<ImageUpgrade> _imageUpgradeViews;
+    [SerializeField] private List<UpgradeTemplate> _imageUpgradeViews;
 
     public event Action<ButtonUpgrade> UpgradClicked;
     public event Action<ButtonUpgrade> Selected;
@@ -21,7 +21,7 @@ public class ButtonUpgrade : AbstractButton
 
     public UpgradeName UpgradeName => _upgradeName;
 
-    public ImageUpgrade ImageUpgrade { get; private set; }
+    public UpgradeTemplate ImageUpgrade { get; private set; }
 
     protected override void InitAwake()
     {
@@ -33,7 +33,6 @@ public class ButtonUpgrade : AbstractButton
 
     protected override void OnClick()
     {
-
         if (IsBuy == true)
         {
             SetSelect();
@@ -60,7 +59,7 @@ public class ButtonUpgrade : AbstractButton
         _imageSelected.gameObject.SetActive(IsSelect);
     }
 
-    private ImageUpgrade GetCurrentImageUpgrate()
+    private UpgradeTemplate GetCurrentImageUpgrate()
     {
         return _imageUpgradeViews.Where(image => image.UpgradeName == _upgradeName).FirstOrDefault();
     }

@@ -11,7 +11,6 @@ public class SaveGameProgress
     public void Save(GameProgress gameProgress)
     {
         string json = JsonUtility.ToJson(gameProgress);
-        Debug.Log(json);
 #if UNITY_WEBGL && !UNITY_EDITOR
         PlayerAccount.SetCloudSaveData(json);
 #elif UNITY_EDITOR

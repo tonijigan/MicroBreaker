@@ -56,6 +56,7 @@ public class GameState : MonoBehaviour
     {
         _virtualEndCamera.Priority = Priority;
         _boostersContainer.Reset();
+        _boostersContainer.gameObject.SetActive(false);
         _waitForSeconds = new WaitForSeconds(DurationWin);
         PlayOpen(_panelWin, _waitForSeconds, () =>
         {
@@ -67,6 +68,7 @@ public class GameState : MonoBehaviour
     private void OpenPanelLoss()
     {
         _boostersContainer.Reset();
+        _boostersContainer.gameObject.SetActive(false);
         _waitForSeconds = new WaitForSeconds(DurationLoss);
         PlayOpen(_panelLoss, _waitForSeconds, () =>
         {
@@ -84,8 +86,8 @@ public class GameState : MonoBehaviour
 
     private IEnumerator MovePatel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
-        _playerInput.SetControl();
         _ballMovement.gameObject.SetActive(false);
+        _playerInput.SetControl();
         yield return waitForSeconds;
         panel.Move(true);
         action?.Invoke();

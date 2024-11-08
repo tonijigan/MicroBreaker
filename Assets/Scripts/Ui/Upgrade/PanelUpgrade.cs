@@ -1,53 +1,47 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PanelUpgrade : Panel
 {
+    private const int FirstMultiplier = 1;
+    private const int SecondMultiplier = 3;
+    private const int ThirdMultiplier = 9;
+
     [SerializeField] private Panel _backGround;
-    [SerializeField] private Transform _upgradeContainer;
     [SerializeField] private PanelBuyUpgrade _panelBuyUpgrade;
     [SerializeField] private Image _image;
-
-    private Upgrade[] _upgrades;
+    [SerializeField] private Upgrade _firstUpgrade;
+    [SerializeField] private Upgrade _secondUpgrade;
+    [SerializeField] private Upgrade _thirdUpgrate;
 
     private ButtonUpgrade _currentButtonUpgrade;
 
     private void OnEnable()
     {
-        foreach (var upgrade in _upgrades)
-            upgrade.Clicked += OpenBuyCanUpgrade;
-
+        _firstUpgrade.Clicked += OpenBuyCanUpgrade;
+        _secondUpgrade.Clicked += OpenBuyCanUpgrade;
+        _thirdUpgrate.Clicked += OpenBuyCanUpgrade;
         _panelBuyUpgrade.Buid += OnSetAccess;
     }
 
     private void OnDisable()
     {
-        foreach (var upgrade in _upgrades)
-            upgrade.Clicked -= OpenBuyCanUpgrade;
-
+        _firstUpgrade.Clicked -= OpenBuyCanUpgrade;
+        _secondUpgrade.Clicked -= OpenBuyCanUpgrade;
+        _thirdUpgrate.Clicked -= OpenBuyCanUpgrade;
         _panelBuyUpgrade.Buid -= OnSetAccess;
     }
 
     public void Init(ButtonUpgrade buttonUpgrade)
     {
         _currentButtonUpgrade = buttonUpgrade;
-        ImageUpgrade imageUpgrade = _currentButtonUpgrade.ImageUpgrade;
+        UpgradeTemplate imageUpgrade = _currentButtonUpgrade.ImageUpgrade;
         _image.sprite = imageUpgrade.Sprite;
 
-        for (int i = 0; i < _upgrades.Length; i++)
-            _upgrades[i].Init(imageUpgrade.Sprite, imageUpgrade.UpgradeName);
-    }
-
-    protected override void InitAwake()
-    {
-        _upgrades = new Upgrade[_upgradeContainer.childCount];
-
-        for (int i = 0; i < _upgrades.Length; i++)
-        {
-            _upgradeContainer.GetChild(i).TryGetComponent(out Upgrade upgrade);
-            _upgrades[i] = upgrade;
-        }
-        base.InitAwake();
+        _firstUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.FirstPrice, FirstMultiplier, imageUpgrade.UpgradeName);
+        _secondUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.SecondPrice, SecondMultiplier, imageUpgrade.UpgradeName);
+        _thirdUpgrate.Init(imageUpgrade.Sprite, imageUpgrade.ThirdPrice, ThirdMultiplier, imageUpgrade.UpgradeName);
     }
 
     public override async void Move(bool isAction)

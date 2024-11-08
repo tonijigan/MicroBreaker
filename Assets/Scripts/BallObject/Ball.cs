@@ -27,15 +27,9 @@ namespace BallObject
             BallEffect = GetComponent<BallEffect>();
         }
 
-        private void OnEnable()
-        {
-            _playerInput.MousePressedUp += DisconnectParentObject;
-        }
+        private void OnEnable() => _playerInput.MousePressedUp += DisconnectParentObject;
 
-        private void OnDisable()
-        {
-            _playerInput.MousePressedUp -= DisconnectParentObject;
-        }
+        private void OnDisable() => _playerInput.MousePressedUp -= DisconnectParentObject;
 
         public void DisconnectParentObject()
         {

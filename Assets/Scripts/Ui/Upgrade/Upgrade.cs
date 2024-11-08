@@ -5,18 +5,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(UpgradeView))]
 public class Upgrade : MonoBehaviour
 {
-    [SerializeField] private int _price;
-    [SerializeField] private int _count;
-
     private UpgradeView _upgradeView;
 
     public event Action<Upgrade> Clicked;
 
     public Sprite Sprite { get; private set; }
 
-    public int Price => _price;
+    public int Price { get; private set; }
 
-    public int Count => _count;
+    public int Count { get; private set; }
 
     public UpgradeName UpgradeName { get; private set; }
 
@@ -28,11 +25,13 @@ public class Upgrade : MonoBehaviour
 
     private void OnDisable() => _upgradeView.Button.onClick.RemoveListener(OnClick);
 
-    public void Init(Sprite sprite, UpgradeName upgradeName)
+    public void Init(Sprite sprite, int price, int count, UpgradeName upgradeName)
     {
         Sprite = sprite;
+        Price = price;
+        Count = count;
         UpgradeName = upgradeName;
-        _upgradeView.Init(Sprite, _price, _count);
+        _upgradeView.Init(Sprite, Price, Count);
     }
 
     public void SetState(bool isEnable)

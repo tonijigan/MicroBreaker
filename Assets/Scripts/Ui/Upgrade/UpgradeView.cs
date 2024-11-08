@@ -18,6 +18,7 @@ public class UpgradeView : MonoBehaviour
 
     public void Init(Sprite sprite, int price, int count)
     {
+        SetState(true);
         _oldColor = _button.image.color;
         _image.sprite = sprite;
         _priceText.text = price.ToString();
@@ -29,9 +30,8 @@ public class UpgradeView : MonoBehaviour
         _button.image.color = _oldColor;
 
         if (isEnable == false)
-        {
             _button.image.color = _disableColor;
-            _button.enabled = isEnable;
-        }
+
+        _button.enabled = isEnable;
     }
 }

@@ -35,7 +35,7 @@ public class Panel : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    protected async Task MovePanel(bool isActive)
+    protected async Task MovePanel(bool isActive, Action OnActive = null)
     {
         if (isActive == true)
             gameObject.SetActive(isActive);
@@ -46,5 +46,6 @@ public class Panel : MonoBehaviour
             await _rectTransform.DOAnchorPosY(_middlePosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
 
         gameObject.SetActive(isActive);
+        OnActive?.Invoke();
     }
 }

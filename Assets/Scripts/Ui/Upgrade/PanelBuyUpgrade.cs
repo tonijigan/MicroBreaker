@@ -15,11 +15,15 @@ public class PanelBuyUpgrade : Panel
 
     public event Action<Upgrade> Buid;
 
+    private Color _firstColor;
+
     private Upgrade _upgrade;
 
     private void OnEnable() => _buttonBuy.onClick.AddListener(Buy);
 
     private void OnDisable() => _buttonBuy.onClick.RemoveListener(Buy);
+
+    private void Start() => _firstColor = _buttonBuy.image.color;
 
     public override async void Move(bool isAction)
     {
@@ -36,6 +40,9 @@ public class PanelBuyUpgrade : Panel
 
     private void Buy()
     {
+        if (_wallet.Coin < _upgrade.Price) return;
+
+        _wallet.RemoveCoins(_upgrade.Price);
         _upgradeColection.SaveUpgrade(_upgrade);
         Move(false);
         Buid?.Invoke(_upgrade);
@@ -45,5 +52,10 @@ public class PanelBuyUpgrade : Panel
     {
         _currentImage.sprite = _upgrade.Sprite;
         _textPrice.text = _upgrade.Price.ToString();
+
+        if (_wallet.Coin < _upgrade.Price)
+        {
+            _buttonBuy.image.color = Color.red;
+        }
     }
 }

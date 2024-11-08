@@ -36576,6 +36576,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8436211291954668252, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
+      propertyPath: _duration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8876809251492471441, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -51435,6 +51439,7 @@ MonoBehaviour:
   _isActiveAtStart: 0
   _buttonTryAgain: {fileID: 727959939}
   _buttonContinue: {fileID: 858673958}
+  _panelFade: {fileID: 446064978}
   _time: {fileID: 447217614}
   _bluePowerUps: {fileID: 1539302797}
   _bricksSmashed: {fileID: 771508980}

@@ -1,10 +1,16 @@
 using UnityEngine;
 
-public class TestRestartSave : AbstractButton
+public class TestRestartSave : MonoBehaviour
 {
     [SerializeField] private SaveService _saveService;
 
-    protected override void OnClick()
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.L))
+            OnClick();
+    }
+
+    private void OnClick()
     {
         _saveService.SaveCurrentProduct(objectsName: Enums.ObjectsName.Ball, "");
         _saveService.SaveCurrentProduct(objectsName: Enums.ObjectsName.Platform, "");

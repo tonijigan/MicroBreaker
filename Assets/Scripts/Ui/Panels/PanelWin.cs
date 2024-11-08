@@ -8,6 +8,7 @@ public class PanelWin : Panel
 {
     [SerializeField] private Button _buttonTryAgain;
     [SerializeField] private Button _buttonContinue;
+    [SerializeField] private PanelFade _panelFade;
     [SerializeField] private TMP_Text _time;
     [SerializeField] private TMP_Text _bluePowerUps;
     [SerializeField] private TMP_Text _bricksSmashed;
@@ -43,9 +44,10 @@ public class PanelWin : Panel
         await MovePanel(isActive);
     }
 
-    private void OnClick(string sceneName)
+    private async void OnClick(string sceneName)
     {
-        Move(false);
-        Clicked?.Invoke(sceneName);
+        _panelFade.SetActive(false);
+        base.Move(false);
+        await MovePanel(false, () => Clicked?.Invoke(sceneName));
     }
 }
