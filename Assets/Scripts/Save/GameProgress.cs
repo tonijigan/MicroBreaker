@@ -10,5 +10,5 @@ public class GameProgress
     public string[] Balls = null;
     public string[] Platforms = null;
     public string[] LocationNames = null;
-    public UpgradeSave[] UpgradeSave = null;
+    public UpgradeData[] UpgradeSave = null;
 }

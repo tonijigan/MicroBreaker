@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class UpgradeSave
+public class UpgradeData
 {
     public string UpgradeName;
     public int Value;

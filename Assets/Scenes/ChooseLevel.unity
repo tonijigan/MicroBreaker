@@ -1796,8 +1796,7 @@ MonoBehaviour:
   _image: {fileID: 478600127}
   _imageBuy: {fileID: 252793714}
   _imageSelected: {fileID: 311100824}
-  _imageUpgradeViews:
-  - {fileID: 6799015468461318448, guid: 8d9479cddf8ee1442b665d8552af3619, type: 3}
+  _upgradeTemplates: []
 --- !u!114 &283141097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5617,8 +5616,7 @@ MonoBehaviour:
   _image: {fileID: 32471856}
   _imageBuy: {fileID: 1824308649}
   _imageSelected: {fileID: 1504023610}
-  _imageUpgradeViews:
-  - {fileID: 6799015468461318448, guid: 4fa172f904805d540af8464b87592d46, type: 3}
+  _upgradeTemplates: []
 --- !u!1 &1358157467
 GameObject:
   m_ObjectHideFlags: 3
@@ -10223,7 +10221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436211291954668252, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: _duration

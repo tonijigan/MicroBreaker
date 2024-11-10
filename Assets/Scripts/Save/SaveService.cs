@@ -28,7 +28,7 @@ public class SaveService : MonoBehaviour
 
     public string CurrentLocationName => _gameProgress.CurrentLocationName;
 
-    public IReadOnlyList<UpgradeSave> UpgradeSaves => _gameProgress.UpgradeSave.ToList();
+    public IReadOnlyList<UpgradeData> UpgradeSaves => _gameProgress.UpgradeSave.ToList();
 
     private void Start() => _saveGameProgress.Load();
 
@@ -74,12 +74,12 @@ public class SaveService : MonoBehaviour
         return scale;
     }
 
-    public List<UpgradeSave> GetUpgradeSave()
+    public List<UpgradeData> GetUpgradeData()
     {
         return _gameProgress.UpgradeSave.ToList();
     }
 
-    public void SaveUpgrade(UpgradeSave[] upgradeSaves)
+    public void SaveUpgrade(UpgradeData[] upgradeSaves)
     {
         _gameProgress.UpgradeSave = upgradeSaves;
         Save();

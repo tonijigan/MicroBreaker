@@ -34,10 +34,7 @@ public class Upgrade : MonoBehaviour
         _upgradeView.Init(Sprite, Price, Count);
     }
 
-    public void SetState(bool isEnable)
-    {
-        _upgradeView.SetState(isEnable);
-    }
+    public void SetState(bool isEnable) => _upgradeView.SetState(isEnable);
 
     private void OnClick() => Clicked?.Invoke(this);
 }

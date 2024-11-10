@@ -11,7 +11,7 @@ public class UpgradeColection : MonoBehaviour
     [SerializeField] private PanelUpgrade _panelUpgrade;
     [SerializeField] private SaveService _saveService;
 
-    private List<UpgradeSave> _upgradeList = new();
+    private List<UpgradeData> _upgradeList = new();
 
     private void OnEnable()
     {
@@ -37,14 +37,14 @@ public class UpgradeColection : MonoBehaviour
 
     private void OnLoadUpgrade()
     {
-        _upgradeList = _saveService.GetUpgradeSave();
+        _upgradeList = _saveService.GetUpgradeData();
         SetStateButtonUpgrade();
     }
 
     private void SetStateButtonUpgrade()
     {
         if (_upgradeList.Count <= 0) return;
-        Debug.Log("LOG");
+
         foreach (var upgrade in _upgradeList)
         {
             ButtonUpgrade buttonUpgrade = _buttonUpgrades.Where(button => button.UpgradeName.ToString() == upgrade.UpgradeName).FirstOrDefault();
@@ -75,7 +75,7 @@ public class UpgradeColection : MonoBehaviour
     {
         if (buttonUpgrade.IsBuy == false) return;
 
-        UpgradeSave upgrade = _upgradeList.Where(upgradeObject => upgradeObject.UpgradeName == buttonUpgrade.UpgradeName.ToString()).FirstOrDefault();
+        UpgradeData upgrade = _upgradeList.Where(upgradeObject => upgradeObject.UpgradeName == buttonUpgrade.UpgradeName.ToString()).FirstOrDefault();
         upgrade.ValueSelect = buttonUpgrade.IsSelect ? SelectMaxValue : SelectMinValue;
         _saveService.SaveUpgrade(_upgradeList.ToArray());
     }

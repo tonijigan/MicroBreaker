@@ -7,6 +7,8 @@ namespace BallObject
     [RequireComponent(typeof(Rigidbody), typeof(BallEffect))]
     public class Ball : MonoBehaviour
     {
+        private const int MaxExtraLive = 9;
+
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private Transform _ballPoint;
 
@@ -18,6 +20,8 @@ namespace BallObject
 
         public BallEffect BallEffect { get; private set; }
 
+        public int ExtraLive { get; private set; } = 0;
+
         public bool IsActive { get; private set; } = false;
 
         private void Awake()
@@ -25,11 +29,20 @@ namespace BallObject
             _transform = transform;
             Rigidbody = GetComponent<Rigidbody>();
             BallEffect = GetComponent<BallEffect>();
+            Debug.Log(ExtraLive);
         }
 
         private void OnEnable() => _playerInput.MousePressedUp += DisconnectParentObject;
 
         private void OnDisable() => _playerInput.MousePressedUp -= DisconnectParentObject;
+
+        public void AddExtraLive(int extraLive)
+        {
+            if (extraLive < 0 && extraLive > MaxExtraLive) return;
+
+            ExtraLive = extraLive;
+            Debug.Log(ExtraLive);
+        }
 
         public void DisconnectParentObject()
         {

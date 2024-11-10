@@ -36,7 +36,7 @@ public class PanelUpgrade : Panel
     public void Init(ButtonUpgrade buttonUpgrade)
     {
         _currentButtonUpgrade = buttonUpgrade;
-        UpgradeTemplate imageUpgrade = _currentButtonUpgrade.ImageUpgrade;
+        UpgradeTemplate imageUpgrade = _currentButtonUpgrade.UpgradeTemplate;
         _image.sprite = imageUpgrade.Sprite;
 
         _firstUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.FirstPrice, FirstMultiplier, imageUpgrade.UpgradeName);
