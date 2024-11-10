@@ -30,6 +30,7 @@ namespace BoxObject
                 {
                     BoosterEffect booster = boosterContainer.GetRandomBoosters(box.BoosterName);
                     _boxes[i] = box;
+                    _boxes[i].transform.rotation = box.transform.rotation;
 
                     if (booster == null)
                         _boxes[i].Init(_particleSystem);

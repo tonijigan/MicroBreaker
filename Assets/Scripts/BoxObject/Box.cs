@@ -31,12 +31,15 @@ namespace BoxObject
         private ParticleSystem _particleSystem;
         private bool _isCanDestruction = true;
 
+        public float Angle { get; private set; }
+
         public bool IsDead { get; private set; } = false;
 
         public BoosterNames BoosterName => _boosterName;
 
         private void Awake()
         {
+            Angle = transform.rotation.eulerAngles.y;
             _rigidbody = GetComponent<Rigidbody>();
             DisableBoxTemplate();
             GetTemplate(_boosterName).gameObject.SetActive(true);

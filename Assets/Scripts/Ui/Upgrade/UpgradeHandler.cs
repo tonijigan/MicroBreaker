@@ -23,7 +23,6 @@ public class UpgradeHandler : MonoBehaviour
 
     private void SetObjectUpgrade()
     {
-        Debug.Log($"Start: Platform scale = {_platfornModification.Transform.localScale} / Ball ExtraLive = {_ball.ExtraLive}");
         for (int i = 0; i < _upgradeValues.Count; i++)
         {
             if (_upgradeValues[i].UpgradeName == UpgradeName.ExtraLife.ToString() && _upgradeValues[i].IsSelect == true)
@@ -38,7 +37,6 @@ public class UpgradeHandler : MonoBehaviour
         }
 
         _saveService.SaveUpgrade(GetUpgradeValues());
-        Debug.Log($"SetUpgrade: Platform scale = {_platfornModification.Transform.localScale} / Ball ExtraLive = {_ball.ExtraLive}");
     }
 
     private List<UpgradeValue> GetUpgradeValues()

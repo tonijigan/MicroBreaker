@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 public class SwipeMove : MonoBehaviour
 {
     private const float ClampX = 9f;
-    private const float ClampYMin = -280;
+    private const float ClampYMin = -600;
     private const float ClampYMax = 10;
 
     [SerializeField] private LocationChooseInput _inputLocation;
-    [SerializeField] private float _speed = 1000;
+    [SerializeField] private float _speed = 1500;
 
     private Transform _transform;
     private Rigidbody _rigidbody;

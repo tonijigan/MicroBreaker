@@ -3,21 +3,23 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class LocationAnimation : MonoBehaviour
 {
     private const int HightPosition = 20;
     private const int MinValue = 0;
-    private const float FirstDuration = 0.5f;
-    private const float SecondDuration = 0.03f;
-    private const float FirstAngle = 360f;
+    private const float FirstDuration = 1f;
+    private const float SecondDuration = 0.05f;
+    private const float FirstAngle = 180f;
     private const float SecondAngle = 180f;
 
     private Box[] _boxesTransform;
     private Transform _transform;
     private Coroutine _coroutine;
     private WaitForSeconds _waitForSeconds = new(FirstDuration);
+    private float _currentAngle = 0;
 
     private void Start()
     {
@@ -57,7 +59,8 @@ public class LocationAnimation : MonoBehaviour
 
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
-            MoveWithRotate(positions[i], i, FirstDuration, FirstAngle);
+            _currentAngle = _boxesTransform[i].transform.rotation.eulerAngles.y - FirstAngle;
+            MoveWithRotate(positions[i], i, FirstDuration, _currentAngle);
             yield return _waitForSeconds = new(SecondDuration);
         }
 
@@ -65,13 +68,17 @@ public class LocationAnimation : MonoBehaviour
 
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
-            MoveWithRotate(positions[i] + Vector3.up, i, FirstDuration, SecondAngle);
+            _currentAngle = _boxesTransform[i].transform.rotation.eulerAngles.y - FirstAngle - SecondAngle;
+            MoveWithRotate(positions[i] + Vector3.up, i, FirstDuration, _currentAngle);
             yield return _waitForSeconds = new(SecondDuration);
         }
 
+        yield return _waitForSeconds = new(FirstDuration);
+
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
-            MoveWithRotate(positions[i], i, FirstDuration, SecondAngle);
+            _currentAngle = _boxesTransform[i].transform.rotation.eulerAngles.y - FirstAngle - SecondAngle;
+            MoveWithRotate(positions[i] + Vector3.up, i, FirstDuration, _currentAngle);
             yield return _waitForSeconds = new(SecondDuration);
         }
 
