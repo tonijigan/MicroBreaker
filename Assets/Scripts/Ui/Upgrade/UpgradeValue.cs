@@ -7,12 +7,22 @@ public class UpgradeValue
 
     public int Value { get; private set; }
 
-    public bool Select { get; private set; }
+    public bool IsSelect { get; private set; }
 
     public UpgradeValue(string upgradeName, int value, int selectValue)
     {
         UpgradeName = upgradeName;
         Value = value;
-        Select = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
+        IsSelect = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
+    }
+
+    public void SetSelect(bool isSelect)
+    {
+        IsSelect = isSelect;
+    }
+
+    public int GetSelectValue()
+    {
+        return IsSelect ? MaxSelectValue : MinSelectValue;
     }
 }

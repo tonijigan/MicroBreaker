@@ -74,20 +74,36 @@ public class SaveService : MonoBehaviour
         return scale;
     }
 
-    public List<UpgradeData> GetUpgradeData()
+    public List<UpgradeValue> GetUpgradeValues()
     {
-        return _gameProgress.UpgradeSave.ToList();
-    }
-
-    public void SaveUpgrade(UpgradeData[] upgradeSaves)
-    {
-        _gameProgress.UpgradeSave = upgradeSaves;
-        Save();
+        List<UpgradeValue> upgradeValues = new();
 
         for (int i = 0; i < _gameProgress.UpgradeSave.Length; i++)
         {
-            Debug.Log(_gameProgress.UpgradeSave[i].UpgradeName);
+            upgradeValues.Add(new(_gameProgress.UpgradeSave[i].UpgradeName,
+                                  _gameProgress.UpgradeSave[i].Value,
+                                  _gameProgress.UpgradeSave[i].ValueSelect));
         }
+
+        return upgradeValues;
+    }
+
+    public void SaveUpgrade(List<UpgradeValue> upgradeValues)
+    {
+        List<UpgradeData> upgradeData = new();
+
+        for (int i = 0; i < upgradeValues.Count; i++)
+        {
+            upgradeData.Add(new UpgradeData()
+            {
+                UpgradeName = upgradeValues[i].UpgradeName,
+                Value = upgradeValues[i].Value,
+                ValueSelect = upgradeValues[i].GetSelectValue()
+            });
+        }
+
+        _gameProgress.UpgradeSave = upgradeData.ToArray();
+        Save();
     }
 
     public void SaveScale(bool isCanScale, ObjectsName objectsName)

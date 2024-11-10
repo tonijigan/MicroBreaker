@@ -10,8 +10,6 @@ public class PlatfornModification : ObjectModification
 
     public override void SetDefultScale(bool isSetBooster) => ChangeScale(new Vector3(DefultScaleValue, DefultScaleValue, DefultScaleValue));
 
-    public void SetUpgradeScale(float scale)
-    {
-        ChangeScale(new Vector3(Transform.localScale.x * (FirstUpgradeValue * scale), Transform.localScale.y, Transform.localScale.z));
-    }
+    public void SetUpgradeScale(float scale) =>
+        ChangeScale(new Vector3(Transform.localScale.x + (scale * FirstUpgradeValue), Transform.localScale.y, Transform.localScale.z));
 }

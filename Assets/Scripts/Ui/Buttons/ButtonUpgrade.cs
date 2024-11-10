@@ -44,8 +44,9 @@ public class ButtonUpgrade : AbstractButton
         UpgradClicked?.Invoke(this);
     }
 
-    public void SetBuy()
+    public void SetBuy(bool isSelect)
     {
+        IsSelect = !isSelect;
         IsBuy = !IsBuy;
         SetSelect();
         SetState();

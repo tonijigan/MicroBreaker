@@ -5,13 +5,13 @@ using UnityEngine;
 public class UpgradeColection : MonoBehaviour
 {
     private const int SelectMaxValue = 1;
-    private const int SelectMinValue = 0;
+    private const int MinValue = 0;
 
     [SerializeField] private List<ButtonUpgrade> _buttonUpgrades;
     [SerializeField] private PanelUpgrade _panelUpgrade;
     [SerializeField] private SaveService _saveService;
 
-    private List<UpgradeData> _upgradeList = new();
+    private List<UpgradeValue> _upgradeValues = new();
 
     private void OnEnable()
     {
@@ -37,30 +37,25 @@ public class UpgradeColection : MonoBehaviour
 
     private void OnLoadUpgrade()
     {
-        _upgradeList = _saveService.GetUpgradeData();
+        _upgradeValues = _saveService.GetUpgradeValues();
         SetStateButtonUpgrade();
     }
 
     private void SetStateButtonUpgrade()
     {
-        if (_upgradeList.Count <= 0) return;
+        if (_upgradeValues.Count <= MinValue) return;
 
-        foreach (var upgrade in _upgradeList)
+        foreach (var upgradeValue in _upgradeValues)
         {
-            ButtonUpgrade buttonUpgrade = _buttonUpgrades.Where(button => button.UpgradeName.ToString() == upgrade.UpgradeName).FirstOrDefault();
-            buttonUpgrade.SetBuy();
+            ButtonUpgrade buttonUpgrade = _buttonUpgrades.Where(button => button.UpgradeName.ToString() == upgradeValue.UpgradeName).FirstOrDefault();
+            buttonUpgrade.SetBuy(upgradeValue.IsSelect);
         }
     }
 
     public void SaveUpgrade(Upgrade upgrade)
     {
-        _upgradeList.Add(new()
-        {
-            UpgradeName = upgrade.UpgradeName.ToString(),
-            Value = upgrade.Count,
-            ValueSelect = SelectMaxValue
-        });
-        _saveService.SaveUpgrade(_upgradeList.ToArray());
+        _upgradeValues.Add(new(upgrade.UpgradeName.ToString(), upgrade.Count, SelectMaxValue));
+        _saveService.SaveUpgrade(_upgradeValues);
     }
 
     private void OnClick(ButtonUpgrade buttonUpgrade)
@@ -75,8 +70,8 @@ public class UpgradeColection : MonoBehaviour
     {
         if (buttonUpgrade.IsBuy == false) return;
 
-        UpgradeData upgrade = _upgradeList.Where(upgradeObject => upgradeObject.UpgradeName == buttonUpgrade.UpgradeName.ToString()).FirstOrDefault();
-        upgrade.ValueSelect = buttonUpgrade.IsSelect ? SelectMaxValue : SelectMinValue;
-        _saveService.SaveUpgrade(_upgradeList.ToArray());
+        UpgradeValue upgradeValue = _upgradeValues.Where(upgradeObject => upgradeObject.UpgradeName == buttonUpgrade.UpgradeName.ToString()).FirstOrDefault();
+        upgradeValue.SetSelect(buttonUpgrade.IsSelect);
+        _saveService.SaveUpgrade(_upgradeValues);
     }
 }

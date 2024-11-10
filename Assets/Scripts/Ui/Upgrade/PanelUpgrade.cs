@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,7 +53,7 @@ public class PanelUpgrade : Panel
     private void OnSetAccess(Upgrade upgrade)
     {
         upgrade.SetState(false);
-        _currentButtonUpgrade.SetBuy();
+        _currentButtonUpgrade.SetBuy(true);
     }
 
     private void OpenBuyCanUpgrade(Upgrade upgrade)

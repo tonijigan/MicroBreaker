@@ -12,18 +12,16 @@ public class PanelBuyUpgrade : Panel
     [SerializeField] private TMP_Text _textPrice;
     [SerializeField] private Image _currentImage;
     [SerializeField] private UpgradeColection _upgradeColection;
+    [SerializeField] private Color _firstColor;
 
     public event Action<Upgrade> Buid;
 
-    private Color _firstColor;
 
     private Upgrade _upgrade;
 
     private void OnEnable() => _buttonBuy.onClick.AddListener(Buy);
 
     private void OnDisable() => _buttonBuy.onClick.RemoveListener(Buy);
-
-    private void Start() => _firstColor = _buttonBuy.image.color;
 
     public override async void Move(bool isAction)
     {
@@ -56,6 +54,9 @@ public class PanelBuyUpgrade : Panel
         if (_wallet.Coin < _upgrade.Price)
         {
             _buttonBuy.image.color = Color.red;
+            return;
         }
+
+        _buttonBuy.image.color = _firstColor;
     }
 }
