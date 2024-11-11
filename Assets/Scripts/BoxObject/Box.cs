@@ -25,11 +25,12 @@ namespace BoxObject
         public event Action Died;
         public event Action<AudioClip> Damaged;
 
-        private Rigidbody _rigidbody;
         private BoosterEffect _booster;
         private WaitForSeconds _waitForSeconds;
         private ParticleSystem _particleSystem;
         private bool _isCanDestruction = true;
+
+        public Rigidbody Rigidbody { get; private set; }
 
         public float Angle { get; private set; }
 
@@ -40,12 +41,10 @@ namespace BoxObject
         private void Awake()
         {
             Angle = transform.rotation.eulerAngles.y;
-            _rigidbody = GetComponent<Rigidbody>();
+            Rigidbody = GetComponent<Rigidbody>();
             DisableBoxTemplate();
             GetTemplate(_boosterName).gameObject.SetActive(true);
         }
-
-        public void SetChangeCanDestruction() => _isCanDestruction = !_isCanDestruction;
 
         public void SetName(BoosterNames boosterNames)
         {
@@ -62,7 +61,7 @@ namespace BoxObject
                 box.gameObject.SetActive(false);
         }
 
-        public void SetKinematic(bool isKinematic) => _rigidbody.isKinematic = isKinematic;
+        public void SetKinematic(bool isKinematic) => Rigidbody.isKinematic = isKinematic;
 
         public void Init(BoosterEffect booster, ParticleSystem particleSystem)
         {

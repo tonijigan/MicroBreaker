@@ -27,6 +27,6 @@ public class BoosterDisableDestruction : AbstractBooster
         if (_boxesFalling.IsActive == false) return;
 
         foreach (var box in _boxesFalling.Boxes)
-            box.SetChangeCanDestruction();
+            box.Rigidbody.isKinematic = !box.Rigidbody.isKinematic;
     }
 }

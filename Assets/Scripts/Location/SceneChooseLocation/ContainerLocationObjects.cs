@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,9 +7,12 @@ public class ContainerLocationObjects : MonoBehaviour
 {
     [SerializeField] private SaveService _saveService;
 
+    public event Action<LocationObject> Filled;
+
     private Transform _transform;
 
     private LocationObject[] _locationObjects;
+
 
     private void Awake()
     {
@@ -37,11 +41,17 @@ public class ContainerLocationObjects : MonoBehaviour
 
         if (_saveService.LocationNames != null)
         {
-            foreach (var name in _saveService.LocationNames)
+            List<LocationObject> locationObjects = new();
+
+            for (int i = 0; i < _saveService.LocationNames.Length; i++)
             {
-                var locationObjects = _locationObjects.Where(location => location.Name.ToString() == name).FirstOrDefault();
-                locationObjects.SetPassed(true);
+                locationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationNames[i]).FirstOrDefault());
+                locationObjects[i].SetPassed(true);
+                locationObjects[i].SetActive();
             }
+
+            _locationObjects[locationObjects.Count].SetActive();
+            Filled?.Invoke(_locationObjects[locationObjects.Count]);
         }
     }
 }

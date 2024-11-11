@@ -21,7 +21,7 @@ namespace BallObject
 
         public BallEffect BallEffect { get; private set; }
 
-        public int ExtraLive { get; private set; } = 2;
+        public int ExtraLive { get; private set; } = 0;
 
         public bool IsActive { get; private set; } = false;
 
@@ -46,7 +46,7 @@ namespace BallObject
 
         public void GiveLive()
         {
-           // ExtraLive--;
+            ExtraLive--;
             ExtraLiveChanged?.Invoke(ExtraLive);
             gameObject.SetActive(true);
         }

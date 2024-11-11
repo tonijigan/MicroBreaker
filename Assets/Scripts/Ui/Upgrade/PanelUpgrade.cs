@@ -54,6 +54,7 @@ public class PanelUpgrade : Panel
     {
         upgrade.SetState(false);
         _currentButtonUpgrade.SetBuy(true);
+        Move(false);
     }
 
     private void OpenBuyCanUpgrade(Upgrade upgrade)

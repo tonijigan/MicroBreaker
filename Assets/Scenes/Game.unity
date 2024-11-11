@@ -36607,7 +36607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8124081127294371610, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436211291954668252, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: _duration
@@ -124023,7 +124023,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 100
-  field of view: 60.000004
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -124049,8 +124049,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19594607, y: 0, z: 0, w: 0.98061466}
-  m_LocalPosition: {x: 0, y: 5.9, z: -11.46}
+  m_LocalRotation: {x: 0.32303378, y: -0.06323609, z: 0.02163862, w: 0.9440245}
+  m_LocalPosition: {x: 6.43, y: 39.370003, z: -37.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124952,7 +124952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418020782426431192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32303378, y: -0.06323606, z: 0.021638611, w: 0.9440245}
+  m_LocalRotation: {x: 0.32303378, y: -0.06323609, z: 0.02163862, w: 0.9440245}
   m_LocalPosition: {x: 6.43, y: 39.370003, z: -37.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -125268,8 +125268,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 14}
+  m_Size: {x: 20, y: 13, z: 2}
+  m_Center: {x: 0, y: 6, z: 14}
 --- !u!114 &6429304300636754090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125427,8 +125427,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 25.5}
-  m_Center: {x: 9, y: 1, z: 0}
+  m_Size: {x: 2, y: 13, z: 25.5}
+  m_Center: {x: 9, y: 6, z: 0}
 --- !u!114 &7335373852384905631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125668,8 +125668,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 25.5}
-  m_Center: {x: -9, y: 1, z: 0}
+  m_Size: {x: 2, y: 13, z: 25.5}
+  m_Center: {x: -9, y: 6, z: 0}
 --- !u!114 &8691371505871900794
 MonoBehaviour:
   m_ObjectHideFlags: 0
