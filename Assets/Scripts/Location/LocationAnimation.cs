@@ -10,8 +10,8 @@ public class LocationAnimation : MonoBehaviour
 {
     private const int HightPosition = 20;
     private const int MinValue = 0;
-    private const float FirstDuration = 1f;
-    private const float SecondDuration = 0.05f;
+    private const float FirstDuration = 0.5f;
+    private const float SecondDuration = 0.01f;
     private const float FirstAngle = 180f;
     private const float SecondAngle = 180f;
 
@@ -78,10 +78,11 @@ public class LocationAnimation : MonoBehaviour
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
             _currentAngle = _boxesTransform[i].transform.rotation.eulerAngles.y - FirstAngle - SecondAngle;
-            MoveWithRotate(positions[i] + Vector3.up, i, FirstDuration, _currentAngle);
+            MoveWithRotate(positions[i], i, FirstDuration, _currentAngle);
             yield return _waitForSeconds = new(SecondDuration);
         }
 
+        yield return _waitForSeconds = new(FirstDuration);
         Stated?.Invoke();
         StopCoroutine(_coroutine);
     }
