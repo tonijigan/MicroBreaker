@@ -9,7 +9,7 @@ public class GameProgress
     public string CurrentPlatform = string.Empty;
     public string[] Balls = null;
     public string[] Platforms = null;
-    public string[] LocationNames = null;
-    public LocationObjectData[] LocationObjectAccess = null;
+    // public string[] LocationNames = null;
+    public LocationObjectData[] LocationObjectData = null;
     public UpgradeData[] UpgradeSave = null;
 }

@@ -96,9 +96,9 @@ public class GameState : MonoBehaviour
     private void SaveGameProgress()
     {
         _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
-        List<string> list = _saveService.LocationNames.ToList();
-        list.Add(_counter.CurrentLocation.LocationName);
-        _saveService.SaveArrayLocationNames(list.ToArray());
+        List<LocationObjectData> locationObjectData = _saveService.LocationObjectDatas.ToList();
+        locationObjectData.Add(new LocationObjectData() { LocationName = _counter.CurrentLocation.LocationName, Active = 1, Passed = 1 });
+        _saveService.SaveLocationObjectsNameData(locationObjectData);
     }
 
     private void LoadScene(string sceneName)

@@ -22,7 +22,8 @@ public class SaveService : MonoBehaviour
 
     public string[] Platforms => _gameProgress.Platforms;
 
-    public string[] LocationNames => _gameProgress.LocationNames;
+    public LocationObjectData[] LocationObjectDatas => _gameProgress.LocationObjectData;
+    // public string[] LocationNames => _gameProgress.LocationNames;
 
     public int LevelCount => _gameProgress.LevelCount;
 
@@ -88,12 +89,12 @@ public class SaveService : MonoBehaviour
 
     public List<LocationObjectData> GetLocationNamesData()
     {
-        return _gameProgress.LocationObjectAccess.ToList();
+        return _gameProgress.LocationObjectData.ToList();
     }
 
     public void SaveLocationObjectsNameData(List<LocationObjectData> locationObjectDatas)
     {
-        _gameProgress.LocationObjectAccess = locationObjectDatas.ToArray();
+        _gameProgress.LocationObjectData = locationObjectDatas.ToArray();
         Save();
     }
 
@@ -148,11 +149,11 @@ public class SaveService : MonoBehaviour
         Save();
     }
 
-    public void SaveArrayLocationNames(string[] LocationNames)
-    {
-        _gameProgress.LocationNames = LocationNames;
-        Save();
-    }
+    //public void SaveArrayLocationNames(string[] LocationNames)
+    //{
+    //    _gameProgress.LocationNames = LocationNames;
+    //    Save();
+    //}
 
     public void SaveCoins(int amount)
     {

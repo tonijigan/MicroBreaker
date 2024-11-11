@@ -4,6 +4,6 @@ using System;
 public class LocationObjectData
 {
     public string LocationName;
+    public int Active;
     public int Passed;
-    public int Action;
 }

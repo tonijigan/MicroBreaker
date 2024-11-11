@@ -41,29 +41,52 @@ public class ContainerLocationObjects : MonoBehaviour
             _locationObjects[i] = locationObject;
         }
 
-        if (_saveService.LocationNames != null)
+        if (_saveService.LocationObjectDatas == null)
         {
-            foreach (var item in _saveService.LocationNames)
-            {
-                Debug.Log(item);
-            }
-
-            List<LocationObject> locationObjects = new();
-
-            for (int i = 0; i < _saveService.LocationNames.Length; i++)
-            {
-                locationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationNames[i]).FirstOrDefault());
-                locationObjects[i].SetPassed(true);
-                locationObjects[i].SetActive();
-            }
-
-            List<LocationObject> identicalLocations = _locationObjects.Where(location => location.Name.ToString().
-                                                            Contains(_locationObjects[locationObjects.Count].Name.ToString())).ToList();
-
-            foreach (LocationObject identicalLocation in identicalLocations)
-                identicalLocation.SetActive();
-
-            Filled?.Invoke(identicalLocations);
+            //Debug.Log("Start");
+            //_saveService.SaveLocationObjectsNameData(new List<LocationObjectData>()
+            //{ new() { LocationName = _locationObjects[0].Name.ToString(),
+            //          Active = _locationObjects[0].IsActive == true ? 1 : 0,
+            //          Passed = _locationObjects[0].IsPassed == true ? 1 : 0} });
+            return;
         }
+
+        foreach (var item in _saveService.LocationObjectDatas)
+        {
+            Debug.Log($"{item.LocationName} /A {item.Active} /P {item.Passed}");
+        }
+
+        List<LocationObject> newLocationObjects = new();
+
+        for (int i = 0; i < _saveService.LocationObjectDatas.Length; i++)
+        {
+            newLocationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationObjectDatas[i].LocationName).FirstOrDefault());
+            newLocationObjects[i].SetPassed(true);
+            newLocationObjects[i].SetActive();
+        }
+
+        List<LocationObject> identicalLocations = _locationObjects.Where(location => location.Name.ToString().
+                                                        Contains(_locationObjects[newLocationObjects.Count].Name.ToString())).ToList();
+
+        foreach (var locationObject in identicalLocations)
+        {
+            Debug.Log(locationObject.Name);
+            locationObject.SetActive();
+            newLocationObjects.Add(locationObject);
+        }
+
+        List<LocationObjectData> locationObjectDatas = new List<LocationObjectData>();
+
+        for (int i = 0; i < newLocationObjects.Count; i++)
+        {
+            locationObjectDatas.Add(new LocationObjectData()
+            {
+                LocationName = newLocationObjects[i].Name.ToString(),
+                Active = newLocationObjects[i].IsActive == true ? 1 : 0,
+                Passed = newLocationObjects[i].IsPassed == true ? 1 : 0,
+            });
+        }
+
+        Filled?.Invoke(identicalLocations);
     }
 }
