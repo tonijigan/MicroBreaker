@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Rigidbody))]
 public class SwipeMove : MonoBehaviour
 {
-    private const float ClampX = 9f;
-    private const float ClampYMin = -1000;
+    private const float ClampX = 60f;
+    private const float ClampYMin = -1500;
     private const float ClampYMax = 10;
 
     [SerializeField] private LocationChooseInput _inputLocation;
