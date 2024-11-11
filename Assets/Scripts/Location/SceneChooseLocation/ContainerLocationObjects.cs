@@ -1,13 +1,15 @@
+using Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ContainerLocationObjects : MonoBehaviour
 {
     [SerializeField] private SaveService _saveService;
 
-    public event Action<LocationObject> Filled;
+    public event Action<List<LocationObject>> Filled;
 
     private Transform _transform;
 
@@ -41,6 +43,11 @@ public class ContainerLocationObjects : MonoBehaviour
 
         if (_saveService.LocationNames != null)
         {
+            foreach (var item in _saveService.LocationNames)
+            {
+                Debug.Log(item);
+            }
+
             List<LocationObject> locationObjects = new();
 
             for (int i = 0; i < _saveService.LocationNames.Length; i++)
@@ -50,8 +57,13 @@ public class ContainerLocationObjects : MonoBehaviour
                 locationObjects[i].SetActive();
             }
 
-            _locationObjects[locationObjects.Count].SetActive();
-            Filled?.Invoke(_locationObjects[locationObjects.Count]);
+            List<LocationObject> identicalLocations = _locationObjects.Where(location => location.Name.ToString().
+                                                            Contains(_locationObjects[locationObjects.Count].Name.ToString())).ToList();
+
+            foreach (LocationObject identicalLocation in identicalLocations)
+                identicalLocation.SetActive();
+
+            Filled?.Invoke(identicalLocations);
         }
     }
 }

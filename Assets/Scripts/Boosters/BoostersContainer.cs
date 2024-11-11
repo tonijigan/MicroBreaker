@@ -30,9 +30,7 @@ namespace Boosters
         private void OnDisable()
         {
             foreach (var booster in _boosters)
-            {
                 booster.TimeRunning -= PlaySound;
-            }
         }
 
         public BoosterEffect GetRandomBoosters(BoosterNames boxName)
@@ -51,10 +49,7 @@ namespace Boosters
         public void Reset()
         {
             foreach (var booster in _boosters)
-            {
-                booster.TimeRunning -= PlaySound;
                 booster.StopAction(booster.BoosterEffect);
-            }
         }
 
         private void PlaySound()

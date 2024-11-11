@@ -16,6 +16,7 @@ public class LocationObject : MonoBehaviour
     [SerializeField] private Transform _boxTransform;
 
     private Color _startColor;
+    private Material _material;
 
     public bool IsPassed { get; private set; } = false;
 
@@ -25,6 +26,7 @@ public class LocationObject : MonoBehaviour
 
     private void Start()
     {
+        _material = _boxTransform.GetComponent<MeshRenderer>().material;
         _startColor = _boxTransform.GetComponent<MeshRenderer>().material.color;
 
         if (_isActive == false) _boxTransform.GetComponent<MeshRenderer>().material.color = Color.blue;
@@ -36,7 +38,10 @@ public class LocationObject : MonoBehaviour
     public void SetActive()
     {
         if (IsPassed == false)
+        {
+            _boxTransform.GetComponent<MeshRenderer>().material = _material;
             _boxTransform.GetComponent<MeshRenderer>().material.color = _startColor;
+        }
 
         _isActive = true;
     }
