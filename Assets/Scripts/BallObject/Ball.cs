@@ -13,6 +13,7 @@ namespace BallObject
         [SerializeField] private Transform _ballPoint;
 
         public event Action Actived;
+        public event Action<int> ExtraLiveChanged;
 
         private Transform _transform;
 
@@ -20,7 +21,7 @@ namespace BallObject
 
         public BallEffect BallEffect { get; private set; }
 
-        public int ExtraLive { get; private set; } = 0;
+        public int ExtraLive { get; private set; } = 2;
 
         public bool IsActive { get; private set; } = false;
 
@@ -40,7 +41,21 @@ namespace BallObject
             if (extraLive < 0 && extraLive > MaxExtraLive) return;
 
             ExtraLive = extraLive;
-            Debug.Log(ExtraLive);
+            ExtraLiveChanged?.Invoke(ExtraLive);
+        }
+
+        public void GiveLive()
+        {
+            ExtraLive--;
+            ExtraLiveChanged?.Invoke(ExtraLive);
+            gameObject.SetActive(true);
+        }
+
+        public void Die()
+        {
+            IsActive = false;
+            BallEffect.SetStateEffect(false);
+            gameObject.SetActive(false);
         }
 
         public void DisconnectParentObject()
@@ -49,6 +64,7 @@ namespace BallObject
                 return;
 
             IsActive = true;
+            BallEffect.SetStateEffect(true);
             _transform.parent = default;
             Actived?.Invoke();
         }

@@ -12,12 +12,24 @@ namespace PlatformObject
         [SerializeField] private AudioSource _audioSourceEffect;
         [SerializeField] private AudioClip _audioClipExplosion;
         [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private Transform _startPoint;
         [SerializeField] private float _speedForceBall;
+
+        private void Start() => SetStartState();
+
+        private void SetStartState() => _inputPointMovement.transform.position = _startPoint.position;
 
         public void Play(Vector3 point)
         {
             _particleSystem.transform.position = point;
             _particleSystem.Play();
+        }
+
+        public void GiveLive()
+        {
+            _transformTemplateContainer.gameObject.SetActive(true);
+            _inputPointMovement.gameObject.SetActive(true);
+            SetStartState();
         }
 
         public void Die()
