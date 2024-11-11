@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,12 +21,12 @@ public class LaserGun : MonoBehaviour
 
     private void Awake() => Create();
 
-    public void Shooting()
+    public void Shooting(Action shotBack)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(EnableBullets());
+        _coroutine = StartCoroutine(EnableBullets(shotBack));
     }
 
     public void StopShoot()
@@ -46,7 +47,7 @@ public class LaserGun : MonoBehaviour
         }
     }
 
-    private IEnumerator EnableBullets()
+    private IEnumerator EnableBullets(Action shotBack)
     {
         foreach (var laserBullet in _laserBullets)
         {
@@ -56,6 +57,7 @@ public class LaserGun : MonoBehaviour
             yield return _waitForSeconds;
         }
 
+        shotBack?.Invoke();
         StopCoroutine(_coroutine);
     }
 

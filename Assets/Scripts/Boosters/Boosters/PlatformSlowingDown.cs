@@ -19,5 +19,6 @@ public class PlatformSlowingDown : AbstractBooster
     {
         _platformMovement.ChangePlatformSpeed(Speed);
         boosterEffect.SetActionActive();
+        PlayTimer(5, boosterEffect, StopAction);
     }
 }

@@ -46,5 +46,6 @@ public class BoosterShield : AbstractBooster, ITrigger, ISound
         _shieldObject.gameObject.SetActive(true);
         _triggerLoss.gameObject.SetActive(false);
         boosterEffect.SetActionActive();
+        PlayTimer(5, boosterEffect, StopAction);
     }
 }

@@ -20,5 +20,6 @@ public class BoosterPortal : AbstractBooster
         _portal.Open(true);
         _triggerLoss.Collider.enabled = false;
         boosterEffect.SetActionActive();
+        PlayTimer(5, boosterEffect, StopAction);
     }
 }

@@ -18,5 +18,6 @@ public class BoosterGravity : AbstractBooster
     {
         _ballMovement.SetGravity();
         boosterEffect.SetActionActive();
+        PlayTimer(5, boosterEffect, StopAction);
     }
 }

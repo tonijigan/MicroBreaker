@@ -19,6 +19,7 @@ public class BoosterDisableDestruction : AbstractBooster
         ActiveCanDestructionBoxs();
         _locationCreate.ActiveCanDestructionBoxs();
         boosterEffect.SetActionActive();
+        PlayTimer(5, boosterEffect, StopAction);
     }
 
     private void ActiveCanDestructionBoxs()
