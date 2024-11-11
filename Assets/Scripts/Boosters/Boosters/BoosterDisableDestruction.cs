@@ -8,6 +8,8 @@ public class BoosterDisableDestruction : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         _locationCreate.ActiveCanDestructionBoxs();
         boosterEffect.SetActionActive();
     }

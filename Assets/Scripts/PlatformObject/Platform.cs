@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace PlatformObject
 {
+    [RequireComponent(typeof(Collider))]
     public class Platform : MonoBehaviour, ITrigger, ISound
     {
         [SerializeField] private InputPointMovement _inputPointMovement;
@@ -15,10 +16,15 @@ namespace PlatformObject
         [SerializeField] private Transform _startPoint;
         [SerializeField] private float _speedForceBall;
 
+        private Collider _collider;
+
         private void Start() => SetStartState();
 
-        private void SetStartState() => _inputPointMovement.transform.position = _startPoint.position;
-
+        private void SetStartState()
+        {
+            _collider = GetComponent<Collider>();
+            _inputPointMovement.transform.position = _startPoint.position;
+        }
         public void Play(Vector3 point)
         {
             _particleSystem.transform.position = point;
@@ -29,16 +35,19 @@ namespace PlatformObject
         {
             _transformTemplateContainer.gameObject.SetActive(true);
             _inputPointMovement.gameObject.SetActive(true);
-            SetStartState();
+            _collider.enabled = true;
         }
 
         public void Die()
         {
+            _collider.enabled = false;
             _audioSourceEffect.clip = _audioClipExplosion;
             _audioSourceEffect.Play();
+            _particleExplosion.transform.position = transform.position;
             _particleExplosion.Play();
             _transformTemplateContainer.gameObject.SetActive(false);
             _inputPointMovement.gameObject.SetActive(false);
+            SetStartState();
         }
 
         public float GetSpeed()

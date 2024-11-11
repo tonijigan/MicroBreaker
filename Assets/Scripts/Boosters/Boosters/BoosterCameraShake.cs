@@ -5,15 +5,17 @@ public class BoosterCameraShake : AbstractBooster
 {
     [SerializeField] private CameraMoveShake _cameraMoveShake;
 
-    public override void OnStartAction(BoosterEffect boosterEffect)
+    public override void StopAction(BoosterEffect boosterEffect)
     {
-        _cameraMoveShake.Destabilization();
+        if (boosterEffect.IsActive == false) return;
+
+        _cameraMoveShake.Stabilization();
         boosterEffect.SetActionActive();
     }
 
-    public override void StopAction(BoosterEffect boosterEffect)
+    public override void OnStartAction(BoosterEffect boosterEffect)
     {
-        _cameraMoveShake.Stabilization();
+        _cameraMoveShake.Destabilization();
         boosterEffect.SetActionActive();
     }
 }

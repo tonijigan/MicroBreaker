@@ -10,6 +10,8 @@ public class BoosterAddCoins : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         boosterEffect.SetActionActive();
     }
 

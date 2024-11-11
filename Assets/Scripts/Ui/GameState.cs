@@ -17,7 +17,7 @@ public class GameState : MonoBehaviour
     private const int DurationLoss = 1;
 
     [SerializeField] private Counter _counter;
-    [SerializeField] private TriggerLoss _triggerLoss;
+    [SerializeField] private BorderCollisionWithLoss _triggerLoss;
     [SerializeField] private PanelWin _panelWin;
     [SerializeField] private PanelLoss _panelLoss;
     [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;

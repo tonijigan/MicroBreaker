@@ -8,6 +8,8 @@ public class BoosterGravity : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         _ballMovement.SetGravity();
         boosterEffect.SetActionActive();
     }

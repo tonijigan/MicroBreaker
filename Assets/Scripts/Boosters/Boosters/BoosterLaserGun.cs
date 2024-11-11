@@ -7,6 +7,8 @@ public class BoosterLaserGun : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         _laserGun.StopShoot();
         boosterEffect.SetActionActive();
     }

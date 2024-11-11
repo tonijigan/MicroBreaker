@@ -46,7 +46,7 @@ namespace BallObject
 
         public void GiveLive()
         {
-            ExtraLive--;
+           // ExtraLive--;
             ExtraLiveChanged?.Invoke(ExtraLive);
             gameObject.SetActive(true);
         }

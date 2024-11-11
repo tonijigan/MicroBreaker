@@ -9,6 +9,8 @@ public class AddScale : AbstractBooster
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         _playformModification.SetDefultScale(true);
         _ballModification.SetDefultScale(true);
         boosterEffect.SetActionActive();

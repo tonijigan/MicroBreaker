@@ -4,10 +4,12 @@ using UnityEngine;
 public class BoosterPortal : AbstractBooster
 {
     [SerializeField] private Portal _portal;
-    [SerializeField] private TriggerLoss _triggerLoss;
+    [SerializeField] private BorderCollisionWithLoss _triggerLoss;
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
+        if (boosterEffect.IsActive == false) return;
+
         _portal.Open(false);
         _triggerLoss.Collider.enabled = true;
         boosterEffect.SetActionActive();

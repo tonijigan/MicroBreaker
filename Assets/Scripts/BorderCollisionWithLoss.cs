@@ -6,13 +6,14 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class TriggerLoss : MonoBehaviour
+public class BorderCollisionWithLoss : MonoBehaviour
 {
     private const float WaitSeconds = 1.5f;
 
     [SerializeField] private Platform _platform;
     [SerializeField] private Ball _ball;
     [SerializeField] private BoostersContainer _boostersContainer;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     public event Action Lost;
 
@@ -65,9 +66,11 @@ public class TriggerLoss : MonoBehaviour
 
     private IEnumerator TakeExtraLive()
     {
+        _particleSystem.Play();
         yield return _waitForSeconds;
         _platform.GiveLive();
         _ball.GiveLive();
+        _particleSystem.Stop();
         StopCoroutine(_coroutine);
     }
 }
