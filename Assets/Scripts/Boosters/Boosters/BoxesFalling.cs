@@ -34,18 +34,5 @@ public class BoxesFalling : AbstractBooster
         boosterEffect.SetActionActive();
     }
 
-    public override void StopAction(BoosterEffect boosterEffect)
-    {
-        IsActive = false;
-
-        if (boosterEffect.IsActive == false) return;
-
-        foreach (var box in Boxes)
-        {
-            if (box.IsDead == false)
-                box.TakeDamage(MaxDamage);
-        }
-
-        boosterEffect.SetActionActive();
-    }
+    public override void StopAction(BoosterEffect _) { }
 }

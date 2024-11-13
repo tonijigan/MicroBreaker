@@ -47,6 +47,9 @@ public class Counter : MonoBehaviour
 
     private void SetDestroyBox()
     {
+        foreach (var box in CurrentLocation.BoxContainer.Boxes)
+            box.Rigidbody.WakeUp();
+
         CountLiveBoxs++;
         if (CountLiveBoxs == CurrentLocation.BoxContainer.Boxes.Length)
             Winned?.Invoke(GetResultTime());

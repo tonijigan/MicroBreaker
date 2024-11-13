@@ -40,10 +40,17 @@ namespace BallObject
             Transform = transform;
         }
 
-        private void OnEnable() => _ball.Actived += OnMove;
+        private void OnEnable()
+        {
+            _ball.Actived += OnMove;
+            _ball.ExtraLiveChanged += OnSetStartPosition;
+        }
 
-        private void OnDisable() => _ball.Actived -= OnMove;
-
+        private void OnDisable()
+        {
+            _ball.Actived -= OnMove;
+            _ball.ExtraLiveChanged -= OnSetStartPosition;
+        }
         private void Update()
         {
             if (_ball.IsActive == false)
@@ -115,6 +122,12 @@ namespace BallObject
         private void Move(Vector3 direction, float speed) => _rigidbody.velocity = speed * Time.deltaTime * direction;
 
         private void OnMove() => _rigidbody.AddForce(_speedForce * Vector3.forward, ForceMode.Impulse);
+
+        private void OnSetStartPosition(int _)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            Transform.rotation = Quaternion.identity;
+        }
 
         public Vector3 GetCurrentDirection(Collision collision)
         {

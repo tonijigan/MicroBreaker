@@ -5,25 +5,32 @@ using UnityEngine.UI;
 
 public class BoosterView : MonoBehaviour
 {
+    private const float MinFadeValue = 0;
+    private const float Duration = 4;
+
     [SerializeField] private Image _image;
+    [SerializeField] private Color _colorPositive;
+    [SerializeField] private Color _colorNegative;
+    [SerializeField] private Color _colorDefult;
 
     public void Init(Sprite sprite, BoosterNames boosterNames)
     {
         _image.sprite = sprite;
-        _image.DOFade(1, 1);
         SetColor(boosterNames);
-        _image.DOFade(0, 3);
+        _image.DOFade(MinFadeValue, Duration).OnComplete(Die);
     }
+
+    private void Die() => Destroy(gameObject);
 
     private void SetColor(BoosterNames boosterNames)
     {
         if (boosterNames == BoosterNames.Positive)
-            _image.color = Color.blue;
+            _image.color = _colorPositive;
 
         if (boosterNames == BoosterNames.Negative)
-            _image.color = Color.red;
+            _image.color = _colorNegative;
 
         if (boosterNames == BoosterNames.Default)
-            _image.color = Color.red + Color.blue;
+            _image.color = _colorDefult;
     }
 }

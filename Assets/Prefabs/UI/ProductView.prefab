@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8605526490521903907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4198182, y: 0.70000005}
-  m_AnchorMax: {x: 0.58318186, y: 0.91}
-  m_AnchoredPosition: {x: -0.84999084, y: 0.0000076293945}
-  m_SizeDelta: {x: 1.0810013, y: 0.31000042}
+  m_AnchorMin: {x: 0.3116364, y: 0.66}
+  m_AnchorMax: {x: 0.69000006, y: 0.91}
+  m_AnchoredPosition: {x: -0.32501984, y: 0.0000076293945}
+  m_SizeDelta: {x: -0.15000153, y: -0.00999999}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8207349160253400097
 CanvasRenderer:
@@ -65,9 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -94,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.05
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 150
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

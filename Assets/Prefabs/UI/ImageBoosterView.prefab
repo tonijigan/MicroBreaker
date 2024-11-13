@@ -89,3 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 7513468518009973824}
+  _colorPositive: {r: 0, g: 0.64557576, b: 1, a: 1}
+  _colorNegative: {r: 1, g: 0.18196456, b: 0, a: 1}
+  _colorDefult: {r: 0.9788537, g: 0, b: 1, a: 1}

@@ -25,7 +25,6 @@ public class BoosterHandler : MonoBehaviour
 
     private void AddBoosterView(Sprite sprite, BoosterNames boosterNames)
     {
-        Debug.Log("SWSD");
         BoosterView boosterView = Instantiate(_boosterViewPrefab, _boosterViewContainer);
         boosterView.Init(sprite, boosterNames);
     }

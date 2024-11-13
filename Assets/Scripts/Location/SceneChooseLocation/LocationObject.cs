@@ -14,8 +14,9 @@ public class LocationObject : MonoBehaviour
     [SerializeField] private LocationName _name;
     [SerializeField] private bool _isActive;
     [SerializeField] private Transform _boxTransform;
-
-    private Color _startColor;
+    [SerializeField] private Color _colorPassed;
+    [SerializeField] private Color _colorStart;
+    [SerializeField] private Color _colorAccess;
     private Material _material;
 
     public bool IsPassed { get; private set; } = false;
@@ -26,29 +27,31 @@ public class LocationObject : MonoBehaviour
 
     private void Start()
     {
-        _material = _boxTransform.GetComponent<MeshRenderer>().material;
-        _startColor = _boxTransform.GetComponent<MeshRenderer>().material.color;
-
-        if (_isActive == false) _boxTransform.GetComponent<MeshRenderer>().material.color = Color.blue;
-
+        SetAccess();
         _boxTransform.DOLocalMove(Vector3.up * HightValue, DurationMove).SetEase(Ease.InOutSine).SetLoops(-LoopValue, LoopType.Yoyo);
         _boxTransform.DOLocalRotate(new Vector3(MinValue, Angle, MinValue), DurationRotate, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-LoopValue, LoopType.Incremental);
     }
 
     public void SetActive()
     {
-        if (IsPassed == false)
-        {
-            _boxTransform.GetComponent<MeshRenderer>().material = _material;
-            _boxTransform.GetComponent<MeshRenderer>().material.color = _startColor;
-        }
-
         _isActive = true;
+        SetAccess();
     }
 
     public void SetPassed(bool isPassed)
     {
         IsPassed = isPassed;
-        _boxTransform.GetComponent<MeshRenderer>().material.color = Color.red;
+        SetAccess();
+    }
+
+    private void SetAccess()
+    {
+        _boxTransform.GetComponent<MeshRenderer>().material.color = _colorAccess;
+
+        if (_isActive == true)
+            _boxTransform.GetComponent<MeshRenderer>().material.color = _colorStart;
+
+        if (IsPassed == true)
+            _boxTransform.GetComponent<MeshRenderer>().material.color = _colorPassed;
     }
 }

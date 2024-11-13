@@ -13,11 +13,11 @@ namespace BoxObject
     public class Box : MonoBehaviour, IDamageable, ITrigger
     {
         private const int MinHealth = 0;
+        private const int MaxHealth = 2;
         private const float Delay = 0.5f;
 
         [SerializeField] private BoosterNames _boosterName;
         [SerializeField] private float _speedRepulsion;
-        [SerializeField] private int _health;
         [SerializeField] private AudioClip _audioClip;
         [SerializeField] private AudioClip _audioClipDie;
         [SerializeField] private List<BoxTemplate> _boxTemplates;
@@ -25,6 +25,7 @@ namespace BoxObject
         public event Action Died;
         public event Action<AudioClip> Damaged;
 
+        private int _health;
         private BoosterEffect _booster;
         private WaitForSeconds _waitForSeconds;
         private ParticleSystem _particleSystem;
@@ -40,6 +41,7 @@ namespace BoxObject
 
         private void Awake()
         {
+            SetStartHealth();
             Angle = transform.rotation.eulerAngles.y;
             Rigidbody = GetComponent<Rigidbody>();
             DisableBoxTemplate();
@@ -53,11 +55,7 @@ namespace BoxObject
             _booster = null;
         }
 
-        public void SetCanDestructuin()
-        {
-            _isCanDestruction = !_isCanDestruction;
-            Debug.Log(_isCanDestruction);
-        }
+        public void SetCanDestructuin() => _isCanDestruction = !_isCanDestruction;
 
         public void SetStandartHealth() => _health = 0;
 
@@ -109,6 +107,18 @@ namespace BoxObject
         {
             _particleSystem.transform.position = point;
             _particleSystem.Play();
+        }
+
+        private void SetStartHealth()
+        {
+            if (_boosterName == BoosterNames.Default)
+                _health = MinHealth;
+
+            if (_boosterName == BoosterNames.Positive)
+                _health = MaxHealth / MaxHealth;
+
+            if (_boosterName == BoosterNames.Negative)
+                _health = MaxHealth;
         }
 
         private BoxTemplate GetTemplate(BoosterNames boosterNames)
