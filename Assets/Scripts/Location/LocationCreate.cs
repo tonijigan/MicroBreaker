@@ -41,6 +41,6 @@ public class LocationCreate : MonoBehaviour
     public void ActiveCanDestructionBoxs()
     {
         foreach (var box in CurrentLocation.BoxContainer.Boxes)
-            box.Rigidbody.isKinematic = !box.Rigidbody.isKinematic;
+            box.SetCanDestructuin();
     }
 }

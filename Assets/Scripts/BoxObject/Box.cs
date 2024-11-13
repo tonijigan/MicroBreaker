@@ -53,6 +53,12 @@ namespace BoxObject
             _booster = null;
         }
 
+        public void SetCanDestructuin()
+        {
+            _isCanDestruction = !_isCanDestruction;
+            Debug.Log(_isCanDestruction);
+        }
+
         public void SetStandartHealth() => _health = 0;
 
         public void DisableBoxTemplate()

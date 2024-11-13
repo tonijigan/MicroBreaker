@@ -10,23 +10,22 @@ public class BoosterDisableDestruction : AbstractBooster
     {
         if (boosterEffect.IsActive == false) return;
 
+        ActiveCanDestructionBoxsFalling();
         _locationCreate.ActiveCanDestructionBoxs();
         boosterEffect.SetActionActive();
     }
 
     public override void OnStartAction(BoosterEffect boosterEffect)
     {
-        ActiveCanDestructionBoxs();
+        ActiveCanDestructionBoxsFalling();
         _locationCreate.ActiveCanDestructionBoxs();
         boosterEffect.SetActionActive();
-        PlayTimer(5, boosterEffect, StopAction);
+        PlayTimer(10, boosterEffect, StopAction);
     }
 
-    private void ActiveCanDestructionBoxs()
+    private void ActiveCanDestructionBoxsFalling()
     {
-        if (_boxesFalling.IsActive == false) return;
-
         foreach (var box in _boxesFalling.Boxes)
-            box.Rigidbody.isKinematic = !box.Rigidbody.isKinematic;
+            box.SetCanDestructuin();
     }
 }
