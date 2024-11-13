@@ -8,6 +8,7 @@ namespace Boosters
     public class BoostersContainer : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private BoosterHandler _boosterHandler;
 
         private List<AbstractBooster> _boosters;
         private Transform _transform;

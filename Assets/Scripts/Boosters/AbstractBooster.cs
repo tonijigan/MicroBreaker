@@ -10,18 +10,20 @@ public abstract class AbstractBooster : MonoBehaviour
 
     [SerializeField] private BoosterNames _boosterName;
     [SerializeField] private BoosterEffect _boosterEffect;
+    [SerializeField] private Sprite _sprite;
 
     public event Action TimeRunning;
+    public event Action<Sprite, BoosterNames> Played;
 
     private WaitForSeconds _waitForSeconds;
 
-    protected Coroutine Coroutine { get; private set; }
+    public BoosterNames BoosterName => _boosterName;
 
     public BoosterEffect BoosterEffect { get; private set; }
 
-    public BoosterNames BoosterName => _boosterName;
-
     public Transform Transform { get; private set; }
+
+    protected Coroutine Coroutine { get; private set; }
 
     private void Awake()
     {
@@ -31,9 +33,15 @@ public abstract class AbstractBooster : MonoBehaviour
         BoosterEffect.gameObject.SetActive(false);
     }
 
-    private void OnEnable() => BoosterEffect.Collided += OnStartAction;
+    private void OnEnable()
+    {
+        BoosterEffect.Collided += OnStartAction;
+    }
 
-    private void OnDisable() => BoosterEffect.Collided -= OnStartAction;
+    private void OnDisable()
+    {
+        BoosterEffect.Collided -= OnStartAction;
+    }
 
     public abstract void OnStartAction(BoosterEffect boosterEffect);
 
@@ -41,6 +49,7 @@ public abstract class AbstractBooster : MonoBehaviour
 
     protected void PlayTimer(float waitTime, BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
     {
+        Played?.Invoke(_sprite, _boosterName);
         if (Coroutine != null)
             StopCoroutine(Coroutine);
 
@@ -52,6 +61,7 @@ public abstract class AbstractBooster : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         TimeRunning?.Invoke();
         yield return _waitForSeconds;
+        Stopped?.Invoke();
         callBack?.Invoke(boosterEffect);
     }
 }
