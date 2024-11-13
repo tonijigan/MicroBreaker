@@ -17,7 +17,6 @@ public class LocationObject : MonoBehaviour
     [SerializeField] private Color _colorPassed;
     [SerializeField] private Color _colorStart;
     [SerializeField] private Color _colorAccess;
-    private Material _material;
 
     public bool IsPassed { get; private set; } = false;
 

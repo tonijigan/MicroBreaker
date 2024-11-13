@@ -7,15 +7,17 @@ public class SwipeMove : MonoBehaviour
     private const float ClampX = 60f;
     private const float ClampYMin = -1500;
     private const float ClampYMax = 10;
+    private const float MinSpeedValue = 0.2f;
 
     [SerializeField] private LocationChooseInput _inputLocation;
-    [SerializeField] private float _speed = 60;
 
     private Transform _transform;
     private Rigidbody _rigidbody;
     private Vector3 _startPosition;
     private Vector3 _currentPosition;
     private bool _isDragging = false;
+    private float _speed = MinSpeedValue;
+
 
     private void Awake()
     {
@@ -36,7 +38,11 @@ public class SwipeMove : MonoBehaviour
     private void OnMouseDrag()
     {
         if (_isDragging == true)
+        {
             _currentPosition = Input.mousePosition;
+            var direction = (_currentPosition - _startPosition).magnitude;
+            _speed = direction * MinSpeedValue;
+        }
     }
 
     private void OnMouseUp()
@@ -44,6 +50,7 @@ public class SwipeMove : MonoBehaviour
         _isDragging = false;
         _inputLocation.SetLastLocationObject(Input.mousePosition);
         _inputLocation.LoadLocation();
+        _speed = MinSpeedValue;
     }
 
     private void Update()

@@ -13,6 +13,7 @@ public class PanelPlayGame : Panel
     [SerializeField] private LocationCreateView _locationCreateView;
     [SerializeField] private SaveService _saveService;
     [SerializeField] private TMP_Text _textAccess;
+    [SerializeField] private TMP_Text _textName;
 
     private LocationObject _locationObject;
 
@@ -37,6 +38,7 @@ public class PanelPlayGame : Panel
     {
         IsInit = false;
         _locationObject = locationObject;
+        _textName.text = locationObject.Name.ToString();
 
         if (_locationObject.IsActive == false)
         {
