@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Enums;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,9 @@ public class BoosterView : MonoBehaviour
     public void Init(Sprite sprite, BoosterNames boosterNames)
     {
         _image.sprite = sprite;
+        _image.DOFade(1, 1);
         SetColor(boosterNames);
+        _image.DOFade(0, 3);
     }
 
     private void SetColor(BoosterNames boosterNames)

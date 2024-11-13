@@ -61,7 +61,6 @@ public abstract class AbstractBooster : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         TimeRunning?.Invoke();
         yield return _waitForSeconds;
-        Stopped?.Invoke();
         callBack?.Invoke(boosterEffect);
     }
 }
