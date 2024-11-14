@@ -23,7 +23,6 @@ public class SaveService : MonoBehaviour
     public string[] Platforms => _gameProgress.Platforms;
 
     public LocationObjectData[] LocationObjectDatas => _gameProgress.LocationObjectData;
-    // public string[] LocationNames => _gameProgress.LocationNames;
 
     public int LevelCount => _gameProgress.LevelCount;
 

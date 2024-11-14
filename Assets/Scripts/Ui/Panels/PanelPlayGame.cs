@@ -4,6 +4,7 @@ using UnityEngine;
 public class PanelPlayGame : Panel
 {
     private const string Access = "IS NOT ACCESS";
+    private const string Level = "Level: ";
 
     [SerializeField] private ButtonPlayGame _buttonPlayGame;
     [SerializeField] private ButtonPanelInteraction _buttonClose;
@@ -38,7 +39,11 @@ public class PanelPlayGame : Panel
     {
         IsInit = false;
         _locationObject = locationObject;
-        _textName.text = locationObject.Name.ToString();
+
+        _textName.text = $"{Level} {locationObject.Index}";
+
+        if (_locationObject.AdditionaValue != string.Empty)
+            _textName.text = $"{Level} {locationObject.Index}{locationObject.AdditionaValue}";
 
         if (_locationObject.IsActive == false)
         {

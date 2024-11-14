@@ -9,7 +9,7 @@ public class ContainerLocationObjects : MonoBehaviour
 {
     [SerializeField] private SaveService _saveService;
 
-    public event Action<LocationObject> Filled;
+    public event Action<List<LocationObject>> Filled;
 
     private Transform _transform;
 
@@ -21,15 +21,9 @@ public class ContainerLocationObjects : MonoBehaviour
         _transform = transform;
     }
 
-    private void OnEnable()
-    {
-        _saveService.Loaded += Fill;
-    }
+    private void OnEnable() => _saveService.Loaded += Fill;
 
-    private void OnDisable()
-    {
-        _saveService.Loaded -= Fill;
-    }
+    private void OnDisable() => _saveService.Loaded -= Fill;
 
     private void Fill()
     {
@@ -40,6 +34,11 @@ public class ContainerLocationObjects : MonoBehaviour
             _transform.GetChild(i).TryGetComponent(out LocationObject locationObject);
             _locationObjects[i] = locationObject;
         }
+
+        //foreach (var locationObject in _saveService.LocationObjectDatas)
+        //{
+        //    Debug.Log(locationObject.LocationName + " " + locationObject.Passed);
+        //}
 
         if (_saveService.LocationObjectDatas == null) return;
 
@@ -53,8 +52,18 @@ public class ContainerLocationObjects : MonoBehaviour
         }
 
 
-        _locationObjects[newLocationObjects.Count].SetActive();
+        var dublicatLocationObjects = _locationObjects.Where(location =>
+        location.Name == _locationObjects[newLocationObjects.Count].Name).ToList();
 
-        Filled?.Invoke(_locationObjects[newLocationObjects.Count]);
+        foreach (var dublicatLocationObject in dublicatLocationObjects)
+        {
+            Debug.Log(dublicatLocationObject.Name + " p " + dublicatLocationObject.IsPassed + " a " + dublicatLocationObject.IsActive);
+            if (dublicatLocationObject.IsPassed == false && dublicatLocationObject.IsActive == true)
+                dublicatLocationObject.SetPassed(true);
+
+            dublicatLocationObject.SetActive();
+        }
+
+        Filled?.Invoke(dublicatLocationObjects);
     }
 }
