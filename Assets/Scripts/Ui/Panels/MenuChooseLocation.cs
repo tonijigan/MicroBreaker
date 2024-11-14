@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class MenuChooseLocation : MonoBehaviour
 {
+    private const int PositionZ = 20;
+    private const int Priority = 1;
+
     [SerializeField] private PanelPlayGame _panelPlayGame;
     [SerializeField] private PanelShop _panelShop;
     [SerializeField] private LocationChooseInput _locationChooseInput;
@@ -14,11 +17,7 @@ public class MenuChooseLocation : MonoBehaviour
         _panelShop.Activated += OnActive;
         _locationChooseInput.LocationChoosed += OnInit;
         _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
-        _panelPlayGame.ButtonPlayGame.Clicked += () =>
-        {
-            _virtualMobileCamera.gameObject.SetActive(true);
-            _virtualMobileCamera.Priority = 1;
-        };
+        _panelPlayGame.ButtonPlayGame.Clicked += OnClick;
     }
 
     private void OnDisable()
@@ -26,17 +25,13 @@ public class MenuChooseLocation : MonoBehaviour
         _panelShop.Activated -= OnActive;
         _locationChooseInput.LocationChoosed -= OnInit;
         _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
-        _panelPlayGame.ButtonPlayGame.Clicked += () =>
-        {
-            _virtualMobileCamera.gameObject.SetActive(true);
-            _virtualMobileCamera.Priority = 1;
-        };
+        _panelPlayGame.ButtonPlayGame.Clicked -= OnClick;
     }
 
     private void OnInit(LocationObject locationObject)
     {
-        _virtualMobileCamera.transform.position = new Vector3(_virtualMobileCamera.transform.position.x, _virtualMobileCamera.transform.position.y,
-          locationObject.transform.position.z - 20);
+        _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
+          locationObject.transform.position.z - PositionZ);
         _panelPlayGame.ButtonClose.SetStartStateButton();
         _panelPlayGame.Move(true);
         _panelPlayGame.Init(locationObject);
@@ -60,5 +55,11 @@ public class MenuChooseLocation : MonoBehaviour
     {
         _locationChooseInput.SetActive(!isActive);
         _swipeMove.enabled = !isActive;
+    }
+
+    private void OnClick()
+    {
+        _virtualMobileCamera.gameObject.SetActive(true);
+        _virtualMobileCamera.Priority = Priority;
     }
 }
