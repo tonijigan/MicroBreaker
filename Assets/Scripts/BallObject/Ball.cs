@@ -47,15 +47,15 @@ namespace BallObject
         public void GiveLive()
         {
             ExtraLive--;
-            ExtraLiveChanged?.Invoke(ExtraLive);
             gameObject.SetActive(true);
+            BallEffect.SetStateEffect(false);
         }
 
         public void Die()
         {
             IsActive = false;
             BallEffect.SetStateEffect(false);
-            gameObject.SetActive(false);
+            _transform.position = _ballPoint.position;
         }
 
         public void DisconnectParentObject()

@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
@@ -61,7 +60,7 @@ public class GameState : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(DurationWin);
         PlayOpen(_panelWin, _waitForSeconds, () =>
         {
-            _panelWin.Fill(time, 0.ToString(), _counter.CountLiveBoxs.ToString(), 0.ToString(), _wallet.Coin.ToString());
+            _panelWin.Fill(time, _counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
             SaveGameProgress();
         });
     }

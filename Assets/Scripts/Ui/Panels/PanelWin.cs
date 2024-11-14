@@ -10,9 +10,7 @@ public class PanelWin : Panel
     [SerializeField] private Button _buttonContinue;
     [SerializeField] private PanelFade _panelFade;
     [SerializeField] private TMP_Text _time;
-    [SerializeField] private TMP_Text _bluePowerUps;
     [SerializeField] private TMP_Text _bricksSmashed;
-    [SerializeField] private TMP_Text _score;
     [SerializeField] private TMP_Text _credits;
 
     public event Action<string> Clicked;
@@ -29,12 +27,10 @@ public class PanelWin : Panel
         _buttonContinue.onClick.RemoveListener(() => { OnClick(ScenesName.ChooseLevel.ToString()); });
     }
 
-    public void Fill(string time, string bluePowerUps, string bricksSmashed, string score, string credits)
+    public void Fill(string time, string bricksSmashed, string credits)
     {
         _time.text = time;
-        _bluePowerUps.text = bluePowerUps;
         _bricksSmashed.text = bricksSmashed;
-        _score.text = score;
         _credits.text = credits;
     }
 

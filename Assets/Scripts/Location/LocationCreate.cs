@@ -17,10 +17,11 @@ public class LocationCreate : MonoBehaviour
     public Location CurrentLocation { get; private set; }
     private Transform _transform;
 
-    public void Init(string locationName)
+    public void Init(LocationObjectData locationObjectData)
     {
         _transform = transform;
-        Location newLocation = _locations.Where(location => location.LocationName == locationName).FirstOrDefault();
+        Location newLocation = _locations.Where(location => location.LocationName == locationObjectData.LocationName &&
+                                                location.AdditionaValue == locationObjectData.AdditionaValue).FirstOrDefault();
 
         if (newLocation == null) return;
 
