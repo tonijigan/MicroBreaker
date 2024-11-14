@@ -6,6 +6,7 @@ using UnityEngine;
 
 public abstract class AbstractBooster : MonoBehaviour
 {
+    private const float WaitTime = 3;
     private const float LastSecondsTime = 2;
 
     [SerializeField] private BoosterNames _boosterName;
@@ -33,32 +34,26 @@ public abstract class AbstractBooster : MonoBehaviour
         BoosterEffect.gameObject.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        BoosterEffect.Collided += OnStartAction;
-    }
+    private void OnEnable() => BoosterEffect.Collided += OnStartAction;
 
-    private void OnDisable()
-    {
-        BoosterEffect.Collided -= OnStartAction;
-    }
+    private void OnDisable() => BoosterEffect.Collided -= OnStartAction;
 
     public abstract void OnStartAction(BoosterEffect boosterEffect);
 
     public abstract void StopAction(BoosterEffect boosterEffect);
 
-    protected void PlayTimer(float waitTime, BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
+    protected void PlayTimer(BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
     {
         Played?.Invoke(_sprite, _boosterName);
         if (Coroutine != null)
             StopCoroutine(Coroutine);
 
-        Coroutine = StartCoroutine(StartTimer(waitTime, boosterEffect, callBack));
+        Coroutine = StartCoroutine(StartTimer(boosterEffect, callBack));
     }
 
-    private IEnumerator StartTimer(float waitTime, BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
+    private IEnumerator StartTimer(BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(WaitTime);
         TimeRunning?.Invoke();
         yield return _waitForSeconds;
         callBack?.Invoke(boosterEffect);

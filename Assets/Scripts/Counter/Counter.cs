@@ -51,6 +51,7 @@ public class Counter : MonoBehaviour
             box.Rigidbody.WakeUp();
 
         CountLiveBoxs++;
+
         if (CountLiveBoxs == CurrentLocation.BoxContainer.Boxes.Length)
             Winned?.Invoke(GetResultTime());
     }

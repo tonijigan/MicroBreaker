@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class PanelUpgrade : Panel
     [SerializeField] private Panel _backGround;
     [SerializeField] private PanelBuyUpgrade _panelBuyUpgrade;
     [SerializeField] private Image _image;
+    [SerializeField] private TMP_Text _text;
     [SerializeField] private Upgrade _firstUpgrade;
     [SerializeField] private Upgrade _secondUpgrade;
     [SerializeField] private Upgrade _thirdUpgrate;
@@ -37,6 +39,7 @@ public class PanelUpgrade : Panel
         _currentButtonUpgrade = buttonUpgrade;
         UpgradeTemplate imageUpgrade = _currentButtonUpgrade.UpgradeTemplate;
         _image.sprite = imageUpgrade.Sprite;
+        _text.text = buttonUpgrade.UpgradeTemplate.Description;
 
         _firstUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.FirstPrice, FirstMultiplier, imageUpgrade.UpgradeName);
         _secondUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.SecondPrice, SecondMultiplier, imageUpgrade.UpgradeName);

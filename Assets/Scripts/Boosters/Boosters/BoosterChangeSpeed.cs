@@ -22,6 +22,6 @@ public class BoosterChangeSpeed : AbstractBooster
         _ballMovement.SetMaxSpeed();
         _ballEffect.SetParticleSystem(BoosterNames.Negative);
         boosterEffect.SetActionActive();
-        PlayTimer(3, boosterEffect, StopAction);
+        PlayTimer(boosterEffect, StopAction);
     }
 }

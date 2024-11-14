@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BoosterDisableInputPlatform : AbstractBooster
 {
-    private const int WaitSeconds = 2;
-
     [SerializeField] private InputPointMovement _inputPointMovement;
 
     public override void StopAction(BoosterEffect boosterEffect)
@@ -20,6 +18,6 @@ public class BoosterDisableInputPlatform : AbstractBooster
     {
         _inputPointMovement.gameObject.SetActive(false);
         boosterEffect.SetActionActive();
-        PlayTimer(WaitSeconds, boosterEffect, StopAction);
+        PlayTimer(boosterEffect, StopAction);
     }
 }

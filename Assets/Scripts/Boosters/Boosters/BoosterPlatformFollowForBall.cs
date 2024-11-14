@@ -16,7 +16,7 @@ public class BoosterPlatformFollowForBall : AbstractBooster
     public override void OnStartAction(BoosterEffect boosterEffect)
     {
         SetAction(boosterEffect);
-        PlayTimer(3, boosterEffect, StopAction);
+        PlayTimer(boosterEffect, StopAction);
     }
 
     private void SetAction(BoosterEffect boosterEffect)

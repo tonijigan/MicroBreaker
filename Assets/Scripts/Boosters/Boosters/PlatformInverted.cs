@@ -26,6 +26,6 @@ public class PlatformInverted : AbstractBooster
 
         _platformMovement.EnableInverted();
         boosterEffect.SetActionActive();
-        PlayTimer(5, boosterEffect, StopAction);
+        PlayTimer(boosterEffect, StopAction);
     }
 }

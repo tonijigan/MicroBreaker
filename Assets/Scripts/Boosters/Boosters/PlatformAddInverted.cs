@@ -34,6 +34,6 @@ public class PlatformAddInverted : AbstractBooster
         _platformMovement.transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplate);
         changeTemplateClone.EnableCurrentTemplate(changeTemplate.CurrentTemplate.Name, MinValue);
         boosterEffect.SetActionActive();
-        PlayTimer(5, boosterEffect, StopAction);
+        PlayTimer(boosterEffect, StopAction);
     }
 }

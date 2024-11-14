@@ -1,6 +1,7 @@
 using BallObject;
 using Boosters;
 using Cinemachine;
+using PlatformObject;
 using PlayerObject;
 using System;
 using System.Collections;
@@ -23,6 +24,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private BallMovement _ballMovement;
+    [SerializeField] private InputPointMovement _inputPointMovement;
     [SerializeField] private SaveService _saveService;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private PanelFade _panelFade;
@@ -81,11 +83,12 @@ public class GameState : MonoBehaviour
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(MovePatel(panel, waitForSeconds, action));
+        _coroutine = StartCoroutine(MovePanel(panel, waitForSeconds, action));
     }
 
-    private IEnumerator MovePatel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
+    private IEnumerator MovePanel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
+        _inputPointMovement.gameObject.SetActive(false);
         _ballMovement.gameObject.SetActive(false);
         _playerInput.SetControl();
         yield return waitForSeconds;
@@ -96,6 +99,9 @@ public class GameState : MonoBehaviour
     private void SaveGameProgress()
     {
         _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
+
+        if (_saveService.CurrentLocationName.Passed == PassedValue) return;
+
         List<LocationObjectData> locationObjectData = _saveService.LocationObjectDatas.ToList();
         locationObjectData.Add(new()
         {

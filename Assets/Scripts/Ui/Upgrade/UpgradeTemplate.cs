@@ -6,6 +6,7 @@ public class UpgradeTemplate : MonoBehaviour
 {
     [SerializeField] private UpgradeName _upgradeName;
     [SerializeField] private Sprite _sprite;
+    [SerializeField] private string _description;
     [SerializeField] private int _firstPrice;
     [SerializeField] private int _secondprice;
     [SerializeField] private int _thirdPrice;
@@ -13,6 +14,8 @@ public class UpgradeTemplate : MonoBehaviour
     public UpgradeName UpgradeName => _upgradeName;
 
     public Sprite Sprite => _sprite;
+
+    public string Description => _description;
 
     public int FirstPrice => _firstPrice;
 

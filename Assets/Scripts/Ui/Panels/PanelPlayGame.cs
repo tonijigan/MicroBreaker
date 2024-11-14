@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PanelPlayGame : Panel
 {
+    private const int MaxValue = 1;
+    private const int MinValue = 0;
     private const string Access = "IS NOT ACCESS";
     private const string Level = "Level: ";
 
@@ -70,7 +72,8 @@ public class PanelPlayGame : Panel
         LocationObjectData locationObjectData = new()
         {
             LocationName = _locationObject.Name.ToString(),
-            AdditionaValue = _locationObject.AdditionaValue.ToString()
+            AdditionaValue = _locationObject.AdditionaValue.ToString(),
+            Passed = _locationObject.IsPassed ? MaxValue : MinValue,
         };
         _saveService.SaveCurrentLocationName(locationObjectData);
     }

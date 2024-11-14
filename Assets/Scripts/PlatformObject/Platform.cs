@@ -54,6 +54,7 @@ namespace PlatformObject
         {
             return _speedForceBall;
         }
+
         public AudioClip GetClip()
         {
             return _audioClip;
