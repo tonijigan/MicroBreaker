@@ -56,13 +56,7 @@ public class ContainerLocationObjects : MonoBehaviour
         location.Name == _locationObjects[newLocationObjects.Count].Name).ToList();
 
         foreach (var dublicatLocationObject in dublicatLocationObjects)
-        {
-            Debug.Log(dublicatLocationObject.Name + " p " + dublicatLocationObject.IsPassed + " a " + dublicatLocationObject.IsActive);
-            if (dublicatLocationObject.IsPassed == false && dublicatLocationObject.IsActive == true)
-                dublicatLocationObject.SetPassed(true);
-
             dublicatLocationObject.SetActive();
-        }
 
         Filled?.Invoke(dublicatLocationObjects);
     }
