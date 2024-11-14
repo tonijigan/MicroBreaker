@@ -9,6 +9,9 @@ public class TestRestartSave : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.L))
             OnClick();
+
+        if (Input.GetKey(KeyCode.K))
+            _saveService.SaveCoins(1000);
     }
 
     private void OnClick()

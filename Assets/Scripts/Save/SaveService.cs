@@ -26,7 +26,7 @@ public class SaveService : MonoBehaviour
 
     public int LevelCount => _gameProgress.LevelCount;
 
-    public string CurrentLocationName => _gameProgress.CurrentLocationName;
+    public LocationObjectData CurrentLocationName => _gameProgress.CurrentLocationName;
 
     private void Start() => _saveGameProgress.Load();
 
@@ -166,7 +166,7 @@ public class SaveService : MonoBehaviour
         Save();
     }
 
-    public void SaveCurrentLocationName(string currentLocationName)
+    public void SaveCurrentLocationName(LocationObjectData currentLocationName)
     {
         _gameProgress.CurrentLocationName = currentLocationName;
         Save();

@@ -2,7 +2,6 @@ using Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ContainerLocationObjects : MonoBehaviour
@@ -16,10 +15,7 @@ public class ContainerLocationObjects : MonoBehaviour
     private LocationObject[] _locationObjects;
 
 
-    private void Awake()
-    {
-        _transform = transform;
-    }
+    private void Awake() => _transform = transform;
 
     private void OnEnable() => _saveService.Loaded += Fill;
 
@@ -35,28 +31,24 @@ public class ContainerLocationObjects : MonoBehaviour
             _locationObjects[i] = locationObject;
         }
 
-        //foreach (var locationObject in _saveService.LocationObjectDatas)
-        //{
-        //    Debug.Log(locationObject.LocationName + " " + locationObject.Passed);
-        //}
-
         if (_saveService.LocationObjectDatas == null) return;
 
         List<LocationObject> newLocationObjects = new();
 
         for (int i = 0; i < _saveService.LocationObjectDatas.Length; i++)
         {
-            newLocationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationObjectDatas[i].LocationName).FirstOrDefault());
-            newLocationObjects[i].SetPassed(true);
-            newLocationObjects[i].SetActive();
+            newLocationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationObjectDatas[i].LocationName &&
+                                                          location.AdditionaValue == _saveService.LocationObjectDatas[i].AdditionaValue).FirstOrDefault());
+            newLocationObjects[i].Init(_saveService.LocationObjectDatas[i]);
         }
 
 
-        var dublicatLocationObjects = _locationObjects.Where(location =>
-        location.Name == _locationObjects[newLocationObjects.Count].Name).ToList();
+        var dublicatLocationObjects = _locationObjects.Where(location => location.Name == _locationObjects[newLocationObjects.Count].Name).ToList();
 
         foreach (var dublicatLocationObject in dublicatLocationObjects)
+        {
             dublicatLocationObject.SetActive();
+        }
 
         Filled?.Invoke(dublicatLocationObjects);
     }

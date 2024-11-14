@@ -1,7 +1,6 @@
 using Enums;
 using UnityEngine;
 
-
 public class RootSceneGame : Root
 {
     [SerializeField] private LocationCreate _locationCreate;
@@ -11,7 +10,7 @@ public class RootSceneGame : Root
 
     protected override void OnInit()
     {
-        _locationCreate.Init(SaveService.CurrentLocationName);
+        _locationCreate.Init(SaveService.CurrentLocationName.LocationName);
         _changeTemplateBall.EnableCurrentTemplate(SaveService.GetCurrentProduct(ObjectsName.Ball),
                                                   SaveService.GetScale(ObjectsName.Ball));
         _changeTemplatePlatform.EnableCurrentTemplate(SaveService.GetCurrentProduct(ObjectsName.Platform),

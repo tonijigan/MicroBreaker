@@ -5,6 +5,7 @@ using DG.Tweening;
 public class LocationObject : MonoBehaviour
 {
     private const int MinValue = 0;
+    private const int MaxValue = 1;
     private const int LoopValue = 1;
     private const float HightValue = 0.2f;
     private const float DurationMove = 0.5f;
@@ -37,10 +38,12 @@ public class LocationObject : MonoBehaviour
         _boxTransform.DOLocalRotate(new Vector3(MinValue, Angle, MinValue), DurationRotate, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-LoopValue, LoopType.Incremental);
     }
 
-    public void Init(int index, string additionaValue)
+    public void Init(LocationObjectData locationObjectData)
     {
-        _index = index;
-        _additionaValue = additionaValue;
+        _additionaValue = locationObjectData.AdditionaValue;
+        _isActive = true ? locationObjectData.Active == MaxValue : locationObjectData.Active == MinValue;
+        IsPassed = true ? locationObjectData.Passed == MaxValue : locationObjectData.Passed == MinValue;
+        SetAccess();
     }
 
     public void SetActive()

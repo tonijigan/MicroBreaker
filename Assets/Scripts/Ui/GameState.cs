@@ -15,6 +15,7 @@ public class GameState : MonoBehaviour
     private const int Priority = 2;
     private const int DurationWin = 3;
     private const int DurationLoss = 1;
+    private const int PassedValue = 1;
 
     [SerializeField] private Counter _counter;
     [SerializeField] private BorderCollisionWithLoss _triggerLoss;
@@ -97,7 +98,14 @@ public class GameState : MonoBehaviour
     {
         _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
         List<LocationObjectData> locationObjectData = _saveService.LocationObjectDatas.ToList();
-        locationObjectData.Add(new LocationObjectData() { LocationName = _counter.CurrentLocation.LocationName, Active = 1, Passed = 1 });
+        locationObjectData.Add(new()
+        {
+            LocationName = _saveService.CurrentLocationName.LocationName,
+            AdditionaValue = _saveService.CurrentLocationName.AdditionaValue,
+            Active = PassedValue,
+            Passed = PassedValue
+        });
+
         _saveService.SaveLocationObjectsNameData(locationObjectData);
     }
 

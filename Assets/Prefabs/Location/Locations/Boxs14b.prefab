@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locationName: 13
   _boxContainer: {fileID: 4501438184883311421}
+  _additionaValue: b
 --- !u!114 &2359602125763344550
 MonoBehaviour:
   m_ObjectHideFlags: 0

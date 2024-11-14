@@ -9453,7 +9453,6 @@ MonoBehaviour:
   - {fileID: 1841860386978528663, guid: ba1f42b0daa71754395b10745576ef9b, type: 3}
   - {fileID: 1841860386978528663, guid: 0a937015e8bff104dbe7ca4b02f1162a, type: 3}
   - {fileID: 1841860386978528663, guid: 7fd38ceb3c6efd2439da024b63dce25f, type: 3}
-  - {fileID: 1841860386978528663, guid: 7d98d4731fc7cf7478e337877dad2d33, type: 3}
   _chooseInput: {fileID: 6593972011491265657}
   _gameObject: {fileID: 6442210360331621572, guid: 456110d21df6fd2468e97a9e0e117c8f, type: 3}
   _spawnCenter: {fileID: 1270647145}

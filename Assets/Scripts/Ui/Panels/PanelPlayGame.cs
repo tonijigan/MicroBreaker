@@ -65,5 +65,13 @@ public class PanelPlayGame : Panel
         _textAccess.text = Access;
     }
 
-    private void OnClick() => _saveService.SaveCurrentLocationName(_locationObject.Name.ToString());
+    private void OnClick()
+    {
+        LocationObjectData locationObjectData = new()
+        {
+            LocationName = _locationObject.Name.ToString(),
+            AdditionaValue = _locationObject.AdditionaValue.ToString()
+        };
+        _saveService.SaveCurrentLocationName(locationObjectData);
+    }
 }

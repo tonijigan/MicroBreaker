@@ -51,7 +51,8 @@ public class LocationCreateView : MonoBehaviour
         foreach (var currentObject in _gameObjects)
             currentObject.SetActive(false);
 
-        var newLocation = _locations.Where(location => location.LocationName == locationObject.Name.ToString()).FirstOrDefault();
+        var newLocation = _locations.Where(location => location.LocationName == locationObject.Name.ToString() &&
+                                           location.AdditionaValue == locationObject.AdditionaValue).FirstOrDefault();
 
         if (newLocation == null)
             return;
