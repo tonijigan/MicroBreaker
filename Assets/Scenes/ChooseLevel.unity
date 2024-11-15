@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45defdad352bdaa479b86ed58a731ad2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3033,21 +3033,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttons:
-  - {fileID: 5161948048725268831}
-  - {fileID: 1333609460}
   - {fileID: 667106410920641067}
   - {fileID: 9117672874156707989}
-  - {fileID: 876809552764298218}
   - {fileID: 63148067039087348}
-  - {fileID: 1334596026}
+  - {fileID: 1204266445}
+  - {fileID: 337041969}
+  - {fileID: 63148067039087348}
   - {fileID: 1166242177}
   - {fileID: 477893788}
+  - {fileID: 5161948048725268831}
+  - {fileID: 1334596026}
+  - {fileID: 283141097}
+  - {fileID: 1333609460}
   - {fileID: 604792464}
+  - {fileID: 853671943}
+  - {fileID: 2067280647}
 --- !u!4 &335152886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
   m_PrefabInstance: {fileID: 1358010837191686398}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &337041969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1910965460940151569, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+  m_PrefabInstance: {fileID: 4992210710792069982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &356601053
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4058,7 @@ MonoBehaviour:
   _firstUpgrade: {fileID: 1848498170}
   _secondUpgrade: {fileID: 165747037}
   _thirdUpgrate: {fileID: 1982306743}
+  _soundButton: {fileID: 314703810}
 --- !u!1 &572274958
 GameObject:
   m_ObjectHideFlags: 3
@@ -5732,9 +5749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _panels:
-  - {fileID: 7658589073512060351}
   - {fileID: 2186671434859587505}
   - {fileID: 505214658}
+  - {fileID: 7658589073512060351}
   - {fileID: 565730284}
   - {fileID: 69368491}
 --- !u!1001 &958195092
@@ -7230,6 +7247,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188793297}
   m_CullTransparentMesh: 1
+--- !u!114 &1204266445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3921695822887598233, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+  m_PrefabInstance: {fileID: 4992210710792069982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1232488584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8130,7 +8158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45defdad352bdaa479b86ed58a731ad2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8272,7 +8300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45defdad352bdaa479b86ed58a731ad2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14361,17 +14389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &876809552764298218 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5290859391124635828, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
-  m_PrefabInstance: {fileID: 4992210710792069982}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1151488132317726638 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5385475478545573104, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
@@ -14566,7 +14583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a32a6cc2cb803443983d45d4a513506, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45defdad352bdaa479b86ed58a731ad2, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -15,6 +15,7 @@ public class PanelAdditionalImprovement : Panel
     [SerializeField] private AdditionalImprovement _firstUpgrade;
     [SerializeField] private AdditionalImprovement _secondUpgrade;
     [SerializeField] private AdditionalImprovement _thirdUpgrate;
+    [SerializeField] private SoundButton _soundButton;
 
     private ButtonAdditionalImprovement _currentButtonUpgrade;
 
@@ -62,6 +63,7 @@ public class PanelAdditionalImprovement : Panel
 
     private void OpenBuyCanUpgrade(AdditionalImprovement upgrade)
     {
+        _soundButton.AudioSource.Play();
         _panelBuyUpgrade.gameObject.SetActive(true);
         _panelBuyUpgrade.Init(upgrade);
         _panelBuyUpgrade.Move(true);
