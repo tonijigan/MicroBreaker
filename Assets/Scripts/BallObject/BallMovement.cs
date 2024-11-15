@@ -53,6 +53,9 @@ namespace BallObject
         }
         private void Update()
         {
+            _lastVelosity = _rigidbody.velocity;
+            _lastPlatformPosition = _platformTargetGravity.transform.position;
+
             if (_ball.IsActive == false)
             {
                 FollowToPointPosition();
@@ -68,8 +71,6 @@ namespace BallObject
             }
 
             _ballEffect.RotateTarget(_rigidbody.velocity);
-            _lastVelosity = _rigidbody.velocity;
-            _lastPlatformPosition = _platformTargetGravity.transform.position;
         }
 
         private void OnCollisionEnter(Collision collision)

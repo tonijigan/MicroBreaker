@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class PanelSettings : Panel
 {
-    private const int MaxVolume = 1;
     private const int MinVolume = 0;
 
     [SerializeField] private ButtonSettingAudio _buttonSettingMusic;
     [SerializeField] private ButtonSettingAudio _buttonSettingEffect;
     [SerializeField] private Panel _backGround;
+
+    private float _currentVolume;
 
     private void Start()
     {
@@ -37,14 +38,14 @@ public class PanelSettings : Panel
 
     private void LoadAudioSettings(ButtonSettingAudio buttonSettingAudio)
     {
-        int value = PlayerPrefs.GetInt(buttonSettingAudio.AudioName.ToString());
-        bool isEnable = value == MaxVolume;
+        _currentVolume = PlayerPrefs.GetFloat(buttonSettingAudio.AudioName.ToString());
+        bool isEnable = _currentVolume == buttonSettingAudio.MaxVolume;
         buttonSettingAudio.Init(isEnable);
     }
 
     private void Save(ButtonSettingAudio buttonSettingAudio)
     {
-        int value = buttonSettingAudio.IsEnable ? MaxVolume : MinVolume;
-        PlayerPrefs.SetInt(buttonSettingAudio.AudioName.ToString(), value);
+        _currentVolume = buttonSettingAudio.IsEnable ? buttonSettingAudio.MaxVolume : MinVolume;
+        PlayerPrefs.SetFloat(buttonSettingAudio.AudioName.ToString(), _currentVolume);
     }
 }

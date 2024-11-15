@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class AbstractBooster : MonoBehaviour
 {
-    private const float WaitTime = 3;
+    private const float WaitTime = 4;
     private const float LastSecondsTime = 2;
 
     [SerializeField] private BoosterNames _boosterName;

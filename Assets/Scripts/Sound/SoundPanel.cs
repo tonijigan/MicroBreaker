@@ -22,5 +22,10 @@ public class SoundPanel : MonoBehaviour
             panel.Moved -= Play;
     }
 
-    private void Play() => _audioSource.Play();
+    private void Play()
+    {
+        if (_audioSource.enabled == false) return;
+
+        _audioSource.Play();
+    }
 }

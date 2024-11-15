@@ -36,6 +36,8 @@ public class BoxSound : MonoBehaviour
 
     private void Play(AudioClip audioClip)
     {
+        if (_audioSource.enabled == false) return;
+
         _audioSource.clip = audioClip;
         _audioSource.Play();
     }

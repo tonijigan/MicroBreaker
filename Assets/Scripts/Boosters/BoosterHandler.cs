@@ -1,5 +1,4 @@
 using Enums;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoosterHandler : MonoBehaviour
@@ -7,8 +6,6 @@ public class BoosterHandler : MonoBehaviour
     [SerializeField] private AbstractBooster[] _abstractBoostersWhitTimer;
     [SerializeField] private Transform _boosterViewContainer;
     [SerializeField] private BoosterView _boosterViewPrefab;
-
-    private List<AbstractBooster> _abstractBoosters = new();
 
     private void OnEnable()
     {

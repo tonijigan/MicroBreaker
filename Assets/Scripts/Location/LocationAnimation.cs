@@ -3,7 +3,6 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class LocationAnimation : MonoBehaviour
@@ -18,7 +17,6 @@ public class LocationAnimation : MonoBehaviour
     private Box[] _boxesTransform;
     private Transform _transform;
     private Coroutine _coroutine;
-    private WaitForSeconds _waitForSeconds = new(0);
     private float _currentAngle = 0;
 
     private void Start()
@@ -48,6 +46,7 @@ public class LocationAnimation : MonoBehaviour
     private IEnumerator Move(Action Stated)
     {
         List<Vector3> positions = new();
+        WaitForSeconds _waitForSeconds = new(SecondDuration);
 
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
@@ -55,13 +54,11 @@ public class LocationAnimation : MonoBehaviour
             _boxesTransform[i].transform.DOMove(_transform.position + (Vector3.up + Vector3.forward) * HightPosition, MinValue);
         }
 
-        yield return _waitForSeconds;
-
         for (int i = 0; i < _boxesTransform.Length; i++)
         {
             _currentAngle = _boxesTransform[i].transform.rotation.eulerAngles.y - FirstAngle;
             MoveWithRotate(positions[i], i, FirstDuration, _currentAngle);
-            yield return _waitForSeconds = new(SecondDuration);
+            yield return _waitForSeconds;
         }
 
         yield return _waitForSeconds = new(FirstDuration);

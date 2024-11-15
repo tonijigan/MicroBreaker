@@ -11,6 +11,7 @@ public class ButtonSettingAudio : AbstractButton
     [SerializeField] private TMP_Text _text;
     [SerializeField] private AudioName _audioName;
     [SerializeField] private AudioSource[] _audioSources;
+    [SerializeField] private float _maxVolume;
 
     public event Action<ButtonSettingAudio> Changed;
 
@@ -19,6 +20,8 @@ public class ButtonSettingAudio : AbstractButton
     public AudioName AudioName => _audioName;
 
     public AudioSource[] AudioSources => _audioSources;
+
+    public float MaxVolume => _maxVolume;
 
     public void Init(bool isEnable)
     {

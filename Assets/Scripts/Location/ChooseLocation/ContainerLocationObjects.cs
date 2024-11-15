@@ -42,6 +42,7 @@ public class ContainerLocationObjects : MonoBehaviour
             newLocationObjects[i].Init(_saveService.LevelDatas[i]);
         }
 
+        if (_saveService.LevelDatas.Length == _locationObjects.Length) return;
 
         var dublicatLocationObjects = _locationObjects.Where(location => location.Name == _locationObjects[newLocationObjects.Count].Name).ToList();
 
