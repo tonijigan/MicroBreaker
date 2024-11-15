@@ -31,7 +31,6 @@ namespace BallObject
             _transform = transform;
             Rigidbody = GetComponent<Rigidbody>();
             BallEffect = GetComponent<BallEffect>();
-            BallEffect.SetStateEffect(false);
         }
 
         private void OnEnable() => _playerInput.MousePressedUp += DisconnectParentObject;
