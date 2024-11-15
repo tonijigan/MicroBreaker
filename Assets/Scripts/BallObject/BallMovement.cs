@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(Rigidbody), typeof(Ball))]
+    [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
     public class BallMovement : MonoBehaviour
     {
         private const int FirstCount = 0;
@@ -25,6 +25,7 @@ namespace BallObject
 
         public event Action BoxTriggered;
 
+        private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
         private Vector3 _lastVelosity;
         private Vector3 _lastPlatformPosition;
@@ -36,6 +37,7 @@ namespace BallObject
 
         private void Awake()
         {
+            _ballEffect = GetComponent<BallEffect>();
             _rigidbody = GetComponent<Rigidbody>();
             _ball = GetComponent<Ball>();
             Transform = transform;
@@ -53,6 +55,7 @@ namespace BallObject
                 return;
             }
 
+            _ballEffect.RotateTarget(_rigidbody.velocity);
             _lastVelosity = _rigidbody.velocity;
             _lastPlatformPosition = _platformTargetGravity.transform.position;
 
@@ -120,15 +123,16 @@ namespace BallObject
 
         public Vector3 GetCurrentDirection(Collision collision)
         {
+            Vector3 direction = Vector3.zero;
+            Vector3 reflect = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
+
             if (collision.gameObject.TryGetComponent(out Platform platform))
             {
-                var direction = (_platformTargetGravity.transform.position - _lastPlatformPosition).normalized;
-                var reflect = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
+                direction = (_platformTargetGravity.transform.position - _lastPlatformPosition).normalized;
                 _lastPlatformPosition = Vector3.zero;
-                return direction + reflect;
             }
 
-            return Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
+            return new Vector3(direction.x + reflect.x, reflect.y, reflect.z);
         }
     }
 }

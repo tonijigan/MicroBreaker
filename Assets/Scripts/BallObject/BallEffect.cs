@@ -16,6 +16,8 @@ namespace BallObject
 
         public void Play(Vector3 point) { }
 
+        public void RotateTarget(Vector3 direction) => _currentEffect.transform.LookAt(-direction);
+
         public void SetStateEffect(bool isPlay) => _currentEffect.gameObject.SetActive(isPlay);
 
         public void SetParticleSystem(BoosterNames boosterNames)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BoosterCameraShake : AbstractBooster
 {
-    [SerializeField] private CameraMoveShake _cameraMoveShake;
+    [SerializeField] private CameraShake _cameraMoveShake;
 
     public override void StopAction(BoosterEffect boosterEffect)
     {

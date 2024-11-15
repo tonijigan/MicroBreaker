@@ -3,12 +3,13 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
-public class CameraMoveShake : MonoBehaviour
+public class CameraShake : MonoBehaviour
 {
     private const float MaxDelta = 25f;
     private const float NewPositionX = 20;
     private const float MinValue = 0;
     private const float ShakeTimer = 0.3f;
+    private const float Intensety = 1.5f;
 
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private LocationCreate _locationCreate;
@@ -69,8 +70,7 @@ public class CameraMoveShake : MonoBehaviour
 
     private IEnumerator PlayShake()
     {
-        float intensety = 1;
-        _multiChannelPerlin.m_AmplitudeGain = intensety;
+        _multiChannelPerlin.m_AmplitudeGain = Intensety;
         yield return new WaitForSeconds(ShakeTimer);
         _multiChannelPerlin.m_AmplitudeGain = MinValue;
     }

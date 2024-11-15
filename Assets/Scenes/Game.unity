@@ -125224,7 +125224,7 @@ MonoBehaviour:
   _audioClipExplosion: {fileID: 8300000, guid: 7c665647dbced6b49a6a56d339574416, type: 3}
   _audioClip: {fileID: 8300000, guid: 4278b24ffba35d44ca4625576e12f2d3, type: 3}
   _startPoint: {fileID: 69161072}
-  _speedForceBall: 1000
+  _speedForceBall: 1500
 --- !u!54 &2077111605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126935,7 +126935,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6418020782426431192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f6652a12cb447459e3da7663c20c69, type: 3}
+  m_Script: {fileID: 11500000, guid: deb8c655d0a138f41b1f99c2d737bfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 7788122242218189627}
