@@ -6,16 +6,17 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
+    [RequireComponent(typeof(Rigidbody), typeof(Ball))]
     public class BallMovement : MonoBehaviour
     {
         private const int FirstCount = 0;
         private const int MaxSpeed = 4000;
         private const int StandartSpeed = 1000;
-        private const float GravityValue = 0.05f;
+        private const float GravityValue = 0.1f;
         private const float PositionZero = 0f;
         private const float GravityPositionZ = 0.02f;
         private const int Damage = 1;
+        private const int CountDistance = 15;
 
         [SerializeField] private Platform _platformTargetGravity;
         [SerializeField] private Transform _ballPoint;
@@ -24,7 +25,6 @@ namespace BallObject
 
         public event Action BoxTriggered;
 
-        private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
         private Vector3 _lastVelosity;
         private Vector3 _lastPlatformPosition;
@@ -38,39 +38,32 @@ namespace BallObject
         {
             _rigidbody = GetComponent<Rigidbody>();
             _ball = GetComponent<Ball>();
-            _ballEffect = GetComponent<BallEffect>();
             Transform = transform;
         }
 
-        private void OnEnable()
-        {
-            _ball.Actived += OnMove;
-        }
+        private void OnEnable() => _ball.Actived += OnMove;
 
-        private void OnDisable()
-        {
-            _ball.Actived -= OnMove;
-        }
+        private void OnDisable() => _ball.Actived -= OnMove;
+
         private void Update()
         {
-            _lastVelosity = _rigidbody.velocity;
-            _lastPlatformPosition = _platformTargetGravity.transform.position;
-
             if (_ball.IsActive == false)
             {
                 FollowToPointPosition();
                 return;
             }
 
+            _lastVelosity = _rigidbody.velocity;
+            _lastPlatformPosition = _platformTargetGravity.transform.position;
+
             _rigidbody.velocity += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
 
             if (_isGravityPlatform == true)
             {
+                if (Vector3.Distance(_platformTargetGravity.transform.position, Transform.position) > CountDistance) return;
                 Vector3 direction = (_platformTargetGravity.transform.position - Transform.position).normalized;
-                _rigidbody.velocity += new Vector3(direction.x * GravityValue, PositionZero, -GravityPositionZ);
+                _rigidbody.velocity += new Vector3(direction.x * GravityValue, PositionZero, PositionZero);
             }
-
-            _ballEffect.RotateTarget(_rigidbody.velocity);
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -87,7 +80,7 @@ namespace BallObject
 
                 if (currentCollision.gameObject.TryGetComponent(out Fence fence) && fence.IsOpenPortal == true)
                 {
-                    fence.Relocate(this, currentPoint, GetCurrentDirection(collision));
+                    fence.Relocate(this, currentPoint, GetCurrentDirection(currentCollision));
                     _ballSound.Play(fence.GetClip());
                     return;
                 }
@@ -129,7 +122,7 @@ namespace BallObject
         {
             if (collision.gameObject.TryGetComponent(out Platform platform))
             {
-                var direction = (collision.contacts[FirstCount].point - _lastPlatformPosition).normalized;
+                var direction = (_platformTargetGravity.transform.position - _lastPlatformPosition).normalized;
                 var reflect = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
                 _lastPlatformPosition = Vector3.zero;
                 return direction + reflect;

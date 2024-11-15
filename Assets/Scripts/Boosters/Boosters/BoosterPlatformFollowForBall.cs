@@ -6,6 +6,7 @@ public class BoosterPlatformFollowForBall : AbstractBooster
 {
     [SerializeField] private PlatformTrigger _platformTrigger;
     [SerializeField] private PlatformMovement _platformMovement;
+    [SerializeField] private BoostersContainer _boostersContainer;
 
     public override void StopAction(BoosterEffect boosterEffect)
     {
@@ -15,6 +16,7 @@ public class BoosterPlatformFollowForBall : AbstractBooster
 
     public override void OnStartAction(BoosterEffect boosterEffect)
     {
+        _boostersContainer.Reset();
         SetAction(boosterEffect);
         PlayTimer(boosterEffect, StopAction);
     }

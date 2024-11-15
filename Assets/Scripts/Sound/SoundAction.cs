@@ -10,9 +10,6 @@ public class SoundAction : MonoBehaviour
         _audioSourceMusic.volume = PlayerPrefs.GetFloat(Enums.AudioName.Music.ToString());
         float currentValue = PlayerPrefs.GetFloat(Enums.AudioName.Effect.ToString());
 
-        foreach (AudioSource audioSource in _audioSources)
-        {
-            audioSource.volume = currentValue;
-        }
+        foreach (AudioSource audioSource in _audioSources) audioSource.volume = currentValue;
     }
 }

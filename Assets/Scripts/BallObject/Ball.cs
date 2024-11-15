@@ -51,6 +51,7 @@ namespace BallObject
             ExtraLiveChanged?.Invoke(ExtraLive);
             gameObject.SetActive(true);
             BallEffect.SetStateEffect(false);
+            Rigidbody.isKinematic = false;
         }
 
         public void Die()
@@ -58,6 +59,7 @@ namespace BallObject
             IsActive = false;
             BallEffect.SetStateEffect(false);
             _transform.position = _ballPoint.position;
+            Rigidbody.isKinematic = true;
         }
 
         public void DisconnectParentObject()
@@ -67,7 +69,6 @@ namespace BallObject
 
             IsActive = true;
             BallEffect.SetStateEffect(true);
-            _transform.parent = default;
             Actived?.Invoke();
         }
     }

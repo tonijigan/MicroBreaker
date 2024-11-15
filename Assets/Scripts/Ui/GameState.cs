@@ -29,6 +29,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private Wallet _wallet;
     [SerializeField] private PanelFade _panelFade;
     [SerializeField] private BoostersContainer _boostersContainer;
+    [SerializeField] private ButtonPanelInteraction _buttonPanelInteraction;
 
     private WaitForSeconds _waitForSeconds;
     private Coroutine _coroutine;
@@ -88,6 +89,7 @@ public class GameState : MonoBehaviour
 
     private IEnumerator MovePanel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
     {
+        _buttonPanelInteraction.gameObject.SetActive(false);
         _inputPointMovement.gameObject.SetActive(false);
         _ballMovement.gameObject.SetActive(false);
         _playerInput.SetControl();
