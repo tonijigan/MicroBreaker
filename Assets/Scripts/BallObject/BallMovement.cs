@@ -9,6 +9,7 @@ namespace BallObject
     [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
     public class BallMovement : MonoBehaviour
     {
+        private const int FirstCount = 0;
         private const int MaxSpeed = 4000;
         private const int StandartSpeed = 1000;
         private const float GravityValue = 0.05f;
@@ -26,6 +27,7 @@ namespace BallObject
         private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
         private Vector3 _lastVelosity;
+        private Vector3 _lastPlatformPosition;
         private Ball _ball;
         private bool _isGravityPlatform = false;
         private float _currentSpeed = StandartSpeed;
@@ -67,6 +69,7 @@ namespace BallObject
 
             _ballEffect.RotateTarget(_rigidbody.velocity);
             _lastVelosity = _rigidbody.velocity;
+            _lastPlatformPosition = _platformTargetGravity.transform.position;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -75,7 +78,7 @@ namespace BallObject
                 return;
 
             Collision currentCollision = collision;
-            Vector3 currentPoint = currentCollision.contacts[0].point;
+            Vector3 currentPoint = currentCollision.contacts[FirstCount].point;
 
             if (currentCollision.gameObject.TryGetComponent(out ITrigger trigger))
             {
@@ -123,7 +126,15 @@ namespace BallObject
 
         public Vector3 GetCurrentDirection(Collision collision)
         {
-            return Vector3.Reflect(_lastVelosity.normalized, collision.contacts[0].normal);
+            if (collision.gameObject.TryGetComponent(out Platform platform))
+            {
+                var direction = (collision.contacts[FirstCount].point - _lastPlatformPosition).normalized;
+                var reflect = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
+                _lastPlatformPosition = Vector3.zero;
+                return direction + reflect;
+            }
+
+            return Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);
         }
     }
 }

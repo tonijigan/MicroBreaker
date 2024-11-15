@@ -24,6 +24,10 @@ public class PlatfornModification : ObjectModification
 
     private void PlayParticle(BoosterNames boosterNames)
     {
+        ParticleSystem[] currentParticleSystems = GetParticleSystemsState(boosterNames);
+
+        if (currentParticleSystems == null) return;
+
         foreach (var particle in GetParticleSystemsState(boosterNames))
             particle.Play();
     }
