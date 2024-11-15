@@ -18,7 +18,7 @@ public class LocationAnimation : MonoBehaviour
     private Box[] _boxesTransform;
     private Transform _transform;
     private Coroutine _coroutine;
-    private WaitForSeconds _waitForSeconds = new(FirstDuration);
+    private WaitForSeconds _waitForSeconds = new(0);
     private float _currentAngle = 0;
 
     private void Start()
