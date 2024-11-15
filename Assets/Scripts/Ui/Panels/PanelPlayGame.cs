@@ -10,8 +10,8 @@ public class PanelPlayGame : Panel
 
     [SerializeField] private ButtonPlayGame _buttonPlayGame;
     [SerializeField] private ButtonPanelInteraction _buttonClose;
-    [SerializeField] private ButtonUpgrade _firstButtonUpgrade;
-    [SerializeField] private ButtonUpgrade _secondButtonUpgrade;
+    [SerializeField] private ButtonAdditionalImprovement _firstButtonUpgrade;
+    [SerializeField] private ButtonAdditionalImprovement _secondButtonUpgrade;
     [SerializeField] private LocationChooseInput _locationChooseInput;
     [SerializeField] private LocationCreateView _locationCreateView;
     [SerializeField] private SaveService _saveService;
@@ -69,12 +69,12 @@ public class PanelPlayGame : Panel
 
     private void OnClick()
     {
-        LocationObjectData locationObjectData = new()
+        LevelData locationObjectData = new()
         {
             LocationName = _locationObject.Name.ToString(),
             AdditionaValue = _locationObject.AdditionaValue.ToString(),
             Passed = _locationObject.IsPassed ? MaxValue : MinValue,
         };
-        _saveService.SaveCurrentLocationName(locationObjectData);
+        _saveService.SaveCurrentLevelData(locationObjectData);
     }
 }

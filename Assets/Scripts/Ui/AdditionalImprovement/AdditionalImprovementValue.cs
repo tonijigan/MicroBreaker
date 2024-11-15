@@ -1,17 +1,17 @@
-public class UpgradeValue
+public class AdditionalImprovementValue
 {
     private const int MaxSelectValue = 1;
     private const int MinSelectValue = 0;
 
-    public string UpgradeName { get; private set; }
+    public string AdditionalImprovementName { get; private set; }
 
     public int Value { get; private set; }
 
     public bool IsSelect { get; private set; }
 
-    public UpgradeValue(string upgradeName, int value, int selectValue)
+    public AdditionalImprovementValue(string additionalImprovementName, int value, int selectValue)
     {
-        UpgradeName = upgradeName;
+        AdditionalImprovementName = additionalImprovementName;
         Value = value;
         IsSelect = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
     }

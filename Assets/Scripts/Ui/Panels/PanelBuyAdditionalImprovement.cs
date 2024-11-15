@@ -4,20 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelBuyUpgrade : Panel
+public class PanelBuyAdditionalImprovement : Panel
 {
     [SerializeField] private Panel _backGround;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private Button _buttonBuy;
     [SerializeField] private TMP_Text _textPrice;
     [SerializeField] private Image _currentImage;
-    [SerializeField] private UpgradeColection _upgradeColection;
+    [SerializeField] private AdditionalImprovementColection _additionalImprovementColection;
     [SerializeField] private Color _firstColor;
 
-    public event Action<Upgrade> Buid;
+    public event Action<AdditionalImprovement> Buid;
 
 
-    private Upgrade _upgrade;
+    private AdditionalImprovement _additionalImprovement;
 
     private void OnEnable() => _buttonBuy.onClick.AddListener(Buy);
 
@@ -30,28 +30,28 @@ public class PanelBuyUpgrade : Panel
         await MovePanel(isAction);
     }
 
-    public void Init(Upgrade upgrade)
+    public void Init(AdditionalImprovement additionalImprovement)
     {
-        _upgrade = upgrade;
+        _additionalImprovement = additionalImprovement;
         SetAccessBuy();
     }
 
     private void Buy()
     {
-        if (_wallet.Coin < _upgrade.Price) return;
+        if (_wallet.Coin < _additionalImprovement.Price) return;
 
-        _wallet.RemoveCoins(_upgrade.Price);
-        _upgradeColection.SaveUpgrade(_upgrade);
+        _wallet.RemoveCoins(_additionalImprovement.Price);
+        _additionalImprovementColection.SaveAdditionalImprovement(_additionalImprovement);
         Move(false);
-        Buid?.Invoke(_upgrade);
+        Buid?.Invoke(_additionalImprovement);
     }
 
     private void SetAccessBuy()
     {
-        _currentImage.sprite = _upgrade.Sprite;
-        _textPrice.text = _upgrade.Price.ToString();
+        _currentImage.sprite = _additionalImprovement.Sprite;
+        _textPrice.text = _additionalImprovement.Price.ToString();
 
-        if (_wallet.Coin < _upgrade.Price)
+        if (_wallet.Coin < _additionalImprovement.Price)
         {
             _buttonBuy.image.color = Color.red;
             return;

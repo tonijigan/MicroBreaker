@@ -12,6 +12,7 @@ public class PanelLoss : Panel
     [SerializeField] private TMP_Text _score;
     [SerializeField] private TMP_Text _bricksSmashed;
     [SerializeField] private SDKPromotionalVideo _promotionalVideo;
+    [SerializeField] private SoundMusic _soundMusic;
 
     public event Action<string> Clicked;
 
@@ -45,6 +46,7 @@ public class PanelLoss : Panel
     private void OnClickRestart(string sceneName)
     {
         Move(false);
+        _soundMusic.SetActive(false);
         Clicked?.Invoke(sceneName);
     }
 }

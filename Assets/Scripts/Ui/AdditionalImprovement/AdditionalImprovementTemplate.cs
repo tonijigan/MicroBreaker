@@ -2,16 +2,16 @@ using Enums;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeTemplate : MonoBehaviour
+public class AdditionalImprovementTemplate : MonoBehaviour
 {
-    [SerializeField] private UpgradeName _upgradeName;
+    [SerializeField] private AdditionalImprovementName _additionalImprovementName;
     [SerializeField] private Sprite _sprite;
     [SerializeField] private string _description;
     [SerializeField] private int _firstPrice;
     [SerializeField] private int _secondprice;
     [SerializeField] private int _thirdPrice;
 
-    public UpgradeName UpgradeName => _upgradeName;
+    public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;
 
     public Sprite Sprite => _sprite;
 

@@ -604,6 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 169096778}
   - component: {fileID: 169096779}
+  - component: {fileID: 169096780}
   m_Layer: 0
   m_Name: AudioSourceMusic
   m_TagString: Untagged
@@ -722,6 +723,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &169096780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169096777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5372db532af05e4ebd0dccbb50fca9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &182628758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2822,6 +2835,7 @@ MonoBehaviour:
   _audioSources:
   - {fileID: 1117025258}
   - {fileID: 930928594}
+  IsEnable: 0
 --- !u!1001 &1372558591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5122,6 +5136,7 @@ MonoBehaviour:
   _audioName: 0
   _audioSources:
   - {fileID: 169096779}
+  IsEnable: 0
 --- !u!1001 &1805390372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6124,6 +6139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenesName: 1
   _panelFade: {fileID: 986681019}
+  _soundMusic: {fileID: 169096780}
 --- !u!224 &1723928244367906379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7218,7 +7234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303551131087928728, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 749.99994
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 7303551131087928728, guid: a4eccada9ea63444382749570395738a, type: 3}
       propertyPath: m_AnchoredPosition.y

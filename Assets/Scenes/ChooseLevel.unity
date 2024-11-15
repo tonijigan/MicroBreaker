@@ -647,7 +647,7 @@ MonoBehaviour:
   _buttonBuy: {fileID: 853671943}
   _textPrice: {fileID: 180293111}
   _currentImage: {fileID: 730098544}
-  _upgradeColection: {fileID: 7658589073512060352}
+  _additionalImprovementColection: {fileID: 7658589073512060352}
   _firstColor: {r: 0, g: 0.54901963, b: 1, a: 1}
 --- !u!1001 &89583350
 PrefabInstance:
@@ -2277,14 +2277,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 283141094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b147a5ad0f8184b9c9b280ec54bfeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 643dbf43965ffbe41971081dda476b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeName: 2
+  _additionalImprovementName: 2
   _image: {fileID: 478600127}
   _imageBuy: {fileID: 252793714}
   _imageSelected: {fileID: 311100824}
-  _upgradeTemplates:
+  _additionalImprovementTemplates:
   - {fileID: 6799015468461318448, guid: 8d9479cddf8ee1442b665d8552af3619, type: 3}
 --- !u!114 &283141097
 MonoBehaviour:
@@ -6510,6 +6510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1118507306}
   - component: {fileID: 1118507307}
+  - component: {fileID: 1118507308}
   m_Layer: 0
   m_Name: Audio SourceMusic
   m_TagString: Untagged
@@ -6628,6 +6629,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1118507308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118507305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5372db532af05e4ebd0dccbb50fca9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1122538144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6580094909476115945, guid: 3b9338f239d73c14eb854204f07643e5, type: 3}
@@ -8286,14 +8299,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1334596023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34b147a5ad0f8184b9c9b280ec54bfeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 643dbf43965ffbe41971081dda476b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeName: 0
+  _additionalImprovementName: 0
   _image: {fileID: 32471856}
   _imageBuy: {fileID: 1824308649}
   _imageSelected: {fileID: 1504023610}
-  _upgradeTemplates:
+  _additionalImprovementTemplates:
   - {fileID: 6799015468461318448, guid: 4fa172f904805d540af8464b87592d46, type: 3}
 --- !u!1 &1358157467
 GameObject:
@@ -14756,7 +14769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4267488554965608711, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 98.635
+      value: 98.63501
       objectReference: {fileID: 0}
     - target: {fileID: 4806025463234720176, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: m_IsActive
@@ -15320,13 +15333,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7658589073512060350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51349f2ac865263408b5cdcfbe59df53, type: 3}
+  m_Script: {fileID: 11500000, guid: abc1fc2aa9f20b64d9a1b6975cc556b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonUpgrades:
+  _buttonAdditionalImprovements:
   - {fileID: 1334596030}
   - {fileID: 283141096}
-  _panelUpgrade: {fileID: 565730284}
+  _panelAdditionalImprovement: {fileID: 565730284}
   _saveService: {fileID: 540819814}
 --- !u!1 &7798865232732371756
 GameObject:
@@ -15367,7 +15380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436211291954668252, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: _duration
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8876809251492471441, guid: 4d67b6f0e80d3b64fbf600d2c4184c78, type: 3}
       propertyPath: m_Pivot.x
@@ -15476,6 +15489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenesName: 2
   _panelFade: {fileID: 1018121627}
+  _soundMusic: {fileID: 1118507308}
 --- !u!114 &8275956300452831687
 MonoBehaviour:
   m_ObjectHideFlags: 0

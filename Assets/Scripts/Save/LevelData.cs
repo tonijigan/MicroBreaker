@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class LocationObjectData
+public class LevelData
 {
     public string LocationName;
     public string AdditionaValue = string.Empty;

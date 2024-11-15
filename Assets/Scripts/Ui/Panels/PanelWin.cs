@@ -12,6 +12,7 @@ public class PanelWin : Panel
     [SerializeField] private TMP_Text _time;
     [SerializeField] private TMP_Text _bricksSmashed;
     [SerializeField] private TMP_Text _credits;
+    [SerializeField] private SoundMusic _soundMusic;
 
     public event Action<string> Clicked;
 
@@ -43,6 +44,7 @@ public class PanelWin : Panel
     private async void OnClick(string sceneName)
     {
         _panelFade.SetActive(false);
+        _soundMusic.SetActive(false);
         base.Move(false);
         await MovePanel(false, () => Clicked?.Invoke(sceneName));
     }

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ButtonSettingAudio : AbstractButton
 {
-    private const int MinVolume = 0;
-    private const int MaxVolume = 1;
     private const string StateEnable = "On";
     private const string StateDisable = "Off";
 
@@ -16,7 +14,7 @@ public class ButtonSettingAudio : AbstractButton
 
     public event Action<ButtonSettingAudio> Changed;
 
-    private bool _isEnable;
+    public bool IsEnable;
 
     public AudioName AudioName => _audioName;
 
@@ -24,14 +22,14 @@ public class ButtonSettingAudio : AbstractButton
 
     public void Init(bool isEnable)
     {
-        _isEnable = isEnable;
+        IsEnable = isEnable;
         SetParameters(isEnable);
     }
 
     protected override void OnClick()
     {
-        _isEnable = !_isEnable;
-        SetParameters(_isEnable);
+        IsEnable = !IsEnable;
+        SetParameters(IsEnable);
         Changed?.Invoke(this);
     }
 
@@ -39,7 +37,7 @@ public class ButtonSettingAudio : AbstractButton
     {
         foreach (var audioSource in _audioSources)
         {
-            audioSource.volume = isEnable ? MaxVolume : MinVolume;
+            audioSource.enabled = isEnable;
             _text.text = isEnable ? StateEnable : StateDisable;
         }
     }

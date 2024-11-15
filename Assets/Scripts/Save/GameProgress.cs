@@ -8,7 +8,7 @@ public class GameProgress
     public string CurrentPlatform = string.Empty;
     public string[] Balls = null;
     public string[] Platforms = null;
-    public LocationObjectData CurrentLocationName = null;
-    public LocationObjectData[] LocationObjectData = null;
-    public UpgradeData[] UpgradeSave = null;
+    public LevelData CurrentLevelData = null;
+    public LevelData[] LevelDatas = null;
+    public AdditionalImprovementData[] AdditionalImprovementDatas = null;
 }

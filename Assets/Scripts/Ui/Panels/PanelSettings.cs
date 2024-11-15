@@ -4,6 +4,7 @@ using UnityEngine;
 public class PanelSettings : Panel
 {
     private const int MaxVolume = 1;
+    private const int MinVolume = 0;
 
     [SerializeField] private ButtonSettingAudio _buttonSettingMusic;
     [SerializeField] private ButtonSettingAudio _buttonSettingEffect;
@@ -43,7 +44,7 @@ public class PanelSettings : Panel
 
     private void Save(ButtonSettingAudio buttonSettingAudio)
     {
-        int value = (int)buttonSettingAudio.AudioSources.First().volume;
+        int value = buttonSettingAudio.IsEnable ? MaxVolume : MinVolume;
         PlayerPrefs.SetInt(buttonSettingAudio.AudioName.ToString(), value);
     }
 }

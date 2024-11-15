@@ -30,6 +30,7 @@ public class SoundButton : MonoBehaviour
 
     public void Play()
     {
+        if (_audioSource.enabled == false) return;
         _audioSource.Play();
     }
 }

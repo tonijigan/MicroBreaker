@@ -38,7 +38,7 @@ public class LocationObject : MonoBehaviour
         _boxTransform.DOLocalRotate(new Vector3(MinValue, Angle, MinValue), DurationRotate, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-LoopValue, LoopType.Incremental);
     }
 
-    public void Init(LocationObjectData locationObjectData)
+    public void Init(LevelData locationObjectData)
     {
         _additionaValue = locationObjectData.AdditionaValue;
         _isActive = true ? locationObjectData.Active == MaxValue : locationObjectData.Active == MinValue;

@@ -22,11 +22,11 @@ public class SaveService : MonoBehaviour
 
     public string[] Platforms => _gameProgress.Platforms;
 
-    public LocationObjectData[] LocationObjectDatas => _gameProgress.LocationObjectData;
+    public LevelData[] LevelDatas => _gameProgress.LevelDatas;
 
     public int LevelCount => _gameProgress.LevelCount;
 
-    public LocationObjectData CurrentLocationName => _gameProgress.CurrentLocationName;
+    public LevelData LevelData => _gameProgress.CurrentLevelData;
 
     private void Start() => _saveGameProgress.Load();
 
@@ -72,46 +72,46 @@ public class SaveService : MonoBehaviour
         return scale;
     }
 
-    public List<UpgradeValue> GetUpgradeValues()
+    public List<AdditionalImprovementValue> GetAdditionalImprovementValues()
     {
-        List<UpgradeValue> upgradeValues = new();
+        List<AdditionalImprovementValue> additionalImprovementValue = new();
 
-        for (int i = 0; i < _gameProgress.UpgradeSave.Length; i++)
+        for (int i = 0; i < _gameProgress.AdditionalImprovementDatas.Length; i++)
         {
-            upgradeValues.Add(new(_gameProgress.UpgradeSave[i].UpgradeName,
-                                  _gameProgress.UpgradeSave[i].Value,
-                                  _gameProgress.UpgradeSave[i].ValueSelect));
+            additionalImprovementValue.Add(new(_gameProgress.AdditionalImprovementDatas[i].UpgradeName,
+                                  _gameProgress.AdditionalImprovementDatas[i].Value,
+                                  _gameProgress.AdditionalImprovementDatas[i].ValueSelect));
         }
 
-        return upgradeValues;
+        return additionalImprovementValue;
     }
 
-    public List<LocationObjectData> GetLocationNamesData()
+    public List<LevelData> GetLevelDatas()
     {
-        return _gameProgress.LocationObjectData.ToList();
+        return _gameProgress.LevelDatas.ToList();
     }
 
-    public void SaveLocationObjectsNameData(List<LocationObjectData> locationObjectDatas)
+    public void SaveLevelDatas(List<LevelData> locationObjectDatas)
     {
-        _gameProgress.LocationObjectData = locationObjectDatas.ToArray();
+        _gameProgress.LevelDatas = locationObjectDatas.ToArray();
         Save();
     }
 
-    public void SaveUpgrade(List<UpgradeValue> upgradeValues)
+    public void SaveAdditionalImprovementValues(List<AdditionalImprovementValue> additionalImprovementValue)
     {
-        List<UpgradeData> upgradeData = new();
+        List<AdditionalImprovementData> additionalImprovementData = new();
 
-        for (int i = 0; i < upgradeValues.Count; i++)
+        for (int i = 0; i < additionalImprovementValue.Count; i++)
         {
-            upgradeData.Add(new UpgradeData()
+            additionalImprovementData.Add(new AdditionalImprovementData()
             {
-                UpgradeName = upgradeValues[i].UpgradeName,
-                Value = upgradeValues[i].Value,
-                ValueSelect = upgradeValues[i].GetSelectValue()
+                UpgradeName = additionalImprovementValue[i].AdditionalImprovementName,
+                Value = additionalImprovementValue[i].Value,
+                ValueSelect = additionalImprovementValue[i].GetSelectValue()
             });
         }
 
-        _gameProgress.UpgradeSave = upgradeData.ToArray();
+        _gameProgress.AdditionalImprovementDatas = additionalImprovementData.ToArray();
         Save();
     }
 
@@ -148,12 +148,6 @@ public class SaveService : MonoBehaviour
         Save();
     }
 
-    //public void SaveArrayLocationNames(string[] LocationNames)
-    //{
-    //    _gameProgress.LocationNames = LocationNames;
-    //    Save();
-    //}
-
     public void SaveCoins(int amount)
     {
         _gameProgress.Coins = amount;
@@ -166,9 +160,9 @@ public class SaveService : MonoBehaviour
         Save();
     }
 
-    public void SaveCurrentLocationName(LocationObjectData currentLocationName)
+    public void SaveCurrentLevelData(LevelData currentLevelData)
     {
-        _gameProgress.CurrentLocationName = currentLocationName;
+        _gameProgress.CurrentLevelData = currentLevelData;
         Save();
     }
 

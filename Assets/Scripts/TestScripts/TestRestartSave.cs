@@ -21,7 +21,7 @@ public class TestRestartSave : MonoBehaviour
         _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Ball, new string[0]);
         _saveService.SaveArrayProducts(objectsName: Enums.ObjectsName.Platform, new string[0]);
 
-        _saveService.SaveLocationObjectsNameData(new List<LocationObjectData>(0));
-        _saveService.SaveUpgrade(new List<UpgradeValue>(0));
+        _saveService.SaveLevelDatas(new List<LevelData>(0));
+        _saveService.SaveAdditionalImprovementValues(new List<AdditionalImprovementValue>(0));
     }
 }

@@ -45,12 +45,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6322039783432600531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a845c8e55e4dc4fb778272002283ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c47c434451ffa447bc96cc3f70e3164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeName: 0
+  _additionalImprovementName: 0
   _sprite: {fileID: 21300000, guid: 16af2b861d3f8b44688d733ddd34dac1, type: 3}
-  _description: start with on extra ball
+  _description: start with on extra live
   _firstPrice: 10
-  _secondprice: 15
-  _thirdPrice: 20
+  _secondprice: 20
+  _thirdPrice: 30

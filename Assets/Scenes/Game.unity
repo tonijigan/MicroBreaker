@@ -51595,6 +51595,7 @@ MonoBehaviour:
   _time: {fileID: 447217614}
   _bricksSmashed: {fileID: 771508980}
   _credits: {fileID: 354060410}
+  _soundMusic: {fileID: 1728781931}
 --- !u!1 &495205958
 GameObject:
   m_ObjectHideFlags: 0
@@ -81406,6 +81407,7 @@ MonoBehaviour:
   _score: {fileID: 495205960}
   _bricksSmashed: {fileID: 1241918977}
   _promotionalVideo: {fileID: 744603666}
+  _soundMusic: {fileID: 1728781931}
 --- !u!1 &1495792162
 GameObject:
   m_ObjectHideFlags: 0
@@ -102058,6 +102060,7 @@ MonoBehaviour:
   _audioName: 0
   _audioSources:
   - {fileID: 1728781930}
+  IsEnable: 0
 --- !u!1 &1725324641
 GameObject:
   m_ObjectHideFlags: 0
@@ -102202,6 +102205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728781929}
   - component: {fileID: 1728781930}
+  - component: {fileID: 1728781931}
   m_Layer: 0
   m_Name: Audio SourceMusic
   m_TagString: Untagged
@@ -102320,6 +102324,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1728781931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728781928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5372db532af05e4ebd0dccbb50fca9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729654576
 GameObject:
   m_ObjectHideFlags: 0
@@ -113890,6 +113906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scenesName: 0
   _panelFade: {fileID: 446064978}
+  _soundMusic: {fileID: 1728781931}
 --- !u!114 &1993589816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119201,6 +119218,7 @@ MonoBehaviour:
   - {fileID: 93439711}
   - {fileID: 226116857}
   - {fileID: 1729654578}
+  IsEnable: 0
 --- !u!1 &2063908780
 GameObject:
   m_ObjectHideFlags: 0
@@ -124698,7 +124716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41294324, y: -0.101741, z: 0.046481945, w: 0.9038618}
+  m_LocalRotation: {x: 0.41294324, y: -0.101740986, z: 0.046481945, w: 0.9038618}
   m_LocalPosition: {x: 6.43, y: 35.4, z: -28.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -125527,7 +125545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418020782426431192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41294324, y: -0.101741, z: 0.046481945, w: 0.9038618}
+  m_LocalRotation: {x: 0.41294324, y: -0.101740986, z: 0.046481945, w: 0.9038618}
   m_LocalPosition: {x: 6.43, y: 35.4, z: -28.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

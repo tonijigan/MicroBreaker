@@ -17,7 +17,7 @@ public class LocationCreate : MonoBehaviour
     public Location CurrentLocation { get; private set; }
     private Transform _transform;
 
-    public void Init(LocationObjectData locationObjectData)
+    public void Init(LevelData locationObjectData)
     {
         _transform = transform;
         Location newLocation = _locations.Where(location => location.LocationName == locationObjectData.LocationName &&

@@ -31,15 +31,15 @@ public class ContainerLocationObjects : MonoBehaviour
             _locationObjects[i] = locationObject;
         }
 
-        if (_saveService.LocationObjectDatas == null) return;
+        if (_saveService.LevelDatas == null) return;
 
         List<LocationObject> newLocationObjects = new();
 
-        for (int i = 0; i < _saveService.LocationObjectDatas.Length; i++)
+        for (int i = 0; i < _saveService.LevelDatas.Length; i++)
         {
-            newLocationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LocationObjectDatas[i].LocationName &&
-                                                          location.AdditionaValue == _saveService.LocationObjectDatas[i].AdditionaValue).FirstOrDefault());
-            newLocationObjects[i].Init(_saveService.LocationObjectDatas[i]);
+            newLocationObjects.Add(_locationObjects.Where(location => location.Name.ToString() == _saveService.LevelDatas[i].LocationName &&
+                                                          location.AdditionaValue == _saveService.LevelDatas[i].AdditionaValue).FirstOrDefault());
+            newLocationObjects[i].Init(_saveService.LevelDatas[i]);
         }
 
 

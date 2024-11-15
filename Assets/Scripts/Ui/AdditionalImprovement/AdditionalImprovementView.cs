@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeView : MonoBehaviour
+public class AdditionalImprovementView : MonoBehaviour
 {
     [SerializeField] private Button _button;
     [SerializeField] private Image _image;

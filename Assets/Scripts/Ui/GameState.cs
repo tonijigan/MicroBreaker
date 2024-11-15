@@ -100,18 +100,18 @@ public class GameState : MonoBehaviour
     {
         _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
 
-        if (_saveService.CurrentLocationName.Passed == PassedValue) return;
+        if (_saveService.LevelData.Passed == PassedValue) return;
 
-        List<LocationObjectData> locationObjectData = _saveService.LocationObjectDatas.ToList();
+        List<LevelData> locationObjectData = _saveService.LevelDatas.ToList();
         locationObjectData.Add(new()
         {
-            LocationName = _saveService.CurrentLocationName.LocationName,
-            AdditionaValue = _saveService.CurrentLocationName.AdditionaValue,
+            LocationName = _saveService.LevelData.LocationName,
+            AdditionaValue = _saveService.LevelData.AdditionaValue,
             Active = PassedValue,
             Passed = PassedValue
         });
 
-        _saveService.SaveLocationObjectsNameData(locationObjectData);
+        _saveService.SaveLevelDatas(locationObjectData);
     }
 
     private void LoadScene(string sceneName)

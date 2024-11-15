@@ -2,21 +2,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelUpgrade : Panel
+public class PanelAdditionalImprovement : Panel
 {
     private const int FirstMultiplier = 1;
     private const int SecondMultiplier = 3;
     private const int ThirdMultiplier = 9;
 
     [SerializeField] private Panel _backGround;
-    [SerializeField] private PanelBuyUpgrade _panelBuyUpgrade;
+    [SerializeField] private PanelBuyAdditionalImprovement _panelBuyUpgrade;
     [SerializeField] private Image _image;
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private Upgrade _firstUpgrade;
-    [SerializeField] private Upgrade _secondUpgrade;
-    [SerializeField] private Upgrade _thirdUpgrate;
+    [SerializeField] private AdditionalImprovement _firstUpgrade;
+    [SerializeField] private AdditionalImprovement _secondUpgrade;
+    [SerializeField] private AdditionalImprovement _thirdUpgrate;
 
-    private ButtonUpgrade _currentButtonUpgrade;
+    private ButtonAdditionalImprovement _currentButtonUpgrade;
 
     private void OnEnable()
     {
@@ -34,16 +34,16 @@ public class PanelUpgrade : Panel
         _panelBuyUpgrade.Buid -= OnSetAccess;
     }
 
-    public void Init(ButtonUpgrade buttonUpgrade)
+    public void Init(ButtonAdditionalImprovement buttonUpgrade)
     {
         _currentButtonUpgrade = buttonUpgrade;
-        UpgradeTemplate imageUpgrade = _currentButtonUpgrade.UpgradeTemplate;
+        AdditionalImprovementTemplate imageUpgrade = _currentButtonUpgrade.AdditionalImprovementTemplate;
         _image.sprite = imageUpgrade.Sprite;
-        _text.text = buttonUpgrade.UpgradeTemplate.Description;
+        _text.text = buttonUpgrade.AdditionalImprovementTemplate.Description;
 
-        _firstUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.FirstPrice, FirstMultiplier, imageUpgrade.UpgradeName);
-        _secondUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.SecondPrice, SecondMultiplier, imageUpgrade.UpgradeName);
-        _thirdUpgrate.Init(imageUpgrade.Sprite, imageUpgrade.ThirdPrice, ThirdMultiplier, imageUpgrade.UpgradeName);
+        _firstUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.FirstPrice, FirstMultiplier, imageUpgrade.AdditionalImprovementName);
+        _secondUpgrade.Init(imageUpgrade.Sprite, imageUpgrade.SecondPrice, SecondMultiplier, imageUpgrade.AdditionalImprovementName);
+        _thirdUpgrate.Init(imageUpgrade.Sprite, imageUpgrade.ThirdPrice, ThirdMultiplier, imageUpgrade.AdditionalImprovementName);
     }
 
     public override async void Move(bool isAction)
@@ -53,14 +53,14 @@ public class PanelUpgrade : Panel
         await MovePanel(isAction);
     }
 
-    private void OnSetAccess(Upgrade upgrade)
+    private void OnSetAccess(AdditionalImprovement upgrade)
     {
         upgrade.SetState(false);
         _currentButtonUpgrade.SetBuy(true);
         Move(false);
     }
 
-    private void OpenBuyCanUpgrade(Upgrade upgrade)
+    private void OpenBuyCanUpgrade(AdditionalImprovement upgrade)
     {
         _panelBuyUpgrade.gameObject.SetActive(true);
         _panelBuyUpgrade.Init(upgrade);
