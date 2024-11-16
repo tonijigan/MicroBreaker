@@ -21,15 +21,16 @@ namespace PlayerLogic
 
         public void AddCoin(int coins)
         {
-            if (coins >= MinCoins)
+            if (coins < MinCoins) return;
 
-                _coins += coins;
+            _coins += coins;
             Changed?.Invoke(_coins);
         }
 
         public void RemoveCoins(int coins)
         {
             if (_coins < coins) return;
+
             _coins -= coins;
             Changed?.Invoke(_coins);
         }

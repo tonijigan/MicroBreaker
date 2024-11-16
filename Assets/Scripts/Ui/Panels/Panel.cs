@@ -27,7 +27,7 @@ namespace UI
 
         private void Awake() => InitAwake();
 
-        public virtual void Move(bool isAction) => Moved?.Invoke();
+        public virtual void OnMove(bool isAction) => Moved?.Invoke();
 
         protected virtual void InitAwake()
         {

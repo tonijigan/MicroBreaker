@@ -21,8 +21,8 @@ namespace Sound
             _locationCreate.Inited += OnInit;
             _locationCreate.Inited += OnInit =>
             {
-                foreach (var box in _boxContainer.Boxes) box.Damaged += Play;
-                foreach (var box in _boxesFalling.Boxes) box.Damaged += Play;
+                foreach (var box in _boxContainer.Boxes) box.Damaged += OnPlay;
+                foreach (var box in _boxesFalling.Boxes) box.Damaged += OnPlay;
             };
         }
 
@@ -31,14 +31,14 @@ namespace Sound
             _locationCreate.Inited -= OnInit;
             _locationCreate.Inited -= OnInit =>
             {
-                foreach (var box in _boxContainer.Boxes) box.Damaged -= Play;
-                foreach (var box in _boxesFalling.Boxes) box.Damaged -= Play;
+                foreach (var box in _boxContainer.Boxes) box.Damaged -= OnPlay;
+                foreach (var box in _boxesFalling.Boxes) box.Damaged -= OnPlay;
             };
         }
 
         private void OnInit(Location location) => _boxContainer = location.BoxContainer;
 
-        private void Play(AudioClip audioClip)
+        private void OnPlay(AudioClip audioClip)
         {
             if (_audioSource.enabled == false) return;
 

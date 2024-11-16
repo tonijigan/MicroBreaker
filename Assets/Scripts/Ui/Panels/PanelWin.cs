@@ -38,9 +38,9 @@ namespace UI
             _credits.text = credits;
         }
 
-        public override async void Move(bool isActive)
+        public override async void OnMove(bool isActive)
         {
-            base.Move(isActive);
+            base.OnMove(isActive);
             await MovePanel(isActive);
         }
 
@@ -48,7 +48,7 @@ namespace UI
         {
             _panelFade.SetActive(false);
             _soundMusic.SetActive(false);
-            base.Move(false);
+            base.OnMove(false);
             await MovePanel(false, () => Clicked?.Invoke(sceneName));
         }
     }

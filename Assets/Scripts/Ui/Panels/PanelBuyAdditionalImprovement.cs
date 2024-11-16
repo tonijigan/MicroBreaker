@@ -21,14 +21,14 @@ namespace UI
 
         private AdditionalImprovement _additionalImprovement;
 
-        private void OnEnable() => _buttonBuy.onClick.AddListener(Buy);
+        private void OnEnable() => _buttonBuy.onClick.AddListener(OnBuy);
 
-        private void OnDisable() => _buttonBuy.onClick.RemoveListener(Buy);
+        private void OnDisable() => _buttonBuy.onClick.RemoveListener(OnBuy);
 
-        public override async void Move(bool isAction)
+        public override async void OnMove(bool isAction)
         {
             _backGround.gameObject.SetActive(isAction);
-            base.Move(isAction);
+            base.OnMove(isAction);
             await MovePanel(isAction);
         }
 
@@ -38,13 +38,13 @@ namespace UI
             SetAccessBuy();
         }
 
-        private void Buy()
+        private void OnBuy()
         {
             if (_wallet.Coin < _additionalImprovement.Price) return;
 
             _wallet.RemoveCoins(_additionalImprovement.Price);
             _additionalImprovementColection.SaveAdditionalImprovement(_additionalImprovement);
-            Move(false);
+            OnMove(false);
             Buid?.Invoke(_additionalImprovement);
         }
 

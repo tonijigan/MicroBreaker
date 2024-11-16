@@ -35,9 +35,9 @@ namespace UI
 
         private void OnDisable() => _buttonPlayGame.Clicked -= OnClick;
 
-        public override async void Move(bool isActive)
+        public override async void OnMove(bool isActive)
         {
-            base.Move(isActive);
+            base.OnMove(isActive);
             await MovePanel(isActive);
             _locationCreateView.gameObject.SetActive(isActive);
         }

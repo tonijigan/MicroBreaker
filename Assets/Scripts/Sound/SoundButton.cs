@@ -17,15 +17,15 @@ namespace Sound
 
         private void OnEnable()
         {
-            foreach (var button in _buttons) button.onClick.AddListener(Play);
+            foreach (var button in _buttons) button.onClick.AddListener(OnPlay);
         }
 
         private void OnDisable()
         {
-            foreach (var button in _buttons) button.onClick.RemoveListener(Play);
+            foreach (var button in _buttons) button.onClick.RemoveListener(OnPlay);
         }
 
-        public void Play()
+        public void OnPlay()
         {
             if (_audioSource.enabled == false) return;
 

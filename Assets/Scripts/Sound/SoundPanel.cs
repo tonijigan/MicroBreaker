@@ -15,15 +15,15 @@ namespace Sound
 
         private void OnEnable()
         {
-            foreach (var panel in _panels) panel.Moved += Play;
+            foreach (var panel in _panels) panel.Moved += OnPlay;
         }
 
         private void OnDisable()
         {
-            foreach (var panel in _panels) panel.Moved -= Play;
+            foreach (var panel in _panels) panel.Moved -= OnPlay;
         }
 
-        private void Play()
+        private void OnPlay()
         {
             if (_audioSource.enabled == false) return;
 

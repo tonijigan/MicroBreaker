@@ -10,15 +10,9 @@ namespace UI
 
         private void Awake() => InitAwake();
 
-        private void OnEnable()
-        {
-            _button.onClick.AddListener(OnClick);
-        }
+        private void OnEnable() => _button.onClick.AddListener(OnClick);
 
-        private void OnDisable()
-        {
-            _button.onClick.RemoveListener(OnClick);
-        }
+        private void OnDisable() => _button.onClick.RemoveListener(OnClick);
 
         protected virtual void InitAwake() => _button = GetComponent<Button>();
 

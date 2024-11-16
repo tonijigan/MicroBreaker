@@ -15,13 +15,13 @@ namespace UI
 
         public ButtonPanelInteraction ButtenClose => _buttonClose;
 
-        private void OnEnable() => _buttonClose.Clicked += Move;
+        private void OnEnable() => _buttonClose.Clicked += OnMove;
 
-        private void OnDisable() => _buttonClose.Clicked -= Move;
+        private void OnDisable() => _buttonClose.Clicked -= OnMove;
 
-        public override void Move(bool isActive)
+        public override void OnMove(bool isActive)
         {
-            base.Move(isActive);
+            base.OnMove(isActive);
             OnMovePanel(isActive);
         }
 

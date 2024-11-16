@@ -34,9 +34,9 @@ namespace UI
         }
 
 
-        public override async void Move(bool isActive)
+        public override async void OnMove(bool isActive)
         {
-            base.Move(isActive);
+            base.OnMove(isActive);
             await MovePanel(isActive);
         }
 
@@ -48,7 +48,7 @@ namespace UI
 
         private void OnClickRestart(string sceneName)
         {
-            Move(false);
+            OnMove(false);
             _soundMusic.SetActive(false);
             Clicked?.Invoke(sceneName);
         }

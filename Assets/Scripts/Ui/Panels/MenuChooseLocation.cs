@@ -36,7 +36,7 @@ namespace UI
             _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
               locationObject.transform.position.z - PositionZ);
             _panelPlayGame.ButtonClose.SetStartStateButton();
-            _panelPlayGame.Move(true);
+            _panelPlayGame.OnMove(true);
             _panelPlayGame.Init(locationObject);
             OnActivateControl(true);
         }
@@ -45,11 +45,11 @@ namespace UI
         {
             OnActivateControl(isActive);
 
-            _panelPlayGame.Move(false);
+            _panelPlayGame.OnMove(false);
 
             if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
             {
-                _panelPlayGame.Move(true);
+                _panelPlayGame.OnMove(true);
                 OnActivateControl(true);
             }
         }

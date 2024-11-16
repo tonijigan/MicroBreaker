@@ -39,7 +39,7 @@ namespace Shop
             foreach (var product in _products) product.Selected -= SetCurrentProduct;
         }
 
-        public override void Move(bool isActive) => this.gameObject.SetActive(isActive);
+        public override void OnMove(bool isActive) => this.gameObject.SetActive(isActive);
 
         public void AddProduct(Product product) => _products.Add(product);
 
@@ -74,8 +74,7 @@ namespace Shop
 
         private void SetCurrentProduct(Product productSet)
         {
-            foreach (var product in _products)
-                product.SetStatusOfTheSelected(false);
+            foreach (var product in _products) product.SetStatusOfTheSelected(false);
 
             productSet.SetStatusOfTheSelected(true);
             CurrentProduct = productSet;

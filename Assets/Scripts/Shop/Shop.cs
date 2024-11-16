@@ -19,21 +19,21 @@ namespace Shop
 
         private void OnEnable()
         {
-            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked += PlaySound;
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked += OnPlaySound;
 
-            _saveService.Loaded += Create;
+            _saveService.Loaded += OnCreate;
         }
 
         private void OnDisable()
         {
-            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked -= PlaySound;
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked -= OnPlaySound;
 
-            _saveService.Loaded -= Create;
+            _saveService.Loaded -= OnCreate;
         }
 
-        private void PlaySound(bool isAction) => _panelShop.Move(isAction);
+        private void OnPlaySound(bool isAction) => _panelShop.OnMove(isAction);
 
-        private void Create()
+        private void OnCreate()
         {
             _templates = _templates.OrderBy(template => template.Price).ToArray();
 

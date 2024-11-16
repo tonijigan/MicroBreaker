@@ -16,11 +16,11 @@ namespace UI
 
         private List<AdditionalImprovementValue> _additionalImprovementValues = new();
 
-        private void OnEnable() => _saveService.Loaded += Init;
+        private void OnEnable() => _saveService.Loaded += OnInit;
 
-        private void OnDisable() => _saveService.Loaded -= Init;
+        private void OnDisable() => _saveService.Loaded -= OnInit;
 
-        private void Init()
+        private void OnInit()
         {
             _additionalImprovementValues = _saveService.GetAdditionalImprovementValues();
             SetObjectAdditionalImprovement();

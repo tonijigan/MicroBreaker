@@ -30,10 +30,10 @@ namespace UI
             LoadAudioSettings(_buttonSettingEffect);
         }
 
-        public override async void Move(bool isActive)
+        public override async void OnMove(bool isActive)
         {
             _backGround?.gameObject.SetActive(isActive);
-            base.Move(isActive);
+            base.OnMove(isActive);
             await MovePanel(isActive);
         }
 

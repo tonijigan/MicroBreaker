@@ -24,17 +24,17 @@ namespace UI
 
         private void OnEnable()
         {
-            _firstUpgrade.Clicked += OpenBuyCanUpgrade;
-            _secondUpgrade.Clicked += OpenBuyCanUpgrade;
-            _thirdUpgrate.Clicked += OpenBuyCanUpgrade;
+            _firstUpgrade.Clicked += OnOpenBuyCanUpgrade;
+            _secondUpgrade.Clicked += OnOpenBuyCanUpgrade;
+            _thirdUpgrate.Clicked += OnOpenBuyCanUpgrade;
             _panelBuyUpgrade.Buid += OnSetAccess;
         }
 
         private void OnDisable()
         {
-            _firstUpgrade.Clicked -= OpenBuyCanUpgrade;
-            _secondUpgrade.Clicked -= OpenBuyCanUpgrade;
-            _thirdUpgrate.Clicked -= OpenBuyCanUpgrade;
+            _firstUpgrade.Clicked -= OnOpenBuyCanUpgrade;
+            _secondUpgrade.Clicked -= OnOpenBuyCanUpgrade;
+            _thirdUpgrate.Clicked -= OnOpenBuyCanUpgrade;
             _panelBuyUpgrade.Buid -= OnSetAccess;
         }
 
@@ -50,10 +50,10 @@ namespace UI
             _thirdUpgrate.Init(imageUpgrade.Sprite, imageUpgrade.ThirdPrice, ThirdMultiplier, imageUpgrade.AdditionalImprovementName);
         }
 
-        public override async void Move(bool isAction)
+        public override async void OnMove(bool isAction)
         {
             _backGround.gameObject.SetActive(isAction);
-            base.Move(isAction);
+            base.OnMove(isAction);
             await MovePanel(isAction);
         }
 
@@ -61,15 +61,15 @@ namespace UI
         {
             upgrade.SetState(false);
             _currentButtonUpgrade.SetBuy(true);
-            Move(false);
+            OnMove(false);
         }
 
-        private void OpenBuyCanUpgrade(AdditionalImprovement upgrade)
+        private void OnOpenBuyCanUpgrade(AdditionalImprovement upgrade)
         {
             _soundButton.AudioSource.Play();
             _panelBuyUpgrade.gameObject.SetActive(true);
             _panelBuyUpgrade.Init(upgrade);
-            _panelBuyUpgrade.Move(true);
+            _panelBuyUpgrade.OnMove(true);
         }
     }
 }

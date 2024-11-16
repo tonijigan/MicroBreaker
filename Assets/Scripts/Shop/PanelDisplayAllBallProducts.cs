@@ -18,19 +18,19 @@ namespace Shop
 
         private void OnEnable()
         {
-            _panelTypeProducts.Inited += CreateProductView;
+            _panelTypeProducts.Inited += OnCreateProductView;
             _panelTypeProducts.Selected += OnUpdateStates;
             _panelTypeProducts.Buyed += OnUpdateStates;
         }
 
         private void OnDisable()
         {
-            _panelTypeProducts.Inited -= CreateProductView;
+            _panelTypeProducts.Inited -= OnCreateProductView;
             _panelTypeProducts.Selected -= OnUpdateStates;
             _panelTypeProducts.Buyed -= OnUpdateStates;
         }
 
-        private void CreateProductView(List<Product> products, PanelProduct panelProduct)
+        private void OnCreateProductView(List<Product> products, PanelProduct panelProduct)
         {
             foreach (var product in products)
             {

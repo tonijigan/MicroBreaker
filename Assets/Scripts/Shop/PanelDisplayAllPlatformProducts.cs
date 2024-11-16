@@ -31,29 +31,29 @@ namespace Shop
 
         private void OnEnable()
         {
-            _productTypeSection.Inited += Create;
+            _productTypeSection.Inited += OnCreate;
             _productTypeSection.Buyed += OnSetStateProduct;
             _swipePanel.Swiped += OnSetCurrentProduct;
-            _buttonBuy.onClick.AddListener(OpenBuyPanel);
-            _buttonSelect.onClick.AddListener(Choose);
+            _buttonBuy.onClick.AddListener(OnOpenBuyPanel);
+            _buttonSelect.onClick.AddListener(OnChoose);
         }
 
         private void OnDisable()
         {
-            _productTypeSection.Inited -= Create;
+            _productTypeSection.Inited -= OnCreate;
             _productTypeSection.Buyed -= OnSetStateProduct;
             _swipePanel.Swiped -= OnSetCurrentProduct;
-            _buttonBuy.onClick.RemoveListener(OpenBuyPanel);
-            _buttonSelect.onClick.RemoveListener(Choose);
+            _buttonBuy.onClick.RemoveListener(OnOpenBuyPanel);
+            _buttonSelect.onClick.RemoveListener(OnChoose);
         }
 
-        private void Choose()
+        private void OnChoose()
         {
             _currentProduct.Select();
             OnSetStateProduct();
         }
 
-        public void Create(List<Product> products, PanelProduct panelProduct)
+        public void OnCreate(List<Product> products, PanelProduct panelProduct)
         {
             _products = products;
             _panelProduct = panelProduct;
@@ -85,10 +85,10 @@ namespace Shop
             _imageBlock.gameObject.SetActive(!_currentProduct.IsBuy);
         }
 
-        private void OpenBuyPanel()
+        private void OnOpenBuyPanel()
         {
             _panelProduct.Init(_currentProduct);
-            _panelProduct.Move(true);
+            _panelProduct.OnMove(true);
         }
     }
 }

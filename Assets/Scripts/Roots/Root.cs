@@ -20,15 +20,9 @@ namespace Roots
             Wallet = GetComponent<Wallet>();
         }
 
-        private void OnEnable()
-        {
-            SaveService.Loaded += OnInit;
-        }
+        private void OnEnable() => SaveService.Loaded += OnInit;
 
-        private void OnDisable()
-        {
-            SaveService.Loaded -= OnInit;
-        }
+        private void OnDisable() => SaveService.Loaded -= OnInit;
 
         protected abstract void OnInit();
     }

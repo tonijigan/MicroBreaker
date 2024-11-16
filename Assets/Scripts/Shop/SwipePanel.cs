@@ -26,8 +26,7 @@ namespace Shop
                     _startInputPosition = Input.mousePosition;
                 }
 
-                if (Input.GetMouseButton(0))
-                    _currentInputPosition = Input.mousePosition;
+                if (Input.GetMouseButton(0)) _currentInputPosition = Input.mousePosition;
             }
 
             if (Input.GetMouseButtonUp(0) && _wasPressed == true)

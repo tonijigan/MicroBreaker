@@ -12,11 +12,7 @@ namespace BoosterLogic.Boosters
         {
             foreach (var booster in _boostersContainer.AbstractBoosters)
             {
-                if (booster.BoosterEffect.IsActive == true)
-                {
-                    Debug.Log(booster.name);
-                    booster.StopAction(booster.BoosterEffect);
-                }
+                if (booster.BoosterEffect.IsActive == true) booster.StopAction(booster.BoosterEffect);
             }
         }
     }

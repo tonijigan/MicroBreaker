@@ -41,23 +41,23 @@ namespace UI
 
         private void OnEnable()
         {
-            _counter.Winned += OpenPanelWin;
-            _triggerLoss.Lost += OpenPanelLoss;
-            _panelWin.Clicked += LoadScene;
-            _panelLoss.Clicked += LoadScene;
+            _counter.Winned += OnOpenPanelWin;
+            _triggerLoss.Lost += OnOpenPanelLoss;
+            _panelWin.Clicked += OnLoadScene;
+            _panelLoss.Clicked += OnLoadScene;
         }
 
         private void OnDisable()
         {
-            _counter.Winned -= OpenPanelWin;
-            _triggerLoss.Lost -= OpenPanelLoss;
-            _panelWin.Clicked -= LoadScene;
-            _panelLoss.Clicked -= LoadScene;
+            _counter.Winned -= OnOpenPanelWin;
+            _triggerLoss.Lost -= OnOpenPanelLoss;
+            _panelWin.Clicked -= OnLoadScene;
+            _panelLoss.Clicked -= OnLoadScene;
         }
 
         private void Start() => _waitForSeconds = new WaitForSeconds(DurationWin);
 
-        private void OpenPanelWin(string time)
+        private void OnOpenPanelWin(string time)
         {
             _virtualEndCamera.Priority = Priority;
             _boostersContainer.Reset();
@@ -70,7 +70,7 @@ namespace UI
             });
         }
 
-        private void OpenPanelLoss()
+        private void OnOpenPanelLoss()
         {
             _boostersContainer.Reset();
             _boostersContainer.gameObject.SetActive(false);
@@ -95,7 +95,7 @@ namespace UI
             _ballMovement.gameObject.SetActive(false);
             _playerInput.SetControl();
             yield return waitForSeconds;
-            panel.Move(true);
+            panel.OnMove(true);
             action?.Invoke();
         }
 
@@ -117,7 +117,7 @@ namespace UI
             _saveService.SaveLevelDatas(locationObjectData);
         }
 
-        private void LoadScene(string sceneName)
+        private void OnLoadScene(string sceneName)
         {
             _panelFade.SetActive(false, () => { SceneManager.LoadScene(sceneName); });
         }

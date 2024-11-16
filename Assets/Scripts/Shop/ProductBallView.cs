@@ -60,7 +60,7 @@ namespace Shop
 
         private void OnOpenBuyPanel()
         {
-            _panelProduct.Move(true);
+            _panelProduct.OnMove(true);
             _panelProduct.Init(_product);
             _audioSourceButton.Play();
         }

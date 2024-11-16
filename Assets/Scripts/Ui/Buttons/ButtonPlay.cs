@@ -13,10 +13,10 @@ namespace UI
 
         protected override void OnClick()
         {
-            _panelFade.SetActive(false, LoadScene);
+            _panelFade.SetActive(false, OnLoadScene);
             _soundMusic.SetActive(false);
         }
 
-        private void LoadScene() => SceneManager.LoadScene(_scenesName.ToString());
+        private void OnLoadScene() => SceneManager.LoadScene(_scenesName.ToString());
     }
 }

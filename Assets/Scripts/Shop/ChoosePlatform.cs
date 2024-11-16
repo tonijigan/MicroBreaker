@@ -10,6 +10,7 @@ namespace Shop
     {
         private const int MinValue = 0;
         private const int Element = 1;
+        private const int LoopValue = 1;
         private const int CurrentElement = 2;
         private const float DurationMove = 0.5f;
         private const float DurationRotate = 5f;
@@ -73,16 +74,15 @@ namespace Shop
 
         private async void PlatformRotate()
         {
-            if (_rotateTween != null && _rotateTween.IsPlaying() == true)
-                _rotateTween.Kill();
+            if (_rotateTween != null && _rotateTween.IsPlaying() == true) _rotateTween.Kill();
 
             await RotateMove();
         }
 
         public async Task RotateMove()
         {
-            _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(0, RotateY, MinValue), DurationRotate, RotateMode.FastBeyond360).
-                                     SetLoops(-1).SetRelative().SetEase(Ease.Linear);
+            _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(MinValue, RotateY, MinValue), DurationRotate, RotateMode.FastBeyond360).
+                                     SetLoops(-LoopValue).SetRelative().SetEase(Ease.Linear);
             Task tween = _rotateTween.AsyncWaitForCompletion();
             await tween;
         }

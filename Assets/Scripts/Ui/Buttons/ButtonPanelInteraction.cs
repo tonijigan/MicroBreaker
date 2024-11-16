@@ -23,7 +23,7 @@ namespace UI
         {
             if (_panelClosePanels != null) ClosePanels();
 
-            if (_panelOpenPanel != null) _panelOpenPanel.Move(_isStateOnOpenPanel);
+            if (_panelOpenPanel != null) _panelOpenPanel.OnMove(_isStateOnOpenPanel);
 
             if (_buttonEnable != null) _buttonEnable.gameObject.SetActive(true);
 
@@ -37,7 +37,7 @@ namespace UI
 
         private void ClosePanels()
         {
-            foreach (var panel in _panelClosePanels) panel.Move(!_isStateOnOpenPanel);
+            foreach (var panel in _panelClosePanels) panel.OnMove(!_isStateOnOpenPanel);
         }
 
         private void HaveTimeScale()

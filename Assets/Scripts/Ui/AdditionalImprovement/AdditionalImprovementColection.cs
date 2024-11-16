@@ -23,7 +23,7 @@ namespace UI
             foreach (var upgrade in _buttonAdditionalImprovements)
             {
                 upgrade.Clicked += OnClick;
-                upgrade.Selected += SaveSelect;
+                upgrade.Selected += OnSaveSelect;
             }
         }
 
@@ -34,7 +34,7 @@ namespace UI
             foreach (var upgrade in _buttonAdditionalImprovements)
             {
                 upgrade.Clicked -= OnClick;
-                upgrade.Selected -= SaveSelect;
+                upgrade.Selected -= OnSaveSelect;
             }
         }
 
@@ -63,13 +63,13 @@ namespace UI
 
         private void OnClick(ButtonAdditionalImprovement buttonAdditionalImprovement)
         {
-            SaveSelect(buttonAdditionalImprovement);
+            OnSaveSelect(buttonAdditionalImprovement);
             _panelAdditionalImprovement.gameObject.SetActive(true);
             _panelAdditionalImprovement.Init(buttonAdditionalImprovement);
-            _panelAdditionalImprovement.Move(true);
+            _panelAdditionalImprovement.OnMove(true);
         }
 
-        private void SaveSelect(ButtonAdditionalImprovement buttonAdditionalImprovement)
+        private void OnSaveSelect(ButtonAdditionalImprovement buttonAdditionalImprovement)
         {
             if (buttonAdditionalImprovement.IsBuy == false) return;
 

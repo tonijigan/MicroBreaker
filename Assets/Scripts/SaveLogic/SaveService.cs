@@ -46,22 +46,18 @@ namespace SaveLogic
 
         public string GetCurrentProduct(ObjectsName objectsName)
         {
-            if (objectsName == ObjectsName.Ball)
-                return CurrentBall;
+            if (objectsName == ObjectsName.Ball) return CurrentBall;
 
-            if (objectsName == ObjectsName.Platform)
-                return CurrentPlatform;
+            if (objectsName == ObjectsName.Platform) return CurrentPlatform;
 
             return string.Empty;
         }
 
         public string[] GetArrayProducts(ObjectsName objectsName)
         {
-            if (objectsName == ObjectsName.Ball)
-                return Balls;
+            if (objectsName == ObjectsName.Ball) return Balls;
 
-            if (objectsName == ObjectsName.Platform)
-                return Platforms;
+            if (objectsName == ObjectsName.Platform) return Platforms;
 
             return new string[MinValue];
         }
@@ -70,11 +66,9 @@ namespace SaveLogic
         {
             int scale = 0;
 
-            if (objectsName == ObjectsName.Ball)
-                scale = _gameProgress.ScaleBall;
+            if (objectsName == ObjectsName.Ball) scale = _gameProgress.ScaleBall;
 
-            if (objectsName == ObjectsName.Platform)
-                scale = _gameProgress.ScalePlatform;
+            if (objectsName == ObjectsName.Platform) scale = _gameProgress.ScalePlatform;
 
             return scale;
         }
@@ -124,33 +118,27 @@ namespace SaveLogic
 
         public void SaveScale(bool isCanScale, ObjectsName objectsName)
         {
-            if (objectsName == ObjectsName.Ball)
-                _gameProgress.ScaleBall = isCanScale ? MaxValue : MinValue;
+            if (objectsName == ObjectsName.Ball) _gameProgress.ScaleBall = isCanScale ? MaxValue : MinValue;
 
-            if (objectsName == ObjectsName.Platform)
-                _gameProgress.ScalePlatform = isCanScale ? MaxValue : MinValue;
+            if (objectsName == ObjectsName.Platform) _gameProgress.ScalePlatform = isCanScale ? MaxValue : MinValue;
 
             Save();
         }
 
         public void SaveCurrentProduct(ObjectsName objectsName, string currentName)
         {
-            if (objectsName == ObjectsName.Ball)
-                _gameProgress.CurrentBall = currentName;
+            if (objectsName == ObjectsName.Ball) _gameProgress.CurrentBall = currentName;
 
-            if (objectsName == ObjectsName.Platform)
-                _gameProgress.CurrentPlatform = currentName;
+            if (objectsName == ObjectsName.Platform) _gameProgress.CurrentPlatform = currentName;
 
             Save();
         }
 
         public void SaveArrayProducts(ObjectsName objectsName, string[] Names)
         {
-            if (objectsName == ObjectsName.Ball)
-                _gameProgress.Balls = Names;
+            if (objectsName == ObjectsName.Ball) _gameProgress.Balls = Names;
 
-            if (objectsName == ObjectsName.Platform)
-                _gameProgress.Platforms = Names;
+            if (objectsName == ObjectsName.Platform) _gameProgress.Platforms = Names;
 
             Save();
         }
@@ -173,10 +161,7 @@ namespace SaveLogic
             Save();
         }
 
-        private void Save()
-        {
-            _saveGameProgress.Save(_gameProgress);
-        }
+        private void Save() => _saveGameProgress.Save(_gameProgress);
 
         private void OnFill(GameProgress gameData)
         {

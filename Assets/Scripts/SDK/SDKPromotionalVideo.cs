@@ -14,8 +14,7 @@ namespace SDK
 
         public event Action ClosedCallBack;
 
-        public void ShowInterstitialAd() =>
-            InterstitialAd.Show(OnOpenCallBack, OnCloseCallBack);
+        public void ShowInterstitialAd() => InterstitialAd.Show(OnOpenCallBack, OnCloseCallBack);
 
         private void OnOpenCallBack()
         {

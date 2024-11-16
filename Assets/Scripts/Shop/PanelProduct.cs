@@ -26,9 +26,9 @@ namespace Shop
 
         private void OnDisable() => _buttonPay.onClick.RemoveListener(OnListener);
 
-        public override async void Move(bool isAction)
+        public override async void OnMove(bool isAction)
         {
-            base.Move(isAction);
+            base.OnMove(isAction);
             await MovePanel(isAction);
             _backGround.gameObject.SetActive(isAction);
         }
@@ -61,7 +61,7 @@ namespace Shop
             _wallet.RemoveCoins(_product.Price);
             _product.Buy();
             Bought?.Invoke();
-            Move(false);
+            OnMove(false);
         }
 
         private void SetColor(Color color)
