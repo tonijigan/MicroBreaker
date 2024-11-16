@@ -7,6 +7,7 @@ namespace PlayerLogic
 {
     public class PlayerInput : MonoBehaviour
     {
+        private const int MinValue = 0;
         private const string AxsisX = "Mouse X";
         private const string AxsisY = "Mouse Y";
 
@@ -20,19 +21,18 @@ namespace PlayerLogic
 
         private void Update()
         {
-            if (IsControl == false)
-                return;
+            if (IsControl == false) return;
 
             if (IsMouseOverUI() == true) return;
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(MinValue))
             {
-                MouseUped?.Invoke(Input.GetMouseButton(0));
+                MouseUped?.Invoke(Input.GetMouseButton(MinValue));
                 MousePressed?.Invoke(GetPosition(), GetRaycastPoint());
             }
-            else MouseUped?.Invoke(Input.GetMouseButtonUp(0));
+            else MouseUped?.Invoke(Input.GetMouseButtonUp(MinValue));
 
-            if (Input.GetMouseButtonUp(0) && _isInputPlatform == true) MousePressedUp?.Invoke();
+            if (Input.GetMouseButtonUp(MinValue) && _isInputPlatform == true) MousePressedUp?.Invoke();
         }
 
         public void SetControl() => IsControl = !IsControl;
@@ -59,7 +59,7 @@ namespace PlayerLogic
         {
             float positionX = Input.GetAxis(AxsisX);
             float positionY = Input.GetAxis(AxsisY);
-            return new Vector3(positionX, 0, positionY);
+            return new Vector3(positionX, MinValue, positionY);
         }
     }
 }

@@ -26,14 +26,11 @@ namespace BoosterLogic
 
         private void SetColor(BoosterNames boosterNames)
         {
-            if (boosterNames == BoosterNames.Positive)
-                _image.color = _colorPositive;
+            if (boosterNames == BoosterNames.Positive) _image.color = _colorPositive;
 
-            if (boosterNames == BoosterNames.Negative)
-                _image.color = _colorNegative;
+            if (boosterNames == BoosterNames.Negative) _image.color = _colorNegative;
 
-            if (boosterNames == BoosterNames.Default)
-                _image.color = _colorDefult;
+            if (boosterNames == BoosterNames.Default) _image.color = _colorDefult;
         }
     }
 }

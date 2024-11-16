@@ -47,8 +47,7 @@ namespace BoosterLogic
         {
             Played?.Invoke(_sprite, _boosterName);
 
-            if (Coroutine != null)
-                StopCoroutine(Coroutine);
+            if (Coroutine != null) StopCoroutine(Coroutine);
 
             Coroutine = StartCoroutine(StartTimer(boosterEffect, callBack));
         }

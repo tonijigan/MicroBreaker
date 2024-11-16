@@ -18,11 +18,11 @@ namespace LocationLogic.LocationChoose
 
         private void Awake() => _transform = transform;
 
-        private void OnEnable() => _saveService.Loaded += Fill;
+        private void OnEnable() => _saveService.Loaded += OnFill;
 
-        private void OnDisable() => _saveService.Loaded -= Fill;
+        private void OnDisable() => _saveService.Loaded -= OnFill;
 
-        private void Fill()
+        private void OnFill()
         {
             _locationObjects = new LocationObject[_transform.childCount];
 

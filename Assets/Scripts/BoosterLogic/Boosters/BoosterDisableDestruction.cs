@@ -27,8 +27,7 @@ namespace BoosterLogic.Boosters
 
         private void ActiveCanDestructionBoxsFalling()
         {
-            foreach (var box in _boxesFalling.Boxes)
-                box.SetCanDestructuin();
+            foreach (var box in _boxesFalling.Boxes) box.SetCanDestructuin();
         }
     }
 }

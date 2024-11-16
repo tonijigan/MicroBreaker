@@ -23,8 +23,7 @@ namespace CounterLogic
             _locationCreate.Inited += OnInit;
             _locationCreate.Inited += OnInit =>
             {
-                foreach (var box in CurrentLocation.BoxContainer.Boxes)
-                    box.Died += SetDestroyBox;
+                foreach (var box in CurrentLocation.BoxContainer.Boxes) box.Died += OnSetDestroyBox;
             };
         }
 
@@ -33,8 +32,7 @@ namespace CounterLogic
             _locationCreate.Inited -= OnInit;
             _locationCreate.Inited -= OnInit =>
             {
-                foreach (var box in CurrentLocation.BoxContainer.Boxes)
-                    box.Died -= SetDestroyBox;
+                foreach (var box in CurrentLocation.BoxContainer.Boxes) box.Died -= OnSetDestroyBox;
             };
         }
 
@@ -47,15 +45,13 @@ namespace CounterLogic
             return $"{(int)_time / Seconds}:{(int)_time}";
         }
 
-        private void SetDestroyBox()
+        private void OnSetDestroyBox()
         {
-            foreach (var box in CurrentLocation.BoxContainer.Boxes)
-                box.Rigidbody.WakeUp();
+            foreach (var box in CurrentLocation.BoxContainer.Boxes) box.Rigidbody.WakeUp();
 
             CountLiveBoxs++;
 
-            if (CountLiveBoxs == CurrentLocation.BoxContainer.Boxes.Length)
-                Winned?.Invoke(GetResultTime());
+            if (CountLiveBoxs == CurrentLocation.BoxContainer.Boxes.Length) Winned?.Invoke(GetResultTime());
         }
     }
 }

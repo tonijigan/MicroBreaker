@@ -29,8 +29,7 @@ namespace PlatformLogic
                     return;
                 }
 
-                if (booster.IsCoin == true)
-                    CoinTriggered?.Invoke();
+                if (booster.IsCoin == true) CoinTriggered?.Invoke();
 
                 _audioSourceBoosterEffect.Play();
                 _particleSystem = GetParticleSystem(booster);
@@ -45,11 +44,9 @@ namespace PlatformLogic
 
         private ParticleSystem GetParticleSystem(BoosterEffect boosterEffect)
         {
-            if (boosterEffect.BoosterName == BoosterNames.Default)
-                return _particleSystemDefult;
+            if (boosterEffect.BoosterName == BoosterNames.Default) return _particleSystemDefult;
 
-            if (boosterEffect.BoosterName == BoosterNames.Negative)
-                return _particleSystemNegative;
+            if (boosterEffect.BoosterName == BoosterNames.Negative) return _particleSystemNegative;
 
             return _particleSystemPositiv;
         }

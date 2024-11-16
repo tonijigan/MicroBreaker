@@ -12,17 +12,16 @@ namespace BoosterLogic
         private void OnEnable()
         {
             foreach (var abstractBoosterWithTimer in _abstractBoostersWhitTimer)
-                abstractBoosterWithTimer.Played += AddBoosterView;
-
+                abstractBoosterWithTimer.Played += OnAddBoosterView;
         }
 
         private void OnDisable()
         {
             foreach (var abstractBoosterWithTimer in _abstractBoostersWhitTimer)
-                abstractBoosterWithTimer.Played -= AddBoosterView;
+                abstractBoosterWithTimer.Played -= OnAddBoosterView;
         }
 
-        private void AddBoosterView(Sprite sprite, BoosterNames boosterNames)
+        private void OnAddBoosterView(Sprite sprite, BoosterNames boosterNames)
         {
             BoosterView boosterView = Instantiate(_boosterViewPrefab, _boosterViewContainer);
             boosterView.Init(sprite, boosterNames);

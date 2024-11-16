@@ -24,8 +24,7 @@ namespace Modification
 
         protected float GetScaleValue(BoosterNames boosterNames)
         {
-            if (boosterNames == BoosterNames.Negative)
-                return NegativeScaleValue;
+            if (boosterNames == BoosterNames.Negative) return NegativeScaleValue;
 
             return PositiveScaleValue;
         }

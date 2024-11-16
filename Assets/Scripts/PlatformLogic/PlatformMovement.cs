@@ -55,12 +55,10 @@ namespace PlatformLogic
 
         private void FollowToPointMovement(Transform transform)
         {
-            if (_isInverted == false)
-                Direction = transform.position - _transform.position;
-            else
-                Direction = new(-transform.position.x - _transform.position.x,
-                                transform.position.y - _transform.position.y,
-                                -transform.position.z - _transform.position.z - RevercePositionZ);
+            if (_isInverted == false) Direction = transform.position - _transform.position;
+            else Direction = new(-transform.position.x - _transform.position.x,
+                                  transform.position.y - _transform.position.y,
+                                 -transform.position.z - _transform.position.z - RevercePositionZ);
 
             Vector3 newDirection = new(Direction.x, Direction.y, Direction.z + PositionZ);
             _rigidbody.velocity = _currentPlatformSpeed * Time.deltaTime * newDirection;

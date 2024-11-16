@@ -23,8 +23,7 @@ namespace BoosterLogic.Boosters
             boosterEffect.SetActionActive();
             _ball.BallEffect.SetParticleSystem(BoosterNames.Default);
 
-            foreach (var ball in _balls)
-                ball.gameObject.SetActive(false);
+            foreach (var ball in _balls) ball.gameObject.SetActive(false);
         }
 
         public override void OnStartAction(BoosterEffect boosterEffect)

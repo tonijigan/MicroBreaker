@@ -8,7 +8,6 @@ namespace BoosterLogic
     public class BoostersContainer : MonoBehaviour
     {
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private BoosterHandler _boosterHandler;
 
         private List<AbstractBooster> _boosters;
         private Transform _transform;
@@ -17,8 +16,7 @@ namespace BoosterLogic
 
         private void OnDisable()
         {
-            foreach (var booster in _boosters)
-                booster.TimeRunning -= PlaySound;
+            foreach (var booster in _boosters) booster.TimeRunning -= OnPlaySound;
         }
 
         public void Fill()
@@ -30,7 +28,7 @@ namespace BoosterLogic
             {
                 _transform.GetChild(i).TryGetComponent(out AbstractBooster booster);
                 _boosters.Add(booster);
-                _boosters[i].TimeRunning += PlaySound;
+                _boosters[i].TimeRunning += OnPlaySound;
             }
         }
 
@@ -49,14 +47,12 @@ namespace BoosterLogic
 
         public void Reset()
         {
-            foreach (var booster in _boosters)
-                booster.StopAction(booster.BoosterEffect);
+            foreach (var booster in _boosters) booster.StopAction(booster.BoosterEffect);
         }
 
-        private void PlaySound()
+        private void OnPlaySound()
         {
-            if (_audioSource.isPlaying)
-                _audioSource.Stop();
+            if (_audioSource.isPlaying) _audioSource.Stop();
 
             _audioSource.Play();
         }

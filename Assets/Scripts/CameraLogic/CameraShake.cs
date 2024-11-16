@@ -34,11 +34,9 @@ namespace CameraLogic
         {
             _locationCreate.Inited += onInit =>
             {
-                foreach (Box box in _locationCreate.CurrentLocation.BoxContainer.Boxes)
-                    box.Died += Shake;
+                foreach (Box box in _locationCreate.CurrentLocation.BoxContainer.Boxes) box.Died += OnShake;
 
-                foreach (Box box in _boxesFalling.Boxes)
-                    box.Died += Shake;
+                foreach (Box box in _boxesFalling.Boxes) box.Died += OnShake;
             };
         }
 
@@ -46,26 +44,22 @@ namespace CameraLogic
         {
             _locationCreate.Inited += onInit =>
             {
-                foreach (Box box in _locationCreate.CurrentLocation.BoxContainer.Boxes)
-                    box.Died -= Shake;
+                foreach (Box box in _locationCreate.CurrentLocation.BoxContainer.Boxes) box.Died -= OnShake;
 
-                foreach (Box box in _boxesFalling.Boxes)
-                    box.Died -= Shake;
+                foreach (Box box in _boxesFalling.Boxes) box.Died -= OnShake;
             };
         }
 
-        public void Shake()
+        public void OnShake()
         {
-            if (_coroutineShake != null)
-                StopCoroutine(_coroutineShake);
+            if (_coroutineShake != null) StopCoroutine(_coroutineShake);
 
             _coroutineShake = StartCoroutine(PlayShake());
         }
 
         public void Destabilize()
         {
-            if (_coroutineMove != null)
-                StopCoroutine(_coroutineMove);
+            if (_coroutineMove != null) StopCoroutine(_coroutineMove);
 
             _coroutineMove = StartCoroutine(Move());
         }

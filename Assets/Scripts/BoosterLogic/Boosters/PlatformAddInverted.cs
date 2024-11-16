@@ -28,8 +28,7 @@ namespace BoosterLogic.Boosters
         {
             IsAction = true;
 
-            if (_platformInverted.IsAction == true)
-                _platformInverted.StopAction(boosterEffect);
+            if (_platformInverted.IsAction == true) _platformInverted.StopAction(boosterEffect);
 
             _platformMovementClone = Instantiate(_platformMovement, Transform);
             _platformMovementClone.EnableInverted();

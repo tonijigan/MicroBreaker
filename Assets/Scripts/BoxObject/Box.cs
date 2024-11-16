@@ -61,16 +61,14 @@ namespace BoxObject
 
         public void DisableBoxTemplate()
         {
-            foreach (var box in _boxTemplates)
-                box.gameObject.SetActive(false);
+            foreach (var box in _boxTemplates) box.gameObject.SetActive(false);
         }
 
         public void SetKinematic(bool isKinematic) => Rigidbody.isKinematic = isKinematic;
 
         public void InitBooster(BoosterEffect booster, ParticleSystem particleSystem)
         {
-            if (booster != null)
-                _booster = booster;
+            if (booster != null) _booster = booster;
 
             _particleSystem = particleSystem;
         }
@@ -111,14 +109,11 @@ namespace BoxObject
 
         private void SetStartHealth()
         {
-            if (_boosterName == BoosterNames.Default)
-                _health = MinHealth;
+            if (_boosterName == BoosterNames.Default) _health = MinHealth;
 
-            if (_boosterName == BoosterNames.Positive)
-                _health = MaxHealth / MaxHealth;
+            if (_boosterName == BoosterNames.Positive) _health = MaxHealth / MaxHealth;
 
-            if (_boosterName == BoosterNames.Negative)
-                _health = MaxHealth;
+            if (_boosterName == BoosterNames.Negative) _health = MaxHealth;
         }
 
         private BoxTemplate GetTemplate(BoosterNames boosterNames)
@@ -136,8 +131,7 @@ namespace BoxObject
 
         private AudioClip GetClip()
         {
-            if (_health <= MinHealth && _isCanDestruction)
-                return _audioClipDie;
+            if (_health <= MinHealth && _isCanDestruction) return _audioClipDie;
 
             return _audioClip;
         }

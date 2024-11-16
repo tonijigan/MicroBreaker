@@ -33,16 +33,14 @@ namespace LocationLogic
                 _boxesTransform[i].SetKinematic(true);
             }
 
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
+            if (_coroutine != null) StopCoroutine(_coroutine);
 
             _coroutine = StartCoroutine(Move(ActiveBoxKinematic));
         }
 
         private void ActiveBoxKinematic()
         {
-            foreach (var box in _boxesTransform)
-                box.SetKinematic(false);
+            foreach (var box in _boxesTransform) box.SetKinematic(false);
         }
 
         private IEnumerator Move(Action Stated)

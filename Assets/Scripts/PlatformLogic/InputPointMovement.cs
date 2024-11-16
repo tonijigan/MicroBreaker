@@ -24,16 +24,16 @@ namespace PlatformLogic
         private void OnEnable()
         {
             _playerInput.MousePressed += OnMove;
-            _playerInput.MouseUped += HaveInputPressed;
+            _playerInput.MouseUped += OnHaveInputPressed;
         }
 
         private void OnDisable()
         {
             _playerInput.MousePressed -= OnMove;
-            _playerInput.MouseUped -= HaveInputPressed;
+            _playerInput.MouseUped -= OnHaveInputPressed;
         }
 
-        private void HaveInputPressed(bool isActive) => _inputObject.SetActive(isActive);
+        private void OnHaveInputPressed(bool isActive) => _inputObject.SetActive(isActive);
 
         private void OnMove(Vector3 position, Vector3 raycastPoint)
         {

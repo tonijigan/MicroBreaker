@@ -12,6 +12,7 @@ namespace BoosterLogic.Boosters
         public override void StopAction(BoosterEffect boosterEffect)
         {
             if (boosterEffect.IsActive == false) return;
+
             SetAction(boosterEffect);
         }
 

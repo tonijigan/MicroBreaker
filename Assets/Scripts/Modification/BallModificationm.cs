@@ -12,16 +12,14 @@ namespace Modification
         {
             ChangeScale(Transform.localScale * GetScaleValue(boosterNames));
 
-            if (isSetBooster == true)
-                _ballEffect.SetParticleSystem(boosterNames);
+            if (isSetBooster == true) _ballEffect.SetParticleSystem(boosterNames);
         }
 
         public override void SetDefultScale(bool isSetBooster)
         {
             ChangeScale(new Vector3(DefultScaleValue, DefultScaleValue, DefultScaleValue));
 
-            if (isSetBooster == true)
-                _ballEffect.SetParticleSystem(BoosterNames.Default);
+            if (isSetBooster == true) _ballEffect.SetParticleSystem(BoosterNames.Default);
         }
     }
 }

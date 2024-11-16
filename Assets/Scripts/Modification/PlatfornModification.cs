@@ -30,17 +30,14 @@ namespace Modification
 
             if (currentParticleSystems == null) return;
 
-            foreach (var particle in GetParticleSystemsState(boosterNames))
-                particle.Play();
+            foreach (var particle in GetParticleSystemsState(boosterNames)) particle.Play();
         }
 
         private ParticleSystem[] GetParticleSystemsState(BoosterNames boosterNames)
         {
-            if (boosterNames == BoosterNames.Positive)
-                return _particleSystemsPositove;
+            if (boosterNames == BoosterNames.Positive) return _particleSystemsPositove;
 
-            if (boosterNames == BoosterNames.Negative)
-                return _particleSystemsNegative;
+            if (boosterNames == BoosterNames.Negative) return _particleSystemsNegative;
 
             return null;
         }

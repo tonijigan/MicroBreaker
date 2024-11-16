@@ -25,16 +25,14 @@ namespace Laser
 
         public void Shooting(Action shotBack)
         {
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
+            if (_coroutine != null) StopCoroutine(_coroutine);
 
             _coroutine = StartCoroutine(EnableBullets(shotBack));
         }
 
         public void StopShoot()
         {
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
+            if (_coroutine != null) StopCoroutine(_coroutine);
         }
 
         private void Create()
