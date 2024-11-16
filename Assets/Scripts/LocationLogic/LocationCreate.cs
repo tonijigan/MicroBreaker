@@ -17,8 +17,9 @@ namespace LocationLogic
         public event Action<Location> Inited;
         public event Action<List<AbstractBooster>> Created;
 
-        public Location CurrentLocation { get; private set; }
         private Transform _transform;
+
+        public Location CurrentLocation { get; private set; }
 
         public void Init(LevelData locationObjectData)
         {

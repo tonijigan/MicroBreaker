@@ -47,9 +47,7 @@ namespace Envierment
             }
 
             if (other.TryGetComponent(out AbstractBooster booster))
-            {
                 booster.gameObject.SetActive(false);
-            }
         }
 
         private void TryGiveExtraLive()

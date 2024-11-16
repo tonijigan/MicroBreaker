@@ -28,15 +28,9 @@ namespace LocationLogic
             gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            _chooseInput.LocationChoosed += OnChoosed;
-        }
+        private void OnEnable() => _chooseInput.LocationChoosed += OnChoosed;
 
-        private void OnDisable()
-        {
-            _chooseInput.LocationChoosed -= OnChoosed;
-        }
+        private void OnDisable() => _chooseInput.LocationChoosed -= OnChoosed;
 
         private void Create(int countObject)
         {

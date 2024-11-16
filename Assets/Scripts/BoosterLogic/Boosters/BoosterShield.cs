@@ -16,22 +16,6 @@ namespace BoosterLogic.Boosters
 
         private void Start() => _collider = GetComponent<Collider>();
 
-        public AudioClip GetClip()
-        {
-            return _audioClip;
-        }
-
-        public float GetSpeed()
-        {
-            return 2000;
-        }
-
-        public void Play(Vector3 point)
-        {
-            _particleSystem.transform.position = point;
-            _particleSystem.Play();
-        }
-
         public override void StopAction(BoosterEffect boosterEffect)
         {
             if (boosterEffect.IsActive == false) return;
@@ -49,6 +33,22 @@ namespace BoosterLogic.Boosters
             _triggerLoss.gameObject.SetActive(false);
             boosterEffect.SetActionActive();
             PlayTimer(boosterEffect, StopAction);
+        }
+
+        public AudioClip GetClip()
+        {
+            return _audioClip;
+        }
+
+        public float GetSpeed()
+        {
+            return 2000;
+        }
+
+        public void Play(Vector3 point)
+        {
+            _particleSystem.transform.position = point;
+            _particleSystem.Play();
         }
     }
 }

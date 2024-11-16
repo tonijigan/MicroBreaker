@@ -1,3 +1,4 @@
+using PlatformLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,13 +14,13 @@ namespace LocationLogic.LocationChoose
 
         [SerializeField] private LocationChooseInput _inputLocation;
 
+        private readonly Restrictor _restrict = new();
         private Transform _transform;
         private Rigidbody _rigidbody;
         private Vector3 _startPosition;
         private Vector3 _currentPosition;
         private bool _isDragging = false;
         private float _speed = MinSpeedValue;
-
 
         private void Awake()
         {
@@ -58,7 +59,7 @@ namespace LocationLogic.LocationChoose
         private void Update()
         {
             Drag();
-            RestrictMove();
+            _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
         }
 
         private bool IsInputUI()
@@ -74,14 +75,6 @@ namespace LocationLogic.LocationChoose
                 Vector3 newDirection = new(direction.x, _rigidbody.velocity.y, direction.y);
                 _rigidbody.velocity = newDirection * _speed;
             }
-        }
-
-        private void RestrictMove()
-        {
-            float positionX = Mathf.Clamp(_transform.position.x, -ClampX, ClampX);
-            float positionY = Mathf.Clamp(_transform.position.z, ClampYMin, ClampYMax);
-            Vector3 clampPosition = new(positionX, _transform.position.y, positionY);
-            _transform.position = clampPosition;
         }
     }
 }

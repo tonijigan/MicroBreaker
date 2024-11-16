@@ -16,7 +16,6 @@ namespace LocationLogic.LocationChoose
 
         private LocationObject[] _locationObjects;
 
-
         private void Awake() => _transform = transform;
 
         private void OnEnable() => _saveService.Loaded += Fill;

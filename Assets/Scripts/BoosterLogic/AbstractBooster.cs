@@ -46,6 +46,7 @@ namespace BoosterLogic
         protected void PlayTimer(BoosterEffect boosterEffect, Action<BoosterEffect> callBack)
         {
             Played?.Invoke(_sprite, _boosterName);
+
             if (Coroutine != null)
                 StopCoroutine(Coroutine);
 

@@ -38,13 +38,6 @@ namespace CounterLogic
             };
         }
 
-        //
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.Space))
-                Winned?.Invoke(GetResultTime());
-        }
-
         public void UpdateTime() => _time += Time.deltaTime;
 
         private void OnInit(Location currentLocation) => CurrentLocation = currentLocation;

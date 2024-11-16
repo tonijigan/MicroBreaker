@@ -5,9 +5,11 @@ namespace PlayerLogic
 {
     public class Wallet : MonoBehaviour
     {
-        private int _coins = 0;
+        private const int MinCoins = 0;
 
         public event Action<int> Changed;
+
+        private int _coins = 0;
 
         public int Coin => _coins;
 
@@ -19,7 +21,9 @@ namespace PlayerLogic
 
         public void AddCoin(int coins)
         {
-            _coins += coins;
+            if (coins >= MinCoins)
+
+                _coins += coins;
             Changed?.Invoke(_coins);
         }
 

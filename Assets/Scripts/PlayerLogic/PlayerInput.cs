@@ -30,22 +30,12 @@ namespace PlayerLogic
                 MouseUped?.Invoke(Input.GetMouseButton(0));
                 MousePressed?.Invoke(GetPosition(), GetRaycastPoint());
             }
-            else
-            {
-                MouseUped?.Invoke(Input.GetMouseButtonUp(0));
-            }
+            else MouseUped?.Invoke(Input.GetMouseButtonUp(0));
 
-
-            if (Input.GetMouseButtonUp(0) && _isInputPlatform == true)
-            {
-                MousePressedUp?.Invoke();
-            }
+            if (Input.GetMouseButtonUp(0) && _isInputPlatform == true) MousePressedUp?.Invoke();
         }
 
-        public void SetControl()
-        {
-            IsControl = !IsControl;
-        }
+        public void SetControl() => IsControl = !IsControl;
 
         private Vector3 GetRaycastPoint()
         {
@@ -56,10 +46,8 @@ namespace PlayerLogic
                 _isInputPlatform = hit.collider.gameObject.TryGetComponent(out Ground ground);
                 return hit.point;
             }
-            else
-            {
-                return Vector3.zero;
-            }
+
+            return Vector3.zero;
         }
 
         private bool IsMouseOverUI()

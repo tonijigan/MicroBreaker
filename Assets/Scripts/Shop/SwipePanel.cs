@@ -9,7 +9,6 @@ namespace Shop
     public class SwipePanel : MonoBehaviour
     {
         private const int NextElement = 1;
-        private const int PreviousElement = -1;
 
         public event Action<int> Swiped;
 
@@ -36,13 +35,10 @@ namespace Shop
                 float distance = _currentInputPosition.x - _startInputPosition.x;
                 int currentSwipeElement = 0;
 
-                if (-150 < distance && distance < 150)
-                    return;
+                if (-150 < distance && distance < 150) return;
 
-                if (distance < -150)
-                    currentSwipeElement = NextElement;
-                else if (distance > 150)
-                    currentSwipeElement = PreviousElement;
+                if (distance < -150) currentSwipeElement = NextElement;
+                else if (distance > 150) currentSwipeElement = -NextElement;
 
                 Swiped?.Invoke(currentSwipeElement);
                 _wasPressed = false;
@@ -51,17 +47,12 @@ namespace Shop
 
         private bool HaveInputOnPanel()
         {
-            PointerEventData pointerEventData = new(EventSystem.current)
-            {
-                position = Input.mousePosition
-            };
+            PointerEventData pointerEventData = new(EventSystem.current) { position = Input.mousePosition };
             List<RaycastResult> raycastResults = new();
             EventSystem.current.RaycastAll(pointerEventData, raycastResults);
-
             var result = raycastResults.Where(ray => ray.gameObject.TryGetComponent(out SwipePanel swipePanel)).FirstOrDefault();
 
-            if (result.gameObject != null)
-                return true;
+            if (result.gameObject != null) return true;
             else return false;
         }
     }

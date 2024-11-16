@@ -62,7 +62,7 @@ namespace CameraLogic
             _coroutineShake = StartCoroutine(PlayShake());
         }
 
-        public void Destabilization()
+        public void Destabilize()
         {
             if (_coroutineMove != null)
                 StopCoroutine(_coroutineMove);
@@ -70,7 +70,7 @@ namespace CameraLogic
             _coroutineMove = StartCoroutine(Move());
         }
 
-        public void Stabilization() => _transposer.m_FollowOffset.x = 0f;
+        public void Stabilize() => _transposer.m_FollowOffset.x = 0f;
 
         private IEnumerator PlayShake()
         {

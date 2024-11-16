@@ -6,6 +6,7 @@ namespace LocationLogic.LocationChoose
     public class LocationChooseInput : MonoBehaviour
     {
         [SerializeField] private LocationCreateView _createView;
+
         public event Action<LocationObject> LocationChoosed;
 
         private LocationObject _firstLocationObject;
@@ -21,11 +22,9 @@ namespace LocationLogic.LocationChoose
 
         public void LoadLocation()
         {
-            if (_firstLocationObject == null || _lastLocationObject == null)
-                return;
+            if (_firstLocationObject == null || _lastLocationObject == null) return;
 
-            if (_firstLocationObject.Name != _lastLocationObject.Name)
-                return;
+            if (_firstLocationObject.Name != _lastLocationObject.Name) return;
 
             if (IsActive == true)
             {

@@ -9,8 +9,10 @@ namespace SaveLogic
 {
     public class SaveService : MonoBehaviour
     {
-        private readonly SaveGameProgress _saveGameProgress = new();
+        private const int MinValue = 0;
+        private const int MaxValue = 1;
 
+        private readonly SaveGameProgress _saveGameProgress = new();
         private GameProgress _gameProgress = new();
 
         public event Action Loaded;
@@ -46,6 +48,7 @@ namespace SaveLogic
         {
             if (objectsName == ObjectsName.Ball)
                 return CurrentBall;
+
             if (objectsName == ObjectsName.Platform)
                 return CurrentPlatform;
 
@@ -56,10 +59,11 @@ namespace SaveLogic
         {
             if (objectsName == ObjectsName.Ball)
                 return Balls;
+
             if (objectsName == ObjectsName.Platform)
                 return Platforms;
 
-            return new string[0];
+            return new string[MinValue];
         }
 
         public int GetScale(ObjectsName objectsName)
@@ -121,10 +125,10 @@ namespace SaveLogic
         public void SaveScale(bool isCanScale, ObjectsName objectsName)
         {
             if (objectsName == ObjectsName.Ball)
-                _gameProgress.ScaleBall = isCanScale ? 1 : 0;
+                _gameProgress.ScaleBall = isCanScale ? MaxValue : MinValue;
 
             if (objectsName == ObjectsName.Platform)
-                _gameProgress.ScalePlatform = isCanScale ? 1 : 0;
+                _gameProgress.ScalePlatform = isCanScale ? MaxValue : MinValue;
 
             Save();
         }

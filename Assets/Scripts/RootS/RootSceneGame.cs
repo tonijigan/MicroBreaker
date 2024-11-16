@@ -13,6 +13,8 @@ namespace Roots
         [SerializeField] private ChangeTemplate _changeTemplatePlatform;
         [SerializeField] private Counter _counter;
 
+        private void Update() => _counter.UpdateTime();
+
         protected override void OnInit()
         {
             _locationCreate.Init(SaveService.LevelData);
@@ -22,11 +24,6 @@ namespace Roots
                                                           SaveService.GetScale(ObjectsName.Platform));
             SaveService.SaveScale(false, ObjectsName.Ball);
             SaveService.SaveScale(false, ObjectsName.Platform);
-        }
-
-        private void Update()
-        {
-            _counter.UpdateTime();
         }
     }
 }

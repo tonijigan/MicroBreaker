@@ -1,12 +1,14 @@
+using System;
 using BoosterLogic;
 using Enums;
-using System;
 using UnityEngine;
 
 namespace PlatformLogic
 {
     public class PlatformTrigger : MonoBehaviour
     {
+        private const int MinCount = 0;
+
         [SerializeField] private AudioSource _audioSourceBoosterEffect;
         [SerializeField] private ParticleSystem _particleSystemDefult;
         [SerializeField] private ParticleSystem _particleSystemNegative;
@@ -32,7 +34,7 @@ namespace PlatformLogic
 
                 _audioSourceBoosterEffect.Play();
                 _particleSystem = GetParticleSystem(booster);
-                _particleSystem.transform.position = collider.contacts[0].point;
+                _particleSystem.transform.position = collider.contacts[MinCount].point;
                 _particleSystem.Play();
                 booster.PlayAction();
                 booster.gameObject.SetActive(false);

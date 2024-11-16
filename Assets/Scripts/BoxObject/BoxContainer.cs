@@ -33,9 +33,9 @@ namespace BoxObject
                     _boxes[i].transform.rotation = box.transform.rotation;
 
                     if (booster == null)
-                        _boxes[i].Init(_particleSystem);
+                        _boxes[i].InitEffect(_particleSystem);
                     else
-                        _boxes[i].Init(booster, _particleSystem);
+                        _boxes[i].InitBooster(booster, _particleSystem);
                 }
             }
 

@@ -5,8 +5,6 @@ namespace BoosterLogic.Boosters
 {
     public class BoxesFalling : AbstractBooster
     {
-        private const int MaxDamage = 10;
-
         [SerializeField] private Transform _pathBoxesContainer;
         [SerializeField] private ParticleSystem _particleSystem;
 
@@ -16,17 +14,7 @@ namespace BoosterLogic.Boosters
 
         private void Start() => Fill();
 
-        private void Fill()
-        {
-            Boxes = new Box[_pathBoxesContainer.childCount];
-
-            for (int i = 0; i < Boxes.Length; i++)
-            {
-                _pathBoxesContainer.GetChild(i).TryGetComponent(out Box box);
-                Boxes[i] = box;
-                Boxes[i].Init(_particleSystem);
-            }
-        }
+        public override void StopAction(BoosterEffect _) { }
 
         public override void OnStartAction(BoosterEffect boosterEffect)
         {
@@ -35,6 +23,16 @@ namespace BoosterLogic.Boosters
             boosterEffect.SetActionActive();
         }
 
-        public override void StopAction(BoosterEffect _) { }
+        private void Fill()
+        {
+            Boxes = new Box[_pathBoxesContainer.childCount];
+
+            for (int i = 0; i < Boxes.Length; i++)
+            {
+                _pathBoxesContainer.GetChild(i).TryGetComponent(out Box box);
+                Boxes[i] = box;
+                Boxes[i].InitEffect(_particleSystem);
+            }
+        }
     }
 }

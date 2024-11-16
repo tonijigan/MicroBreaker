@@ -15,10 +15,10 @@ namespace BoosterLogic
         [SerializeField] private ObjectsName _objectsName;
         [SerializeField] private bool _isCoin = false;
 
+        public event Action<BoosterEffect> Collided;
+
         private Transform _transform;
         private int _speed;
-
-        public event Action<BoosterEffect> Collided;
 
         public bool IsCoin => _isCoin;
 

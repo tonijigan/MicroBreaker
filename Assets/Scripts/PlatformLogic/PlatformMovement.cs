@@ -1,5 +1,4 @@
 using BallObject;
-using PlatformLogic;
 using UnityEngine;
 
 namespace PlatformLogic
@@ -10,8 +9,8 @@ namespace PlatformLogic
         private const float MinPlatformSpeed = 0;
         private const float PositionZ = 2.5f;
         private const float ClampX = 9f;
-        private const float ClampYMin = -22;
-        private const float ClampYMax = -5;
+        private const float ClampZMin = -22;
+        private const float ClampZMax = -5;
         private const float RevercePositionZ = 30;
 
         [SerializeField] private InputPointMovement _inputPointMovement;
@@ -21,7 +20,7 @@ namespace PlatformLogic
         private Transform _transform;
         private float _currentPlatformSpeed;
         private bool _isInverted = false;
-        private readonly ObjectRestrict _objectRestrict = new();
+        private readonly Restrictor _restrict = new();
         private Transform _currentTarget;
         private bool _isTargetChange = false;
 
@@ -39,7 +38,9 @@ namespace PlatformLogic
         private void FixedUpdate()
         {
             if (_isTargetChange == false) _currentTarget = _inputPointMovement.Transform;
-            else _currentTarget = _ballMovement.Transform;
+            else _currentTarget.position = new Vector3(_ballMovement.Transform.position.x,
+                                                       _ballMovement.Transform.position.y,
+                                                       Mathf.Clamp(_ballMovement.Transform.position.z, ClampZMin, ClampZMax));
             FollowToPointMovement(_currentTarget);
         }
         public void ChangePlatformSpeed(float speed)
@@ -63,7 +64,7 @@ namespace PlatformLogic
 
             Vector3 newDirection = new(Direction.x, Direction.y, Direction.z + PositionZ);
             _rigidbody.velocity = _currentPlatformSpeed * Time.deltaTime * newDirection;
-            _objectRestrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
+            _restrict.RestrictMove(_transform, ClampX, ClampZMin, ClampZMax);
         }
     }
 }

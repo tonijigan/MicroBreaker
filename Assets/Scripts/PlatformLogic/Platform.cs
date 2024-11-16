@@ -20,11 +20,6 @@ namespace PlatformLogic
 
         private void Start() => SetStartState();
 
-        private void SetStartState()
-        {
-            _collider = GetComponent<Collider>();
-            _inputPointMovement.transform.position = _startPoint.position;
-        }
         public void Play(Vector3 point)
         {
             _particleSystem.transform.position = point;
@@ -61,6 +56,12 @@ namespace PlatformLogic
         public AudioClip GetClip()
         {
             return _audioClip;
+        }
+
+        private void SetStartState()
+        {
+            _collider = GetComponent<Collider>();
+            _inputPointMovement.transform.position = _startPoint.position;
         }
     }
 }

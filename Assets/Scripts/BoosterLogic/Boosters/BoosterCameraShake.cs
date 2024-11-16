@@ -11,13 +11,13 @@ namespace BoosterLogic.Boosters
         {
             if (boosterEffect.IsActive == false) return;
 
-            _cameraMoveShake.Stabilization();
+            _cameraMoveShake.Stabilize();
             boosterEffect.SetActionActive();
         }
 
         public override void OnStartAction(BoosterEffect boosterEffect)
         {
-            _cameraMoveShake.Destabilization();
+            _cameraMoveShake.Destabilize();
             boosterEffect.SetActionActive();
         }
     }

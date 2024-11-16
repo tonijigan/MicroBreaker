@@ -67,7 +67,7 @@ namespace BoxObject
 
         public void SetKinematic(bool isKinematic) => Rigidbody.isKinematic = isKinematic;
 
-        public void Init(BoosterEffect booster, ParticleSystem particleSystem)
+        public void InitBooster(BoosterEffect booster, ParticleSystem particleSystem)
         {
             if (booster != null)
                 _booster = booster;
@@ -75,7 +75,7 @@ namespace BoxObject
             _particleSystem = particleSystem;
         }
 
-        public void Init(ParticleSystem particleSystem) => _particleSystem = particleSystem;
+        public void InitEffect(ParticleSystem particleSystem) => _particleSystem = particleSystem;
 
         public float GetSpeed()
         {

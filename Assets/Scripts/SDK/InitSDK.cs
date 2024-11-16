@@ -14,9 +14,6 @@ namespace SDK
             yield return YandexGamesSdk.Initialize(OnInitialised);
         }
 
-        private void OnInitialised()
-        {
-            SceneManager.LoadScene(Enums.ScenesName.StartScene.ToString());
-        }
+        private void OnInitialised() => SceneManager.LoadScene(Enums.ScenesName.StartScene.ToString());
     }
 }

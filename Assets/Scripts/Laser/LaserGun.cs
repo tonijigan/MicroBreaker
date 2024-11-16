@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Laser
 {
-
     public class LaserGun : MonoBehaviour
     {
         private const float WaitSeconds = 0.5f;

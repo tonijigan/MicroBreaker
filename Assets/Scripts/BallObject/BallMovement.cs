@@ -13,11 +13,11 @@ namespace BallObject
         private const int FirstCount = 0;
         private const int MaxSpeed = 4000;
         private const int StandartSpeed = 1000;
+        private const int Damage = 1;
+        private const int CountDistance = 15;
         private const float GravityValue = 0.1f;
         private const float PositionZero = 0f;
         private const float GravityPositionZ = 0.02f;
-        private const int Damage = 1;
-        private const int CountDistance = 15;
 
         [SerializeField] private Platform _platformTargetGravity;
         [SerializeField] private Transform _ballPoint;
@@ -104,25 +104,25 @@ namespace BallObject
 
         public void SetGravity() => _isGravityPlatform = !_isGravityPlatform;
 
-        public void FollowToPointPosition() => Transform.position = _ballPoint.position;
-
         public void SetMaxSpeed() => _currentSpeed = MaxSpeed;
 
         public void SetStandartSpeed() => _currentSpeed = StandartSpeed;
 
-        public float GetCurrentSpeed(float value)
-        {
-            if (value < _currentSpeed) return _currentSpeed;
-            else return value;
-        }
-
         public void Move(Vector3 direction) => Move(direction, _currentSpeed);
+
+        private void FollowToPointPosition() => Transform.position = _ballPoint.position;
 
         private void Move(Vector3 direction, float speed) => _rigidbody.velocity = speed * Time.deltaTime * direction;
 
         private void OnMove() => _rigidbody.AddForce(_speedForce * Vector3.forward, ForceMode.Impulse);
 
-        public Vector3 GetCurrentDirection(Collision collision)
+        private float GetCurrentSpeed(float value)
+        {
+            if (value < _currentSpeed) return _currentSpeed;
+            else return value;
+        }
+
+        private Vector3 GetCurrentDirection(Collision collision)
         {
             Vector3 direction = Vector3.zero;
             Vector3 reflect = Vector3.Reflect(_lastVelosity.normalized, collision.contacts[FirstCount].normal);

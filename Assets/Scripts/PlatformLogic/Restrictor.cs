@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PlatformLogic
 {
-    public class ObjectRestrict
+    public class Restrictor
     {
         public void RestrictMove(Transform transform, float clampX, float clampYMin, float clampYMax)
         {

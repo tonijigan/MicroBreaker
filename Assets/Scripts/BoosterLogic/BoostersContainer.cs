@@ -1,6 +1,6 @@
-using Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Enums;
 using UnityEngine;
 
 namespace BoosterLogic
@@ -15,6 +15,12 @@ namespace BoosterLogic
 
         public List<AbstractBooster> AbstractBoosters => _boosters;
 
+        private void OnDisable()
+        {
+            foreach (var booster in _boosters)
+                booster.TimeRunning -= PlaySound;
+        }
+
         public void Fill()
         {
             _transform = transform;
@@ -26,12 +32,6 @@ namespace BoosterLogic
                 _boosters.Add(booster);
                 _boosters[i].TimeRunning += PlaySound;
             }
-        }
-
-        private void OnDisable()
-        {
-            foreach (var booster in _boosters)
-                booster.TimeRunning -= PlaySound;
         }
 
         public BoosterEffect GetRandomBoosters(BoosterNames boxName)

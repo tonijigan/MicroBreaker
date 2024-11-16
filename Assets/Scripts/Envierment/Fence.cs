@@ -14,8 +14,7 @@ namespace Envierment
         [SerializeField] private AudioClip _audioClipPortal;
         [SerializeField] private Transform _portalPoint;
         [SerializeField] private Fence _parallelFence;
-        [SerializeField] private bool _isHirizontal;
-
+        [SerializeField] private bool _isHorizontal;
         [SerializeField] private bool _isOpenPortal = false;
 
         public event Action<BallMovement, Vector3, Vector3, string> PortalMoved;
@@ -28,7 +27,7 @@ namespace Envierment
 
         public Fence ParallelFence => _parallelFence;
 
-        public bool IsHorizontal => _isHirizontal;
+        public bool IsHorizontal => _isHorizontal;
 
         public AudioClip GetClip()
         {
@@ -55,9 +54,6 @@ namespace Envierment
             _particleSystem.Play();
         }
 
-        public void ActivePortal(bool isPortal)
-        {
-            _isOpenPortal = isPortal;
-        }
+        public void ActivePortal(bool isPortal) => _isOpenPortal = isPortal;
     }
 }

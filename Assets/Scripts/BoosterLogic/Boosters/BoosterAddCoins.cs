@@ -9,12 +9,7 @@ namespace BoosterLogic.Boosters
 
         [SerializeField] private Wallet _wallet;
 
-        public override void StopAction(BoosterEffect boosterEffect)
-        {
-            if (boosterEffect.IsActive == false) return;
-
-            boosterEffect.SetActionActive();
-        }
+        public override void StopAction(BoosterEffect _) { }
 
         public override void OnStartAction(BoosterEffect boosterEffect)
         {

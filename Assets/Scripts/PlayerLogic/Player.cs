@@ -6,6 +6,8 @@ namespace PlayerLogic
 {
     public class Player : MonoBehaviour
     {
+        private const int CoinValue = 1;
+
         [SerializeField] private Wallet _wallet;
         [SerializeField] private BallMovement _ballMovement;
         [SerializeField] private PlatformTrigger _platformTrigger;
@@ -22,10 +24,6 @@ namespace PlayerLogic
             _platformTrigger.CoinTriggered -= OnAddCoins;
         }
 
-        private void OnAddCoins()
-        {
-            int coin = 1;
-            _wallet.AddCoin(coin);
-        }
+        private void OnAddCoins() => _wallet.AddCoin(CoinValue);
     }
 }

@@ -15,7 +15,7 @@ namespace PlatformLogic
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private GameObject _inputObject;
 
-        private readonly ObjectRestrict _objectRestrict = new();
+        private readonly Restrictor _restrict = new();
 
         public Transform Transform { get; private set; }
 
@@ -39,7 +39,7 @@ namespace PlatformLogic
         {
             FollowToPointOfPressing(raycastPoint);
             Move(position);
-            _objectRestrict.RestrictMove(Transform, ClampX, ClampYMin, ClampYMax);
+            _restrict.RestrictMove(Transform, ClampX, ClampYMin, ClampYMax);
         }
 
         private void FollowToPointOfPressing(Vector3 hitPoint)
