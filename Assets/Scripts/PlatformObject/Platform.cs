@@ -41,13 +41,16 @@ namespace PlatformObject
         public void Die()
         {
             _collider.enabled = false;
-            _audioSourceEffect.clip = _audioClipExplosion;
-            _audioSourceEffect.Play();
             _particleExplosion.transform.position = transform.position;
             _particleExplosion.Play();
             _transformTemplateContainer.gameObject.SetActive(false);
             _inputPointMovement.gameObject.SetActive(false);
             SetStartState();
+            _audioSourceEffect.clip = _audioClipExplosion;
+
+            if (_audioSourceEffect.enabled == false) return;
+
+            _audioSourceEffect.Play();
         }
 
         public float GetSpeed()
