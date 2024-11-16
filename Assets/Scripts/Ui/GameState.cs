@@ -103,10 +103,11 @@ namespace UI
         {
             _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
 
+
             if (_saveService.LevelData.Passed == PassedValue) return;
 
-            List<LevelData> locationObjectData = _saveService.LevelDatas.ToList();
-            locationObjectData.Add(new()
+            List<LevelData> LevelData = _saveService.LevelDatas.ToList();
+            LevelData.Add(new()
             {
                 LocationName = _saveService.LevelData.LocationName,
                 AdditionaValue = _saveService.LevelData.AdditionaValue,
@@ -114,7 +115,7 @@ namespace UI
                 Passed = PassedValue
             });
 
-            _saveService.SaveLevelDatas(locationObjectData);
+            _saveService.SaveLevelDatas(LevelData);
         }
 
         private void OnLoadScene(string sceneName)

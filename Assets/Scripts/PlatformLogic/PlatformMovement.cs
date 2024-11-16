@@ -37,6 +37,8 @@ namespace PlatformLogic
 
         private void FixedUpdate()
         {
+            _inputPointMovement.gameObject.SetActive(!_isTargetChange);
+
             if (_isTargetChange == false) _currentTarget = _inputPointMovement.Transform;
             else _currentTarget.position = new Vector3(_ballMovement.Transform.position.x,
                                                        _ballMovement.Transform.position.y,

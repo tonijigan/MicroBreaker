@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.005977301, g: 0.062036708, b: 0.23103201, a: 1}
+  m_IndirectSpecularColor: {r: 0.004481341, g: 0.058967277, b: 0.23219556, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -14521,7 +14521,6 @@ GameObject:
   - component: {fileID: 649389478965040307}
   - component: {fileID: 6593972011491265657}
   - component: {fileID: 6593972011491265659}
-  - component: {fileID: 6593972011491265660}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -15191,19 +15190,6 @@ MonoBehaviour:
   _locationChooseInput: {fileID: 6593972011491265657}
   _swipeMove: {fileID: 214854021}
   _virtualMobileCamera: {fileID: 1877595808}
---- !u!114 &6593972011491265660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479605200971669266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c5e4735d0e68343886085a568246ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveService: {fileID: 540819814}
 --- !u!1 &6627773619111850044
 GameObject:
   m_ObjectHideFlags: 0
