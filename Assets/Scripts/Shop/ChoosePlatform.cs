@@ -11,7 +11,6 @@ namespace Shop
         private const int MinValue = 0;
         private const int Element = 1;
         private const int LoopValue = 1;
-        private const int CurrentElement = 2;
         private const float DurationMove = 0.5f;
         private const float DurationRotate = 5f;
         private const float RotateY = 360f;
@@ -32,7 +31,7 @@ namespace Shop
         {
             Create(products);
             _currentIndex = products.IndexOf(products.Where(product => product.IsSelected == true).FirstOrDefault());
-            SetCurrentPlatform(_currentIndex - CurrentElement);
+            SetCurrentPlatform(MinValue);
         }
 
         private void Create(List<Product> products)
