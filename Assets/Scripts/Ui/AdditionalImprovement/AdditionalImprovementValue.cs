@@ -18,10 +18,7 @@ namespace UI
             IsSelect = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
         }
 
-        public void SetSelect(bool isSelect)
-        {
-            IsSelect = isSelect;
-        }
+        public void SetSelect(bool isSelect) => IsSelect = isSelect;
 
         public int GetSelectValue()
         {

@@ -44,8 +44,7 @@ namespace Shop
 
         private void OnUpdateStates()
         {
-            foreach (var productBallView in _productBallViews)
-                productBallView.SetState();
+            foreach (var productBallView in _productBallViews) productBallView.SetState();
         }
     }
 }

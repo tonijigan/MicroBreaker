@@ -25,17 +25,17 @@ namespace UI
 
         public float MaxVolume => _maxVolume;
 
-        public void Init(bool isEnable)
-        {
-            IsEnable = isEnable;
-            SetParameters(isEnable);
-        }
-
         protected override void OnClick()
         {
             IsEnable = !IsEnable;
             SetParameters(IsEnable);
             Changed?.Invoke(this);
+        }
+
+        public void Init(bool isEnable)
+        {
+            IsEnable = isEnable;
+            SetParameters(isEnable);
         }
 
         public void SetParameters(bool isEnable)

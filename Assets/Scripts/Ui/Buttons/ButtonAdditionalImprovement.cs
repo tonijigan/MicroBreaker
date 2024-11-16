@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Enums;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +19,7 @@ namespace UI
         public event Action<ButtonAdditionalImprovement> Selected;
 
         public bool IsBuy { get; private set; } = false;
+
         public bool IsSelect { get; private set; } = false;
 
         public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;

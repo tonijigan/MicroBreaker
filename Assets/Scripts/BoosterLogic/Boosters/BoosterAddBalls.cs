@@ -39,7 +39,7 @@ namespace BoosterLogic.Boosters
             {
                 _balls[i] = Instantiate(_ball, Transform);
                 _balls[i].transform.GetChild(MinValue).TryGetComponent(out ChangeTemplate changeTemplateClone);
-                _balls[i].DisconnectParentObject();
+                _balls[i].OnDisconnectParentObject();
                 _balls[i].BallEffect.SetParticleSystem(BoosterName);
                 _balls[i].Rigidbody.AddForce(new Vector3(Random.Range(-RandomValue, RandomValue), MinValue,
                                                          Random.Range(-RandomValue, RandomValue)) * Speed);

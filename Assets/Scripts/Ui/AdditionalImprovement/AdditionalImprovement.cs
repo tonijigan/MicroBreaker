@@ -8,9 +8,9 @@ namespace UI
     [RequireComponent(typeof(AdditionalImprovementView))]
     public class AdditionalImprovement : MonoBehaviour
     {
-        private AdditionalImprovementView _additionalImprovementView;
-
         public event Action<AdditionalImprovement> Clicked;
+
+        private AdditionalImprovementView _additionalImprovementView;
 
         public Sprite Sprite { get; private set; }
 

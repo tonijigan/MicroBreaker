@@ -1,7 +1,7 @@
+using System;
 using Enums;
 using SDK;
 using Sound;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

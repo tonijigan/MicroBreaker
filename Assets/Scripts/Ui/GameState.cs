@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using BallObject;
 using BoosterLogic;
 using Cinemachine;
@@ -6,9 +9,6 @@ using Envierment;
 using PlatformLogic;
 using PlayerLogic;
 using SaveLogic;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,11 +39,6 @@ namespace UI
         private WaitForSeconds _waitForSeconds;
         private Coroutine _coroutine;
 
-        private void Start()
-        {
-            _waitForSeconds = new WaitForSeconds(DurationWin);
-        }
-
         private void OnEnable()
         {
             _counter.Winned += OpenPanelWin;
@@ -59,6 +54,8 @@ namespace UI
             _panelWin.Clicked -= LoadScene;
             _panelLoss.Clicked -= LoadScene;
         }
+
+        private void Start() => _waitForSeconds = new WaitForSeconds(DurationWin);
 
         private void OpenPanelWin(string time)
         {
@@ -86,8 +83,7 @@ namespace UI
 
         private void PlayOpen(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
         {
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
+            if (_coroutine != null) StopCoroutine(_coroutine);
 
             _coroutine = StartCoroutine(MovePanel(panel, waitForSeconds, action));
         }

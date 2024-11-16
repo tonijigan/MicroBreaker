@@ -31,14 +31,10 @@ namespace UI
             for (int i = 0; i < _additionalImprovementValues.Count; i++)
             {
                 if (_additionalImprovementValues[i].AdditionalImprovementName == AdditionalImprovementName.ExtraLife.ToString() && _additionalImprovementValues[i].IsSelect == true)
-                {
                     _ball.AddExtraLive(_additionalImprovementValues[i].Value);
-                }
 
                 if (_additionalImprovementValues[i].AdditionalImprovementName == AdditionalImprovementName.Scale.ToString() && _additionalImprovementValues[i].IsSelect == true)
-                {
                     _platfornModification.SetAdditionalImprovementScale(_additionalImprovementValues[i].Value);
-                }
             }
 
             _saveService.SaveAdditionalImprovementValues(GetAdditionalImprovementValues());

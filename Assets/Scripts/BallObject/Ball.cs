@@ -33,9 +33,9 @@ namespace BallObject
             BallEffect = GetComponent<BallEffect>();
         }
 
-        private void OnEnable() => _playerInput.MousePressedUp += DisconnectParentObject;
+        private void OnEnable() => _playerInput.MousePressedUp += OnDisconnectParentObject;
 
-        private void OnDisable() => _playerInput.MousePressedUp -= DisconnectParentObject;
+        private void OnDisable() => _playerInput.MousePressedUp -= OnDisconnectParentObject;
 
         public void AddExtraLive(int extraLive)
         {
@@ -62,7 +62,7 @@ namespace BallObject
             Rigidbody.isKinematic = true;
         }
 
-        public void DisconnectParentObject()
+        public void OnDisconnectParentObject()
         {
             if (IsActive)
                 return;

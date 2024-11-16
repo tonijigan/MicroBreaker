@@ -50,8 +50,7 @@ namespace Shop
             _imageBlock.gameObject.SetActive(!_product.IsBuy);
             _buttonBuy.gameObject.SetActive(!_product.IsBuy);
 
-            if (_product.Price == 0)
-                _buttonBuy.gameObject.SetActive(false);
+            if (_product.Price == 0) _buttonBuy.gameObject.SetActive(false);
 
             _imageChoosed.gameObject.SetActive(_product.IsSelected);
             _buttonChoose.enabled = _product.IsBuy;

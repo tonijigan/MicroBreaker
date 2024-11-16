@@ -19,31 +19,27 @@ namespace Shop
         public event Action Selected;
         public event Action Buyed;
 
-        public Product CurrentProduct { get; private set; }
         private SaveService _saveService;
         private List<string> _accessProductNames = new();
         private readonly List<Product> _products = new();
+
+        public Product CurrentProduct { get; private set; }
 
         private void OnEnable()
         {
             _panelProduct.Bought += OnSaveProductsName;
 
-            foreach (var product in _products)
-                product.Selected += SetCurrentProduct;
+            foreach (var product in _products) product.Selected += SetCurrentProduct;
         }
 
         private void OnDisable()
         {
             _panelProduct.Bought -= OnSaveProductsName;
 
-            foreach (var product in _products)
-                product.Selected -= SetCurrentProduct;
+            foreach (var product in _products) product.Selected -= SetCurrentProduct;
         }
 
-        public override void Move(bool isActive)
-        {
-            this.gameObject.SetActive(isActive);
-        }
+        public override void Move(bool isActive) => this.gameObject.SetActive(isActive);
 
         public void AddProduct(Product product) => _products.Add(product);
 

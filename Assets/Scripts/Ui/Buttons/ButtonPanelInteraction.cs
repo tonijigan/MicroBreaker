@@ -21,15 +21,11 @@ namespace UI
 
         protected override void OnClick()
         {
-            if (_panelClosePanels != null)
-                ClosePanels();
+            if (_panelClosePanels != null) ClosePanels();
 
-            if (_panelOpenPanel != null)
-                _panelOpenPanel.Move(_isStateOnOpenPanel);
+            if (_panelOpenPanel != null) _panelOpenPanel.Move(_isStateOnOpenPanel);
 
-            if (_buttonEnable != null)
-                _buttonEnable.gameObject.SetActive(true);
-
+            if (_buttonEnable != null) _buttonEnable.gameObject.SetActive(true);
 
             HaveTimeScale();
             SwitchObject();
@@ -37,15 +33,11 @@ namespace UI
             Clicked?.Invoke(_isStateOnOpenPanel);
         }
 
-        public void SetStartStateButton()
-        {
-            IsClick = false;
-        }
+        public void SetStartStateButton() => IsClick = false;
 
         private void ClosePanels()
         {
-            foreach (var panel in _panelClosePanels)
-                panel.Move(!_isStateOnOpenPanel);
+            foreach (var panel in _panelClosePanels) panel.Move(!_isStateOnOpenPanel);
         }
 
         private void HaveTimeScale()
@@ -54,8 +46,7 @@ namespace UI
 
             Time.timeScale = MinTimeScale;
 
-            if (_isStateOnOpenPanel == false)
-                Time.timeScale = MaxTimeScale;
+            if (_isStateOnOpenPanel == false) Time.timeScale = MaxTimeScale;
         }
 
         private void SwitchObject()

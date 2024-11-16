@@ -33,19 +33,15 @@ namespace UI
         {
             _rectTransform = GetComponent<RectTransform>();
 
-            if (_isActiveAtStart == true)
-                gameObject.SetActive(false);
+            if (_isActiveAtStart == true) gameObject.SetActive(false);
         }
 
         protected async Task MovePanel(bool isActive, Action OnActive = null)
         {
-            if (isActive == true)
-                gameObject.SetActive(isActive);
+            if (isActive == true) gameObject.SetActive(isActive);
 
-            if (isActive)
-                await _rectTransform.DOAnchorPosY(_topPosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-            else
-                await _rectTransform.DOAnchorPosY(_middlePosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+            if (isActive) await _rectTransform.DOAnchorPosY(_topPosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
+            else await _rectTransform.DOAnchorPosY(_middlePosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
 
             gameObject.SetActive(isActive);
             OnActive?.Invoke();

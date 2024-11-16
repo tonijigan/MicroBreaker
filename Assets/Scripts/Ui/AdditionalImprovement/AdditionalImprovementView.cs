@@ -31,8 +31,7 @@ namespace UI
         {
             _button.image.color = _oldColor;
 
-            if (isEnable == false)
-                _button.image.color = _disableColor;
+            if (isEnable == false) _button.image.color = _disableColor;
 
             _button.enabled = isEnable;
         }

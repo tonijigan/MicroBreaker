@@ -9,23 +9,22 @@ namespace BoosterLogic
     {
         [SerializeField] private Fence[] _fences;
 
-        public void Open(bool isOpen)
-        {
-            foreach (var fence in _fences)
-                fence.ActivePortal(isOpen);
-        }
-
         private void OnEnable()
         {
-            foreach (var fence in _fences) fence.PortalMoved += RelocateBall;
+            foreach (var fence in _fences) fence.PortalMoved += OnRelocateBall;
         }
 
         private void OnDisable()
         {
-            foreach (var fence in _fences) fence.PortalMoved -= RelocateBall;
+            foreach (var fence in _fences) fence.PortalMoved -= OnRelocateBall;
         }
 
-        private void RelocateBall(BallMovement ballMovement, Vector3 currentPoint, Vector3 direction, string currentNameFence)
+        public void Open(bool isOpen)
+        {
+            foreach (var fence in _fences) fence.ActivePortal(isOpen);
+        }
+
+        private void OnRelocateBall(BallMovement ballMovement, Vector3 currentPoint, Vector3 direction, string currentNameFence)
         {
             Fence currentFence = GetCurrentFence(currentNameFence);
             Vector3 newPosition;

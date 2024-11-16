@@ -38,6 +38,12 @@ namespace UI
             }
         }
 
+        public void SaveAdditionalImprovement(AdditionalImprovement additionalImprovement)
+        {
+            _additionalImprovementValues.Add(new(additionalImprovement.AdditionalImprovementName.ToString(), additionalImprovement.Count, SelectMaxValue));
+            _saveService.SaveAdditionalImprovementValues(_additionalImprovementValues);
+        }
+
         private void OnLoadAdditionalImprovement()
         {
             _additionalImprovementValues = _saveService.GetAdditionalImprovementValues();
@@ -53,12 +59,6 @@ namespace UI
                 ButtonAdditionalImprovement buttonAdditionalImprovement = _buttonAdditionalImprovements.Where(button => button.AdditionalImprovementName.ToString() == additionalImprovementValue.AdditionalImprovementName).FirstOrDefault();
                 buttonAdditionalImprovement.SetBuy(additionalImprovementValue.IsSelect);
             }
-        }
-
-        public void SaveAdditionalImprovement(AdditionalImprovement additionalImprovement)
-        {
-            _additionalImprovementValues.Add(new(additionalImprovement.AdditionalImprovementName.ToString(), additionalImprovement.Count, SelectMaxValue));
-            _saveService.SaveAdditionalImprovementValues(_additionalImprovementValues);
         }
 
         private void OnClick(ButtonAdditionalImprovement buttonAdditionalImprovement)

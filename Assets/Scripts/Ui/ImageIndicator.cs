@@ -7,9 +7,6 @@ namespace UI
     {
         [SerializeField] private Image _imageCurrentObject;
 
-        public void SetAction(bool action)
-        {
-            _imageCurrentObject.gameObject.SetActive(action);
-        }
+        public void SetAction(bool action) => _imageCurrentObject.gameObject.SetActive(action);
     }
 }

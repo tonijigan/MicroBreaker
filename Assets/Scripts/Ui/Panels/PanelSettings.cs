@@ -12,22 +12,22 @@ namespace UI
 
         private float _currentVolume;
 
-        private void Start()
-        {
-            LoadAudioSettings(_buttonSettingMusic);
-            LoadAudioSettings(_buttonSettingEffect);
-        }
-
         private void OnEnable()
         {
-            _buttonSettingMusic.Changed += Save;
-            _buttonSettingEffect.Changed += Save;
+            _buttonSettingMusic.Changed += OnSave;
+            _buttonSettingEffect.Changed += OnSave;
         }
 
         private void OnDisable()
         {
-            _buttonSettingMusic.Changed -= Save;
-            _buttonSettingEffect.Changed -= Save;
+            _buttonSettingMusic.Changed -= OnSave;
+            _buttonSettingEffect.Changed -= OnSave;
+        }
+
+        private void Start()
+        {
+            LoadAudioSettings(_buttonSettingMusic);
+            LoadAudioSettings(_buttonSettingEffect);
         }
 
         public override async void Move(bool isActive)
@@ -44,7 +44,7 @@ namespace UI
             buttonSettingAudio.Init(isEnable);
         }
 
-        private void Save(ButtonSettingAudio buttonSettingAudio)
+        private void OnSave(ButtonSettingAudio buttonSettingAudio)
         {
             _currentVolume = buttonSettingAudio.IsEnable ? buttonSettingAudio.MaxVolume : MinVolume;
             PlayerPrefs.SetFloat(buttonSettingAudio.AudioName.ToString(), _currentVolume);

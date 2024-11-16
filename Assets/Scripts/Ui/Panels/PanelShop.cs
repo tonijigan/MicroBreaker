@@ -6,7 +6,6 @@ namespace UI
 {
     public class PanelShop : Panel
     {
-        [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
         [SerializeField] private ButtonPanelInteraction _buttonClose;
         [SerializeField] private Panel _backGroundPanel;
 
@@ -16,15 +15,9 @@ namespace UI
 
         public ButtonPanelInteraction ButtenClose => _buttonClose;
 
-        private void OnEnable()
-        {
-            _buttonClose.Clicked += Move;
-        }
+        private void OnEnable() => _buttonClose.Clicked += Move;
 
-        private void OnDisable()
-        {
-            _buttonClose.Clicked -= Move;
-        }
+        private void OnDisable() => _buttonClose.Clicked -= Move;
 
         public override void Move(bool isActive)
         {
@@ -37,12 +30,11 @@ namespace UI
             _buttonClose.gameObject.SetActive(isOpen);
             _backGroundPanel.gameObject.SetActive(isOpen);
 
-            if (isOpen)
-            {
-                RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
-                IsActive = true;
-            }
-            else
+
+            RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
+            IsActive = true;
+
+            if (isOpen == false)
             {
                 RectTransform.DOAnchorPosX(TopPosition, TweenDuration);
                 IsActive = false;

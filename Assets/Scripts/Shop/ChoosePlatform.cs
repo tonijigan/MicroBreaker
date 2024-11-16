@@ -1,7 +1,7 @@
-using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Shop
@@ -10,6 +10,7 @@ namespace Shop
     {
         private const int MinValue = 0;
         private const int Element = 1;
+        private const int CurrentElement = 2;
         private const float DurationMove = 0.5f;
         private const float DurationRotate = 5f;
         private const float RotateY = 360f;
@@ -30,7 +31,7 @@ namespace Shop
         {
             Create(products);
             _currentIndex = products.IndexOf(products.Where(product => product.IsSelected == true).FirstOrDefault());
-            SetCurrentPlatform(_currentIndex - Element);
+            SetCurrentPlatform(_currentIndex - CurrentElement);
         }
 
         private void Create(List<Product> products)
@@ -44,8 +45,7 @@ namespace Shop
 
         public void SetCurrentPlatform(int element)
         {
-            foreach (var template in _platformTemplates)
-                template.gameObject.SetActive(false);
+            foreach (var template in _platformTemplates) template.gameObject.SetActive(false);
 
             CurrentTemplate = _platformTemplates[GetCurrentIndex(element)];
             CurrentTemplate.gameObject.SetActive(true);
@@ -91,8 +91,7 @@ namespace Shop
         {
             int newIndex = _currentIndex + element;
 
-            if (newIndex < MinValue)
-                return _currentIndex;
+            if (newIndex < MinValue) return _currentIndex;
 
             if (newIndex >= _platformTemplates.Count - Element)
                 return _currentIndex = _platformTemplates.Count - Element;

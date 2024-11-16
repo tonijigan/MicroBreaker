@@ -25,8 +25,7 @@ namespace Shop
 
             CurrentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
 
-            if (name == string.Empty)
-                CurrentTemplate = _templates[0];
+            if (name == string.Empty) CurrentTemplate = _templates[MinValue];
 
             CurrentTemplate.gameObject.SetActive(true);
 

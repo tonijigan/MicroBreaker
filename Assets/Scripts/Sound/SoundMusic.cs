@@ -24,8 +24,7 @@ namespace Sound
         {
             float volume = isEnable ? MaxVolume : MinVolume;
 
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
+            if (_coroutine != null) StopCoroutine(_coroutine);
 
             _coroutine = StartCoroutine(PlayFade(volume));
         }

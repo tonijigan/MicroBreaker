@@ -19,39 +19,31 @@ namespace Shop
 
         private void OnEnable()
         {
-            foreach (var buttonPanelInteraction in _buttonPanelInteractions)
-                buttonPanelInteraction.Clicked += PlaySound;
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked += PlaySound;
 
             _saveService.Loaded += Create;
         }
 
         private void OnDisable()
         {
-            foreach (var buttonPanelInteraction in _buttonPanelInteractions)
-                buttonPanelInteraction.Clicked -= PlaySound;
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions) buttonPanelInteraction.Clicked -= PlaySound;
 
             _saveService.Loaded -= Create;
         }
 
-        private void PlaySound(bool isAction)
-        {
-            _panelShop.Move(isAction);
-        }
+        private void PlaySound(bool isAction) => _panelShop.Move(isAction);
 
         private void Create()
         {
             _templates = _templates.OrderBy(template => template.Price).ToArray();
 
-            foreach (var template in _templates)
-                _products.Add(new Product(template));
+            foreach (var template in _templates) _products.Add(new Product(template));
 
             foreach (var product in _products)
             {
-                if (product.Template.ObjectsName == Enums.ObjectsName.Ball)
-                    _panelCreateBallProducts.AddProduct(product);
+                if (product.Template.ObjectsName == Enums.ObjectsName.Ball) _panelCreateBallProducts.AddProduct(product);
 
-                if (product.Template.ObjectsName == Enums.ObjectsName.Platform)
-                    _panelCreatePlatformProducts.AddProduct(product);
+                if (product.Template.ObjectsName == Enums.ObjectsName.Platform) _panelCreatePlatformProducts.AddProduct(product);
             }
 
             _panelCreateBallProducts.Init(_saveService);

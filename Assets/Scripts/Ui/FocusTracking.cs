@@ -5,14 +5,14 @@ namespace UI
 {
     public class FocusTracking : MonoBehaviour
     {
-        private int _minValue = 0;
-        private int _maxValue = 1;
+        private const int MinValue = 0;
+        private const int MaxValue = 1;
 
         private void Awake()
         {
-            Time.timeScale = _maxValue;
+            Time.timeScale = MaxValue;
             AudioListener.pause = false;
-            AudioListener.volume = _maxValue;
+            AudioListener.volume = MaxValue;
         }
 
         private void OnEnable()
@@ -39,14 +39,8 @@ namespace UI
             PauseGame(inBackground);
         }
 
-        private void MuteAudio(bool value)
-        {
-            AudioListener.pause = value;
-        }
+        private void MuteAudio(bool value) => AudioListener.pause = value;
 
-        private void PauseGame(bool value)
-        {
-            Time.timeScale = value ? _minValue : _maxValue;
-        }
+        private void PauseGame(bool value) => Time.timeScale = value ? MinValue : MaxValue;
     }
 }
