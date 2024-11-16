@@ -1,17 +1,20 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class BallSound : MonoBehaviour
+namespace Sound
 {
-    private AudioSource _audioSource;
-
-    private void Awake() => _audioSource = GetComponent<AudioSource>();
-
-    public void Play(AudioClip audioClip)
+    [RequireComponent(typeof(AudioSource))]
+    public class BallSound : MonoBehaviour
     {
-        if (_audioSource.enabled == false) return;
+        private AudioSource _audioSource;
 
-        _audioSource.clip = audioClip;
-        _audioSource.Play();
+        private void Awake() => _audioSource = GetComponent<AudioSource>();
+
+        public void Play(AudioClip audioClip)
+        {
+            if (_audioSource.enabled == false) return;
+
+            _audioSource.clip = audioClip;
+            _audioSource.Play();
+        }
     }
 }

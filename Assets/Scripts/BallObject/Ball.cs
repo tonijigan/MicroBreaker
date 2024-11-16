@@ -1,5 +1,5 @@
-using PlayerObject;
 using System;
+using PlayerLogic;
 using UnityEngine;
 
 namespace BallObject

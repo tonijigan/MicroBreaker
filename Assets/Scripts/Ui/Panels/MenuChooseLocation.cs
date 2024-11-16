@@ -1,65 +1,69 @@
 using Cinemachine;
+using LocationLogic.LocationChoose;
 using UnityEngine;
 
-public class MenuChooseLocation : MonoBehaviour
+namespace UI
 {
-    private const int PositionZ = 20;
-    private const int Priority = 1;
-
-    [SerializeField] private PanelPlayGame _panelPlayGame;
-    [SerializeField] private PanelShop _panelShop;
-    [SerializeField] private LocationChooseInput _locationChooseInput;
-    [SerializeField] private SwipeMove _swipeMove;
-    [SerializeField] private CinemachineVirtualCamera _virtualMobileCamera;
-
-    private void OnEnable()
+    public class MenuChooseLocation : MonoBehaviour
     {
-        _panelShop.Activated += OnActive;
-        _locationChooseInput.LocationChoosed += OnInit;
-        _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
-        _panelPlayGame.ButtonPlayGame.Clicked += OnClick;
-    }
+        private const int PositionZ = 20;
+        private const int Priority = 1;
 
-    private void OnDisable()
-    {
-        _panelShop.Activated -= OnActive;
-        _locationChooseInput.LocationChoosed -= OnInit;
-        _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
-        _panelPlayGame.ButtonPlayGame.Clicked -= OnClick;
-    }
+        [SerializeField] private PanelPlayGame _panelPlayGame;
+        [SerializeField] private PanelShop _panelShop;
+        [SerializeField] private LocationChooseInput _locationChooseInput;
+        [SerializeField] private SwipeMove _swipeMove;
+        [SerializeField] private CinemachineVirtualCamera _virtualMobileCamera;
 
-    private void OnInit(LocationObject locationObject)
-    {
-        _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
-          locationObject.transform.position.z - PositionZ);
-        _panelPlayGame.ButtonClose.SetStartStateButton();
-        _panelPlayGame.Move(true);
-        _panelPlayGame.Init(locationObject);
-        OnActivateControl(true);
-    }
-
-    private void OnActive(bool isActive)
-    {
-        OnActivateControl(isActive);
-
-        _panelPlayGame.Move(false);
-
-        if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
+        private void OnEnable()
         {
+            _panelShop.Activated += OnActive;
+            _locationChooseInput.LocationChoosed += OnInit;
+            _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
+            _panelPlayGame.ButtonPlayGame.Clicked += OnClick;
+        }
+
+        private void OnDisable()
+        {
+            _panelShop.Activated -= OnActive;
+            _locationChooseInput.LocationChoosed -= OnInit;
+            _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
+            _panelPlayGame.ButtonPlayGame.Clicked -= OnClick;
+        }
+
+        private void OnInit(LocationObject locationObject)
+        {
+            _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
+              locationObject.transform.position.z - PositionZ);
+            _panelPlayGame.ButtonClose.SetStartStateButton();
             _panelPlayGame.Move(true);
+            _panelPlayGame.Init(locationObject);
             OnActivateControl(true);
         }
-    }
 
-    private void OnActivateControl(bool isActive)
-    {
-        _locationChooseInput.SetActive(!isActive);
-        _swipeMove.enabled = !isActive;
-    }
+        private void OnActive(bool isActive)
+        {
+            OnActivateControl(isActive);
 
-    private void OnClick()
-    {
-        _virtualMobileCamera.gameObject.SetActive(true);
-        _virtualMobileCamera.Priority = Priority;
+            _panelPlayGame.Move(false);
+
+            if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
+            {
+                _panelPlayGame.Move(true);
+                OnActivateControl(true);
+            }
+        }
+
+        private void OnActivateControl(bool isActive)
+        {
+            _locationChooseInput.SetActive(!isActive);
+            _swipeMove.enabled = !isActive;
+        }
+
+        private void OnClick()
+        {
+            _virtualMobileCamera.gameObject.SetActive(true);
+            _virtualMobileCamera.Priority = Priority;
+        }
     }
 }

@@ -1,47 +1,51 @@
 using System.Collections.Generic;
+using Sound;
 using UnityEngine;
 
-[RequireComponent(typeof(ProductTypeSection))]
-public class PanelDisplayAllBallProducts : MonoBehaviour
+namespace Shop
 {
-    [SerializeField] private ProductBallView _productBallView;
-    [SerializeField] private Transform _container;
-    [SerializeField] private SoundButton _soundButton;
-
-    private ProductTypeSection _panelTypeProducts;
-    private readonly List<ProductBallView> _productBallViews = new();
-
-    private void Awake() => _panelTypeProducts = GetComponent<ProductTypeSection>();
-
-    private void OnEnable()
+    [RequireComponent(typeof(ProductTypeSection))]
+    public class PanelDisplayAllBallProducts : MonoBehaviour
     {
-        _panelTypeProducts.Inited += CreateProductView;
-        _panelTypeProducts.Selected += OnUpdateStates;
-        _panelTypeProducts.Buyed += OnUpdateStates;
-    }
+        [SerializeField] private ProductBallView _productBallView;
+        [SerializeField] private Transform _container;
+        [SerializeField] private SoundButton _soundButton;
 
-    private void OnDisable()
-    {
-        _panelTypeProducts.Inited -= CreateProductView;
-        _panelTypeProducts.Selected -= OnUpdateStates;
-        _panelTypeProducts.Buyed -= OnUpdateStates;
-    }
+        private ProductTypeSection _panelTypeProducts;
+        private readonly List<ProductBallView> _productBallViews = new();
 
-    private void CreateProductView(List<Product> products, PanelProduct panelProduct)
-    {
-        foreach (var product in products)
+        private void Awake() => _panelTypeProducts = GetComponent<ProductTypeSection>();
+
+        private void OnEnable()
         {
-            ProductBallView productBallView = Instantiate(_productBallView, _container);
-            productBallView.Init(panelProduct, product, _soundButton.AudioSource);
-            _productBallViews.Add(productBallView);
+            _panelTypeProducts.Inited += CreateProductView;
+            _panelTypeProducts.Selected += OnUpdateStates;
+            _panelTypeProducts.Buyed += OnUpdateStates;
         }
 
-        OnUpdateStates();
-    }
+        private void OnDisable()
+        {
+            _panelTypeProducts.Inited -= CreateProductView;
+            _panelTypeProducts.Selected -= OnUpdateStates;
+            _panelTypeProducts.Buyed -= OnUpdateStates;
+        }
 
-    private void OnUpdateStates()
-    {
-        foreach (var productBallView in _productBallViews)
-            productBallView.SetState();
+        private void CreateProductView(List<Product> products, PanelProduct panelProduct)
+        {
+            foreach (var product in products)
+            {
+                ProductBallView productBallView = Instantiate(_productBallView, _container);
+                productBallView.Init(panelProduct, product, _soundButton.AudioSource);
+                _productBallViews.Add(productBallView);
+            }
+
+            OnUpdateStates();
+        }
+
+        private void OnUpdateStates()
+        {
+            foreach (var productBallView in _productBallViews)
+                productBallView.SetState();
+        }
     }
 }

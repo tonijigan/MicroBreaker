@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class ViewIndicationPlatform : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Transform _path;
-    [SerializeField] private ImageIndicator _imageIndicator;
-
-    private ImageIndicator[] _imageIndicators;
-    private Transform _transform;
-
-    private void Awake()
+    public class ViewIndicationPlatform : MonoBehaviour
     {
-        _transform = transform;
-        _imageIndicators = new ImageIndicator[_path.childCount];
+        [SerializeField] private Transform _path;
+        [SerializeField] private ImageIndicator _imageIndicator;
 
-        for (int i = 0; i < _imageIndicators.Length; i++)
+        private ImageIndicator[] _imageIndicators;
+        private Transform _transform;
+
+        private void Awake()
         {
-            ImageIndicator imageIndicator = Instantiate(_imageIndicator, _transform);
-            _imageIndicators[i] = imageIndicator;
-            _imageIndicators[i].SetAction(false);
+            _transform = transform;
+            _imageIndicators = new ImageIndicator[_path.childCount];
+
+            for (int i = 0; i < _imageIndicators.Length; i++)
+            {
+                ImageIndicator imageIndicator = Instantiate(_imageIndicator, _transform);
+                _imageIndicators[i] = imageIndicator;
+                _imageIndicators[i].SetAction(false);
+            }
         }
     }
 }

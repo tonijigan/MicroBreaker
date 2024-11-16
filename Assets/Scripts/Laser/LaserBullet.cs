@@ -1,47 +1,49 @@
 using BoxObject;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class LaserBullet : MonoBehaviour
+namespace Laser
 {
-    [SerializeField] private ParticleSystem _particleSystem;
-
-    private Rigidbody _rigidbody;
-    private const int Damage = 5;
-    private const float Speed = 300f;
-    private const int MaxLiveTime = 5;
-    private const int MinLiveTime = 0;
-    private float _currentLiveTime;
-
-    private void Start()
+    [RequireComponent(typeof(Rigidbody))]
+    public class LaserBullet : MonoBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _currentLiveTime = MaxLiveTime;
-    }
+        [SerializeField] private ParticleSystem _particleSystem;
 
-    private void Update()
-    {
-        _rigidbody.AddForce(Speed * Time.deltaTime * Vector3.forward, ForceMode.Impulse);
-        Die();
-    }
+        private Rigidbody _rigidbody;
+        private const int Damage = 5;
+        private const float Speed = 300f;
+        private const int MaxLiveTime = 5;
+        private const int MinLiveTime = 0;
+        private float _currentLiveTime;
 
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Box box))
+        private void Start()
         {
-            _particleSystem.Play();
-            box.Play(collision.contacts[0].point);
-            box.TakeDamage(Damage);
-            gameObject.SetActive(false);
+            _rigidbody = GetComponent<Rigidbody>();
+            _currentLiveTime = MaxLiveTime;
         }
-    }
 
-    private void Die()
-    {
-        _currentLiveTime -= Time.deltaTime;
+        private void Update()
+        {
+            _rigidbody.AddForce(Speed * Time.deltaTime * Vector3.forward, ForceMode.Impulse);
+            Die();
+        }
 
-        if (_currentLiveTime < MinLiveTime)
-            gameObject.SetActive(false);
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent(out Box box))
+            {
+                _particleSystem.Play();
+                box.Play(collision.contacts[0].point);
+                box.TakeDamage(Damage);
+                gameObject.SetActive(false);
+            }
+        }
+
+        private void Die()
+        {
+            _currentLiveTime -= Time.deltaTime;
+
+            if (_currentLiveTime < MinLiveTime)
+                gameObject.SetActive(false);
+        }
     }
 }

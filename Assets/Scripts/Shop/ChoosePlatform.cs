@@ -4,97 +4,100 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ChoosePlatform : MonoBehaviour
+namespace Shop
 {
-    private const int MinValue = 0;
-    private const int Element = 1;
-    private const float DurationMove = 0.5f;
-    private const float DurationRotate = 5f;
-    private const float RotateY = 360f;
-    private const float Scale = 13f;
-
-    [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private Transform _oldTransform;
-    [SerializeField] private Transform _currentTransform;
-    [SerializeField] private Transform _nextTransform;
-
-    private readonly List<Template> _platformTemplates = new();
-    private Tween _rotateTween;
-    private int _currentIndex = MinValue;
-
-    public Template CurrentTemplate { get; private set; }
-
-    public void Init(List<Product> products)
+    public class ChoosePlatform : MonoBehaviour
     {
-        Create(products);
-        _currentIndex = products.IndexOf(products.Where(product => product.IsSelected == true).FirstOrDefault());
-        SetCurrentPlatform(_currentIndex - Element);
-    }
+        private const int MinValue = 0;
+        private const int Element = 1;
+        private const float DurationMove = 0.5f;
+        private const float DurationRotate = 5f;
+        private const float RotateY = 360f;
+        private const float Scale = 13f;
 
-    private void Create(List<Product> products)
-    {
-        for (int i = MinValue; i < products.Count; i++)
+        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private Transform _oldTransform;
+        [SerializeField] private Transform _currentTransform;
+        [SerializeField] private Transform _nextTransform;
+
+        private readonly List<Template> _platformTemplates = new();
+        private Tween _rotateTween;
+        private int _currentIndex = MinValue;
+
+        public Template CurrentTemplate { get; private set; }
+
+        public void Init(List<Product> products)
         {
-            _platformTemplates.Add(Instantiate(products[i].Template, _spawnPoint));
-            _platformTemplates[i].transform.DOScale(new Vector3(Scale, Scale, Scale), MinValue);
+            Create(products);
+            _currentIndex = products.IndexOf(products.Where(product => product.IsSelected == true).FirstOrDefault());
+            SetCurrentPlatform(_currentIndex - Element);
         }
-    }
 
-    public void SetCurrentPlatform(int element)
-    {
-        foreach (var template in _platformTemplates)
-            template.gameObject.SetActive(false);
+        private void Create(List<Product> products)
+        {
+            for (int i = MinValue; i < products.Count; i++)
+            {
+                _platformTemplates.Add(Instantiate(products[i].Template, _spawnPoint));
+                _platformTemplates[i].transform.DOScale(new Vector3(Scale, Scale, Scale), MinValue);
+            }
+        }
 
-        CurrentTemplate = _platformTemplates[GetCurrentIndex(element)];
-        CurrentTemplate.gameObject.SetActive(true);
-        MoveChangePlatform();
-    }
+        public void SetCurrentPlatform(int element)
+        {
+            foreach (var template in _platformTemplates)
+                template.gameObject.SetActive(false);
 
-    private void MoveChangePlatform()
-    {
-        if (_currentIndex > MinValue)
-            SetPlatformState(_platformTemplates[_currentIndex - Element], _oldTransform);
+            CurrentTemplate = _platformTemplates[GetCurrentIndex(element)];
+            CurrentTemplate.gameObject.SetActive(true);
+            MoveChangePlatform();
+        }
 
-        SetPlatformState(CurrentTemplate, _currentTransform);
-        PlatformRotate();
+        private void MoveChangePlatform()
+        {
+            if (_currentIndex > MinValue)
+                SetPlatformState(_platformTemplates[_currentIndex - Element], _oldTransform);
 
-        if (_currentIndex < _platformTemplates.Count - Element)
-            SetPlatformState(_platformTemplates[_currentIndex + Element], _nextTransform);
-    }
+            SetPlatformState(CurrentTemplate, _currentTransform);
+            PlatformRotate();
 
-    private void SetPlatformState(Template template, Transform needTransform)
-    {
-        template.gameObject.SetActive(true);
-        template.transform.DOMove(needTransform.position, DurationMove);
-        template.transform.localRotation = Quaternion.Euler(Vector3.zero);
-    }
+            if (_currentIndex < _platformTemplates.Count - Element)
+                SetPlatformState(_platformTemplates[_currentIndex + Element], _nextTransform);
+        }
 
-    private async void PlatformRotate()
-    {
-        if (_rotateTween != null && _rotateTween.IsPlaying() == true)
-            _rotateTween.Kill();
+        private void SetPlatformState(Template template, Transform needTransform)
+        {
+            template.gameObject.SetActive(true);
+            template.transform.DOMove(needTransform.position, DurationMove);
+            template.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
 
-        await RotateMove();
-    }
+        private async void PlatformRotate()
+        {
+            if (_rotateTween != null && _rotateTween.IsPlaying() == true)
+                _rotateTween.Kill();
 
-    public async Task RotateMove()
-    {
-        _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(0, RotateY, MinValue), DurationRotate, RotateMode.FastBeyond360).
-                                 SetLoops(-1).SetRelative().SetEase(Ease.Linear);
-        Task tween = _rotateTween.AsyncWaitForCompletion();
-        await tween;
-    }
+            await RotateMove();
+        }
 
-    private int GetCurrentIndex(int element)
-    {
-        int newIndex = _currentIndex + element;
+        public async Task RotateMove()
+        {
+            _rotateTween = CurrentTemplate.transform.DORotate(new Vector3(0, RotateY, MinValue), DurationRotate, RotateMode.FastBeyond360).
+                                     SetLoops(-1).SetRelative().SetEase(Ease.Linear);
+            Task tween = _rotateTween.AsyncWaitForCompletion();
+            await tween;
+        }
 
-        if (newIndex < MinValue)
-            return _currentIndex;
+        private int GetCurrentIndex(int element)
+        {
+            int newIndex = _currentIndex + element;
 
-        if (newIndex >= _platformTemplates.Count - Element)
-            return _currentIndex = _platformTemplates.Count - Element;
+            if (newIndex < MinValue)
+                return _currentIndex;
 
-        return _currentIndex = newIndex;
+            if (newIndex >= _platformTemplates.Count - Element)
+                return _currentIndex = _platformTemplates.Count - Element;
+
+            return _currentIndex = newIndex;
+        }
     }
 }

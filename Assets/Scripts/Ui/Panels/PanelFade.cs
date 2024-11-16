@@ -2,34 +2,37 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CanvasGroup), typeof(Image))]
-public class PanelFade : MonoBehaviour
+namespace UI
 {
-    private const float MinValueAlpha = 0;
-    private const float MaxValueAlpha = 1;
-
-    [SerializeField] private float _duration;
-
-    private CanvasGroup _canvasGroup;
-    private Image _image;
-
-    private void Awake()
+    [RequireComponent(typeof(CanvasGroup), typeof(Image))]
+    public class PanelFade : MonoBehaviour
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
-        _image = GetComponent<Image>();
-        SetActive(true);
-    }
+        private const float MinValueAlpha = 0;
+        private const float MaxValueAlpha = 1;
 
-    public void SetActive(bool isActive, TweenCallback tweenCallback = null)
-    {
-        if (isActive == false)
+        [SerializeField] private float _duration;
+
+        private CanvasGroup _canvasGroup;
+        private Image _image;
+
+        private void Awake()
         {
-            _image.raycastTarget = true;
-            _canvasGroup.DOFade(MaxValueAlpha, _duration).OnComplete(tweenCallback);
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _image = GetComponent<Image>();
+            SetActive(true);
         }
-        else
+
+        public void SetActive(bool isActive, TweenCallback tweenCallback = null)
         {
-            _canvasGroup.DOFade(MinValueAlpha, _duration).OnComplete(() => { _image.raycastTarget = false; tweenCallback?.Invoke(); });
+            if (isActive == false)
+            {
+                _image.raycastTarget = true;
+                _canvasGroup.DOFade(MaxValueAlpha, _duration).OnComplete(tweenCallback);
+            }
+            else
+            {
+                _canvasGroup.DOFade(MinValueAlpha, _duration).OnComplete(() => { _image.raycastTarget = false; tweenCallback?.Invoke(); });
+            }
         }
     }
 }

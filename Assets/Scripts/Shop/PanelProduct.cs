@@ -1,70 +1,74 @@
-using PlayerObject;
 using System;
+using PlayerLogic;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelProduct : Panel
+namespace Shop
 {
-    [SerializeField] private Button _buttonPay;
-    [SerializeField] private Wallet _wallet;
-    [SerializeField] private TMP_Text _textNameTemplate;
-    [SerializeField] private TMP_Text _textPrice;
-    [SerializeField] private Panel _backGround;
-    [SerializeField] private Image _imageTemplate;
-    [SerializeField] private Image _imageButtonBuy;
-    [SerializeField] private Color _startColor;
-
-    public event Action Bought;
-
-    private Product _product;
-
-    private void OnEnable() => _buttonPay.onClick.AddListener(OnListener);
-
-    private void OnDisable() => _buttonPay.onClick.RemoveListener(OnListener);
-
-    public override async void Move(bool isAction)
+    public class PanelProduct : Panel
     {
-        base.Move(isAction);
-        await MovePanel(isAction);
-        _backGround.gameObject.SetActive(isAction);
-    }
+        [SerializeField] private Button _buttonPay;
+        [SerializeField] private Wallet _wallet;
+        [SerializeField] private TMP_Text _textNameTemplate;
+        [SerializeField] private TMP_Text _textPrice;
+        [SerializeField] private Panel _backGround;
+        [SerializeField] private Image _imageTemplate;
+        [SerializeField] private Image _imageButtonBuy;
+        [SerializeField] private Color _startColor;
 
-    public void Init(Product product)
-    {
-        _product = product;
-        _imageTemplate.sprite = _product.Template.Sprite;
-        _textNameTemplate.text = _product.Name;
-        AssignAccess();
-    }
+        public event Action Bought;
 
-    private void AssignAccess()
-    {
-        _textPrice.text = _product.Price.ToString();
+        private Product _product;
 
-        if (_wallet.Coin < _product.Price)
+        private void OnEnable() => _buttonPay.onClick.AddListener(OnListener);
+
+        private void OnDisable() => _buttonPay.onClick.RemoveListener(OnListener);
+
+        public override async void Move(bool isAction)
         {
-            _buttonPay.enabled = false;
-            SetColor(Color.red);
-            return;
+            base.Move(isAction);
+            await MovePanel(isAction);
+            _backGround.gameObject.SetActive(isAction);
         }
 
-        SetColor(_startColor);
-        _buttonPay.enabled = true;
-    }
+        public void Init(Product product)
+        {
+            _product = product;
+            _imageTemplate.sprite = _product.Template.Sprite;
+            _textNameTemplate.text = _product.Name;
+            AssignAccess();
+        }
 
-    private void OnListener()
-    {
-        _wallet.RemoveCoins(_product.Price);
-        _product.Buy();
-        Bought?.Invoke();
-        Move(false);
-    }
+        private void AssignAccess()
+        {
+            _textPrice.text = _product.Price.ToString();
 
-    private void SetColor(Color color)
-    {
-        _buttonPay.image.color = color;
-        _imageButtonBuy.color = color;
-        _textPrice.color = color;
+            if (_wallet.Coin < _product.Price)
+            {
+                _buttonPay.enabled = false;
+                SetColor(Color.red);
+                return;
+            }
+
+            SetColor(_startColor);
+            _buttonPay.enabled = true;
+        }
+
+        private void OnListener()
+        {
+            _wallet.RemoveCoins(_product.Price);
+            _product.Buy();
+            Bought?.Invoke();
+            Move(false);
+        }
+
+        private void SetColor(Color color)
+        {
+            _buttonPay.image.color = color;
+            _imageButtonBuy.color = color;
+            _textPrice.color = color;
+        }
     }
 }

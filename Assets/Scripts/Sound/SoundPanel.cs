@@ -1,31 +1,35 @@
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class SoundPanel : MonoBehaviour
+namespace Sound
 {
-    [SerializeField] private List<Panel> _panels;
-
-    private AudioSource _audioSource;
-
-    private void Awake() => _audioSource = GetComponent<AudioSource>();
-
-    private void OnEnable()
+    [RequireComponent(typeof(AudioSource))]
+    public class SoundPanel : MonoBehaviour
     {
-        foreach (var panel in _panels)
-            panel.Moved += Play;
-    }
+        [SerializeField] private List<Panel> _panels;
 
-    private void OnDisable()
-    {
-        foreach (var panel in _panels)
-            panel.Moved -= Play;
-    }
+        private AudioSource _audioSource;
 
-    private void Play()
-    {
-        if (_audioSource.enabled == false) return;
+        private void Awake() => _audioSource = GetComponent<AudioSource>();
 
-        _audioSource.Play();
+        private void OnEnable()
+        {
+            foreach (var panel in _panels)
+                panel.Moved += Play;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var panel in _panels)
+                panel.Moved -= Play;
+        }
+
+        private void Play()
+        {
+            if (_audioSource.enabled == false) return;
+
+            _audioSource.Play();
+        }
     }
 }

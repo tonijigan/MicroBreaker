@@ -4,62 +4,65 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SwipePanel : MonoBehaviour
+namespace Shop
 {
-    private const int NextElement = 1;
-    private const int PreviousElement = -1;
-
-    public event Action<int> Swiped;
-
-    private Vector3 _startInputPosition;
-    private Vector3 _currentInputPosition;
-    private bool _wasPressed = false;
-
-    private void Update()
+    public class SwipePanel : MonoBehaviour
     {
-        if (HaveInputOnPanel() == true)
+        private const int NextElement = 1;
+        private const int PreviousElement = -1;
+
+        public event Action<int> Swiped;
+
+        private Vector3 _startInputPosition;
+        private Vector3 _currentInputPosition;
+        private bool _wasPressed = false;
+
+        private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (HaveInputOnPanel() == true)
             {
-                _wasPressed = true;
-                _startInputPosition = Input.mousePosition;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _wasPressed = true;
+                    _startInputPosition = Input.mousePosition;
+                }
+
+                if (Input.GetMouseButton(0))
+                    _currentInputPosition = Input.mousePosition;
             }
 
-            if (Input.GetMouseButton(0))
-                _currentInputPosition = Input.mousePosition;
+            if (Input.GetMouseButtonUp(0) && _wasPressed == true)
+            {
+                float distance = _currentInputPosition.x - _startInputPosition.x;
+                int currentSwipeElement = 0;
+
+                if (-150 < distance && distance < 150)
+                    return;
+
+                if (distance < -150)
+                    currentSwipeElement = NextElement;
+                else if (distance > 150)
+                    currentSwipeElement = PreviousElement;
+
+                Swiped?.Invoke(currentSwipeElement);
+                _wasPressed = false;
+            }
         }
 
-        if (Input.GetMouseButtonUp(0) && _wasPressed == true)
+        private bool HaveInputOnPanel()
         {
-            float distance = _currentInputPosition.x - _startInputPosition.x;
-            int currentSwipeElement = 0;
+            PointerEventData pointerEventData = new(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
+            List<RaycastResult> raycastResults = new();
+            EventSystem.current.RaycastAll(pointerEventData, raycastResults);
 
-            if (-150 < distance && distance < 150)
-                return;
+            var result = raycastResults.Where(ray => ray.gameObject.TryGetComponent(out SwipePanel swipePanel)).FirstOrDefault();
 
-            if (distance < -150)
-                currentSwipeElement = NextElement;
-            else if (distance > 150)
-                currentSwipeElement = PreviousElement;
-
-            Swiped?.Invoke(currentSwipeElement);
-            _wasPressed = false;
+            if (result.gameObject != null)
+                return true;
+            else return false;
         }
-    }
-
-    private bool HaveInputOnPanel()
-    {
-        PointerEventData pointerEventData = new(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
-        List<RaycastResult> raycastResults = new();
-        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
-
-        var result = raycastResults.Where(ray => ray.gameObject.TryGetComponent(out SwipePanel swipePanel)).FirstOrDefault();
-
-        if (result.gameObject != null)
-            return true;
-        else return false;
     }
 }

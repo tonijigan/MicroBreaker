@@ -1,28 +1,31 @@
-public class AdditionalImprovementValue
+namespace UI
 {
-    private const int MaxSelectValue = 1;
-    private const int MinSelectValue = 0;
-
-    public string AdditionalImprovementName { get; private set; }
-
-    public int Value { get; private set; }
-
-    public bool IsSelect { get; private set; }
-
-    public AdditionalImprovementValue(string additionalImprovementName, int value, int selectValue)
+    public class AdditionalImprovementValue
     {
-        AdditionalImprovementName = additionalImprovementName;
-        Value = value;
-        IsSelect = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
-    }
+        private const int MaxSelectValue = 1;
+        private const int MinSelectValue = 0;
 
-    public void SetSelect(bool isSelect)
-    {
-        IsSelect = isSelect;
-    }
+        public string AdditionalImprovementName { get; private set; }
 
-    public int GetSelectValue()
-    {
-        return IsSelect ? MaxSelectValue : MinSelectValue;
+        public int Value { get; private set; }
+
+        public bool IsSelect { get; private set; }
+
+        public AdditionalImprovementValue(string additionalImprovementName, int value, int selectValue)
+        {
+            AdditionalImprovementName = additionalImprovementName;
+            Value = value;
+            IsSelect = true ? selectValue == MaxSelectValue : selectValue == MinSelectValue;
+        }
+
+        public void SetSelect(bool isSelect)
+        {
+            IsSelect = isSelect;
+        }
+
+        public int GetSelectValue()
+        {
+            return IsSelect ? MaxSelectValue : MinSelectValue;
+        }
     }
 }

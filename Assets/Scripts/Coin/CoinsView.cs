@@ -1,24 +1,27 @@
-using PlayerObject;
+using PlayerLogic;
 using TMPro;
 using UnityEngine;
 
-public class CoinsView : MonoBehaviour
+namespace Coin
 {
-    [SerializeField] private TMP_Text _textCoins;
-    [SerializeField] protected Wallet _wallet;
-
-    private void OnEnable()
+    public class CoinsView : MonoBehaviour
     {
-        _wallet.Changed += OnInit;
-    }
+        [SerializeField] private TMP_Text _textCoins;
+        [SerializeField] protected Wallet _wallet;
 
-    private void OnDisable()
-    {
-        _wallet.Changed -= OnInit;
-    }
+        private void OnEnable()
+        {
+            _wallet.Changed += OnInit;
+        }
 
-    private void OnInit(int coins)
-    {
-        _textCoins.text = coins.ToString();
+        private void OnDisable()
+        {
+            _wallet.Changed -= OnInit;
+        }
+
+        private void OnInit(int coins)
+        {
+            _textCoins.text = coins.ToString();
+        }
     }
 }

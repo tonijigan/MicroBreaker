@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageIndicator : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Image _imageCurrentObject;
-
-    public void SetAction(bool action)
+    public class ImageIndicator : MonoBehaviour
     {
-        _imageCurrentObject.gameObject.SetActive(action);
+        [SerializeField] private Image _imageCurrentObject;
+
+        public void SetAction(bool action)
+        {
+            _imageCurrentObject.gameObject.SetActive(action);
+        }
     }
 }

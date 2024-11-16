@@ -1,7 +1,10 @@
-public class RootStartScene : Root
+namespace Roots
 {
-    protected override void OnInit()
+    public class RootStartScene : Root
     {
-        Wallet.Init(SaveService.Coins);
+        protected override void OnInit()
+        {
+            Wallet.Init(SaveService.Coins);
+        }
     }
 }

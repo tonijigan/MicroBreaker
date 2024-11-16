@@ -1,56 +1,61 @@
 using System.Collections.Generic;
 using System.Linq;
+using SaveLogic;
+using UI;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+namespace Shop
 {
-    [SerializeField] private Template[] _templates;
-    [SerializeField] private ProductTypeSection _panelCreateBallProducts;
-    [SerializeField] private ProductTypeSection _panelCreatePlatformProducts;
-    [SerializeField] private SaveService _saveService;
-    [SerializeField] private PanelShop _panelShop;
-    [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
-
-    private readonly List<Product> _products = new();
-
-    private void OnEnable()
+    public class Shop : MonoBehaviour
     {
-        foreach (var buttonPanelInteraction in _buttonPanelInteractions)
-            buttonPanelInteraction.Clicked += PlaySound;
+        [SerializeField] private Template[] _templates;
+        [SerializeField] private ProductTypeSection _panelCreateBallProducts;
+        [SerializeField] private ProductTypeSection _panelCreatePlatformProducts;
+        [SerializeField] private SaveService _saveService;
+        [SerializeField] private PanelShop _panelShop;
+        [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
 
-        _saveService.Loaded += Create;
-    }
+        private readonly List<Product> _products = new();
 
-    private void OnDisable()
-    {
-        foreach (var buttonPanelInteraction in _buttonPanelInteractions)
-            buttonPanelInteraction.Clicked -= PlaySound;
-
-        _saveService.Loaded -= Create;
-    }
-
-    private void PlaySound(bool isAction)
-    {
-        _panelShop.Move(isAction);
-    }
-
-    private void Create()
-    {
-        _templates = _templates.OrderBy(template => template.Price).ToArray();
-
-        foreach (var template in _templates)
-            _products.Add(new Product(template));
-
-        foreach (var product in _products)
+        private void OnEnable()
         {
-            if (product.Template.ObjectsName == Enums.ObjectsName.Ball)
-                _panelCreateBallProducts.AddProduct(product);
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions)
+                buttonPanelInteraction.Clicked += PlaySound;
 
-            if (product.Template.ObjectsName == Enums.ObjectsName.Platform)
-                _panelCreatePlatformProducts.AddProduct(product);
+            _saveService.Loaded += Create;
         }
 
-        _panelCreateBallProducts.Init(_saveService);
-        _panelCreatePlatformProducts.Init(_saveService);
+        private void OnDisable()
+        {
+            foreach (var buttonPanelInteraction in _buttonPanelInteractions)
+                buttonPanelInteraction.Clicked -= PlaySound;
+
+            _saveService.Loaded -= Create;
+        }
+
+        private void PlaySound(bool isAction)
+        {
+            _panelShop.Move(isAction);
+        }
+
+        private void Create()
+        {
+            _templates = _templates.OrderBy(template => template.Price).ToArray();
+
+            foreach (var template in _templates)
+                _products.Add(new Product(template));
+
+            foreach (var product in _products)
+            {
+                if (product.Template.ObjectsName == Enums.ObjectsName.Ball)
+                    _panelCreateBallProducts.AddProduct(product);
+
+                if (product.Template.ObjectsName == Enums.ObjectsName.Platform)
+                    _panelCreatePlatformProducts.AddProduct(product);
+            }
+
+            _panelCreateBallProducts.Init(_saveService);
+            _panelCreatePlatformProducts.Init(_saveService);
+        }
     }
 }

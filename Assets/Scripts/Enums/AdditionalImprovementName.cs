@@ -1,4 +1,7 @@
-public enum AdditionalImprovementName
+namespace Enums
 {
-    ExtraLife, Gravity, Scale
+    public enum AdditionalImprovementName
+    {
+        ExtraLife, Gravity, Scale
+    }
 }

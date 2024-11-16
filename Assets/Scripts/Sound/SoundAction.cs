@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class SoundAction : MonoBehaviour
+namespace Sound
 {
-    private const float AudioSourceState = 0;
-
-    [SerializeField] private AudioSource _audioSourceMusic;
-    [SerializeField] private AudioSource[] _audioSources;
-
-    private void Awake()
+    public class SoundAction : MonoBehaviour
     {
-        float currentVolumeMusic = PlayerPrefs.GetFloat(Enums.AudioName.Music.ToString());
-        _audioSourceMusic.enabled = true ? currentVolumeMusic > AudioSourceState : currentVolumeMusic == AudioSourceState;
-        float currentValue = PlayerPrefs.GetFloat(Enums.AudioName.Effect.ToString());
+        private const float AudioSourceState = 0;
 
-        foreach (AudioSource audioSource in _audioSources)
-            audioSource.enabled = true ? currentValue > AudioSourceState : currentValue == AudioSourceState;
+        [SerializeField] private AudioSource _audioSourceMusic;
+        [SerializeField] private AudioSource[] _audioSources;
+
+        private void Awake()
+        {
+            float currentVolumeMusic = PlayerPrefs.GetFloat(Enums.AudioName.Music.ToString());
+            _audioSourceMusic.enabled = true ? currentVolumeMusic > AudioSourceState : currentVolumeMusic == AudioSourceState;
+            float currentValue = PlayerPrefs.GetFloat(Enums.AudioName.Effect.ToString());
+
+            foreach (AudioSource audioSource in _audioSources)
+                audioSource.enabled = true ? currentValue > AudioSourceState : currentValue == AudioSourceState;
+        }
     }
 }

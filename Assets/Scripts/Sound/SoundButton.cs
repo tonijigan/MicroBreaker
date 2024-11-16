@@ -2,35 +2,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(AudioSource))]
-public class SoundButton : MonoBehaviour
+namespace Sound
 {
-    [SerializeField] private List<Button> _buttons;
-
-    private AudioSource _audioSource;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class SoundButton : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] private List<Button> _buttons;
 
-    public AudioSource AudioSource => _audioSource;
+        private AudioSource _audioSource;
 
-    private void OnEnable()
-    {
-        foreach (var button in _buttons)
-            button.onClick.AddListener(Play);
-    }
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
-    private void OnDisable()
-    {
-        foreach (var button in _buttons)
-            button.onClick.RemoveListener(Play);
-    }
+        public AudioSource AudioSource => _audioSource;
 
-    public void Play()
-    {
-        if (_audioSource.enabled == false) return;
-        _audioSource.Play();
+        private void OnEnable()
+        {
+            foreach (var button in _buttons)
+                button.onClick.AddListener(Play);
+        }
+
+        private void OnDisable()
+        {
+            foreach (var button in _buttons)
+                button.onClick.RemoveListener(Play);
+        }
+
+        public void Play()
+        {
+            if (_audioSource.enabled == false) return;
+            _audioSource.Play();
+        }
     }
 }

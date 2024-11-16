@@ -1,25 +1,27 @@
 using Enums;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class AdditionalImprovementTemplate : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private AdditionalImprovementName _additionalImprovementName;
-    [SerializeField] private Sprite _sprite;
-    [SerializeField] private string _description;
-    [SerializeField] private int _firstPrice;
-    [SerializeField] private int _secondprice;
-    [SerializeField] private int _thirdPrice;
+    public class AdditionalImprovementTemplate : MonoBehaviour
+    {
+        [SerializeField] private AdditionalImprovementName _additionalImprovementName;
+        [SerializeField] private Sprite _sprite;
+        [SerializeField] private string _description;
+        [SerializeField] private int _firstPrice;
+        [SerializeField] private int _secondprice;
+        [SerializeField] private int _thirdPrice;
 
-    public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;
+        public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;
 
-    public Sprite Sprite => _sprite;
+        public Sprite Sprite => _sprite;
 
-    public string Description => _description;
+        public string Description => _description;
 
-    public int FirstPrice => _firstPrice;
+        public int FirstPrice => _firstPrice;
 
-    public int SecondPrice => _secondprice;
+        public int SecondPrice => _secondprice;
 
-    public int ThirdPrice => _thirdPrice;
+        public int ThirdPrice => _thirdPrice;
+    }
 }

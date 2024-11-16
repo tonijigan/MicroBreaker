@@ -1,67 +1,71 @@
-using Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Enums;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonAdditionalImprovement : AbstractButton
+namespace UI
 {
-    [SerializeField] private AdditionalImprovementName _additionalImprovementName;
-    [SerializeField] private Image _image;
-    [SerializeField] private Image _imageBuy;
-    [SerializeField] private Image _imageSelected;
-    [SerializeField] private List<AdditionalImprovementTemplate> _additionalImprovementTemplates;
-
-    public event Action<ButtonAdditionalImprovement> Clicked;
-    public event Action<ButtonAdditionalImprovement> Selected;
-
-    public bool IsBuy { get; private set; } = false;
-    public bool IsSelect { get; private set; } = false;
-
-    public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;
-
-    public AdditionalImprovementTemplate AdditionalImprovementTemplate { get; private set; }
-
-    protected override void InitAwake()
+    public class ButtonAdditionalImprovement : AbstractButton
     {
-        base.InitAwake();
-        AdditionalImprovementTemplate = GetCurrentAdditionalImprovementTemplate();
-        _image.sprite = AdditionalImprovementTemplate.Sprite;
-        SetState();
-    }
+        [SerializeField] private AdditionalImprovementName _additionalImprovementName;
+        [SerializeField] private Image _image;
+        [SerializeField] private Image _imageBuy;
+        [SerializeField] private Image _imageSelected;
+        [SerializeField] private List<AdditionalImprovementTemplate> _additionalImprovementTemplates;
 
-    protected override void OnClick()
-    {
-        if (IsBuy == true)
+        public event Action<ButtonAdditionalImprovement> Clicked;
+        public event Action<ButtonAdditionalImprovement> Selected;
+
+        public bool IsBuy { get; private set; } = false;
+        public bool IsSelect { get; private set; } = false;
+
+        public AdditionalImprovementName AdditionalImprovementName => _additionalImprovementName;
+
+        public AdditionalImprovementTemplate AdditionalImprovementTemplate { get; private set; }
+
+        protected override void InitAwake()
         {
-            SetSelect();
+            base.InitAwake();
+            AdditionalImprovementTemplate = GetCurrentAdditionalImprovementTemplate();
+            _image.sprite = AdditionalImprovementTemplate.Sprite;
             SetState();
-            Selected?.Invoke(this);
-            return;
         }
 
-        Clicked?.Invoke(this);
-    }
+        protected override void OnClick()
+        {
+            if (IsBuy == true)
+            {
+                SetSelect();
+                SetState();
+                Selected?.Invoke(this);
+                return;
+            }
 
-    public void SetBuy(bool isSelect)
-    {
-        IsSelect = !isSelect;
-        IsBuy = !IsBuy;
-        SetSelect();
-        SetState();
-    }
+            Clicked?.Invoke(this);
+        }
 
-    private void SetSelect() => IsSelect = !IsSelect;
+        public void SetBuy(bool isSelect)
+        {
+            IsSelect = !isSelect;
+            IsBuy = !IsBuy;
+            SetSelect();
+            SetState();
+        }
 
-    private void SetState()
-    {
-        _imageBuy.gameObject.SetActive(!IsBuy);
-        _imageSelected.gameObject.SetActive(IsSelect);
-    }
+        private void SetSelect() => IsSelect = !IsSelect;
 
-    private AdditionalImprovementTemplate GetCurrentAdditionalImprovementTemplate()
-    {
-        return _additionalImprovementTemplates.Where(additionalImprovement => additionalImprovement.AdditionalImprovementName == _additionalImprovementName).FirstOrDefault();
+        private void SetState()
+        {
+            _imageBuy.gameObject.SetActive(!IsBuy);
+            _imageSelected.gameObject.SetActive(IsSelect);
+        }
+
+        private AdditionalImprovementTemplate GetCurrentAdditionalImprovementTemplate()
+        {
+            return _additionalImprovementTemplates.Where(additionalImprovement => additionalImprovement.AdditionalImprovementName == _additionalImprovementName).FirstOrDefault();
+        }
     }
 }

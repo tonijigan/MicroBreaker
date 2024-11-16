@@ -1,5 +1,6 @@
 using System;
 using Agava.YandexGames;
+using UI;
 using UnityEngine;
 
 namespace SDK

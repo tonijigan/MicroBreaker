@@ -1,44 +1,49 @@
+using BoosterLogic.Boosters;
 using BoxObject;
+using LocationLogic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class BoxSound : MonoBehaviour
+namespace Sound
 {
-    [SerializeField] private LocationCreate _locationCreate;
-    [SerializeField] private BoxesFalling _boxesFalling;
-
-    private AudioSource _audioSource;
-    private BoxContainer _boxContainer;
-
-    private void Awake() => _audioSource = GetComponent<AudioSource>();
-
-    private void OnEnable()
+    [RequireComponent(typeof(AudioSource))]
+    public class BoxSound : MonoBehaviour
     {
-        _locationCreate.Inited += OnInit;
-        _locationCreate.Inited += OnInit =>
+        [SerializeField] private LocationCreate _locationCreate;
+        [SerializeField] private BoxesFalling _boxesFalling;
+
+        private AudioSource _audioSource;
+        private BoxContainer _boxContainer;
+
+        private void Awake() => _audioSource = GetComponent<AudioSource>();
+
+        private void OnEnable()
         {
-            foreach (var box in _boxContainer.Boxes) box.Damaged += Play;
-            foreach (var box in _boxesFalling.Boxes) box.Damaged += Play;
-        };
-    }
+            _locationCreate.Inited += OnInit;
+            _locationCreate.Inited += OnInit =>
+            {
+                foreach (var box in _boxContainer.Boxes) box.Damaged += Play;
+                foreach (var box in _boxesFalling.Boxes) box.Damaged += Play;
+            };
+        }
 
-    private void OnDisable()
-    {
-        _locationCreate.Inited -= OnInit;
-        _locationCreate.Inited -= OnInit =>
+        private void OnDisable()
         {
-            foreach (var box in _boxContainer.Boxes) box.Damaged -= Play;
-            foreach (var box in _boxesFalling.Boxes) box.Damaged -= Play;
-        };
-    }
+            _locationCreate.Inited -= OnInit;
+            _locationCreate.Inited -= OnInit =>
+            {
+                foreach (var box in _boxContainer.Boxes) box.Damaged -= Play;
+                foreach (var box in _boxesFalling.Boxes) box.Damaged -= Play;
+            };
+        }
 
-    private void OnInit(Location location) => _boxContainer = location.BoxContainer;
+        private void OnInit(Location location) => _boxContainer = location.BoxContainer;
 
-    private void Play(AudioClip audioClip)
-    {
-        if (_audioSource.enabled == false) return;
+        private void Play(AudioClip audioClip)
+        {
+            if (_audioSource.enabled == false) return;
 
-        _audioSource.clip = audioClip;
-        _audioSource.Play();
+            _audioSource.clip = audioClip;
+            _audioSource.Play();
+        }
     }
 }

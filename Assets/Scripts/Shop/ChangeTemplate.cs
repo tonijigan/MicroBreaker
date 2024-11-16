@@ -1,47 +1,51 @@
-using Enums;
 using System.Linq;
+using Enums;
+using Modification;
 using UnityEngine;
 
-public class ChangeTemplate : MonoBehaviour
+namespace Shop
 {
-    private const int MinValue = 0;
-    private const int MaxValue = 1;
-
-    [SerializeField] private ObjectModification _objectModification;
-
-    private Transform _transform;
-    private Template[] _templates;
-
-    public Template CurrentTemplate { get; private set; }
-
-    private void Awake() => Fill();
-
-    public void EnableCurrentTemplate(string name, int value)
+    public class ChangeTemplate : MonoBehaviour
     {
-        bool isCanScale = true ? value == MaxValue : value == MinValue;
+        private const int MinValue = 0;
+        private const int MaxValue = 1;
 
-        CurrentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
+        [SerializeField] private ObjectModification _objectModification;
 
-        if (name == string.Empty)
-            CurrentTemplate = _templates[0];
+        private Transform _transform;
+        private Template[] _templates;
 
-        CurrentTemplate.gameObject.SetActive(true);
+        public Template CurrentTemplate { get; private set; }
 
-        if (isCanScale == false) return;
+        private void Awake() => Fill();
 
-        _objectModification.SetNewScale(BoosterNames.Positive, false);
-    }
-
-    private void Fill()
-    {
-        _transform = transform;
-        _templates = new Template[_transform.childCount];
-
-        for (int i = 0; i < _templates.Length; i++)
+        public void EnableCurrentTemplate(string name, int value)
         {
-            _transform.GetChild(i).TryGetComponent(out Template template);
-            _templates[i] = template;
-            _templates[i].gameObject.SetActive(false);
+            bool isCanScale = true ? value == MaxValue : value == MinValue;
+
+            CurrentTemplate = _templates.Where(template => template.Name == name).FirstOrDefault();
+
+            if (name == string.Empty)
+                CurrentTemplate = _templates[0];
+
+            CurrentTemplate.gameObject.SetActive(true);
+
+            if (isCanScale == false) return;
+
+            _objectModification.SetNewScale(BoosterNames.Positive, false);
+        }
+
+        private void Fill()
+        {
+            _transform = transform;
+            _templates = new Template[_transform.childCount];
+
+            for (int i = 0; i < _templates.Length; i++)
+            {
+                _transform.GetChild(i).TryGetComponent(out Template template);
+                _templates[i] = template;
+                _templates[i].gameObject.SetActive(false);
+            }
         }
     }
 }

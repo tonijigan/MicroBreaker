@@ -1,51 +1,54 @@
-using DG.Tweening;
 using System;
+using DG.Tweening;
 using UnityEngine;
 
-public class PanelShop : Panel
+namespace UI
 {
-    [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
-    [SerializeField] private ButtonPanelInteraction _buttonClose;
-    [SerializeField] private Panel _backGroundPanel;
-
-    public event Action<bool> Activated;
-
-    public bool IsActive { get; private set; } = false;
-
-    public ButtonPanelInteraction ButtenClose => _buttonClose;
-
-    private void OnEnable()
+    public class PanelShop : Panel
     {
-        _buttonClose.Clicked += Move;
-    }
+        [SerializeField] private ButtonPanelInteraction[] _buttonPanelInteractions;
+        [SerializeField] private ButtonPanelInteraction _buttonClose;
+        [SerializeField] private Panel _backGroundPanel;
 
-    private void OnDisable()
-    {
-        _buttonClose.Clicked -= Move;
-    }
+        public event Action<bool> Activated;
 
-    public override void Move(bool isActive)
-    {
-        base.Move(isActive);
-        OnMovePanel(isActive);
-    }
+        public bool IsActive { get; private set; } = false;
 
-    public void OnMovePanel(bool isOpen)
-    {
-        _buttonClose.gameObject.SetActive(isOpen);
-        _backGroundPanel.gameObject.SetActive(isOpen);
+        public ButtonPanelInteraction ButtenClose => _buttonClose;
 
-        if (isOpen)
+        private void OnEnable()
         {
-            RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
-            IsActive = true;
-        }
-        else
-        {
-            RectTransform.DOAnchorPosX(TopPosition, TweenDuration);
-            IsActive = false;
+            _buttonClose.Clicked += Move;
         }
 
-        Activated?.Invoke(isOpen);
+        private void OnDisable()
+        {
+            _buttonClose.Clicked -= Move;
+        }
+
+        public override void Move(bool isActive)
+        {
+            base.Move(isActive);
+            OnMovePanel(isActive);
+        }
+
+        public void OnMovePanel(bool isOpen)
+        {
+            _buttonClose.gameObject.SetActive(isOpen);
+            _backGroundPanel.gameObject.SetActive(isOpen);
+
+            if (isOpen)
+            {
+                RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
+                IsActive = true;
+            }
+            else
+            {
+                RectTransform.DOAnchorPosX(TopPosition, TweenDuration);
+                IsActive = false;
+            }
+
+            Activated?.Invoke(isOpen);
+        }
     }
 }

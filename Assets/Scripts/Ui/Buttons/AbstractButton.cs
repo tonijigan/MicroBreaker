@@ -1,25 +1,27 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public abstract class AbstractButton : MonoBehaviour
+namespace UI
 {
-    private Button _button;
-
-    private void Awake() => InitAwake();
-
-    private void OnEnable()
+    [RequireComponent(typeof(Button))]
+    public abstract class AbstractButton : MonoBehaviour
     {
-        _button.onClick.AddListener(OnClick);
+        private Button _button;
+
+        private void Awake() => InitAwake();
+
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(OnClick);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnClick);
+        }
+
+        protected virtual void InitAwake() => _button = GetComponent<Button>();
+
+        protected abstract void OnClick();
     }
-
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnClick);
-    }
-
-    protected virtual void InitAwake() => _button = GetComponent<Button>();
-
-    protected abstract void OnClick();
 }

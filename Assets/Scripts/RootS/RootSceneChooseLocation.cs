@@ -1,7 +1,10 @@
-public class RootSceneChooseLocation : Root
+namespace Roots
 {
-    protected override void OnInit()
+    public class RootSceneChooseLocation : Root
     {
-        Wallet.Init(SaveService.Coins);
+        protected override void OnInit()
+        {
+            Wallet.Init(SaveService.Coins);
+        }
     }
 }

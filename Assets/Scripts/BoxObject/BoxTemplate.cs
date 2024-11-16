@@ -1,9 +1,12 @@
 using Enums;
 using UnityEngine;
 
-public class BoxTemplate : MonoBehaviour
+namespace BoxObject
 {
-    [SerializeField] private BoosterNames _boosterNames;
+    public class BoxTemplate : MonoBehaviour
+    {
+        [SerializeField] private BoosterNames _boosterNames;
 
-    public BoosterNames BoosterNames => _boosterNames;
+        public BoosterNames BoosterNames => _boosterNames;
+    }
 }

@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class PanelPlayNextScene : Panel
+namespace UI
 {
-    [SerializeField] private RectTransform _buttonPlayRectTransform;
-
-    public override async void Move(bool isActive)
+    public class PanelPlayNextScene : Panel
     {
-        base.Move(isActive);
-        await MovePanel(isActive);
+        [SerializeField] private RectTransform _buttonPlayRectTransform;
+
+        public override async void Move(bool isActive)
+        {
+            base.Move(isActive);
+            await MovePanel(isActive);
+        }
     }
 }

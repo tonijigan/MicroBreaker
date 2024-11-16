@@ -1,8 +1,11 @@
 using BallObject;
-using Boosters;
+using BoosterLogic;
 using Cinemachine;
-using PlatformObject;
-using PlayerObject;
+using CounterLogic;
+using Envierment;
+using PlatformLogic;
+using PlayerLogic;
+using SaveLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,114 +13,117 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameState : MonoBehaviour
+namespace UI
 {
-    private const int Priority = 2;
-    private const int DurationWin = 3;
-    private const int DurationLoss = 1;
-    private const int PassedValue = 1;
-
-    [SerializeField] private Counter _counter;
-    [SerializeField] private BorderCollisionWithLoss _triggerLoss;
-    [SerializeField] private PanelWin _panelWin;
-    [SerializeField] private PanelLoss _panelLoss;
-    [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;
-    [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private BallMovement _ballMovement;
-    [SerializeField] private InputPointMovement _inputPointMovement;
-    [SerializeField] private SaveService _saveService;
-    [SerializeField] private Wallet _wallet;
-    [SerializeField] private PanelFade _panelFade;
-    [SerializeField] private BoostersContainer _boostersContainer;
-    [SerializeField] private ButtonPanelInteraction _buttonPanelInteraction;
-
-    private WaitForSeconds _waitForSeconds;
-    private Coroutine _coroutine;
-
-    private void Start()
+    public class GameState : MonoBehaviour
     {
-        _waitForSeconds = new WaitForSeconds(DurationWin);
-    }
+        private const int Priority = 2;
+        private const int DurationWin = 3;
+        private const int DurationLoss = 1;
+        private const int PassedValue = 1;
 
-    private void OnEnable()
-    {
-        _counter.Winned += OpenPanelWin;
-        _triggerLoss.Lost += OpenPanelLoss;
-        _panelWin.Clicked += LoadScene;
-        _panelLoss.Clicked += LoadScene;
-    }
+        [SerializeField] private Counter _counter;
+        [SerializeField] private BorderCollisionWithLoss _triggerLoss;
+        [SerializeField] private PanelWin _panelWin;
+        [SerializeField] private PanelLoss _panelLoss;
+        [SerializeField] private CinemachineVirtualCamera _virtualEndCamera;
+        [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private BallMovement _ballMovement;
+        [SerializeField] private InputPointMovement _inputPointMovement;
+        [SerializeField] private SaveService _saveService;
+        [SerializeField] private Wallet _wallet;
+        [SerializeField] private PanelFade _panelFade;
+        [SerializeField] private BoostersContainer _boostersContainer;
+        [SerializeField] private ButtonPanelInteraction _buttonPanelInteraction;
 
-    private void OnDisable()
-    {
-        _counter.Winned -= OpenPanelWin;
-        _triggerLoss.Lost -= OpenPanelLoss;
-        _panelWin.Clicked -= LoadScene;
-        _panelLoss.Clicked -= LoadScene;
-    }
+        private WaitForSeconds _waitForSeconds;
+        private Coroutine _coroutine;
 
-    private void OpenPanelWin(string time)
-    {
-        _virtualEndCamera.Priority = Priority;
-        _boostersContainer.Reset();
-        _boostersContainer.gameObject.SetActive(false);
-        _waitForSeconds = new WaitForSeconds(DurationWin);
-        PlayOpen(_panelWin, _waitForSeconds, () =>
+        private void Start()
         {
-            _panelWin.Fill(time, _counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
-            SaveGameProgress();
-        });
-    }
+            _waitForSeconds = new WaitForSeconds(DurationWin);
+        }
 
-    private void OpenPanelLoss()
-    {
-        _boostersContainer.Reset();
-        _boostersContainer.gameObject.SetActive(false);
-        _waitForSeconds = new WaitForSeconds(DurationLoss);
-        PlayOpen(_panelLoss, _waitForSeconds, () =>
+        private void OnEnable()
         {
-            _panelLoss.Fill(_counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
-        });
-    }
+            _counter.Winned += OpenPanelWin;
+            _triggerLoss.Lost += OpenPanelLoss;
+            _panelWin.Clicked += LoadScene;
+            _panelLoss.Clicked += LoadScene;
+        }
 
-    private void PlayOpen(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
-    {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-
-        _coroutine = StartCoroutine(MovePanel(panel, waitForSeconds, action));
-    }
-
-    private IEnumerator MovePanel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
-    {
-        _buttonPanelInteraction.gameObject.SetActive(false);
-        _inputPointMovement.gameObject.SetActive(false);
-        _ballMovement.gameObject.SetActive(false);
-        _playerInput.SetControl();
-        yield return waitForSeconds;
-        panel.Move(true);
-        action?.Invoke();
-    }
-
-    private void SaveGameProgress()
-    {
-        _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
-
-        if (_saveService.LevelData.Passed == PassedValue) return;
-
-        List<LevelData> locationObjectData = _saveService.LevelDatas.ToList();
-        locationObjectData.Add(new()
+        private void OnDisable()
         {
-            LocationName = _saveService.LevelData.LocationName,
-            AdditionaValue = _saveService.LevelData.AdditionaValue,
-            Active = PassedValue,
-            Passed = PassedValue
-        });
+            _counter.Winned -= OpenPanelWin;
+            _triggerLoss.Lost -= OpenPanelLoss;
+            _panelWin.Clicked -= LoadScene;
+            _panelLoss.Clicked -= LoadScene;
+        }
 
-        _saveService.SaveLevelDatas(locationObjectData);
-    }
+        private void OpenPanelWin(string time)
+        {
+            _virtualEndCamera.Priority = Priority;
+            _boostersContainer.Reset();
+            _boostersContainer.gameObject.SetActive(false);
+            _waitForSeconds = new WaitForSeconds(DurationWin);
+            PlayOpen(_panelWin, _waitForSeconds, () =>
+            {
+                _panelWin.Fill(time, _counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
+                SaveGameProgress();
+            });
+        }
 
-    private void LoadScene(string sceneName)
-    {
-        _panelFade.SetActive(false, () => { SceneManager.LoadScene(sceneName); });
+        private void OpenPanelLoss()
+        {
+            _boostersContainer.Reset();
+            _boostersContainer.gameObject.SetActive(false);
+            _waitForSeconds = new WaitForSeconds(DurationLoss);
+            PlayOpen(_panelLoss, _waitForSeconds, () =>
+            {
+                _panelLoss.Fill(_counter.CountLiveBoxs.ToString(), _wallet.Coin.ToString());
+            });
+        }
+
+        private void PlayOpen(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
+        {
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _coroutine = StartCoroutine(MovePanel(panel, waitForSeconds, action));
+        }
+
+        private IEnumerator MovePanel(Panel panel, WaitForSeconds waitForSeconds, Action action = null)
+        {
+            _buttonPanelInteraction.gameObject.SetActive(false);
+            _inputPointMovement.gameObject.SetActive(false);
+            _ballMovement.gameObject.SetActive(false);
+            _playerInput.SetControl();
+            yield return waitForSeconds;
+            panel.Move(true);
+            action?.Invoke();
+        }
+
+        private void SaveGameProgress()
+        {
+            _saveService.SaveCoins(_saveService.Coins + _wallet.Coin);
+
+            if (_saveService.LevelData.Passed == PassedValue) return;
+
+            List<LevelData> locationObjectData = _saveService.LevelDatas.ToList();
+            locationObjectData.Add(new()
+            {
+                LocationName = _saveService.LevelData.LocationName,
+                AdditionaValue = _saveService.LevelData.AdditionaValue,
+                Active = PassedValue,
+                Passed = PassedValue
+            });
+
+            _saveService.SaveLevelDatas(locationObjectData);
+        }
+
+        private void LoadScene(string sceneName)
+        {
+            _panelFade.SetActive(false, () => { SceneManager.LoadScene(sceneName); });
+        }
     }
 }
