@@ -114145,7 +114145,7 @@ MonoBehaviour:
   _platformTargetGravity: {fileID: 2077111604}
   _ballPoint: {fileID: 1425764944}
   _ballSound: {fileID: 1715556501}
-  _speedForce: 70
+  _speed: 800
 --- !u!114 &1980936487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125446,7 +125446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41294324, y: -0.101740986, z: 0.046481945, w: 0.9038618}
+  m_LocalRotation: {x: 0.41294324, y: -0.10174101, z: 0.04648195, w: 0.9038618}
   m_LocalPosition: {x: 6.43, y: 35.4, z: -28.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -126275,7 +126275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418020782426431192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41294324, y: -0.101740986, z: 0.046481945, w: 0.9038618}
+  m_LocalRotation: {x: 0.41294324, y: -0.10174101, z: 0.04648195, w: 0.9038618}
   m_LocalPosition: {x: 6.43, y: 35.4, z: -28.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
