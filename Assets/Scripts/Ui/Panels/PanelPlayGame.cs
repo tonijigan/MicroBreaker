@@ -44,7 +44,14 @@ namespace UI
 
         public void Init(LocationObject locationObject)
         {
-            IsInit = false;
+            if (_locationObject == locationObject)
+            {
+                OnMove(false);
+                _locationObject = null;
+                IsInit = false;
+                return;
+            }
+
             _locationObject = locationObject;
             _textName.text = $"{Level} {locationObject.Index}";
 
