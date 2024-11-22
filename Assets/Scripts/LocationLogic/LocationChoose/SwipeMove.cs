@@ -10,17 +10,15 @@ namespace LocationLogic.LocationChoose
         private const float ClampX = 60f;
         private const float ClampYMin = -1500;
         private const float ClampYMax = 10;
-        private const float MinSpeedValue = 0.2f;
 
         [SerializeField] private LocationChooseInput _inputLocation;
 
         private readonly Restrictor _restrict = new();
-        private Transform _transform;
         private Rigidbody _rigidbody;
+        private Transform _transform;
+        private Vector3 _offSet;
         private Vector3 _startPosition;
-        private Vector3 _currentPosition;
-        private bool _isDragging = false;
-        private float _speed = MinSpeedValue;
+        private Vector3 _endPosition;
 
         private void Awake()
         {
@@ -33,48 +31,42 @@ namespace LocationLogic.LocationChoose
             if (IsInputUI())
                 return;
 
-            _isDragging = true;
-            _startPosition = Input.mousePosition;
+            _startPosition = _transform.position;
+            _offSet = _transform.position - GetHit().point;
             _inputLocation.SetFirstLocationObject(Input.mousePosition);
         }
 
         private void OnMouseDrag()
         {
-            if (_isDragging == true)
-            {
-                _currentPosition = Input.mousePosition;
-                var direction = (_currentPosition - _startPosition).magnitude;
-                _speed = direction * MinSpeedValue;
-            }
+            if (IsInputUI()) return;
+
+            Vector3 direction = GetHit().point + _offSet;
+            _transform.position = new(direction.x, _transform.position.y, direction.z);
         }
 
         private void OnMouseUp()
         {
-            _isDragging = false;
             _inputLocation.SetLastLocationObject(Input.mousePosition);
             _inputLocation.LoadLocation();
-            _speed = MinSpeedValue;
+
+            if (IsInputUI()) return;
+
+            _endPosition = _transform.position;
+            Vector3 direction = _startPosition - _endPosition;
+            _rigidbody.velocity = -direction.normalized * direction.magnitude;
         }
 
-        private void Update()
+        private void Update() => _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
+
+        private RaycastHit GetHit()
         {
-            Drag();
-            _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
+            Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit raycastHit);
+            return raycastHit;
         }
 
         private bool IsInputUI()
         {
             return EventSystem.current.IsPointerOverGameObject();
-        }
-
-        private void Drag()
-        {
-            if (_isDragging)
-            {
-                Vector3 direction = (_currentPosition - _startPosition).normalized;
-                Vector3 newDirection = new(direction.x, _rigidbody.velocity.y, direction.y);
-                _rigidbody.velocity = newDirection * _speed;
-            }
         }
     }
 }

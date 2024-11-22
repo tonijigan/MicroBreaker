@@ -12,6 +12,7 @@ namespace BallObject
 
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private Transform _ballPoint;
+        [SerializeField] private Transform _transformTemplateContainer;
 
         public event Action Actived;
         public event Action<int> ExtraLiveChanged;
@@ -31,6 +32,8 @@ namespace BallObject
             _transform = transform;
             Rigidbody = GetComponent<Rigidbody>();
             BallEffect = GetComponent<BallEffect>();
+            Rigidbody.isKinematic = true;
+            BallEffect.SetStateEffect(false);
         }
 
         private void OnEnable() => _playerInput.MousePressedUp += OnDisconnectParentObject;
@@ -49,15 +52,14 @@ namespace BallObject
         {
             ExtraLive--;
             ExtraLiveChanged?.Invoke(ExtraLive);
-            gameObject.SetActive(true);
-            BallEffect.SetStateEffect(false);
-            Rigidbody.isKinematic = false;
+            _transformTemplateContainer.gameObject.SetActive(true);
         }
 
         public void Die()
         {
             IsActive = false;
             BallEffect.SetStateEffect(false);
+            _transformTemplateContainer.gameObject.SetActive(false);
             _transform.position = _ballPoint.position;
             Rigidbody.isKinematic = true;
         }
@@ -69,6 +71,7 @@ namespace BallObject
 
             IsActive = true;
             BallEffect.SetStateEffect(true);
+            Rigidbody.isKinematic = false;
             Actived?.Invoke();
         }
     }

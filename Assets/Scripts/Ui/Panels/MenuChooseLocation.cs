@@ -34,7 +34,7 @@ namespace UI
         private void OnInit(LocationObject locationObject)
         {
             _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
-              locationObject.transform.position.z - PositionZ);
+             locationObject.transform.position.z - PositionZ);
             _panelPlayGame.ButtonClose.SetStartStateButton();
             _panelPlayGame.OnMove(true);
             _panelPlayGame.Init(locationObject);

@@ -9,7 +9,7 @@ namespace PlatformLogic
         private const float Speed = 0.5f;
         private const float ClampX = 9f;
         private const float ClampYMin = -22;
-        private const float ClampYMax = -6;
+        private const float ClampYMax = -7;
         private const float CurrentPositionY = 0.5f;
 
         [SerializeField] private PlayerInput _playerInput;
@@ -33,6 +33,11 @@ namespace PlatformLogic
             _playerInput.MouseUped -= OnHaveInputPressed;
         }
 
+        public void SetActiveInputObject(bool isActive)
+        {
+            _playerInput.enabled = isActive;
+            _inputObject.SetActive(isActive);
+        }
         private void OnHaveInputPressed(bool isActive) => _inputObject.SetActive(isActive);
 
         private void OnMove(Vector3 position, Vector3 raycastPoint)

@@ -28,24 +28,27 @@ namespace PlatformLogic
 
         public void GiveLive()
         {
-            _transformTemplateContainer.gameObject.SetActive(true);
-            _inputPointMovement.gameObject.SetActive(true);
-            _collider.enabled = true;
+            SetActive(true);
         }
 
         public void Die()
         {
-            _collider.enabled = false;
             _particleExplosion.transform.position = transform.position;
             _particleExplosion.Play();
-            _transformTemplateContainer.gameObject.SetActive(false);
-            _inputPointMovement.gameObject.SetActive(false);
             SetStartState();
+            SetActive(false);
             _audioSourceEffect.clip = _audioClipExplosion;
 
             if (_audioSourceEffect.enabled == false) return;
 
             _audioSourceEffect.Play();
+        }
+
+        private void SetActive(bool isActive)
+        {
+            _collider.enabled = isActive;
+            _transformTemplateContainer.gameObject.SetActive(isActive);
+            _inputPointMovement.SetActiveInputObject(isActive);
         }
 
         public float GetSpeed()
@@ -61,6 +64,7 @@ namespace PlatformLogic
         private void SetStartState()
         {
             _collider = GetComponent<Collider>();
+            transform.position = _startPoint.position;
             _inputPointMovement.transform.position = _startPoint.position;
         }
     }

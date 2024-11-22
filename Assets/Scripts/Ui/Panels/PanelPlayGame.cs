@@ -46,7 +46,6 @@ namespace UI
         {
             IsInit = false;
             _locationObject = locationObject;
-
             _textName.text = $"{Level} {locationObject.Index}";
 
             if (_locationObject.AdditionaValue != string.Empty)

@@ -28,7 +28,7 @@ namespace BallObject
 
         private BallEffect _ballEffect;
         private Rigidbody _rigidbody;
-        private Vector3 _currentDirection = Vector3.forward;
+        private Vector3 _currentDirection;
         private Vector3 _lastPlatformPosition;
         private Vector3 _lastVelosity;
         private Ball _ball;
@@ -44,18 +44,13 @@ namespace BallObject
             _ball = GetComponent<Ball>();
             Transform = transform;
             _startSpeed = _speed;
-            _rigidbody.isKinematic = true;
-            _ballEffect.SetStateEffect(false);
         }
-
-        private void OnEnable() => _ball.Actived += OnSetActive;
-
-        private void OnDisable() => _ball.Actived -= OnSetActive;
 
         private void FixedUpdate()
         {
             if (_ball.IsActive == false)
             {
+                _currentDirection = Vector3.forward;
                 FollowToPointPosition();
                 return;
             }
@@ -137,12 +132,6 @@ namespace BallObject
             if (_speed < MinValue) _speed = _startSpeed;
 
             if (_speed > _startSpeed) _speed -= (_speed - _startSpeed) / Divider;
-        }
-
-        private void OnSetActive()
-        {
-            _rigidbody.isKinematic = false;
-            _ballEffect.SetStateEffect(true);
         }
     }
 }

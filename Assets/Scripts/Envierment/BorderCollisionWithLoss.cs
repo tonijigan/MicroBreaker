@@ -11,6 +11,7 @@ namespace Envierment
     public class BorderCollisionWithLoss : MonoBehaviour
     {
         private const float WaitSeconds = 1.5f;
+        private const float MinExtraLive = 0;
 
         [SerializeField] private Platform _platform;
         [SerializeField] private Ball _ball;
@@ -33,6 +34,9 @@ namespace Envierment
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.TryGetComponent(out AbstractBooster booster))
+                booster.gameObject.SetActive(false);
+
             if (other.TryGetComponent(out Ball ball))
             {
                 if (ball.name == _ball.name)
@@ -41,18 +45,16 @@ namespace Envierment
                     _platform.Die();
                     _boostersContainer.Reset();
                     TryGiveExtraLive();
+                    return;
                 }
 
-                ball.gameObject.SetActive(false);
+                ball.Die();
             }
-
-            if (other.TryGetComponent(out AbstractBooster booster))
-                booster.gameObject.SetActive(false);
         }
 
         private void TryGiveExtraLive()
         {
-            if (_ball.ExtraLive <= 0)
+            if (_ball.ExtraLive <= MinExtraLive)
             {
                 Lost?.Invoke();
                 return;
