@@ -44,7 +44,13 @@ namespace BallObject
             _ball = GetComponent<Ball>();
             Transform = transform;
             _startSpeed = _speed;
+            _rigidbody.isKinematic = true;
+            _ballEffect.SetStateEffect(false);
         }
+
+        private void OnEnable() => _ball.Actived += OnSetActive;
+
+        private void OnDisable() => _ball.Actived -= OnSetActive;
 
         private void FixedUpdate()
         {
@@ -72,8 +78,7 @@ namespace BallObject
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (_ball.IsActive == false)
-                return;
+            if (_ball.IsActive == false) return;
 
             SetSpeed();
             Collision currentCollision = collision;
@@ -105,7 +110,7 @@ namespace BallObject
 
         private void OnCollisionStay(Collision collision)
         {
-            float degreeSpeed = 12;
+            float degreeSpeed = 20;
 
             if (collision.gameObject.TryGetComponent(out Platform platform))
             {
@@ -132,6 +137,12 @@ namespace BallObject
             if (_speed < MinValue) _speed = _startSpeed;
 
             if (_speed > _startSpeed) _speed -= (_speed - _startSpeed) / Divider;
+        }
+
+        private void OnSetActive()
+        {
+            _rigidbody.isKinematic = false;
+            _ballEffect.SetStateEffect(true);
         }
     }
 }
