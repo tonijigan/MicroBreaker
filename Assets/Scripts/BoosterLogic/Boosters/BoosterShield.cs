@@ -40,11 +40,6 @@ namespace BoosterLogic.Boosters
             return _audioClip;
         }
 
-        public float GetSpeed()
-        {
-            return 2000;
-        }
-
         public void Play(Vector3 point)
         {
             _particleSystem.transform.position = point;

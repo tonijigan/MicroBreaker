@@ -40,11 +40,6 @@ namespace Envierment
             PortalMoved?.Invoke(ballMovement, point, direction, this.name);
         }
 
-        public float GetSpeed()
-        {
-            return _speed;
-        }
-
         public void Play(Vector3 point)
         {
             if (_isOpenPortal) _particleSystem = _particlePortal;

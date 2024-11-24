@@ -75,11 +75,6 @@ namespace BoxObject
 
         public void InitEffect(ParticleSystem particleSystem) => _particleSystem = particleSystem;
 
-        public float GetSpeed()
-        {
-            return _speedRepulsion;
-        }
-
         public void TakeDamage(int damage)
         {
             Damaged?.Invoke(GetClip());

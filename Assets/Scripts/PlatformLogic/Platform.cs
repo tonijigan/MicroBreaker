@@ -51,11 +51,6 @@ namespace PlatformLogic
             _inputPointMovement.SetActiveInputObject(isActive);
         }
 
-        public float GetSpeed()
-        {
-            return _speedForceBall;
-        }
-
         public AudioClip GetClip()
         {
             return _audioClip;

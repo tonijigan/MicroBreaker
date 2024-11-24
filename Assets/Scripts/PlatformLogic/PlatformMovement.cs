@@ -12,19 +12,20 @@ namespace PlatformLogic
         private const float ClampZMin = -22;
         private const float ClampZMax = -5;
         private const float RevercePositionZ = 30;
+        private const float StartSpeed = 3000;
 
         [SerializeField] private InputPointMovement _inputPointMovement;
         [SerializeField] private BallMovement _ballMovement;
 
         private Rigidbody _rigidbody;
         private Transform _transform;
-        private float _currentPlatformSpeed;
+        private float _currentPlatformSpeed = 3000;
         private bool _isInverted = false;
         private readonly Restrictor _restrict = new();
         private Transform _currentTarget;
         private bool _isTargetChange = false;
 
-        public float PlatformSpeed { get; private set; } = 1500;
+        public float PlatformSpeed => StartSpeed;
 
         public Vector3 Direction { get; private set; }
 
@@ -32,7 +33,7 @@ namespace PlatformLogic
         {
             _transform = transform;
             _rigidbody = GetComponent<Rigidbody>();
-            _currentPlatformSpeed = PlatformSpeed;
+            _currentPlatformSpeed = StartSpeed;
         }
 
         private void FixedUpdate()

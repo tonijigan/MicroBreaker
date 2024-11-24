@@ -10,14 +10,14 @@ namespace BallObject
         [SerializeField] private ParticleSystem _effectNegayive;
         [SerializeField] private ParticleSystem _effectPositive;
 
-        private ParticleSystem _currentParticleSystem;
+        public ParticleSystem CurrentParticleSystem { get; private set; }
 
         private void Awake()
         {
             _effectDefult.Stop();
             _effectNegayive.Stop();
             _effectPositive.Stop();
-            _currentParticleSystem = _effectDefult;
+            CurrentParticleSystem = _effectDefult;
         }
 
         public void Play(Vector3 point) { }
@@ -26,13 +26,13 @@ namespace BallObject
 
         public void SetParticleSystem(BoosterNames boosterNames)
         {
-            _currentParticleSystem.Stop();
+            CurrentParticleSystem.Stop();
 
-            if (boosterNames == BoosterNames.Default) _currentParticleSystem = _effectDefult;
-            if (boosterNames == BoosterNames.Negative) _currentParticleSystem = _effectNegayive;
-            if (boosterNames == BoosterNames.Positive) _currentParticleSystem = _effectPositive;
+            if (boosterNames == BoosterNames.Default) CurrentParticleSystem = _effectDefult;
+            if (boosterNames == BoosterNames.Negative) CurrentParticleSystem = _effectNegayive;
+            if (boosterNames == BoosterNames.Positive) CurrentParticleSystem = _effectPositive;
 
-            _currentParticleSystem.Play();
+            CurrentParticleSystem.Play();
         }
     }
 }

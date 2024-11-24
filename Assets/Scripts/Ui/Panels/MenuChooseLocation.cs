@@ -96,11 +96,7 @@ namespace UI
             }
         }
 
-        private void OnActivateControl(bool isActive)
-        {
-            _locationChooseInput.SetActive(!isActive);
-            _swipeMove.enabled = !isActive;
-        }
+        private void OnActivateControl(bool isActive) => _swipeMove.enabled = !isActive;
 
         private void OnClick()
         {

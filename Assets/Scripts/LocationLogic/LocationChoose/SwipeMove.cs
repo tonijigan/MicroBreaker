@@ -21,6 +21,7 @@ namespace LocationLogic.LocationChoose
         private Vector3 _offSet;
         private Vector3 _startPosition;
         private Vector3 _endPosition;
+        private Vector3 _targetPosition;
         private float _swipeTime = 0;
         private bool _isDragging = false;
 
@@ -48,7 +49,8 @@ namespace LocationLogic.LocationChoose
             if (_swipeTime > SwipeTime) _isDragging = true;
 
             Vector3 direction = GetHit().point + _offSet;
-            _transform.position = new(direction.x, _transform.position.y, direction.z);
+            _targetPosition = new(direction.x, _transform.position.y, direction.z);
+             _transform.position = Vector3.MoveTowards(_transform.position, _targetPosition, _speedSwipe * Time.deltaTime);
         }
 
         private void OnMouseUp()

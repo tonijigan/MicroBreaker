@@ -60,6 +60,7 @@ namespace BallObject
         public void Die()
         {
             IsActive = false;
+            BallEffect.CurrentParticleSystem.Stop();
             _changeTemplate.gameObject.SetActive(false);
             _transform.position = _ballPoint.position;
             Rigidbody.isKinematic = true;

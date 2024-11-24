@@ -14,8 +14,6 @@ namespace LocationLogic.LocationChoose
 
         public bool IsActive { get; private set; } = true;
 
-        public void SetActive(bool isActive) { }// IsActive = isActive;
-
         public void SetFirstLocationObject(Vector3 inputMouse) => _firstLocationObject = TryGetLocation(inputMouse);
 
         public void SetLastLocationObject(Vector3 inputMouse) => _lastLocationObject = TryGetLocation(inputMouse);
