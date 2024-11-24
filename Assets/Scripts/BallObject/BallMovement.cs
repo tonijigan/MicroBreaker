@@ -78,7 +78,6 @@ namespace BallObject
             SetSpeed();
             Collision currentCollision = collision;
             Vector3 currentPoint = currentCollision.contacts[MinValue].point;
-            _currentDirection = Vector3.Reflect(_lastVelosity, collision.contacts[MinValue].normal).normalized;
 
             if (currentCollision.gameObject.TryGetComponent(out ITrigger trigger))
             {
@@ -90,6 +89,7 @@ namespace BallObject
 
                     if (fence.IsHorizontal == false && fence.IsOpenPortal == false)
                     {
+                        _currentDirection = Vector3.Reflect(_lastVelosity, collision.contacts[MinValue].normal).normalized;
                         _currentDirection.z -= GravityValue;
                         return;
                     }
@@ -100,6 +100,8 @@ namespace BallObject
                         return;
                     }
                 }
+
+                _currentDirection = Vector3.Reflect(_lastVelosity, collision.contacts[MinValue].normal).normalized;
 
                 if (currentCollision.gameObject.TryGetComponent(out Platform platform))
                     if (_isGravityPlatform == true) _gravityDirection = Vector3.zero;
