@@ -6,31 +6,33 @@ namespace BallObject
 {
     public class BallEffect : MonoBehaviour, IEffect
     {
-        [SerializeField] private Transform _effectDefult;
-        [SerializeField] private Transform _effectNegayive;
-        [SerializeField] private Transform _effectPositive;
+        [SerializeField] private ParticleSystem _effectDefult;
+        [SerializeField] private ParticleSystem _effectNegayive;
+        [SerializeField] private ParticleSystem _effectPositive;
 
-        private Transform _currentEffect;
+        private ParticleSystem _currentParticleSystem;
 
-        private void Awake() => SetParticleSystem(BoosterNames.Default);
+        private void Awake()
+        {
+            _effectDefult.Stop();
+            _effectNegayive.Stop();
+            _effectPositive.Stop();
+            _currentParticleSystem = _effectDefult;
+        }
 
         public void Play(Vector3 point) { }
 
-        public void RotateTarget(Vector3 direction) => _currentEffect.transform.LookAt(-direction);
-
-        public void SetStateEffect(bool isPlay) => _currentEffect.gameObject.SetActive(isPlay);
+        public void RotateTarget(Vector3 direction) => transform.LookAt(-direction);
 
         public void SetParticleSystem(BoosterNames boosterNames)
         {
-            _effectDefult.gameObject.SetActive(false);
-            _effectNegayive.gameObject.SetActive(false);
-            _effectPositive.gameObject.SetActive(false);
+            _currentParticleSystem.Stop();
 
-            if (boosterNames == BoosterNames.Default) _currentEffect = _effectDefult;
-            if (boosterNames == BoosterNames.Negative) _currentEffect = _effectNegayive;
-            if (boosterNames == BoosterNames.Positive) _currentEffect = _effectPositive;
+            if (boosterNames == BoosterNames.Default) _currentParticleSystem = _effectDefult;
+            if (boosterNames == BoosterNames.Negative) _currentParticleSystem = _effectNegayive;
+            if (boosterNames == BoosterNames.Positive) _currentParticleSystem = _effectPositive;
 
-            _currentEffect.gameObject.SetActive(true);
+            _currentParticleSystem.Play();
         }
     }
 }

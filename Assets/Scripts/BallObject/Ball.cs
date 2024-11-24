@@ -1,5 +1,6 @@
 using System;
 using PlayerLogic;
+using Shop;
 using UnityEngine;
 
 namespace BallObject
@@ -12,12 +13,14 @@ namespace BallObject
 
         [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private Transform _ballPoint;
-        [SerializeField] private Transform _transformTemplateContainer;
+        [SerializeField] private ChangeTemplate _changeTemplate;
 
         public event Action Actived;
         public event Action<int> ExtraLiveChanged;
 
         private Transform _transform;
+
+        public ChangeTemplate ChangeTemplate => _changeTemplate;
 
         public Rigidbody Rigidbody { get; private set; }
 
@@ -33,7 +36,6 @@ namespace BallObject
             Rigidbody = GetComponent<Rigidbody>();
             BallEffect = GetComponent<BallEffect>();
             Rigidbody.isKinematic = true;
-            BallEffect.SetStateEffect(false);
         }
 
         private void OnEnable() => _playerInput.MousePressedUp += OnDisconnectParentObject;
@@ -52,14 +54,13 @@ namespace BallObject
         {
             ExtraLive--;
             ExtraLiveChanged?.Invoke(ExtraLive);
-            _transformTemplateContainer.gameObject.SetActive(true);
+            _changeTemplate.gameObject.SetActive(true);
         }
 
         public void Die()
         {
             IsActive = false;
-            BallEffect.SetStateEffect(false);
-            _transformTemplateContainer.gameObject.SetActive(false);
+            _changeTemplate.gameObject.SetActive(false);
             _transform.position = _ballPoint.position;
             Rigidbody.isKinematic = true;
         }
@@ -70,7 +71,7 @@ namespace BallObject
                 return;
 
             IsActive = true;
-            BallEffect.SetStateEffect(true);
+            BallEffect.SetParticleSystem(Enums.BoosterNames.Default);
             Rigidbody.isKinematic = false;
             Actived?.Invoke();
         }

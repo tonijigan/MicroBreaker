@@ -48,7 +48,7 @@ namespace Envierment
                     return;
                 }
 
-                ball.Die();
+                ball.gameObject.SetActive(false);
             }
         }
 

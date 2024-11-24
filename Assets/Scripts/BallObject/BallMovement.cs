@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace BallObject
 {
-    [RequireComponent(typeof(Rigidbody), typeof(Ball), typeof(BallEffect))]
+    [RequireComponent(typeof(Ball))]
     public class BallMovement : MonoBehaviour
     {
         private const int Divider = 2;
@@ -26,8 +26,6 @@ namespace BallObject
 
         public event Action BoxTriggered;
 
-        private BallEffect _ballEffect;
-        private Rigidbody _rigidbody;
         private Vector3 _currentDirection;
         private Vector3 _lastPlatformPosition;
         private Vector3 _lastVelosity;
@@ -37,10 +35,10 @@ namespace BallObject
 
         public Transform Transform { get; private set; }
 
+        public Ball Ball => _ball;
+
         private void Awake()
         {
-            _ballEffect = GetComponent<BallEffect>();
-            _rigidbody = GetComponent<Rigidbody>();
             _ball = GetComponent<Ball>();
             Transform = transform;
             _startSpeed = _speed;
@@ -55,8 +53,8 @@ namespace BallObject
                 return;
             }
 
-            _ballEffect.RotateTarget(_rigidbody.velocity);
-            _lastVelosity = _rigidbody.velocity;
+            _ball.BallEffect.RotateTarget(_ball.Rigidbody.velocity);
+            _lastVelosity = _ball.Rigidbody.velocity;
             _lastPlatformPosition = _platformTargetGravity.transform.position;
 
             _currentDirection += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
@@ -105,7 +103,7 @@ namespace BallObject
 
         private void OnCollisionStay(Collision collision)
         {
-            float degreeSpeed = 20;
+            float degreeSpeed = 13;
 
             if (collision.gameObject.TryGetComponent(out Platform platform))
             {
@@ -114,6 +112,8 @@ namespace BallObject
                 _currentDirection = (_currentDirection - newDirection).normalized;
             }
         }
+
+        public void SetCurrentDirrection(Vector3 direction) => _currentDirection = direction;
 
         public void SetGravity() => _isGravityPlatform = !_isGravityPlatform;
 
@@ -125,7 +125,7 @@ namespace BallObject
 
         private void FollowToPointPosition() => Transform.position = _ballPoint.position;
 
-        private void Move(Vector3 direction, float speed) => _rigidbody.velocity = speed * Time.fixedDeltaTime * direction;
+        private void Move(Vector3 direction, float speed) => _ball.Rigidbody.velocity = speed * Time.fixedDeltaTime * direction;
 
         private void SetSpeed()
         {
