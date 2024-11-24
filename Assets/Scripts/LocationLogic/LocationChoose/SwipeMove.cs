@@ -10,8 +10,10 @@ namespace LocationLogic.LocationChoose
         private const float ClampX = 60f;
         private const float ClampYMin = -1500;
         private const float ClampYMax = 10;
+        private const float SwipeTime = 0.2f;
 
         [SerializeField] private LocationChooseInput _inputLocation;
+        [SerializeField] private float _speedSwipe;
 
         private readonly Restrictor _restrict = new();
         private Rigidbody _rigidbody;
@@ -19,6 +21,8 @@ namespace LocationLogic.LocationChoose
         private Vector3 _offSet;
         private Vector3 _startPosition;
         private Vector3 _endPosition;
+        private float _swipeTime = 0;
+        private bool _isDragging = false;
 
         private void Awake()
         {
@@ -28,8 +32,7 @@ namespace LocationLogic.LocationChoose
 
         private void OnMouseDown()
         {
-            if (IsInputUI())
-                return;
+            if (IsInputUI()) return;
 
             _startPosition = _transform.position;
             _offSet = _transform.position - GetHit().point;
@@ -40,20 +43,28 @@ namespace LocationLogic.LocationChoose
         {
             if (IsInputUI()) return;
 
+            _swipeTime += Time.deltaTime;
+
+            if (_swipeTime > SwipeTime) _isDragging = true;
+
             Vector3 direction = GetHit().point + _offSet;
             _transform.position = new(direction.x, _transform.position.y, direction.z);
         }
 
         private void OnMouseUp()
         {
-            _inputLocation.SetLastLocationObject(Input.mousePosition);
+            _swipeTime = 0;
+
+            if (_isDragging == false) _inputLocation.SetLastLocationObject(Input.mousePosition);
+
+            _isDragging = false;
             _inputLocation.LoadLocation();
 
             if (IsInputUI()) return;
 
             _endPosition = _transform.position;
             Vector3 direction = _startPosition - _endPosition;
-            _rigidbody.velocity = -direction.normalized * direction.magnitude;
+            _rigidbody.velocity = direction.magnitude * _speedSwipe * Time.deltaTime * -direction.normalized;
         }
 
         private void Update() => _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);

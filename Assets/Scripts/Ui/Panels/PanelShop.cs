@@ -30,16 +30,11 @@ namespace UI
             _buttonClose.gameObject.SetActive(isOpen);
             _backGroundPanel.gameObject.SetActive(isOpen);
 
+            RectTransform.DOAnchorPosX(MiddlePosition, TweenDurationOpen);
 
-            RectTransform.DOAnchorPosX(MiddlePosition, TweenDuration);
-            IsActive = true;
+            if (isOpen == false) RectTransform.DOAnchorPosX(TopPosition, TweenDurationOpen);
 
-            if (isOpen == false)
-            {
-                RectTransform.DOAnchorPosX(TopPosition, TweenDuration);
-                IsActive = false;
-            }
-
+            IsActive = isOpen;
             Activated?.Invoke(isOpen);
         }
     }

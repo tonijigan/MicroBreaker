@@ -640,7 +640,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 400
   _middlePosition: -700
-  _tweenDuration: 0.5
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 0
   _backGround: {fileID: 277786307}
   _wallet: {fileID: 540819816}
@@ -1980,6 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputLocation: {fileID: 6593972011491265657}
+  _speedSwipe: 1000
 --- !u!1001 &242910009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2185,7 +2187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 0
   _middlePosition: 0
-  _tweenDuration: 0
+  _tweenDurationOpen: 0
+  _tweenDurationClose: 0
   _isActiveAtStart: 0
 --- !u!114 &277786308
 MonoBehaviour:
@@ -4048,7 +4051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 150
   _middlePosition: -800
-  _tweenDuration: 0.5
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 1
   _backGround: {fileID: 1186927315}
   _panelBuyUpgrade: {fileID: 69368491}
@@ -7169,7 +7173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 0
   _middlePosition: 0
-  _tweenDuration: 0
+  _tweenDurationOpen: 0
+  _tweenDurationClose: 0
   _isActiveAtStart: 0
 --- !u!1 &1188793297
 GameObject:
@@ -15016,6 +15021,14 @@ PrefabInstance:
       propertyPath: _backGroundPanel
       value: 
       objectReference: {fileID: 7227271838241773650}
+    - target: {fileID: 6566102179229582575, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _tweenDurationOpen
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566102179229582575, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
+      propertyPath: _tweenDurationClose
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6706234342603796959, guid: 1783af0c0c70e894fafb41ac414eb768, type: 3}
       propertyPath: _wallet
       value: 
@@ -15298,7 +15311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 0
   _middlePosition: 0
-  _tweenDuration: 0
+  _tweenDurationOpen: 0
+  _tweenDurationClose: 0
   _isActiveAtStart: 0
 --- !u!224 &7649858662719855977
 RectTransform:
@@ -15361,7 +15375,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 100
   _middlePosition: -720
-  _tweenDuration: 0.5
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 0
   _buttonPlayGame: {fileID: 8275956300452831686}
   _buttonClose: {fileID: 1333609463}

@@ -23,9 +23,11 @@ namespace UI
         [SerializeField] private TMP_Text _textAccess;
         [SerializeField] private TMP_Text _textName;
 
-        private LocationObject _locationObject;
-
         public bool IsInit { get; private set; }
+
+        public bool IsOpen { get; private set; }
+
+        public LocationObject LocationObject { get; private set; }
 
         public ButtonPanelInteraction ButtonClose => _buttonClose;
 
@@ -37,6 +39,9 @@ namespace UI
 
         public override async void OnMove(bool isActive)
         {
+            if (IsOpen == isActive) return;
+
+            IsOpen = isActive;
             base.OnMove(isActive);
             await MovePanel(isActive);
             _locationCreateView.gameObject.SetActive(isActive);
@@ -44,21 +49,13 @@ namespace UI
 
         public void Init(LocationObject locationObject)
         {
-            if (_locationObject == locationObject)
-            {
-                OnMove(false);
-                _locationObject = null;
-                IsInit = false;
-                return;
-            }
-
-            _locationObject = locationObject;
+            LocationObject = locationObject;
             _textName.text = $"{Level} {locationObject.Index}";
 
-            if (_locationObject.AdditionaValue != string.Empty)
+            if (LocationObject.AdditionaValue != string.Empty)
                 _textName.text = $"{Level} {locationObject.Index}{locationObject.AdditionaValue}";
 
-            if (_locationObject.IsActive == false)
+            if (LocationObject.IsActive == false)
             {
                 SetAccess(false);
                 return;
@@ -82,9 +79,9 @@ namespace UI
         {
             LevelData locationObjectData = new()
             {
-                LocationName = _locationObject.Name.ToString(),
-                AdditionaValue = _locationObject.AdditionaValue.ToString(),
-                Passed = _locationObject.IsPassed ? MaxValue : MinValue,
+                LocationName = LocationObject.Name.ToString(),
+                AdditionaValue = LocationObject.AdditionaValue.ToString(),
+                Passed = LocationObject.IsPassed ? MaxValue : MinValue,
             };
             _saveService.SaveCurrentLevelData(locationObjectData);
         }

@@ -1,5 +1,6 @@
 using Cinemachine;
 using LocationLogic.LocationChoose;
+using System.Collections;
 using UnityEngine;
 
 namespace UI
@@ -33,12 +34,53 @@ namespace UI
 
         private void OnInit(LocationObject locationObject)
         {
-            _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x, _virtualMobileCamera.transform.position.y,
-             locationObject.transform.position.z - PositionZ);
+            if (IsLocationObjectIdentity(locationObject) == true && _panelPlayGame.IsOpen == true)
+            {
+                ClosePanel();
+                return;
+            }
+
+            if (IsLocationObjectIdentity(locationObject) == false && _panelPlayGame.IsOpen == true)
+            {
+                StartCoroutine(ChangeLocationObjectInPanel(locationObject));
+                return;
+            }
+
+            _virtualMobileCamera.transform.position = new Vector3(locationObject.transform.position.x,
+                                                            _virtualMobileCamera.transform.position.y,
+                                                                  locationObject.transform.position.z - PositionZ);
             _panelPlayGame.ButtonClose.SetStartStateButton();
+            OpenPanel(locationObject);
+        }
+
+        private IEnumerator ChangeLocationObjectInPanel(LocationObject locationObject)
+        {
+            ClosePanel();
+            yield return new WaitForSeconds(0.5f);
+            OpenPanel(locationObject);
+        }
+
+        private void OpenPanel(LocationObject locationObject)
+        {
             _panelPlayGame.OnMove(true);
             _panelPlayGame.Init(locationObject);
             OnActivateControl(true);
+        }
+
+        private void ClosePanel()
+        {
+            _panelPlayGame.OnMove(false);
+            OnActivateControl(false);
+        }
+
+        private bool IsLocationObjectIdentity(LocationObject locationObject)
+        {
+            if (_panelPlayGame.LocationObject != null &&
+                _panelPlayGame.LocationObject.Name == locationObject.Name &&
+                _panelPlayGame.LocationObject.AdditionaValue == locationObject.AdditionaValue)
+                return true;
+
+            return false;
         }
 
         private void OnActive(bool isActive)

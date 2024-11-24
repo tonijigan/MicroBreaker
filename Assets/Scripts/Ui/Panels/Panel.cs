@@ -10,12 +10,14 @@ namespace UI
     {
         [SerializeField] private float _topPosition;
         [SerializeField] private float _middlePosition;
-        [SerializeField] private float _tweenDuration;
+        [SerializeField] private float _tweenDurationOpen;
+        [SerializeField] private float _tweenDurationClose;
         [SerializeField] private bool _isActiveAtStart = false;
 
         public event Action Moved;
 
         private RectTransform _rectTransform;
+        private Tween _tween;
 
         protected RectTransform RectTransform => _rectTransform;
 
@@ -23,7 +25,7 @@ namespace UI
 
         protected float MiddlePosition => _middlePosition;
 
-        protected float TweenDuration => _tweenDuration;
+        protected float TweenDurationOpen => _tweenDurationOpen;
 
         private void Awake() => InitAwake();
 
@@ -40,9 +42,16 @@ namespace UI
         {
             if (isActive == true) gameObject.SetActive(isActive);
 
-            if (isActive) await _rectTransform.DOAnchorPosY(_topPosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-            else await _rectTransform.DOAnchorPosY(_middlePosition, _tweenDuration).SetUpdate(true).AsyncWaitForCompletion();
-
+            if (isActive)
+            {
+                _tween = _rectTransform.DOAnchorPosY(_topPosition, _tweenDurationOpen).SetUpdate(true);
+                await _tween.AsyncWaitForCompletion();
+            }
+            else
+            {
+                _tween = _rectTransform.DOAnchorPosY(_middlePosition, _tweenDurationClose).SetUpdate(true);
+                await _tween.AsyncWaitForCompletion();
+            }
             gameObject.SetActive(isActive);
             OnActive?.Invoke();
         }
