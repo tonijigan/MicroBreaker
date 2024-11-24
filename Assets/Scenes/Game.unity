@@ -10802,8 +10802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: -900
   _middlePosition: 0
-  _tweenDurationOpen: 0
-  _tweenDurationClose: 0
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 0
   _buttonSettingMusic: {fileID: 1720487413}
   _buttonSettingEffect: {fileID: 2056237722}
@@ -51597,7 +51597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -738.59985}
+  m_AnchoredPosition: {x: 0, y: -738.5999}
   m_SizeDelta: {x: 650, y: 724.6}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &490270168
@@ -51652,8 +51652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 150
   _middlePosition: -600
-  _tweenDurationOpen: 0
-  _tweenDurationClose: 0
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 0
   _buttonTryAgain: {fileID: 727959939}
   _buttonContinue: {fileID: 858673958}
@@ -71282,7 +71282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 163}
+  m_AnchoredPosition: {x: 0, y: 163.00006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1291959580
@@ -81619,7 +81619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -819.80005}
+  m_AnchoredPosition: {x: 0, y: -819.8001}
   m_SizeDelta: {x: 650, y: 805.8}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1493309138
@@ -81674,8 +81674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _topPosition: 150
   _middlePosition: -600
-  _tweenDurationOpen: 0
-  _tweenDurationClose: 0
+  _tweenDurationOpen: 0.5
+  _tweenDurationClose: 0.2
   _isActiveAtStart: 0
   _buttonTryAgain: {fileID: 1836347185}
   _buttonExit: {fileID: 918615130}
@@ -124891,8 +124891,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078252485}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40477023, y: -0.092670664, z: 0.041275766, w: 0.90877366}
-  m_LocalPosition: {x: 6.43, y: 35.4, z: -33.2}
+  m_LocalRotation: {x: 0.43411064, y: -0.09127932, z: 0.04426771, w: 0.89512926}
+  m_LocalPosition: {x: 6.43, y: 40.4, z: -33.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125720,8 +125720,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6418020782426431192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40477023, y: -0.092670664, z: 0.041275766, w: 0.90877366}
-  m_LocalPosition: {x: 6.43, y: 35.4, z: -33.2}
+  m_LocalRotation: {x: 0.43411064, y: -0.09127932, z: 0.04426771, w: 0.89512926}
+  m_LocalPosition: {x: 6.43, y: 40.4, z: -33.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -126237,7 +126237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 35, z: -20}
+  m_FollowOffset: {x: 0, y: 40, z: -20}
   m_XDamping: 20
   m_YDamping: 20
   m_ZDamping: 20

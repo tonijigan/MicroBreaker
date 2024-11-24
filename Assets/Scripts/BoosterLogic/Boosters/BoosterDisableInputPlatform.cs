@@ -11,13 +11,13 @@ namespace BoosterLogic.Boosters
         {
             if (boosterEffect.IsActive == false) return;
 
-            _inputPointMovement.gameObject.SetActive(true);
+            _inputPointMovement.SetActiveInputObject(true);
             boosterEffect.SetActionActive();
         }
 
         public override void OnStartAction(BoosterEffect boosterEffect)
         {
-            _inputPointMovement.gameObject.SetActive(false);
+            _inputPointMovement.SetActiveInputObject(false);
             boosterEffect.SetActionActive();
             PlayTimer(boosterEffect, StopAction);
         }

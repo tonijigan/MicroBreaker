@@ -14,8 +14,8 @@ namespace BallObject
         private const int MinValue = 0;
         private const int MaxSpeed = 4000;
         private const int Damage = 1;
-        private const int CountDistance = 15;
-        private const float GravityValue = 0.1f;
+        private const int CountDistance = 20;
+        private const float GravityValue = 0.05f;
         private const float PositionZero = 0f;
         private const float GravityPositionZ = 0.002f;
 
@@ -29,8 +29,10 @@ namespace BallObject
         private Vector3 _currentDirection;
         private Vector3 _lastPlatformPosition;
         private Vector3 _lastVelosity;
+        private Vector3 _gravityDirection;
         private Ball _ball;
         private bool _isGravityPlatform = false;
+        private bool _isSetSpeed = false;
         private float _startSpeed;
 
         public Transform Transform { get; private set; }
@@ -57,13 +59,13 @@ namespace BallObject
             _lastVelosity = _ball.Rigidbody.velocity;
             _lastPlatformPosition = _platformTargetGravity.transform.position;
 
-            _currentDirection += new Vector3(PositionZero, PositionZero, -GravityPositionZ);
-
             if (_isGravityPlatform == true)
             {
-                if (Vector3.Distance(_platformTargetGravity.transform.position, Transform.position) > CountDistance) return;
-                Vector3 direction = (_platformTargetGravity.transform.position - Transform.position).normalized;
-                _currentDirection += new Vector3(direction.x * GravityValue, PositionZero, PositionZero);
+                if (Vector3.Distance(_platformTargetGravity.transform.position, Transform.position) < CountDistance)
+                {
+                    _gravityDirection = (_platformTargetGravity.transform.position - Transform.position).normalized;
+                    _currentDirection += new Vector3(_gravityDirection.x * GravityValue, PositionZero, _gravityDirection.z * GravityPositionZ);
+                }
             }
 
             Move(_currentDirection, _speed);
@@ -76,19 +78,31 @@ namespace BallObject
             SetSpeed();
             Collision currentCollision = collision;
             Vector3 currentPoint = currentCollision.contacts[MinValue].point;
+            _currentDirection = Vector3.Reflect(_lastVelosity, collision.contacts[MinValue].normal).normalized;
 
             if (currentCollision.gameObject.TryGetComponent(out ITrigger trigger))
             {
                 trigger.Play(currentPoint);
 
-                if (currentCollision.gameObject.TryGetComponent(out Fence fence) && fence.IsOpenPortal == true)
+                if (currentCollision.gameObject.TryGetComponent(out Fence fence))
                 {
-                    fence.Relocate(this, currentPoint, _currentDirection);
                     _ballSound.Play(fence.GetClip());
-                    return;
+
+                    if (fence.IsHorizontal == false && fence.IsOpenPortal == false)
+                    {
+                        _currentDirection.z -= GravityValue;
+                        return;
+                    }
+
+                    if (fence.IsOpenPortal == true)
+                    {
+                        fence.Relocate(this, currentPoint, _currentDirection);
+                        return;
+                    }
                 }
 
-                _currentDirection = Vector3.Reflect(_lastVelosity, collision.contacts[MinValue].normal).normalized;
+                if (currentCollision.gameObject.TryGetComponent(out Platform platform))
+                    if (_isGravityPlatform == true) _gravityDirection = Vector3.zero;
             }
 
             if (currentCollision.gameObject.TryGetComponent(out ISound sound))
@@ -117,9 +131,17 @@ namespace BallObject
 
         public void SetGravity() => _isGravityPlatform = !_isGravityPlatform;
 
-        public void SetMaxSpeed() => _speed = MaxSpeed;
+        public void SetMaxSpeed()
+        {
+            _isSetSpeed = true;
+            _speed = MaxSpeed;
+        }
 
-        public void SetStandartSpeed() => _speed = _startSpeed;
+        public void SetStandartSpeed()
+        {
+            _isSetSpeed = false;
+            _speed = _startSpeed;
+        }
 
         public void Move(Vector3 direction) => Move(direction, _speed);
 
@@ -129,6 +151,8 @@ namespace BallObject
 
         private void SetSpeed()
         {
+            if (_isSetSpeed == true) return;
+
             if (_speed < MinValue) _speed = _startSpeed;
 
             if (_speed > _startSpeed) _speed -= (_speed - _startSpeed) / Divider;
