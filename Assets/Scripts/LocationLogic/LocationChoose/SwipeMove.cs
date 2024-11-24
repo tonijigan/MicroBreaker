@@ -21,7 +21,6 @@ namespace LocationLogic.LocationChoose
         private Vector3 _offSet;
         private Vector3 _startPosition;
         private Vector3 _endPosition;
-        private Vector3 _targetPosition;
         private float _swipeTime = 0;
         private bool _isDragging = false;
 
@@ -35,7 +34,6 @@ namespace LocationLogic.LocationChoose
         {
             if (IsInputUI()) return;
 
-            _startPosition = _transform.position;
             _offSet = _transform.position - GetHit().point;
             _inputLocation.SetFirstLocationObject(Input.mousePosition);
         }
@@ -49,8 +47,7 @@ namespace LocationLogic.LocationChoose
             if (_swipeTime > SwipeTime) _isDragging = true;
 
             Vector3 direction = GetHit().point + _offSet;
-            _targetPosition = new(direction.x, _transform.position.y, direction.z);
-             _transform.position = Vector3.MoveTowards(_transform.position, _targetPosition, _speedSwipe * Time.deltaTime);
+            _transform.position = new(direction.x, _transform.position.y, direction.z);
         }
 
         private void OnMouseUp()
@@ -63,10 +60,6 @@ namespace LocationLogic.LocationChoose
             _inputLocation.LoadLocation();
 
             if (IsInputUI()) return;
-
-            _endPosition = _transform.position;
-            Vector3 direction = _startPosition - _endPosition;
-            _rigidbody.velocity = direction.magnitude * _speedSwipe * Time.deltaTime * -direction.normalized;
         }
 
         private void Update() => _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
