@@ -20,7 +20,7 @@ namespace UI
         {
             _panelShop.Activated += OnActive;
             _locationChooseInput.LocationChoosed += OnInit;
-            _panelPlayGame.ButtonClose.Clicked += OnActivateControl;
+            //_panelPlayGame.ButtonClose.Clicked += OnActivateControl;
             _panelPlayGame.ButtonPlayGame.Clicked += OnClick;
         }
 
@@ -28,7 +28,7 @@ namespace UI
         {
             _panelShop.Activated -= OnActive;
             _locationChooseInput.LocationChoosed -= OnInit;
-            _panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
+            //_panelPlayGame.ButtonClose.Clicked -= OnActivateControl;
             _panelPlayGame.ButtonPlayGame.Clicked -= OnClick;
         }
 
@@ -64,13 +64,13 @@ namespace UI
         {
             _panelPlayGame.OnMove(true);
             _panelPlayGame.Init(locationObject);
-            OnActivateControl(true);
+            //OnActivateControl(true);
         }
 
         private void ClosePanel()
         {
             _panelPlayGame.OnMove(false);
-            OnActivateControl(false);
+            // OnActivateControl(false);
         }
 
         private bool IsLocationObjectIdentity(LocationObject locationObject)
@@ -85,18 +85,18 @@ namespace UI
 
         private void OnActive(bool isActive)
         {
-            OnActivateControl(isActive);
+            //OnActivateControl(isActive);
 
             _panelPlayGame.OnMove(false);
 
             if (_panelShop.IsActive == false && _panelPlayGame.IsInit == true && _panelPlayGame.ButtonClose.IsClick == false)
             {
                 _panelPlayGame.OnMove(true);
-                OnActivateControl(true);
+                //OnActivateControl(true);
             }
         }
 
-        private void OnActivateControl(bool isActive) => _swipeMove.enabled = !isActive;
+        //private void OnActivateControl(bool isActive) => _swipeMove.enabled = !isActive;
 
         private void OnClick()
         {

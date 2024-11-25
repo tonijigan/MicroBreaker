@@ -10,64 +10,73 @@ namespace LocationLogic.LocationChoose
         private const float ClampX = 60f;
         private const float ClampYMin = -1500;
         private const float ClampYMax = 10;
-        private const float SwipeTime = 0.2f;
+        private const float MinSpeedValue = 0.5f;
 
         [SerializeField] private LocationChooseInput _inputLocation;
         [SerializeField] private float _speedSwipe;
 
         private readonly Restrictor _restrict = new();
-        private Rigidbody _rigidbody;
+        private Rigidbody _rigidBody;
         private Transform _transform;
-        private Vector3 _offSet;
         private Vector3 _startPosition;
-        private Vector3 _endPosition;
-        private float _swipeTime = 0;
+        private Vector3 _currentPosition;
         private bool _isDragging = false;
+        private float _speed = MinSpeedValue;
+        private float _timer = 0;
+        private float _delay = 0.2f;
+
 
         private void Awake()
         {
             _transform = transform;
-            _rigidbody = GetComponent<Rigidbody>();
+            _rigidBody = GetComponent<Rigidbody>();
         }
 
         private void OnMouseDown()
         {
             if (IsInputUI()) return;
 
-            _offSet = _transform.position - GetHit().point;
+            _startPosition = Input.mousePosition;
             _inputLocation.SetFirstLocationObject(Input.mousePosition);
         }
 
         private void OnMouseDrag()
         {
-            if (IsInputUI()) return;
+            _timer += Time.deltaTime;
 
-            _swipeTime += Time.deltaTime;
+            if (_timer >= _delay) _isDragging = true;
 
-            if (_swipeTime > SwipeTime) _isDragging = true;
-
-            Vector3 direction = GetHit().point + _offSet;
-            _transform.position = new(direction.x, _transform.position.y, direction.z);
+            _currentPosition = Input.mousePosition;
+            var direction = (_currentPosition - _startPosition).magnitude;
+            _speed = direction * MinSpeedValue;
         }
 
         private void OnMouseUp()
         {
-            _swipeTime = 0;
-
-            if (_isDragging == false) _inputLocation.SetLastLocationObject(Input.mousePosition);
-
             _isDragging = false;
-            _inputLocation.LoadLocation();
+            _speed = MinSpeedValue;
+            _timer = 0;
 
-            if (IsInputUI()) return;
+            if (_isDragging == true) return;
+
+            _inputLocation.SetLastLocationObject(Input.mousePosition);
+            _inputLocation.LoadLocation();
         }
 
-        private void Update() => _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
-
-        private RaycastHit GetHit()
+        private void Update()
         {
-            Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit raycastHit);
-            return raycastHit;
+            Drag();
+            _restrict.RestrictMove(_transform, ClampX, ClampYMin, ClampYMax);
+        }
+
+        private void Drag()
+        {
+            if (_isDragging)
+            {
+                Vector3 direction = (_currentPosition - _startPosition).normalized;
+                Vector3 newDirection = new(direction.x, _rigidBody.velocity.y, direction.y);
+                _rigidBody.velocity = newDirection * _speed;
+            }
         }
 
         private bool IsInputUI()

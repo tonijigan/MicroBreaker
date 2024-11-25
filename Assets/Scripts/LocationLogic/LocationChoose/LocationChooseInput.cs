@@ -28,6 +28,8 @@ namespace LocationLogic.LocationChoose
             {
                 _createView.gameObject.SetActive(true);
                 LocationChoosed?.Invoke(_firstLocationObject);
+                _firstLocationObject = null;
+                _lastLocationObject = null;
             }
         }
 
